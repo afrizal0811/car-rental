@@ -1,16 +1,17 @@
 import React from "react";
 import "./index.css";
-import { Container, Nav, Navbar, Offcanvas, Button } from "react-bootstrap";
+import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 const NavigationBar = () => {
   const locationNav = useLocation();
+
   return (
     <div>
       <Navbar
         key="md"
         expand="md"
         className={
-          (locationNav.pathname === "/cars" || locationNav.pathname === "/") &&
+          (locationNav.pathname === "/" || locationNav.pathname === "/cars") &&
           "navigator"
         }
       >
@@ -44,7 +45,7 @@ const NavigationBar = () => {
                 <Link to="/faq" className="nav-link">
                   <Nav.Link href="#faq">FAQ</Nav.Link>
                 </Link>
-                <Link to="/login" className="nav-link">
+                {/* <Link to="/login" className="nav-link">
                   <Nav.Link
                     href="#login"
                     style={{
@@ -55,7 +56,7 @@ const NavigationBar = () => {
                   >
                     Register
                   </Nav.Link>
-                </Link>
+                </Link> */}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

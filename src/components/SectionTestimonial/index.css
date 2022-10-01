@@ -14,7 +14,7 @@
 
 .testi-title p{
   font-size: 14px;
-  font-weight:400;
+  font-weight:700;
 }
 
 .testi-section{
@@ -58,6 +58,7 @@
   font-size: 14px;
   line-height: 20px;
   margin: 0.5rem 0 0.5rem 0;
+  
 }
 
 .testi-star{

@@ -19,6 +19,7 @@ const CariMobil = () => {
   const [kategoriMobil, setKategoriMobil] = useState("");
   const [hargaMobil, setHargaMobil] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
+  const [catchVisible, setCatchVisible] = useState(false);
 
   useEffect(() => {
     setCarsList(BASE_URL);
@@ -32,15 +33,15 @@ const CariMobil = () => {
           (items) =>
             items.name !== null &&
             items.category !== null &&
-            items.price !== null &&
-            items.image !== null
+            items.price !== null
+          //&& items.image !== null
         );
         setMobil(filterNull);
         setSavedCars(filterNull);
         setLoading(false);
       })
       .catch((error) => {
-        alert(error);
+        setCatchVisible(true);
         setLoading(false);
       });
   }
@@ -136,6 +137,14 @@ const CariMobil = () => {
       </Form>
 
       <div className="mt-5 hasil-card">
+        {/* Alert saat tidak terhubung dengan API */}
+
+        {catchVisible && (
+          <Alert variant="danger">
+            Tidak terhubung dengan API. Periksa sambungan API.
+          </Alert>
+        )}
+
         {/* Alert saat tidak ada data yang ditemukan saat search mobil */}
 
         {alertVisible && (
@@ -155,7 +164,14 @@ const CariMobil = () => {
                   key={result.id}
                   style={{ width: "18rem", margin: "1rem" }}
                 >
-                  <Card.Img variant="top" src={result.image} />
+                  <Card.Img
+                    variant="top"
+                    src={
+                      result.image
+                        ? result.image
+                        : "https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740"
+                    }
+                  />
                   <Card.Body className="d-flex flex-column">
                     <Card.Title>{result.name}</Card.Title>
                     <IntlProvider locale="id">

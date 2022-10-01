@@ -1,5 +1,5 @@
-import React from 'react'
-import "./index.css"
+import React from "react";
+import "./index.css";
 import IconFacebook from "../../assets/image/icon_facebook.png";
 import IconInstagram from "../../assets/image/icon_instagram.png";
 import IconTwitter from "../../assets/image/icon_twitter.png";
@@ -43,11 +43,11 @@ const Footer = () => {
         </div>
         <div className="footer-copyright">
           <p>Copyright &copy; 2022 Binar Car Rental</p>
-          <div className="square"></div>
+          <div className="logo-square"></div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Footer
+export default Footer;

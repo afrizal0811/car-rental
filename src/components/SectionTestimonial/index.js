@@ -122,8 +122,8 @@ export default class PreviousNextMethods extends Component {
                               <i className="fa fa-star"></i>
                             </div>
                             <div className="testi-text">
-                              <p>{item.text}</p>
-                              <p style={{ fontWeight: "600" }}>
+                              <p style={{ fontWeight: "700" }}>{item.text}</p>
+                              <p>
                                 {item.name} {item.age}, {item.location}
                               </p>
                             </div>

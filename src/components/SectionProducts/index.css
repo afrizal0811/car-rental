@@ -14,7 +14,7 @@
 
 .product-title p{
   font-size: 14px;
-  font-weight:400;
+  font-weight:700;
 }
 
 .product-section{
@@ -48,6 +48,7 @@
   font-size: 14px;
   line-height: 20px;
   margin: 0.5rem 0 0.5rem 0;
+  font-weight: 700;
 }
 
 .product-card-content h1{
@@ -101,7 +102,7 @@
     display: flex;
     flex-direction: column;
     flex-basis:20%;
-    height: 250px;
+    height: 220px;
     margin: 0;
   }
 }
