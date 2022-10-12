@@ -11,8 +11,9 @@ import Footer from "./components/SectionFooter";
 import CarList from "./pages/CarList";
 import DetailCar from "./pages/DetailCar";
 import LandingPage from "./pages/LandingPage";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import PublicLogin from "./pages/PublicLogin";
+import PublicRegister from "./pages/PublicRegister";
+import AdminLogin from "./pages/AdminLogin";
 function App() {
   return (
     <div className="App">
@@ -26,8 +27,9 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/cars" element={<CarList />} />
           <Route path="/cars/:id" element={<DetailCar />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<PublicLogin />} />
+          <Route path="/register" element={<PublicRegister />} />
+          <Route path="/admin" element={<AdminLogin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -3,7 +3,7 @@ import "./index.css";
 import SignImage from "../../assets/image/sign-in.png";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const Login = () => {
+const PublicLogin = () => {
   return (
     <section className="sign-section">
       <div className="sign-form">
@@ -35,9 +35,9 @@ const Login = () => {
           </p>
         </Form>
       </div>
-      <img src={SignImage} alt="sign-img" className="sign-img"/>
+      <img src={SignImage} alt="sign-img" className="sign-img" />
     </section>
   );
 };
 
-export default Login;
+export default PublicLogin;

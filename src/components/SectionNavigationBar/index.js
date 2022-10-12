@@ -7,7 +7,7 @@ const NavigationBar = () => {
   const locationNav = useLocation();
 
   return (
-    <div>
+    <div hidden={locationNav.pathname === "/admin" && "true"}>
       <Navbar
         key="md"
         expand="md"
@@ -78,6 +78,9 @@ const NavigationBar = () => {
                   >
                     Register
                   </Nav.Link>
+                </Link>
+                <Link to="/admin" className="navi-link">
+                  <Nav.Link href="#register">ADMIN</Nav.Link>
                 </Link>
               </Nav>
             </Offcanvas.Body>

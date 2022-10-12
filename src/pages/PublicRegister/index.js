@@ -2,7 +2,7 @@ import React from "react";
 import SignImage from "../../assets/image/sign-in.png";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const Login = () => {
+const PublicRegister = () => {
   return (
     <section className="sign-section">
       <div className="sign-form">
@@ -11,10 +11,7 @@ const Login = () => {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Name*</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Nama Lengkap"
-            />
+            <Form.Control type="name" placeholder="Nama Lengkap" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email*</Form.Label>
@@ -41,9 +38,9 @@ const Login = () => {
           </p>
         </Form>
       </div>
-      <img src={SignImage} alt="sign-img" className="sign-img"/>
+      <img src={SignImage} alt="sign-img" className="sign-img" />
     </section>
   );
 };
 
-export default Login;
+export default PublicRegister;
