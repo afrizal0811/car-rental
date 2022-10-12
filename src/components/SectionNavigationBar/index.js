@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+// import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 const NavigationBar = () => {
   const locationNav = useLocation();
 
@@ -28,35 +29,56 @@ const NavigationBar = () => {
           >
             <Offcanvas.Header closeButton>
               <Link to="/" className="offset-brand-logo">
+                <p>BCR</p>
                 <Navbar.Brand href="#" />
               </Link>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Link to="/services" className="nav-link">
-                  <Nav.Link href="#services">Our Services</Nav.Link>
+                <Link to="/services" className="navi-link">
+                  <Nav.Link href="#services">
+                    <p className="p-navi">Our Services</p>
+                  </Nav.Link>
                 </Link>
-                <Link to="/products" className="nav-link">
-                  <Nav.Link href="#products">Why Us</Nav.Link>
+                <Link to="/products" className="navi-link">
+                  <Nav.Link href="#products">
+                    <p className="p-navi">Why Us</p>
+                  </Nav.Link>
                 </Link>
-                <Link to="/testi" className="nav-link">
-                  <Nav.Link href="#testi">Testimonial</Nav.Link>
+                <Link to="/testi" className="navi-link">
+                  <Nav.Link href="#testi">
+                    <p className="p-navi">Testimonial</p>
+                  </Nav.Link>
                 </Link>
-                <Link to="/faq" className="nav-link">
-                  <Nav.Link href="#faq">FAQ</Nav.Link>
+                <Link to="/faq" className="navi-link">
+                  <Nav.Link href="#faq">
+                    <p className="p-navi">FAQ</p>
+                  </Nav.Link>
                 </Link>
-                {/* <Link to="/login" className="nav-link">
+                <Link
+                  to="/register"
+                  className="navi-link"
+                  hidden={
+                    (locationNav.pathname === "/login" ||
+                      locationNav.pathname === "/register") &&
+                    "true"
+                  }
+                >
                   <Nav.Link
-                    href="#login"
+                    href="#register"
                     style={{
                       backgroundColor: "#5CB85F",
                       color: "white",
                       fontWeight: "700",
+                      width: "100px",
+                      display: "flex",
+                      justifyContent: "center",
+                      borderRadius: "2px",
                     }}
                   >
                     Register
                   </Nav.Link>
-                </Link> */}
+                </Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
