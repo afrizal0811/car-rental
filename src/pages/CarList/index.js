@@ -54,7 +54,7 @@ const CariMobil = () => {
     }, 2000);
   };
 
-  function handleViewDetail(id) {
+  function handlePayment(id) {
     navigate(`/cars/${id}`);
   }
 
@@ -141,7 +141,7 @@ const CariMobil = () => {
 
         {catchVisible && (
           <Alert variant="danger">
-            Tidak terhubung dengan API. Periksa sambungan API.
+            Tidak terhubung dengan API. Periksa sambungan Internet.
           </Alert>
         )}
 
@@ -189,7 +189,7 @@ const CariMobil = () => {
                     <div className="d-grid mt-auto">
                       <Button
                         variant="success"
-                        onClick={() => handleViewDetail(result.id)}
+                        onClick={() => handlePayment(result.id)}
                       >
                         Pilih Mobil
                       </Button>

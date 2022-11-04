@@ -1,0 +1,35 @@
+
+
+.hero-dv{
+    background-color: #F1F3FF;
+    height: 120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.ins-container{
+    /* display: grid;
+    column-gap: 50px;
+    row-gap: 30px;
+    grid-template-columns: 600px 450px;
+    justify-content: center;
+    margin-top: 2rem; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem 5rem;
+    border: solid 2px black;
+    
+}
+.ins-item{
+    margin: 2rem;
+}
+
+.coba{
+    height: 100px;
+}
+
+.cobi{
+    width: 520px;
+}

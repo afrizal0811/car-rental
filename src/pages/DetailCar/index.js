@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Alert, Card } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
+import { Alert, Button, Card } from "react-bootstrap";
 import axios from "axios";
 import { IntlProvider, FormattedNumber } from "react-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import Accordion from "react-bootstrap/Accordion";
+import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 
 const DetailCar = () => {
   const [car, setCar] = useState("");
   const [catchVisible, setCatchVisible] = useState(false);
+  const [tanggal, setTanggal] = useState("");
   const { id } = useParams();
+  let navigate = useNavigate();
+  // var maksDate = new Date();
+  // maksDate.setDate(maksDate.getDate() + 7);
   const SEARCH_URL = `https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`;
 
   useEffect(() => {
@@ -20,11 +24,29 @@ const DetailCar = () => {
       .get(SEARCH_URL)
       .then((response) => {
         setCar(response.data);
+        
       })
       .catch((error) => {
         setCatchVisible(true);
       });
   }, []);
+
+  function handleViewDetail(id) {
+    const tanggalAwal = tanggal[0].toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+    const tanggalAkhir = tanggal[1].toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+    localStorage.setItem("startDate", tanggalAwal);
+    localStorage.setItem("endDate", tanggalAkhir);
+
+    navigate(`/payment/${id}`);
+  }
 
   return (
     <div>
@@ -33,10 +55,10 @@ const DetailCar = () => {
           Tidak terhubung dengan API. Periksa sambungan API.
         </Alert>
       ) : (
-        <div>
+        <div key={car.id}>
           <div className="hero-div"></div>
           <div className="detail-section">
-            <Card key={car.id} className="card-detail">
+            <Card className="card-detail">
               <Card.Body className="d-flex flex-column">
                 <Card.Title className="detail-title">Tentang Paket</Card.Title>
                 <Card.Title className="detail-title">Include</Card.Title>
@@ -88,7 +110,7 @@ const DetailCar = () => {
                 </Accordion>
               </Card.Body>
             </Card>
-            <Card key={car.id} className="card-detail-total">
+            <Card className="card-detail-total">
               <Card.Img
                 variant="top"
                 src={
@@ -106,6 +128,18 @@ const DetailCar = () => {
                   />
                   <Card.Text>{car.category}</Card.Text>
                 </div>
+                <div className="date-picker">
+                  <Card.Text>Tentukan lama sewa mobil (max. 7 hari)</Card.Text>
+                  <DateRangePicker
+                    onChange={setTanggal}
+                    value={tanggal}
+                    format="dd-MM-y"
+                    minDate={new Date()}
+                    // maxDate={maksDate}
+                    rangeDivider={" to "}
+                    className="tggl"
+                  />
+                </div>
                 <strong className="d-flex justify-content-between mt-5 mb-5">
                   <Card.Text>Total</Card.Text>
                   <IntlProvider locale="id">
@@ -116,6 +150,15 @@ const DetailCar = () => {
                     />
                   </IntlProvider>
                 </strong>
+                <div className="d-grid mt-auto">
+                  <Button
+                    variant="success"
+                    disabled={!tanggal}
+                    onClick={() => handleViewDetail(`${id}`)}
+                  >
+                    Lanjutkan Pembayaran
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </div>
