@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import Status from "../../components/Status";
 import { Accordion, Button, Alert, Card, Form } from "react-bootstrap";
 import { IntlProvider, FormattedNumber } from "react-intl";
 import { useParams, useNavigate } from "react-router-dom";
@@ -103,7 +104,8 @@ const PaymentCar = () => {
               <strong className="ps-4 fs-5">Pembayaran</strong>
             </div>
             <div className="d-flex">
-              <div className="progres1">
+              <Status current={["current", "num", "num"]} />
+              {/* <div className="progres1">
                 <p style={{ backgroundColor: "#0D28A6", color: "white" }}>1</p>
                 <p>Pilih Metode - </p>
               </div>
@@ -114,7 +116,7 @@ const PaymentCar = () => {
               <div className="progres3">
                 <p>3</p>
                 <p>Tiket</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <Form className="form-pesan">

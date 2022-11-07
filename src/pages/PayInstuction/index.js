@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Instuction from "./Instuction.js";
 import "./index.css";
-import ImageViewer from "../../components/MediaHandling/ImageViewer";
-import Dropzone from "react-dropzone-uploader";
-import { Button, Card, Nav } from "react-bootstrap";
+import Status from "../../components/Status";
+import Instuction from "./Instuction.js";
+// import Uploader from "../../components/MediaHandling/Uploader";
+// import ImageViewer from "../../components/MediaHandling/ImageViewer";
+import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faCopy,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import Dropzone from "react-dropzone-uploader";
+import "react-dropzone-uploader/dist/styles.css";
 import Countdown from "react-countdown";
-const PayInstruction = () => {
-  const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
-  const [time, setTime, timeRef] = useState([9, 59]);
-  const [confirmation, setConfirmation] = useState(false);
+
+const PayInstruction = (props) => {
+  // const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
+  // const [time, setTime, timeRef] = useState([9, 59]);
+  // const [confirmation, setConfirmation] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [copied1, setCopied1] = useState(false);
@@ -50,59 +54,20 @@ const PayInstruction = () => {
     console.log(status, meta, file);
   };
 
+  useEffect(() => {}, []);
   const handleSubmit = (files, allFiles) => {
     console.log(files.map((f) => f.meta));
     allFiles.forEach((f) => f.remove());
     setUploaded(true);
   };
 
-  useEffect(() => {
-    setInterval(() => {
-      let [hour, minute, second] = paymentRef.current;
-
-      if (second === 0) {
-        minute = minute - 1;
-        second = 60;
-      }
-
-      if (minute === 0) {
-        if (second === 0) {
-          hour = hour - 1;
-          minute = 60;
-          second = 60;
-        } else {
-          hour = hour - 1;
-          minute = 60;
-        }
-      }
-
-      second = second - 0.5;
-      setPayment([hour, minute, second]);
-    }, 1000);
-  }, [paymentRef, setPayment]);
-
-  const uploadtime = () => {
-    setConfirmation(true);
-    setInterval(() => {
-      let [minute, second] = timeRef.current;
-
-      if (second === 0) {
-        minute = minute - 1;
-        second = 59;
-      } else {
-        second -= 1;
-      }
-      setTime([minute, second]);
-    }, 1000);
-  };
-
-  const renderer = ({ hours, minutes, seconds }) => {
-    return (
-      <span className="time">
-        {hours}:{minutes}:{seconds}
-      </span>
-    );
-  };
+  // const renderTimer = ({ hours, minutes, seconds }) => {
+  //   return (
+  //     <span className="time">
+  //       {hours}:{minutes}:{seconds}
+  //     </span>
+  //   );
+  // };
 
   const copyTeks = (e, param) => {
     if (param === "rekening") {
@@ -125,19 +90,8 @@ const PayInstruction = () => {
             <p className="ps-4 fs-7">Order ID: {orderId}</p>
           </div>
         </div>
-        <div className="d-flex pb-4">
-          <div className="progres1">
-            <p style={{ backgroundColor: "#0D28A6", color: "white" }}>1</p>
-            <p>Pilih Metode - </p>
-          </div>
-          <div className="progres2">
-            <p style={{ backgroundColor: "#0D28A6", color: "white" }}>2</p>
-            <p>Bayar - </p>
-          </div>
-          <div className="progres3">
-            <p>3</p>
-            <p>Tiket</p>
-          </div>
+        <div className=" pb-4">
+          <Status current={["current", "current", "num"]} />
         </div>
       </div>
       <div className="ins-container">
@@ -150,7 +104,10 @@ const PayInstruction = () => {
               <div className="d-flex justify-content-between">
                 <Card.Text>{today}</Card.Text>
                 <Card.Text>
-                  {/* <Countdown date={Date.now() + 86400000} renderer={renderer} /> */}
+                  {/* <Countdown
+                    date={Date.now() + 86400000}
+                    renderer={renderTimer}
+                  /> */}
                   {/* <div className="countdown">
                     <h6>
                       <span className="time">
@@ -238,14 +195,18 @@ const PayInstruction = () => {
           </Card>
         </div>
         {isClicked ? (
-          <Card className="ins-item cobi">
+          <Card className="ins-item coba">
             <Card.Body className="d-flex flex-column">
               <div className="d-flex justify-content-between">
                 <Card.Title className="fw-bold fs-6">
                   Konfirmasi Pembayaran
                 </Card.Title>
+
                 <Card.Text>
-                  {/* <Countdown date={Date.now() + 600000} renderer={renderer} /> */}
+                  {/* <Countdown
+                    date={Date.now() + 600000}
+                    renderer={renderTimer}
+                  /> */}
                   {/* <div>
                     <span className="time">
                       {time[0] < 10 ? `0${time[0]}` : time[0]}
@@ -269,17 +230,24 @@ const PayInstruction = () => {
                 Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa
                 upload bukti bayarmu
               </Card.Text>
+              {/* <Uploader /> */}
               <div className="up-field">
                 <Dropzone
                   getUploadParams={getUploadParams}
                   onChangeStatus={handleChangeStatus}
                   onSubmit={handleSubmit}
                   maxFiles={1}
-                  inputContent="Drop A File"
+                  inputContent="Drop As File"
                   accept="image/*"
+                  maxSizeBytes={2 * 1024 * 1024}
                 />
               </div>
-              {/* <ImageViewer /> */}
+              {/* <ImageViewer link={gambar}/> */}
+              <div className="d-grid mt-auto">
+                <Button variant="success" disabled={!uploaded}>
+                  Upload
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         ) : (
