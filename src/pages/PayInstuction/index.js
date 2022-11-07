@@ -14,6 +14,7 @@ import {
 import Dropzone from "react-dropzone-uploader";
 import "react-dropzone-uploader/dist/styles.css";
 import Countdown from "react-countdown";
+import CountdownTimer from "react-component-countdown-timer";
 
 const PayInstruction = (props) => {
   // const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
@@ -61,14 +62,6 @@ const PayInstruction = (props) => {
     setUploaded(true);
   };
 
-  // const renderTimer = ({ hours, minutes, seconds }) => {
-  //   return (
-  //     <span className="time">
-  //       {hours}:{minutes}:{seconds}
-  //     </span>
-  //   );
-  // };
-
   const copyTeks = (e, param) => {
     if (param === "rekening") {
       navigator.clipboard.writeText("54104257877");
@@ -104,25 +97,13 @@ const PayInstruction = (props) => {
               <div className="d-flex justify-content-between">
                 <Card.Text>{today}</Card.Text>
                 <Card.Text>
-                  {/* <Countdown
-                    date={Date.now() + 86400000}
-                    renderer={renderTimer}
-                  /> */}
-                  {/* <div className="countdown">
-                    <h6>
-                      <span className="time">
-                        {payment[0] < 10 ? `0${payment[0]}` : payment[0]}
-                      </span>
-                      <span>:</span>
-                      <span className="time">
-                        {payment[1] < 10 ? `0${payment[1]}` : payment[1]}
-                      </span>
-                      <span>:</span>
-                      <span className="time">
-                        {payment[2] < 10 ? `0${payment[2]}` : payment[2]}
-                      </span>
-                    </h6>
-                  </div> */}
+                  <CountdownTimer
+                    count={86400}
+                    hideDay
+                    color="white"
+                    backgroundColor="red"
+                    responsive
+                  />
                 </Card.Text>
               </div>
             </Card.Body>
@@ -203,19 +184,13 @@ const PayInstruction = (props) => {
                 </Card.Title>
 
                 <Card.Text>
-                  {/* <Countdown
-                    date={Date.now() + 600000}
-                    renderer={renderTimer}
-                  /> */}
-                  {/* <div>
-                    <span className="time">
-                      {time[0] < 10 ? `0${time[0]}` : time[0]}
-                    </span>
-                    :
-                    <span className="time">
-                      {time[1] < 10 ? `0${time[1]}` : time[1]}
-                    </span>
-                  </div> */}
+                  <CountdownTimer
+                    count={600}
+                    hideDay
+                    color="white"
+                    backgroundColor="red"
+                    responsive
+                  />
                 </Card.Text>
               </div>
               <Card.Text className="fs-6 mt-4">
