@@ -21,6 +21,8 @@ const Uploader = () => {
         getUploadParams={getUploadParams}
         onChangeStatus={handleChangeStatus}
         onSubmit={handleSubmit}
+        maxFiles={1}
+        inputContent="Drop A File"
         accept="image/*"
       />
     </div>

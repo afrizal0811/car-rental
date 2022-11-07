@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Instuction from "./Instuction.js";
 import "./index.css";
-import Uploader from "../../components/MediaHandling/Uploader";
 import ImageViewer from "../../components/MediaHandling/ImageViewer";
-
+import Dropzone from "react-dropzone-uploader";
 import { Button, Card, Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faCopy,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import Countdown from "react-countdown";
 const PayInstruction = () => {
+  const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
+  const [time, setTime, timeRef] = useState([9, 59]);
+  const [confirmation, setConfirmation] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
+  const [copied1, setCopied1] = useState(false);
+  const [copied2, setCopied2] = useState(false);
+
   const orderId = localStorage.getItem("order");
   const bankName = localStorage.getItem("bank");
+
   let harga =
     "Rp" + new Intl.NumberFormat("id").format(localStorage.getItem("harga"));
 
@@ -30,17 +42,78 @@ const PayInstruction = () => {
 
   let today = hari + ", " + tgl + " jam " + jam;
 
+  const getUploadParams = ({ meta }) => {
+    return { url: "https://httpbin.org/post" };
+  };
+
+  const handleChangeStatus = ({ meta, file }, status) => {
+    console.log(status, meta, file);
+  };
+
+  const handleSubmit = (files, allFiles) => {
+    console.log(files.map((f) => f.meta));
+    allFiles.forEach((f) => f.remove());
+    setUploaded(true);
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      let [hour, minute, second] = paymentRef.current;
+
+      if (second === 0) {
+        minute = minute - 1;
+        second = 60;
+      }
+
+      if (minute === 0) {
+        if (second === 0) {
+          hour = hour - 1;
+          minute = 60;
+          second = 60;
+        } else {
+          hour = hour - 1;
+          minute = 60;
+        }
+      }
+
+      second = second - 0.5;
+      setPayment([hour, minute, second]);
+    }, 1000);
+  }, [paymentRef, setPayment]);
+
+  const uploadtime = () => {
+    setConfirmation(true);
+    setInterval(() => {
+      let [minute, second] = timeRef.current;
+
+      if (second === 0) {
+        minute = minute - 1;
+        second = 59;
+      } else {
+        second -= 1;
+      }
+      setTime([minute, second]);
+    }, 1000);
+  };
+
   const renderer = ({ hours, minutes, seconds }) => {
     return (
-      <span>
+      <span className="time">
         {hours}:{minutes}:{seconds}
       </span>
     );
   };
 
-  // const handleOnClick = (e) => {
-
-  // }
+  const copyTeks = (e, param) => {
+    if (param === "rekening") {
+      navigator.clipboard.writeText("54104257877");
+      setCopied1(true);
+    }
+    if (param === "uang") {
+      navigator.clipboard.writeText(`${localStorage.getItem("harga")}`);
+      setCopied2(true);
+    }
+  };
 
   return (
     <div>
@@ -77,7 +150,22 @@ const PayInstruction = () => {
               <div className="d-flex justify-content-between">
                 <Card.Text>{today}</Card.Text>
                 <Card.Text>
-                  <Countdown date={Date.now() + 86400000} renderer={renderer} />
+                  {/* <Countdown date={Date.now() + 86400000} renderer={renderer} /> */}
+                  {/* <div className="countdown">
+                    <h6>
+                      <span className="time">
+                        {payment[0] < 10 ? `0${payment[0]}` : payment[0]}
+                      </span>
+                      <span>:</span>
+                      <span className="time">
+                        {payment[1] < 10 ? `0${payment[1]}` : payment[1]}
+                      </span>
+                      <span>:</span>
+                      <span className="time">
+                        {payment[2] < 10 ? `0${payment[2]}` : payment[2]}
+                      </span>
+                    </h6>
+                  </div> */}
                 </Card.Text>
               </div>
             </Card.Body>
@@ -112,10 +200,8 @@ const PayInstruction = () => {
                     value="54104257877"
                     disabled
                   />
-                  <a
-                    onClick={() => navigator.clipboard.writeText("54104257877")}
-                  >
-                    <FontAwesomeIcon icon={faCopy} />
+                  <a onClick={(e) => copyTeks(e, "rekening")}>
+                    <FontAwesomeIcon icon={copied1 ? faCheck : faCopy} />
                   </a>
                 </div>
               </div>
@@ -135,8 +221,8 @@ const PayInstruction = () => {
                     value={harga}
                     disabled
                   />
-                  <a onClick={() => navigator.clipboard.writeText(`${harga}`)}>
-                    <FontAwesomeIcon icon={faCopy} />
+                  <a onClick={(e) => copyTeks(e, "uang")}>
+                    <FontAwesomeIcon icon={copied2 ? faCheck : faCopy} />
                   </a>
                 </div>
               </div>
@@ -147,45 +233,7 @@ const PayInstruction = () => {
               <Card.Title className="fw-bold fs-6 ms-3 mb-3">
                 Instruksi Pembayaran
               </Card.Title>
-              <Nav variant="tabs">
-                <Nav.Item>
-                  <Nav.Link eventKey="link-1">
-                    ATM {bankName.substring(0, bankName.indexOf(" "))}
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="link-2">
-                    M-{bankName.substring(0, bankName.indexOf(" "))}
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="link-3">Internet Banking</Nav.Link>
-                </Nav.Item>
-              </Nav>
-              <ul
-                className="text-wrap mt-4 text-muted"
-                style={{ width: "550px" }}
-              >
-                <li>Masukkan kartu ATM, lalu PIN</li>
-                <li>
-                  Pilih menu “Transaksi Lainnya” – ‘Transfer” – “Ke Rek BCA
-                  Virtual Account”
-                </li>
-                <li>
-                  <div>
-                    Masukkan nomor BCA Virtual Account: 70020 + Order ID.
-                  </div>
-                  Contoh:
-                  <div>
-                    No. Order ID: {orderId}, maka ditulis 70020{orderId}
-                  </div>
-                </li>
-                <li>
-                  Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk
-                  menyelesaikan transaksi
-                </li>
-                <li>Ambil dan simpanlah bukti transaksi tersebut</li>
-              </ul>
+              <Instuction bank={bankName} />
             </Card.Body>
           </Card>
         </div>
@@ -197,7 +245,16 @@ const PayInstruction = () => {
                   Konfirmasi Pembayaran
                 </Card.Title>
                 <Card.Text>
-                  <Countdown date={Date.now() + 600000} renderer={renderer} />
+                  {/* <Countdown date={Date.now() + 600000} renderer={renderer} /> */}
+                  {/* <div>
+                    <span className="time">
+                      {time[0] < 10 ? `0${time[0]}` : time[0]}
+                    </span>
+                    :
+                    <span className="time">
+                      {time[1] < 10 ? `0${time[1]}` : time[1]}
+                    </span>
+                  </div> */}
                 </Card.Text>
               </div>
               <Card.Text className="fs-6 mt-4">
@@ -212,8 +269,17 @@ const PayInstruction = () => {
                 Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa
                 upload bukti bayarmu
               </Card.Text>
-              <Uploader />
-              <ImageViewer />
+              <div className="up-field">
+                <Dropzone
+                  getUploadParams={getUploadParams}
+                  onChangeStatus={handleChangeStatus}
+                  onSubmit={handleSubmit}
+                  maxFiles={1}
+                  inputContent="Drop A File"
+                  accept="image/*"
+                />
+              </div>
+              {/* <ImageViewer /> */}
             </Card.Body>
           </Card>
         ) : (

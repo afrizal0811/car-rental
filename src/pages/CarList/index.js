@@ -34,7 +34,6 @@ const CariMobil = () => {
             items.name !== null &&
             items.category !== null &&
             items.price !== null
-          //&& items.image !== null
         );
         setMobil(filterNull);
         setSavedCars(filterNull);
@@ -47,7 +46,6 @@ const CariMobil = () => {
   }
 
   const handleNotData = () => {
-    // setMobil(savedCars);
     setAlertVisible(true);
     setTimeout(() => {
       setAlertVisible(false);
@@ -60,11 +58,11 @@ const CariMobil = () => {
 
   const handleCariMobil = (e) => {
     e.preventDefault();
-    if (savedCars.length > 0) {
+    if (savedCars) {
       const filterData = savedCars.filter(
         (items) =>
-          items.name.toLowerCase() === namaMobil.toLowerCase() ||
-          items.category === kategoriMobil
+          items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
+          items.category.includes(kategoriMobil)
       );
 
       if (filterData.length > 0) {
@@ -95,7 +93,7 @@ const CariMobil = () => {
         <Form.Group controlId="formKategori" className="mt-3">
           <Form.Label>Kategori</Form.Label>
           <Form.Select onChange={(e) => setKategoriMobil(e.target.value)}>
-            <option key="blankChoice" hidden>
+            <option key="blankChoice" hidden selected={!kategoriMobil && true}>
               Masukan Kapasitas Mobil
             </option>
             <option value="2 - 4 orang">2 - 4 Orang</option>
@@ -106,7 +104,7 @@ const CariMobil = () => {
         <Form.Group controlId="formHarga" className="mt-3">
           <Form.Label>Harga</Form.Label>
           <Form.Select onChange={(e) => setHargaMobil(e.target.value)}>
-            <option key="blankChoice" hidden>
+            <option key="blankChoice" hidden selected={!hargaMobil && true}>
               Masukan Harga Sewa per Hari
             </option>
             <option value="400000"> &#60; Rp.400.000 </option>
