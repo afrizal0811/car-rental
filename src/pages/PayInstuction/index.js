@@ -4,7 +4,7 @@ import Status from "../../components/Status";
 import Instuction from "./Instuction.js";
 // import Uploader from "../../components/MediaHandling/Uploader";
 // import ImageViewer from "../../components/MediaHandling/ImageViewer";
-import { Button, Card } from "react-bootstrap";
+import { Alert, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -12,9 +12,8 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "react-dropzone-uploader";
-import "react-dropzone-uploader/dist/styles.css";
-import Countdown from "react-countdown";
 import CountdownTimer from "react-component-countdown-timer";
+import ModalFoto from "react-modal-image";
 
 const PayInstruction = (props) => {
   // const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
@@ -24,10 +23,12 @@ const PayInstruction = (props) => {
   const [uploaded, setUploaded] = useState(false);
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
 
   const orderId = localStorage.getItem("order");
   const bankName = localStorage.getItem("bank");
 
+  let gambar = "";
   let harga =
     "Rp" + new Intl.NumberFormat("id").format(localStorage.getItem("harga"));
 
@@ -47,21 +48,38 @@ const PayInstruction = (props) => {
 
   let today = hari + ", " + tgl + " jam " + jam;
 
-  const getUploadParams = ({ meta }) => {
+  // const getUploadParams = ({ meta }) => {
+  //   return { url: "https://httpbin.org/post" };
+  // };
+
+  // const handleChangeStatus = ({ meta, file }, status) => {
+  //   console.log(status, meta, file);
+  // };
+
+  // const handleSubmit = (files, allFiles) => {
+  //   console.log(files.map((f) => f.meta));
+  //   allFiles.forEach((f) => f.remove());
+
+  // };
+
+  const getUploadParams = () => {
     return { url: "https://httpbin.org/post" };
   };
 
-  const handleChangeStatus = ({ meta, file }, status) => {
-    console.log(status, meta, file);
+  const handleChangeStatus = ({ meta, remove }, status) => {
+    if (status === "done") {
+      handleUploaded();
+      remove();
+    }
   };
 
-  useEffect(() => {}, []);
-  const handleSubmit = (files, allFiles) => {
-    console.log(files.map((f) => f.meta));
-    allFiles.forEach((f) => f.remove());
+  const handleUploaded = () => {
     setUploaded(true);
+    setAlertVisible(true);
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 5000);
   };
-
   const copyTeks = (e, param) => {
     if (param === "rekening") {
       navigator.clipboard.writeText("54104257877");
@@ -87,6 +105,7 @@ const PayInstruction = (props) => {
           <Status current={["current", "current", "num"]} />
         </div>
       </div>
+
       <div className="ins-container">
         <div>
           <Card className="ins-item">
@@ -205,19 +224,25 @@ const PayInstruction = (props) => {
                 Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa
                 upload bukti bayarmu
               </Card.Text>
-              {/* <Uploader /> */}
+              {alertVisible && (
+                <Alert variant="success" isOpen={alertVisible}>
+                  File berhasil di-upload !
+                </Alert>
+              )}
               <div className="up-field">
                 <Dropzone
                   getUploadParams={getUploadParams}
                   onChangeStatus={handleChangeStatus}
-                  onSubmit={handleSubmit}
                   maxFiles={1}
-                  inputContent="Drop As File"
+                  multiple={false}
+                  canCancel={false}
+                  inputContent="Drop A File"
                   accept="image/*"
-                  maxSizeBytes={2 * 1024 * 1024}
+                  styles={{
+                    dropzone: { marginBottom: 20 },
+                  }}
                 />
               </div>
-              {/* <ImageViewer link={gambar}/> */}
               <div className="d-grid mt-auto">
                 <Button variant="success" disabled={!uploaded}>
                   Upload
