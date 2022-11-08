@@ -11,6 +11,7 @@ import {
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const PaymentCar = () => {
   const [car, setCar] = useState("");
@@ -22,8 +23,8 @@ const PaymentCar = () => {
   let navigate = useNavigate();
   const { id } = useParams();
   const SEARCH_URL = `https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`;
-  const startDate = localStorage.getItem("startDate");
-  const endDate = localStorage.getItem("endDate");
+  const startDate = Cookies.get("startDate");
+  const endDate = Cookies.get("endDate");
   var lamaHari = 0;
 
   useEffect(() => {
@@ -86,9 +87,12 @@ const PaymentCar = () => {
   function handleBayar(id) {
     const orderId = Math.floor(Math.random() * 90000000);
     navigate(`/payments/${orderId}`);
-    localStorage.setItem("order", orderId);
-    localStorage.setItem("bank", bankName);
-    localStorage.setItem("harga", car.price * lamaHari);
+    Cookies.set("order", `${orderId}`, { expires: 1 });
+    Cookies.set("bank", `${bankName}`, { expires: 1 });
+    Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 });
+    // localStorage.setItem("order", orderId);
+    // localStorage.setItem("bank", bankName);
+    // localStorage.setItem("harga", car.price * lamaHari);
   }
   return (
     <div>

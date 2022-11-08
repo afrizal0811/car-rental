@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import Accordion from "react-bootstrap/Accordion";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
+import Cookies from "js-cookie";
 
 const DetailCar = () => {
   const [car, setCar] = useState("");
@@ -24,7 +25,6 @@ const DetailCar = () => {
       .get(SEARCH_URL)
       .then((response) => {
         setCar(response.data);
-        
       })
       .catch((error) => {
         setCatchVisible(true);
@@ -42,8 +42,8 @@ const DetailCar = () => {
       month: "short",
       year: "numeric",
     });
-    localStorage.setItem("startDate", tanggalAwal);
-    localStorage.setItem("endDate", tanggalAkhir);
+    Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 });
+    Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 });
 
     navigate(`/payment/${id}`);
   }

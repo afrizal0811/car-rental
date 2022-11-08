@@ -14,6 +14,7 @@ import {
 import Dropzone from "react-dropzone-uploader";
 import CountdownTimer from "react-component-countdown-timer";
 import ModalFoto from "react-modal-image";
+import Cookies from "js-cookie";
 
 const PayInstruction = (props) => {
   // const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
@@ -26,11 +27,10 @@ const PayInstruction = (props) => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const orderId = localStorage.getItem("order");
-  const bankName = localStorage.getItem("bank");
+  const orderId = Cookies.get("order");
+  const bankName = Cookies.get("bank");
 
-  let harga =
-    "Rp" + new Intl.NumberFormat("id").format(localStorage.getItem("harga"));
+  let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 
   var nextDate = new Date();
   nextDate.setDate(nextDate.getDate() + 1);
