@@ -24,11 +24,11 @@ const PayInstruction = (props) => {
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const orderId = localStorage.getItem("order");
   const bankName = localStorage.getItem("bank");
 
-  let gambar = "";
   let harga =
     "Rp" + new Intl.NumberFormat("id").format(localStorage.getItem("harga"));
 
@@ -48,26 +48,15 @@ const PayInstruction = (props) => {
 
   let today = hari + ", " + tgl + " jam " + jam;
 
-  // const getUploadParams = ({ meta }) => {
-  //   return { url: "https://httpbin.org/post" };
-  // };
-
-  // const handleChangeStatus = ({ meta, file }, status) => {
-  //   console.log(status, meta, file);
-  // };
-
-  // const handleSubmit = (files, allFiles) => {
-  //   console.log(files.map((f) => f.meta));
-  //   allFiles.forEach((f) => f.remove());
-
-  // };
-
   const getUploadParams = () => {
     return { url: "https://httpbin.org/post" };
   };
 
   const handleChangeStatus = ({ meta, remove }, status) => {
-    if (status === "done") {
+    if (status === "preparing") {
+      setIsLoading(true);
+    } else if (status === "done") {
+      setIsLoading(false);
       handleUploaded();
       remove();
     }
@@ -78,8 +67,9 @@ const PayInstruction = (props) => {
     setAlertVisible(true);
     setTimeout(() => {
       setAlertVisible(false);
-    }, 5000);
+    }, 10000);
   };
+
   const copyTeks = (e, param) => {
     if (param === "rekening") {
       navigator.clipboard.writeText("54104257877");
@@ -229,20 +219,28 @@ const PayInstruction = (props) => {
                   File berhasil di-upload !
                 </Alert>
               )}
-              <div className="up-field">
-                <Dropzone
-                  getUploadParams={getUploadParams}
-                  onChangeStatus={handleChangeStatus}
-                  maxFiles={1}
-                  multiple={false}
-                  canCancel={false}
-                  inputContent="Drop A File"
-                  accept="image/*"
-                  styles={{
-                    dropzone: { marginBottom: 20 },
-                  }}
-                />
-              </div>
+
+              {isLoading ? (
+                <div className="load-wrapper">
+                  <div class="load"></div>
+                </div>
+              ) : (
+                <div>
+                  <Dropzone
+                    getUploadParams={getUploadParams}
+                    onChangeStatus={handleChangeStatus}
+                    maxFiles={1}
+                    multiple={false}
+                    canCancel={false}
+                    inputContent="Drop A File"
+                    accept="image/*"
+                    styles={{
+                      dropzone: { marginBottom: 20 },
+                    }}
+                  />
+                </div>
+              )}
+
               <div className="d-grid mt-auto">
                 <Button variant="success" disabled={!uploaded}>
                   Upload

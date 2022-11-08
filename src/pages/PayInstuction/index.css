@@ -60,3 +60,46 @@
 .ins-content{
     margin: 1rem 2rem;
 }
+
+ @keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+
+ @-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+.load-wrapper{
+    border: solid 2px #d9d9d9;
+    padding: 2rem;
+    margin-bottom: 20px;
+}
+.load {
+	width: 30px;
+	height: 30px;
+	margin: 20px auto;
+	border:solid 3px #2484ff;
+	border-radius: 50%;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	-webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         1.0s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+    transition: all 0.5s ease-in;
+    animation-name:             rotate; 
+    animation-duration:         0.5s; 
+    animation-iteration-count:  infinite;
+    animation-timing-function: linear; 
+}
