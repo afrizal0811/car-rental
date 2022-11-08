@@ -16,3 +16,18 @@
     margin: auto;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
+
+.downloadBtn {
+    width: 100px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #0D28A6;
+    border-radius: 2px;
+    color: #0D28A6;
+  }
+
+.downloadBtn:hover {
+    background: #0D28A6;
+    border: 1px solid #0D28A6;
+    color: #ffffff;
+  }

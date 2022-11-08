@@ -38,9 +38,12 @@ const Ticket = () => {
         <Card.Body className="d-flex flex-column">
           <div className="d-flex justify-content-between m-2 mb-4">
             <Card.Title className="fw-bold fs-6">Invoice</Card.Title>
-            <FontAwesomeIcon icon={faRightToBracket} size="2x" rotation={90} />
+            <Button className="downloadBtn">
+              <FontAwesomeIcon icon={faRightToBracket} rotation={90} style={{marginRight:"0.5rem"}}/>
+              Unduh
+            </Button>
           </div>
-          {/* <Pdf /> */}
+          {/* <PdfView /> */}
         </Card.Body>
       </Card>
     </div>
