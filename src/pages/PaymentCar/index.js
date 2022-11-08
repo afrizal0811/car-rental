@@ -90,9 +90,6 @@ const PaymentCar = () => {
     Cookies.set("order", `${orderId}`, { expires: 1 });
     Cookies.set("bank", `${bankName}`, { expires: 1 });
     Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 });
-    // localStorage.setItem("order", orderId);
-    // localStorage.setItem("bank", bankName);
-    // localStorage.setItem("harga", car.price * lamaHari);
   }
   return (
     <div>

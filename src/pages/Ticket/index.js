@@ -9,8 +9,9 @@ import {
   faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button, Card } from "react-bootstrap";
+import Cookies from "js-cookie";
 const Ticket = () => {
-  const orderId = localStorage.getItem("order");
+  const orderId = Cookies.get("order");
   return (
     <div>
       <div className="hero-dv">

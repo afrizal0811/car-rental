@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import Status from "../../components/Status";
 import Instuction from "./Instuction.js";
-// import Uploader from "../../components/MediaHandling/Uploader";
-// import ImageViewer from "../../components/MediaHandling/ImageViewer";
+import { useParams, useNavigate } from "react-router-dom";
 import { Alert, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,20 +12,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "react-dropzone-uploader";
 import CountdownTimer from "react-component-countdown-timer";
-import ModalFoto from "react-modal-image";
 import Cookies from "js-cookie";
 
 const PayInstruction = (props) => {
-  // const [payment, setPayment, paymentRef] = useState([23, 59, 59]);
-  // const [time, setTime, timeRef] = useState([9, 59]);
-  // const [confirmation, setConfirmation] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  let navigate = useNavigate();
+  const { id } = useParams();
   const orderId = Cookies.get("order");
   const bankName = Cookies.get("bank");
 
@@ -81,6 +77,9 @@ const PayInstruction = (props) => {
     }
   };
 
+  function handleUpload(id) {
+    navigate(`/ticket/${orderId}`);
+  }
   return (
     <div>
       <div className="hero-dv">
@@ -242,7 +241,11 @@ const PayInstruction = (props) => {
               )}
 
               <div className="d-grid mt-auto">
-                <Button variant="success" disabled={!uploaded}>
+                <Button
+                  variant="success"
+                  disabled={!uploaded}
+                  onClick={() => handleUpload(`${id}`)}
+                >
                   Upload
                 </Button>
               </div>
