@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import Status from "../../components/Status";
-import Pdf from "../../components/MediaHandling/Pdf.js";
+import PdfView from "../../components/MediaHandling/PdfView.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
