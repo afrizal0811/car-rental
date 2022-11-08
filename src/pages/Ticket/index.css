@@ -12,12 +12,13 @@
 }
 
 .ticket-card{
+    height: 500px;
     width: 600px;
     margin: auto;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
 
-.downloadBtn {
+#downloadBtn {
     width: 100px;
     height: 40px;
     background: #FFFFFF;
@@ -26,7 +27,7 @@
     color: #0D28A6;
   }
 
-.downloadBtn:hover {
+#downloadBtn:hover {
     background: #0D28A6;
     border: 1px solid #0D28A6;
     color: #ffffff;

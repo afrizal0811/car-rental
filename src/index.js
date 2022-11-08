@@ -10,6 +10,7 @@ import "bootstrap-daterangepicker/daterangepicker.css";
 import "react-dropzone-uploader/dist/styles.css";
 import "react-component-countdown-timer/lib/styles.css";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

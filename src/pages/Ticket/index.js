@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 import Status from "../../components/Status";
 import PdfView from "../../components/MediaHandling/PdfView.js";
+import PdfDoc from "../../components/MediaHandling/PdfDoc.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -10,6 +11,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Button, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+
 const Ticket = () => {
   const orderId = Cookies.get("order");
   return (
@@ -26,6 +29,7 @@ const Ticket = () => {
           <Status current={["current", "current", "current"]} />
         </div>
       </div>
+
       <div className="success">
         <FontAwesomeIcon icon={faCircleCheck} size="5x" className="ceklis" />
         <div className="text-center">
@@ -39,12 +43,22 @@ const Ticket = () => {
         <Card.Body className="d-flex flex-column">
           <div className="d-flex justify-content-between m-2 mb-4">
             <Card.Title className="fw-bold fs-6">Invoice</Card.Title>
-            <Button className="downloadBtn">
-              <FontAwesomeIcon icon={faRightToBracket} rotation={90} style={{marginRight:"0.5rem"}}/>
-              Unduh
-            </Button>
+            <PDFDownloadLink document={<PdfDoc />} fileName="Invoice.pdf`">
+              <Button id="downloadBtn">
+                <FontAwesomeIcon
+                  icon={faRightToBracket}
+                  rotation={90}
+                  style={{ marginRight: "0.5rem" }}
+                  disabled={({ loading }) => (loading ? "true" : false)}
+                />
+                Unduh
+              </Button>
+            </PDFDownloadLink>
           </div>
           {/* <PdfView /> */}
+          <PDFViewer style={{ height: "390px" }}>
+            <PdfDoc />
+          </PDFViewer>
         </Card.Body>
       </Card>
     </div>
