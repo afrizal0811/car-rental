@@ -87,9 +87,11 @@ const PaymentCar = () => {
   function handleBayar(id) {
     const orderId = Math.floor(Math.random() * 90000000);
     navigate(`/payments/${orderId}`);
+    Cookies.set("mobil", `${car.name}`, { expires: 1 });
     Cookies.set("order", `${orderId}`, { expires: 1 });
     Cookies.set("bank", `${bankName}`, { expires: 1 });
     Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 });
+    Cookies.set("lama", `${lamaHari}`, { expires: 1 });
   }
   return (
     <div>
@@ -100,49 +102,34 @@ const PaymentCar = () => {
       ) : (
         <div key={car.id} onLoad={lamaSewa()}>
           <div className="hero-pay-div">
-            <div style={{ display: "flex", paddingRight: "15rem" }}>
+            <div className="pay-back">
               <FontAwesomeIcon icon={faArrowLeft} size="2x" />
               <strong className="ps-4 fs-5">Pembayaran</strong>
             </div>
             <div className="d-flex">
               <Status current={["current", "num", "num"]} />
-              {/* <div className="progres1">
-                <p style={{ backgroundColor: "#0D28A6", color: "white" }}>1</p>
-                <p>Pilih Metode - </p>
-              </div>
-              <div className="progres2">
-                <p>2</p>
-                <p>Bayar - </p>
-              </div>
-              <div className="progres3">
-                <p>3</p>
-                <p>Tiket</p>
-              </div> */}
             </div>
           </div>
           <Form className="form-pesan">
             <h1 className="fw-bold fs-6 mb-3">Detail Pesananmu</h1>
             <div className="title-pesan">
-              <Form.Group controlId="namaMobil" className="d-flex flex-column ">
+              <Form.Group controlId="namaMobil" className="isi-pesan ">
                 <Form.Label>Nama Mobil</Form.Label>
                 <Form.Label className="text-capitalize text-black-50">
                   {car.name}
                 </Form.Label>
               </Form.Group>
-              <Form.Group
-                controlId="kategoriMobil"
-                className="d-flex flex-column"
-              >
+              <Form.Group controlId="kategoriMobil" className="isi-pesan">
                 <Form.Label>Kategori</Form.Label>
                 <Form.Label className="text-capitalize text-black-50">
                   {car.category}
                 </Form.Label>
               </Form.Group>
-              <Form.Group controlId="mulaiSewa" className="d-flex flex-column">
+              <Form.Group controlId="mulaiSewa" className="isi-pesan">
                 <Form.Label>Tanggal Mulai Sewa</Form.Label>
                 <Form.Label className="text-black-50">{startDate}</Form.Label>
               </Form.Group>
-              <Form.Group controlId="akhirSewa" className="d-flex flex-column">
+              <Form.Group controlId="akhirSewa" className="isi-pesan">
                 <Form.Label>Tanggal Akhir Sewa</Form.Label>
                 <Form.Label className="text-black-50">{endDate}</Form.Label>
               </Form.Group>

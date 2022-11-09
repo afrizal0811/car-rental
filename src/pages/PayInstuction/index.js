@@ -83,7 +83,7 @@ const PayInstruction = (props) => {
   return (
     <div>
       <div className="hero-dv">
-        <div style={{ display: "flex", paddingRight: "15rem" }}>
+        <div className="tf-back">
           <FontAwesomeIcon icon={faArrowLeft} size="2x" />
           <div>
             <strong className="ps-4 fs-5">{bankName}</strong>
