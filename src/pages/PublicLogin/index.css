@@ -41,6 +41,42 @@
   img.sign-img { 
     display: none; 
   }
+  .error {
+    color: red;
+}
+  .signinsuccess {
+    width: 220px;
+    height: 40px;
+    color: rgb(0,0,0);
+    margin-top: 0px;
+    background-color: rgb(189, 224, 189);
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    padding-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 3%;
+    animation: fade-out 5s forwards;
+}
+.Rentbtn, 
+.Rentbtn:hover, 
+.Rentbtn:active, 
+.Rentbtn:visited {
+    font-weight: 700 !important;
+    background-color: #0D28A6 !important;
+    width: 120%;   
+    margin-top: -10%;
+}
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+
+}
+
 
 @media only screen and (min-width: 1024px) {
 

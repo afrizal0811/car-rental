@@ -1,11 +1,18 @@
 import React from "react";
 import "./index.css";
-import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import { Container, Nav, Navbar, Offcanvas, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import avatar from '/Users/Delima/Documents/rental-public/src/assets/image/avatar.jpeg'
 // import { faDisplay } from "@fortawesome/free-solid-svg-icons";
+import Handlebutton from "../LoginLogic/handlebutton";
+
 const NavigationBar = () => {
   const locationNav = useLocation();
-
+  const loggedin = Handlebutton()
+  const {logout} = Handlebutton()
+  
+  let details = localStorage.getItem('userDetails');
+  let user = JSON.parse(details);
   return (
     <div>
       <Navbar key="md" expand="md" className="navigator">
@@ -27,7 +34,7 @@ const NavigationBar = () => {
               </Link>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav className="justify-content-end flex-grow-1 pe-5">
                 <Link to="/services" className="navi-link">
                   <Nav.Link href="#services">
                     <p className="p-navi">Our Services</p>
@@ -57,7 +64,17 @@ const NavigationBar = () => {
                     "true"
                   }
                 >
-                  <Nav.Link
+                  {loggedin && user ? (<div className="showuser">
+                    <img src={avatar} alt="user avatar" id='userava'/>
+                    <NavDropdown
+                      id="nav-dropdown-dark-example"
+                      title={user.fullname}
+                      menuVariant="dark"
+                    >
+                      <NavDropdown.Item><button id="logout" onClick={logout}>Logout</button></NavDropdown.Item>
+                    </NavDropdown>
+                  </div>):
+                  (<Nav.Link
                     href="#register"
                     style={{
                       backgroundColor: "#5CB85F",
@@ -70,7 +87,7 @@ const NavigationBar = () => {
                     }}
                   >
                     Register
-                  </Nav.Link>
+                  </Nav.Link>)}  
                 </Link>
               </Nav>
             </Offcanvas.Body>

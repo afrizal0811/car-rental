@@ -3,29 +3,51 @@ import "./index.css";
 import SignImage from "../../assets/image/sign-in.png";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const PublicLogin = () => {
+import Handlebutton from "../../components/LoginLogic/handlebutton";
+
+const PublicLogin = (submit) => {
+  const {handleChange, handleSubmit,rentClick, errors, values, submitted} = Handlebutton(submit);
   return (
     <section className="sign-section">
       <div className="sign-form">
+      {Object.keys(errors).length === 0 && submitted ? (<div className="success">
+       <div className='signinsuccess'>Signed In successfully!</div>
+       </div>):(<p id="null"></p>)}
         <div className="square"></div>
         <h1>Welcome Back!</h1>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+            <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
               type="email"
               placeholder="Contoh: johndee@gmail.com"
+              onChange={handleChange}
+              value={values.email}
+              name='email'
             />
+            {errors.email && <p className="error"><span><sup>*</sup>{errors.email}</span></p>}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="6+ Password" />
+            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Control 
+              type="password" 
+              placeholder="6+ Password" 
+              onChange={handleChange}
+              value={values.password}
+              name='password'/>
+            {errors.password && <p className="error"><span><sup>*</sup>{errors.password}</span></p>}
           </Form.Group>
           <div className="d-grid gap-2">
-            <Button variant="primary" type="submit" className="btn-submit">
+            {!submitted && <Button variant="primary" type="submit" className="btn-submit" onClick={handleSubmit}>
               Sign In
-            </Button>
+            </Button>}
+            {submitted && <Button variant="primary" type="submit" className="btn-submit" onClick={handleSubmit}>
+              Sign In
+            </Button>}
+            {Object.keys(errors).length === 0 && submitted ? (<div className="success">
+              <Button variant="primary" className="Rentbtn" onClick={rentClick}>Rent a Car!</Button>
+                </div>):(<p id="null"></p>)}
           </div>
           <p>
             Don't have an account?{" "}
