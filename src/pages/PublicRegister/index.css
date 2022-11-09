@@ -38,14 +38,15 @@
     margin-left: 30%;
     animation: fade-out 5s forwards;
 }
-.btn-submit, 
-.btn-submit:hover, 
-.btn-submit:active, 
-.btn-submit:visited {
+.signinBtn, 
+.signinBtn:hover, 
+.signinBtn:active, 
+.signinBtn:visited {
     font-weight: 700 !important;
     background-color: #0D28A6 !important;
-    width: 120%;   
+    width: 120%;
     margin-top: -10%;
+  
 }
 @keyframes fade-out {
     0% {

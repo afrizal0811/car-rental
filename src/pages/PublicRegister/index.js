@@ -60,7 +60,7 @@ const PublicRegister = (submitForm) => {
               Sign Up
             </Button>}
             {Object.keys(errors).length === 0 && submitted ? (<div className="success">
-            <Button variant="primary" type="submit" className="btn-submit" onClick={(e)=> {
+            <Button variant="primary" type="submit" className="signinBtn" onClick={(e)=> {
               e.preventDefault()
               navigate('/login')}}>
               Sign In
