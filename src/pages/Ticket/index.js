@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.css";
 import Status from "../../components/Status";
-import PdfView from "../../components/MediaHandling/PdfView.js";
 import PdfDoc from "../../components/MediaHandling/PdfDoc.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -55,7 +54,6 @@ const Ticket = () => {
               </Button>
             </PDFDownloadLink>
           </div>
-          {/* <PdfView /> */}
           <PDFViewer style={{ height: "390px" }}>
             <PdfDoc />
           </PDFViewer>
