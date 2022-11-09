@@ -1,7 +1,6 @@
   .detail-section{
     position: relative;
     bottom: 6rem;
-    margin-top: 2rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -9,7 +8,7 @@
     flex-direction: column-reverse;
   }
   .card-detail, .card-detail-total{
-    margin: 2rem;
+    margin: 1rem 2rem;
     width: auto;
   }
 
@@ -47,27 +46,31 @@
     width: 100% !important;
   }
 @media only screen and (min-width: 768px) { 
-
-  .card-detail, .card-detail-total{
+  .detail-section{
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .card-detail-total{
+    margin: 1rem;
+    width: 18rem;
+  }
+  .card-detail{
+    margin: 1rem;
     width: 50%;
   }
+  /* .card-detail, .card-detail-total{
+    width: auto;
+  } */
 }
 
 @media only screen and (min-width: 1024px) { 
 
   .detail-section{
+    margin-top: 2rem;
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
   }
 
-  .card-detail{
-    margin: 1rem;
-    width: 50%;
-  }
-
-  .card-detail-total{
-    margin: 1rem;
-    width: 18rem;
-  }
 }
