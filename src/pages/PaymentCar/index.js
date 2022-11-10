@@ -103,7 +103,12 @@ const PaymentCar = () => {
         <div key={car.id} onLoad={lamaSewa()}>
           <div className="hero-pay-div">
             <div className="pay-back">
-              <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+              <a
+                onClick={(e) => navigate(`/cars/${id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+              </a>
               <strong className="ps-4 fs-5">Pembayaran</strong>
             </div>
             <div className="d-flex">
