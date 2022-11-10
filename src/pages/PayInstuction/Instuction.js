@@ -1,37 +1,46 @@
 import React, { useState } from "react";
-
+import { Nav, NavDropdown } from "react-bootstrap";
 const Instuction = (props) => {
   const [index, setIndex] = useState(0);
 
   return (
     <div>
       <div className="instruct-cont">
-        <div className="Tabs-cont">
-          <div
-            className={`tabs ${index === 0 ? `active` : null}`}
-            onClick={() => setIndex(0)}
-          >
-            ATM {props.bank.substring(0, props.bank.indexOf(" "))}
-          </div>
-          <div
-            className={`tabs ${index === 1 ? `active` : null}`}
-            onClick={() => setIndex(1)}
-          >
-            M-{props.bank.substring(0, props.bank.indexOf(" "))}
-          </div>
-          <div
-            className={`tabs ${index === 2 ? `active` : null}`}
-            onClick={() => setIndex(2)}
-          >
-            {props.bank.substring(0, props.bank.indexOf(" "))} Klik
-          </div>
-          <div
-            className={`tabs ${index === 3 ? `active` : null}`}
-            onClick={() => setIndex(3)}
-          >
-            Internet Banking
-          </div>
-        </div>
+        <Nav justify variant="tabs">
+          <Nav.Item>
+            <Nav.Link
+              className={`${index === 0 && `active`}`}
+              onClick={() => setIndex(0)}
+            >
+              ATM {props.bank.substring(0, props.bank.indexOf(" "))}
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              className={` ${index === 1 && `active`}`}
+              onClick={() => setIndex(1)}
+            >
+              Mobile {props.bank.substring(0, props.bank.indexOf(" "))}
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              className={` ${index === 2 && `active`}`}
+              onClick={() => setIndex(2)}
+            >
+              {props.bank.substring(0, props.bank.indexOf(" "))} Klik
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              className={` ${index === 3 && `active`}`}
+              onClick={() => setIndex(3)}
+            >
+              E-Banking
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+
         <div className="tabs-content">
           <div className="ins-content" hidden={index !== 0}>
             <ul>

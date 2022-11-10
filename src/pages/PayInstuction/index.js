@@ -70,10 +70,16 @@ const PayInstruction = (props) => {
     if (param === "rekening") {
       navigator.clipboard.writeText("54104257877");
       setCopied1(true);
+      setTimeout(() => {
+        setCopied1(false);
+      }, 2000);
     }
     if (param === "uang") {
       navigator.clipboard.writeText(`${localStorage.getItem("harga")}`);
       setCopied2(true);
+      setTimeout(() => {
+        setCopied2(false);
+      }, 2000);
     }
   };
 
@@ -84,7 +90,12 @@ const PayInstruction = (props) => {
     <div>
       <div className="hero-dv">
         <div className="tf-back">
-          <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+          <a
+            onClick={(e) => navigate(`/payment/${id}`)}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+          </a>
           <div>
             <strong className="ps-4 fs-5">{bankName}</strong>
             <p className="ps-4 fs-7">Order ID: {orderId}</p>
@@ -118,55 +129,47 @@ const PayInstruction = (props) => {
           </Card>
           <Card className="ins-item">
             <Card.Body className="d-flex flex-column">
-              <Card.Title className="fw-bold fs-6 ms-3">
+              <Card.Title className="fw-bold fs-6 ms-1">
                 Lakukan Transfer Ke
               </Card.Title>
-              <div className="d-flex">
+              <div className="btn-bank">
                 <div className="tmbl">
                   {bankName.substring(0, bankName.indexOf(" "))}
                 </div>
-                <div className="d-flex flex-column pt-4">
+                <div className="d-flex flex-column">
                   <div>{bankName}</div>
                   <div>a.n Binar Car Rental</div>
                 </div>
               </div>
               <div>
-                <Card.Text className="fs-6 mt-4 ms-3 mb-1">
+                <Card.Text className="fs-6 mt-3 ms-1 mb-1">
                   Nomor Rekening
                 </Card.Text>
                 <div
                   style={{
                     border: "1px solid black",
-                    margin: "0 1rem",
+                    margin: "0 0.3rem",
                     padding: "0.3rem",
                   }}
                 >
-                  <input
-                    style={{ border: "none", width: "500px" }}
-                    value="54104257877"
-                    disabled
-                  />
+                  <input className="copy" value="54104257877" disabled />
                   <a onClick={(e) => copyTeks(e, "rekening")}>
                     <FontAwesomeIcon icon={copied1 ? faCheck : faCopy} />
                   </a>
                 </div>
               </div>
               <div>
-                <Card.Text className="fs-6 mt-4 ms-3 mb-1">
+                <Card.Text className="fs-6 mt-3 ms-1 mb-1">
                   Total Bayar
                 </Card.Text>
                 <div
                   style={{
                     border: "1px solid black",
-                    margin: "0 1rem",
+                    margin: "0 0.3rem",
                     padding: "0.3rem",
                   }}
                 >
-                  <input
-                    style={{ border: "none", width: "500px" }}
-                    value={harga}
-                    disabled
-                  />
+                  <input className="copy" value={harga} disabled />
                   <a onClick={(e) => copyTeks(e, "uang")}>
                     <FontAwesomeIcon icon={copied2 ? faCheck : faCopy} />
                   </a>
@@ -176,7 +179,7 @@ const PayInstruction = (props) => {
           </Card>
           <Card className="ins-item">
             <Card.Body className="d-flex flex-column">
-              <Card.Title className="fw-bold fs-6 ms-3 mb-3">
+              <Card.Title className="fw-bold fs-6 ms-1 mb-3">
                 Instruksi Pembayaran
               </Card.Title>
               <Instuction bank={bankName} />
@@ -184,7 +187,7 @@ const PayInstruction = (props) => {
           </Card>
         </div>
         {isClicked ? (
-          <Card className="ins-item coba">
+          <Card className="ins-item upload">
             <Card.Body className="d-flex flex-column">
               <div className="d-flex justify-content-between">
                 <Card.Title className="fw-bold fs-6">
@@ -252,7 +255,7 @@ const PayInstruction = (props) => {
             </Card.Body>
           </Card>
         ) : (
-          <Card className="ins-item coba">
+          <Card className="ins-item upload">
             <Card.Body className="d-flex flex-column">
               <Card.Text className="fs-6">
                 Klik konfirmasi pembayaran untuk mempercepat proses pengecekan
