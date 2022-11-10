@@ -20,7 +20,7 @@ const Instuction = (props) => {
               className={` ${index === 1 && `active`}`}
               onClick={() => setIndex(1)}
             >
-              Mobile {props.bank.substring(0, props.bank.indexOf(" "))}
+              M-{props.bank.substring(0, props.bank.indexOf(" "))}
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -46,7 +46,6 @@ const Instuction = (props) => {
             <ul>
               <li>Masukkan kartu ATM, lalu PIN</li>
               <li>
-                {" "}
                 Pilih menu “Transaksi Lainnya” – "Transfer” – “Ke Rek{" "}
                 {props.bank.substring(0, props.bank.indexOf(" "))} Virtual
                 Account”
@@ -75,9 +74,10 @@ const Instuction = (props) => {
             tempora!
           </div>
           <div className="ins-content" hidden={index !== 3}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit optio
-            libero, unde iure placeat expedita eligendi asperiores eius quo
-            tempora!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+            officia ipsam fuga quidem incidunt, illum fugit sit, at tenetur aut
+            atque, dolor maxime iure voluptates? Omnis delectus ratione quasi
+            incidunt.
           </div>
         </div>
       </div>

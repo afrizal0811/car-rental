@@ -75,7 +75,7 @@ const PayInstruction = (props) => {
       }, 2000);
     }
     if (param === "uang") {
-      navigator.clipboard.writeText(`${localStorage.getItem("harga")}`);
+      navigator.clipboard.writeText(Cookies.get("harga"));
       setCopied2(true);
       setTimeout(() => {
         setCopied2(false);
@@ -145,14 +145,8 @@ const PayInstruction = (props) => {
                 <Card.Text className="fs-6 mt-3 ms-1 mb-1">
                   Nomor Rekening
                 </Card.Text>
-                <div
-                  style={{
-                    border: "1px solid black",
-                    margin: "0 0.3rem",
-                    padding: "0.3rem",
-                  }}
-                >
-                  <input className="copy" value="54104257877" disabled />
+                <div className="copy">
+                  <p style={{ margin: "0", padding: "0" }}>54104257877</p>
                   <a onClick={(e) => copyTeks(e, "rekening")}>
                     <FontAwesomeIcon icon={copied1 ? faCheck : faCopy} />
                   </a>
@@ -162,14 +156,8 @@ const PayInstruction = (props) => {
                 <Card.Text className="fs-6 mt-3 ms-1 mb-1">
                   Total Bayar
                 </Card.Text>
-                <div
-                  style={{
-                    border: "1px solid black",
-                    margin: "0 0.3rem",
-                    padding: "0.3rem",
-                  }}
-                >
-                  <input className="copy" value={harga} disabled />
+                <div className="copy">
+                  <p style={{ margin: "0", padding: "0" }}>{harga}</p>
                   <a onClick={(e) => copyTeks(e, "uang")}>
                     <FontAwesomeIcon icon={copied2 ? faCheck : faCopy} />
                   </a>
