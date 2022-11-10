@@ -4,8 +4,11 @@ import { Card } from "react-bootstrap";
 const LoadingSkeleton = () => {
   return (
     <div>
-      <div className="d-flex flex-wrap justify-content-center mt-3">
-        <Card className="me-2" width={720} height={275}>
+      <div
+        className="d-flex flex-wrap justify-content-center"
+        style={{ marginTop: "-2.5rem" }}
+      >
+        <Card className="me-2">
           <Skeleton width={200} height={15} />
           <Skeleton width={180} height={15} />
           <Skeleton width={350} height={10} count={2} />

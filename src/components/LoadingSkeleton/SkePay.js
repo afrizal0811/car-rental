@@ -4,8 +4,8 @@ import { Card } from "react-bootstrap";
 const LoadingSkeleton = () => {
   return (
     <div>
-      <div className="d-flex flex-wrap mt-4">
-        <Card style={{ width: "1000px", margin: "auto" }}>
+      <div className="d-flex flex-wrap" style={{ marginTop: "-2.5rem" }}>
+        <Card style={{ width: "1080px", margin: "auto" }}>
           <Skeleton
             width={200}
             height={20}
@@ -26,7 +26,7 @@ const LoadingSkeleton = () => {
         </Card>
       </div>
       <div className="d-flex flex-wrap justify-content-center mt-3">
-        <Card className="me-2">
+        <Card className="me-3" style={{ width: "755px" }}>
           <Skeleton
             width={200}
             height={30}
