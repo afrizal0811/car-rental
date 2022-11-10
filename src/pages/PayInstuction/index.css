@@ -69,6 +69,13 @@
     margin: 1rem 0.5rem;
 }
 
+.instruct-accord{
+    display: block;
+}
+
+.instruct-nav{
+    display: none;
+}
 
 .load-wrapper{
     border: solid 2px #d9d9d9;
@@ -108,7 +115,14 @@
     .instruct-cont {
         width: 730px;
     }
+    .instruct-accord{
+        display: none;
+    }
+    .instruct-nav{
+        display: block;
+    }
 }
+
 @media only screen and (min-width: 1024px) {
     .ins-container{
         display: flex;
