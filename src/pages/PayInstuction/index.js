@@ -90,12 +90,13 @@ const PayInstruction = (props) => {
     <div>
       <div className="hero-dv">
         <div className="tf-back">
-          <a
+          <button
             onClick={(e) => navigate(`/payment/${id}`)}
             style={{ cursor: "pointer" }}
+            id="backBtn"
           >
             <FontAwesomeIcon icon={faArrowLeft} size="2x" />
-          </a>
+          </button>
           <div>
             <strong className="ps-4 fs-5">{bankName}</strong>
             <p className="ps-4 fs-7">Order ID: {orderId}</p>

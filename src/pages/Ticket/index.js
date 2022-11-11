@@ -11,15 +11,19 @@ import {
 import { Button, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Ticket = () => {
   const orderId = Cookies.get("order");
+  const {id} = useParams();
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="hero-d">
         <div className="tf-back">
         <button onClick={(e) => 
-              {e.preventDefault
+              {e.preventDefault()
                navigate(`/payments/${id}`)}}
               style={{ cursor: "pointer" }} id='backBtn'>
             <FontAwesomeIcon icon={faArrowLeft} size="2x" />
