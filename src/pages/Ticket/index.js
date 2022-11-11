@@ -11,12 +11,9 @@ import {
 import { Button, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { useParams, useNavigate } from "react-router-dom";
 
 const Ticket = () => {
-  const { id } = useParams();
   const orderId = Cookies.get("order");
-  const navigate = useNavigate();
   return (
     <div>
       <div className="hero-d">
