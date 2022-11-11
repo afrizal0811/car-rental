@@ -21,8 +21,9 @@ const Ticket = () => {
     <div>
       <div className="hero-d">
         <div className="tf-back">
-          <button onClick={(e) => 
-              navigate(`/payments/${id}`)}
+        <button onClick={(e) => 
+              {e.preventDefault
+               navigate(`/payments/${id}`)}}
               style={{ cursor: "pointer" }} id='backBtn'>
             <FontAwesomeIcon icon={faArrowLeft} size="2x" />
             </button>
