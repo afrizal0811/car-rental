@@ -18,17 +18,18 @@ export default function Validate(values) {
     } else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(values.password)){
         errors.password = 'Password is invalid'
     };
-    
-    let val = localStorage.getItem('userDetails');
-    let object = JSON.parse(val);
 
-    if(values.email !== object.email) {
-        errors.email = 'Email is invalid'
-    };
+    // let val = localStorage.getItem('userDetails');
+    // let object = JSON.parse(val);
 
-    if(values.password !== object.password) {
-        errors.password = 'Wrong password'
-    };
+    // if(values.email !== object.email) {
+    //     errors.email = 'Email is invalid'
+    // };
+
+    // if(values.password !== object.password) {
+    //     errors.password = 'Wrong password'
+    // };
+
 
     return errors;
 

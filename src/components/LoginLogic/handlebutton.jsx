@@ -2,8 +2,9 @@ import Validate from "./validation";
 import { Inuser } from "../localstore/localstore";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
-export default function Handlebutton() {
+export default function Handlebutton(submit, params) {
     const navigate = useNavigate()
     const [values, setValues] = useState({
         email:'',
@@ -17,10 +18,16 @@ export default function Handlebutton() {
                 })   
                 
             })
-            const result = await resp.json()
-            Inuser(result.access_token)
+
             if (resp.status > 299 || resp.status < 200) {
                 throw new Error('not found')
+            }
+
+            const result = await resp.json()
+
+            Inuser(JSON.stringify(result))
+            if (params.redirectFrom) {
+                window.location.href = params.redirectFrom
             }
             
         } catch (err) {

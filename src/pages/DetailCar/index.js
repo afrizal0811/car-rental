@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { Alert, Button, Card } from "react-bootstrap";
 import axios from "axios";
 import { IntlProvider, FormattedNumber } from "react-intl";
@@ -45,7 +45,14 @@ const DetailCar = () => {
     Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 });
     Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 });
 
-    navigate(`/payment/${id}`);
+    const token = localStorage.getItem('userIn');
+    if(token) {
+      navigate(`/payment/${id}`);
+    }
+    // return <Navigate to={`/login?redirectFrom=/payment/${id}`} />
+    window.location.href = `/login?redirectFrom=/payment/${id}`;
+
+    return
   }
 
   return (

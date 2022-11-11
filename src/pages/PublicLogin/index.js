@@ -4,9 +4,15 @@ import SignImage from "../../assets/image/sign-in.png";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Handlebutton from "../../components/LoginLogic/handlebutton";
+import { useLocation } from 'react-router';
+import queryString from 'query-string';
 
 const PublicLogin = (submit) => {
-  const {handleChange, handleSubmit,rentClick, errors, values, submitted} = Handlebutton(submit);
+  const location = useLocation();
+  const queries = queryString.parse(location.search);
+  console.log(JSON.stringify(queryString.parse(location.search)));
+
+  const {handleChange, handleSubmit,rentClick, errors, values, submitted} = Handlebutton(submit, queries);
   return (
     <section className="sign-section">
       <div className="sign-form">

@@ -11,7 +11,7 @@ const NavigationBar = () => {
   const loggedin = Handlebutton()
   const {logout} = Handlebutton()
   
-  let details = localStorage.getItem('userDetails');
+  let details = localStorage.getItem('userIn');
   let user = JSON.parse(details);
   return (
     <div>
@@ -68,7 +68,7 @@ const NavigationBar = () => {
                     <img src={avatar} alt="user avatar" id='userava'/>
                     <NavDropdown
                       id="nav-dropdown-dark-example"
-                      title={user.fullname}
+                      title={user.role}
                       menuVariant="dark"
                     >
                       <NavDropdown.Item><button id="logout" onClick={logout}>Logout</button></NavDropdown.Item>
