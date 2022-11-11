@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import Status from "../../components/Status";
 import Instuction from "./Instuction.js";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, createSearchParams } from "react-router-dom";
 import { Alert, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -90,12 +90,10 @@ const PayInstruction = (props) => {
     <div>
       <div className="hero-dv">
         <div className="tf-back">
-          <a
-            onClick={(e) => navigate(`/payment/${id}`)}
-            style={{ cursor: "pointer" }}
-          >
+        <button onClick={(e) => {navigate(`/payment/${id}`)}}
+              style={{ cursor: "pointer" }} id='backBtn'>
             <FontAwesomeIcon icon={faArrowLeft} size="2x" />
-          </a>
+            </button>
           <div>
             <strong className="ps-4 fs-5">{bankName}</strong>
             <p className="ps-4 fs-7">Order ID: {orderId}</p>

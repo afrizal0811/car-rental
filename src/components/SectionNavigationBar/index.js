@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import { Container, Nav, Navbar, Offcanvas, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import avatar from '/Users/Delima/Documents/rental-public/src/assets/image/avatar.jpeg'
+import avatar from '../../assets/image/avatar.jpeg'
 // import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import Handlebutton from "../LoginLogic/handlebutton";
 

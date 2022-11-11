@@ -109,7 +109,10 @@
     justify-content: space-between;
     margin-bottom: 2rem;
 }
-
+#backBtn {
+    border:none;
+    background: none;
+}
 @media only screen and (min-width: 768px) {
     .hero-pay-div{
         flex-direction: row;
