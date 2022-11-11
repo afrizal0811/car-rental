@@ -1,30 +1,45 @@
-
-
 .hero-dv{
     background-color: #F1F3FF;
-    height: 120px;
+    height: 200px;
     display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 2rem;
+}
+
+.tf-back{
+    display: flex;
+    padding-bottom: 1rem ;
+}
+.tmbl-select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem 0;
+    width: 100px;
+    height: 40px;
+    border: solid 2px lightgray;
+    border-radius: 5px;
+    margin:0 1rem;
+}
+
+.copy{
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px black;
+    margin-left: 0.3rem;
+    padding: 0.3rem;
 }
 
 .ins-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 1.5rem 5rem;
-    
+    position: relative;
+    bottom: 2.5rem;
 }
+
 .ins-item{
     margin: 1rem;
 }
-
-.coba{
-    width: 500px;
-    overflow:hidden;
-    height:1%;
-}
-
 
 .time {
     background: rgb(255,0,0);
@@ -34,19 +49,12 @@
     padding: 0.3rem;
 }
 
-.instruct-cont {
-    width: 530px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .Tabs-cont {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
-.tabs {
-    cursor: pointer;
-}
+
 .tabs-content {
     margin-top: 16px;
     color: #8A8A8A;
@@ -58,27 +66,17 @@
 }
 
 .ins-content{
-    margin: 1rem 2rem;
+    margin: 1rem 0.5rem;
 }
 
- @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to { 
-        transform: rotate(360deg);
-    }
+.instruct-accord{
+    display: block;
 }
- 
 
- @-webkit-keyframes rotate {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-    to { 
-        -webkit-transform: rotate(360deg);
-    }
+.instruct-nav{
+    display: none;
 }
+
 .load-wrapper{
     border: solid 2px #d9d9d9;
     padding: 2rem;
@@ -102,4 +100,64 @@
     animation-duration:         0.5s; 
     animation-iteration-count:  infinite;
     animation-timing-function: linear; 
+}
+
+@media only screen and (min-width: 768px) {
+    .hero-dv{
+        flex-direction: row;
+        justify-content: space-around;
+        padding-top: 4.5rem;
+    }
+    .tf-back{
+        display: flex;
+        margin-right: 7rem;
+    }
+    .instruct-cont {
+        width: 730px;
+    }
+    .instruct-accord{
+        display: none;
+    }
+    .instruct-nav{
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .ins-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 5rem;
+    }
+    .instruct-cont {
+        width: 530px;
+    }
+    .upload{
+        width: 500px;
+        overflow:hidden;
+        height:1%;
+    }
+}
+
+
+
+
+ @keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+
+ @-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
 }

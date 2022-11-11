@@ -16,8 +16,8 @@ const Ticket = () => {
   const orderId = Cookies.get("order");
   return (
     <div>
-      <div className="hero-dv">
-        <div style={{ display: "flex", paddingRight: "15rem" }}>
+      <div className="hero-d">
+        <div className="tf-back">
           <FontAwesomeIcon icon={faArrowLeft} size="2x" />
           <div>
             <strong className="ps-4 fs-5">Ticket</strong>

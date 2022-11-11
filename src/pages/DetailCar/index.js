@@ -9,15 +9,15 @@ import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import Accordion from "react-bootstrap/Accordion";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import Cookies from "js-cookie";
+import LoadingSkeleton from "../../components/LoadingSkeleton/SkeDetailCars.js";
 
 const DetailCar = () => {
   const [car, setCar] = useState("");
   const [catchVisible, setCatchVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [tanggal, setTanggal] = useState("");
   const { id } = useParams();
   let navigate = useNavigate();
-  // var maksDate = new Date();
-  // maksDate.setDate(maksDate.getDate() + 7);
   const SEARCH_URL = `https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`;
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const DetailCar = () => {
       .get(SEARCH_URL)
       .then((response) => {
         setCar(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         setCatchVisible(true);
@@ -57,13 +58,17 @@ const DetailCar = () => {
 
   return (
     <div>
-      {catchVisible ? (
-        <Alert variant="danger">
-          Tidak terhubung dengan API. Periksa sambungan API.
-        </Alert>
-      ) : (
-        <div key={car.id}>
-          <div className="hero-div"></div>
+      <div key={car.id}>
+        <div className="hero-div">
+          {catchVisible && (
+            <Alert variant="danger">
+              Sambungan terputus. Periksa sambungan Internet.
+            </Alert>
+          )}
+        </div>
+        {loading ? (
+          <LoadingSkeleton />
+        ) : (
           <div className="detail-section">
             <Card className="card-detail">
               <Card.Body className="d-flex flex-column">
@@ -169,8 +174,8 @@ const DetailCar = () => {
               </Card.Body>
             </Card>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

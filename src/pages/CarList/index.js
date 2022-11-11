@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IntlProvider, FormattedNumber } from "react-intl";
 import SectionHero from "../../components/SectionHero";
+import LoadingSkeleton from "../../components/LoadingSkeleton/SkeCars.js";
 
-import LoadingSkeleton from "../../components/LoadingSkeleton";
 const CariMobil = () => {
   const BASE_URL = "https://bootcamp-rent-car.herokuapp.com/admin/car/";
 
@@ -41,7 +41,6 @@ const CariMobil = () => {
       })
       .catch((error) => {
         setCatchVisible(true);
-        setLoading(false);
       });
   }
 
@@ -139,7 +138,7 @@ const CariMobil = () => {
 
         {catchVisible && (
           <Alert variant="danger">
-            Tidak terhubung dengan API. Periksa sambungan Internet.
+            Sambungan terputus. Periksa sambungan Internet.
           </Alert>
         )}
 

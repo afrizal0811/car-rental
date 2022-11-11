@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: -3rem;
+    margin-top: -2rem;
 }
 
 .btn-bank{
@@ -51,11 +51,9 @@
     text-decoration: none;
     color: black;
     margin: 0.5rem 0;
-}
-
-.btn-bank{
     height: 50px;
 }
+
 .btn-bank:hover{
     color: black;
 }
