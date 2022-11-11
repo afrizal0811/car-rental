@@ -25,6 +25,7 @@ const PayInstruction = (props) => {
   const { id } = useParams();
   const orderId = Cookies.get("order");
   const bankName = Cookies.get("bank");
+  const mobilId = Cookies.get("mobilId");
 
   let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 
@@ -91,7 +92,7 @@ const PayInstruction = (props) => {
       <div className="hero-dv">
         <div className="tf-back">
           <button
-            onClick={(e) => navigate(`/payment/${id}`)}
+            onClick={(e) => navigate(`/payment/${mobilId}`)}
             style={{ cursor: "pointer" }}
             id="backBtn"
           >

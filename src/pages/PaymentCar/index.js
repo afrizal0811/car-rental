@@ -91,6 +91,7 @@ const PaymentCar = () => {
     const orderId = Math.floor(Math.random() * 90000000);
     navigate(`/payments/${orderId}`);
     Cookies.set("mobil", `${car.name}`, { expires: 1 });
+    Cookies.set("mobilId", `${car.id}`, { expires: 1 });
     Cookies.set("order", `${orderId}`, { expires: 1 });
     Cookies.set("bank", `${bankName}`, { expires: 1 });
     Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 });
