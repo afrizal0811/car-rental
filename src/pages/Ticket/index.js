@@ -15,19 +15,23 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Ticket = () => {
   const orderId = Cookies.get("order");
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   return (
     <div>
       <div className="hero-d">
         <div className="tf-back">
-        <button onClick={(e) => 
-              {e.preventDefault()
-               navigate(`/payments/${id}`)}}
-              style={{ cursor: "pointer" }} id='backBtn'>
+          {/* <button
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/payments/${id}`);
+            }}
+            style={{ cursor: "pointer" }}
+            id="backBtn"
+          >
             <FontAwesomeIcon icon={faArrowLeft} size="2x" />
-            </button>
+          </button> */}
           <div>
             <strong className="ps-4 fs-5">Ticket</strong>
             <p className="ps-4 fs-7">Order ID: {orderId}</p>

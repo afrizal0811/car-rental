@@ -13,6 +13,7 @@ import {
 import Dropzone from "react-dropzone-uploader";
 import CountdownTimer from "react-component-countdown-timer";
 import Cookies from "js-cookie";
+import { confirmAlert } from "react-confirm-alert";
 
 const PayInstruction = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -21,6 +22,8 @@ const PayInstruction = (props) => {
   const [copied2, setCopied2] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isBack, setIsBack] = useState(true);
+
   let navigate = useNavigate();
   const { id } = useParams();
   const orderId = Cookies.get("order");
@@ -87,12 +90,29 @@ const PayInstruction = (props) => {
   function handleUpload(id) {
     navigate(`/ticket/${orderId}`);
   }
+
+  const handleBack = () => {
+    confirmAlert({
+      title: "Yakin?",
+      message: "Jika kembali, pesanan akan dibatalkan",
+      buttons: [
+        {
+          label: "Tentu",
+          onClick: () => navigate(`/payment/${mobilId}`),
+        },
+        {
+          label: "Tidak",
+        },
+      ],
+    });
+  };
+
   return (
     <div>
       <div className="hero-dv">
         <div className="tf-back">
           <button
-            onClick={(e) => navigate(`/payment/${mobilId}`)}
+            onClick={handleBack}
             style={{ cursor: "pointer" }}
             id="backBtn"
           >
