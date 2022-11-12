@@ -26,13 +26,6 @@ const LoadingSkeleton = () => {
           <Skeleton width={250} height={10} count={4} />
           <Skeleton width={250} height={25} />
         </Card>
-        <Card>
-          <Skeleton width={250} height={300} />
-          <Skeleton width={125} height={15} />
-          <Skeleton width={200} height={15} />
-          <Skeleton width={250} height={10} count={4} />
-          <Skeleton width={250} height={25} />
-        </Card>
       </div>
     </div>
   );
