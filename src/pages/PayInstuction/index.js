@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./index.css";
 import Status from "../../components/Status";
 import Instuction from "./Instuction.js";
@@ -13,6 +15,7 @@ import {
 import Dropzone from "react-dropzone-uploader";
 import CountdownTimer from "react-component-countdown-timer";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const PayInstruction = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -26,7 +29,9 @@ const PayInstruction = (props) => {
   const orderId = Cookies.get("order");
   const bankName = Cookies.get("bank");
   const mobilId = Cookies.get("mobilId");
-
+  const startDate = Cookies.get("startDate");
+  const endDate = Cookies.get("endDate");
+  
   let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 
   var nextDate = new Date();
@@ -83,10 +88,32 @@ const PayInstruction = (props) => {
       }, 2000);
     }
   };
+  const bodies = {
+    id: mobilId,
+    start_rent: startDate,
+    end_rent: endDate
+  }
+  const user = localStorage.getItem("userIn")
+  const tokens = JSON.parse(user)
+  const token = tokens.access_token
 
-  function handleUpload(id) {
+  const authAxios = axios.create(
+    {
+      url: "https://bootcamp-rent-cars.herokuapp.com",
+      header: {
+        access_token: `${token}` 
+    }
+    }
+  );
+
+  const handleUpload = async (id) => {
     navigate(`/ticket/${orderId}`);
   }
+
+  const notify = () => toast.error(`Request Error!`, {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 20000
+  });
   return (
     <div>
       <div className="hero-dv">
@@ -241,6 +268,7 @@ const PayInstruction = (props) => {
                 >
                   Upload
                 </Button>
+                <ToastContainer />
               </div>
             </Card.Body>
           </Card>
