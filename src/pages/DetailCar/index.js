@@ -46,14 +46,12 @@ const DetailCar = () => {
     Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 });
     Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 });
 
-    const token = localStorage.getItem('userIn');
-    if(token) {
+    const token = localStorage.getItem("userIn");
+    if (token) {
       navigate(`/payment/${id}`);
-    }
-    // return <Navigate to={`/login?redirectFrom=/payment/${id}`} />
-    window.location.href = `/login?redirectFrom=/payment/${id}`;
+    } else window.location.href = `/login?redirectFrom=/payment/${id}`;
 
-    return
+    return;
   }
 
   return (
