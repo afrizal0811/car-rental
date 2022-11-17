@@ -65,15 +65,16 @@ const details = localStorage.getItem("userDetails");
 const user = JSON.parse(details);
 const orderId = Cookies.get("order");
 const mobil = Cookies.get("mobil");
-var startDate = Cookies.get("startDate");
-var endDate = Cookies.get("endDate");
+const startDate = Cookies.get("startDate");
+const endDate = Cookies.get("endDate");
+const lamaSewa = Cookies.get("lama");
 
-var akhir = parseInt(endDate.trim().substring(0, 2));
-var awal = parseInt(startDate.trim().substring(0, 2));
-var lamaSewa = akhir - awal;
-if (lamaSewa < 0) {
-  lamaSewa = 1;
-}
+// var akhir = parseInt(Cookies.get("endDate").trim().substring(0, 2));
+// var awal = parseInt(Cookies.get("startDate").trim().substring(0, 2));
+// var lamaSewa = akhir - awal;
+// if (lamaSewa < 0) {
+//   lamaSewa = 1;
+// }
 
 let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 // Create Document Component

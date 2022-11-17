@@ -18,6 +18,13 @@ const Ticket = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  window.onload = function () {
+    if (!window.location.hash) {
+      window.location = window.location + "#loaded";
+      window.location.reload();
+    }
+  };
+
   return (
     <div>
       <div className="hero-d">
