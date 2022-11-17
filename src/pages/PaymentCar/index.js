@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import Status from "../../components/Status";
+import LoadingSkeleton from "../../components/LoadingSkeleton/SkePay.js";
 import { Accordion, Button, Alert, Card, Form } from "react-bootstrap";
 import { IntlProvider, FormattedNumber } from "react-intl";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,8 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Cookies from "js-cookie";
-import LoadingSkeleton from "../../components/LoadingSkeleton/SkePay.js";
-
+import { confirmAlert } from "react-confirm-alert";
 const PaymentCar = () => {
   const [car, setCar] = useState("");
   const [loading, setLoading] = useState(true);
@@ -89,14 +89,27 @@ const PaymentCar = () => {
 
   function handleBayar(id) {
     const orderId = Math.floor(Math.random() * 90000000);
-    navigate(`/payments/${orderId}`);
     Cookies.set("mobil", `${car.name}`, { expires: 1 });
     Cookies.set("mobilId", `${car.id}`, { expires: 1 });
     Cookies.set("order", `${orderId}`, { expires: 1 });
     Cookies.set("bank", `${bankName}`, { expires: 1 });
     Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 });
     Cookies.set("lama", `${lamaHari}`, { expires: 1 });
+    confirmAlert({
+      title: "Yakin?",
+      message: "Periksa kembali detail pesanan.",
+      buttons: [
+        {
+          label: "Lanjutkan Pesanan",
+          onClick: () => navigate(`/payments/${orderId}`),
+        },
+        {
+          label: "Periksa Kembali",
+        },
+      ],
+    });
   }
+
   return (
     <div>
       <div key={car.id} onLoad={lamaSewa()}>

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 25,
     marginLeft: "auto",
-    marginTop: 80,
+    marginTop: 130,
   },
   total: {
     fontSize: 25,
@@ -61,13 +61,20 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
 });
+const details = localStorage.getItem("userDetails");
+const user = JSON.parse(details);
 const orderId = Cookies.get("order");
 const mobil = Cookies.get("mobil");
 const startDate = Cookies.get("startDate");
 const endDate = Cookies.get("endDate");
 const lamaSewa = Cookies.get("lama");
-const details = localStorage.getItem("userDetails");
-const user = JSON.parse(details);
+
+// var akhir = parseInt(Cookies.get("endDate").trim().substring(0, 2));
+// var awal = parseInt(Cookies.get("startDate").trim().substring(0, 2));
+// var lamaSewa = akhir - awal;
+// if (lamaSewa < 0) {
+//   lamaSewa = 1;
+// }
 
 let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 // Create Document Component

@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import "react-dropzone-uploader/dist/styles.css";
 import "react-component-countdown-timer/lib/styles.css";
-
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
