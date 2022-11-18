@@ -15,11 +15,7 @@ import {
 import Dropzone from "react-dropzone-uploader";
 import CountdownTimer from "react-component-countdown-timer";
 import Cookies from "js-cookie";
-<<<<<<< HEAD
-import axios from "axios";
-=======
 import { confirmAlert } from "react-confirm-alert";
->>>>>>> 2b864f0bb1f99d1da3894a55af4ef76ee76c3947
 
 const PayInstruction = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -35,8 +31,6 @@ const PayInstruction = (props) => {
   const orderId = Cookies.get("order");
   const bankName = Cookies.get("bank");
   const mobilId = Cookies.get("mobilId");
-  const startDate = Cookies.get("startDate");
-  const endDate = Cookies.get("endDate");
   
   let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 
@@ -94,34 +88,12 @@ const PayInstruction = (props) => {
       }, 2000);
     }
   };
-  const bodies = {
-    id: mobilId,
-    start_rent: startDate,
-    end_rent: endDate
-  }
-  const user = localStorage.getItem("userIn")
-  const tokens = JSON.parse(user)
-  const token = tokens.access_token
 
-  const authAxios = axios.create(
-    {
-      url: "https://bootcamp-rent-cars.herokuapp.com",
-      header: {
-        access_token: `${token}` 
-    }
-    }
-  );
 
-  const handleUpload = async (id) => {
+  const handleUpload = (id) => {
     navigate(`/ticket/${orderId}`);
   }
 
-<<<<<<< HEAD
-  const notify = () => toast.error(`Request Error!`, {
-    position: toast.POSITION.TOP_CENTER,
-    autoClose: 20000
-  });
-=======
   const handleBack = () => {
     confirmAlert({
       title: "Yakin?",
@@ -138,7 +110,6 @@ const PayInstruction = (props) => {
     });
   };
 
->>>>>>> 2b864f0bb1f99d1da3894a55af4ef76ee76c3947
   return (
     <div>
       <div className="hero-dv">
