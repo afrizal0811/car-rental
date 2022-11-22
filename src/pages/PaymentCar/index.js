@@ -14,6 +14,8 @@ import {
 import axios from "axios";
 import Cookies from "js-cookie";
 import { confirmAlert } from "react-confirm-alert";
+import { Tooltip } from "@mui/material";
+
 const PaymentCar = () => {
   const [car, setCar] = useState("");
   const [loading, setLoading] = useState(true);
@@ -115,6 +117,7 @@ const PaymentCar = () => {
       <div key={car.id} onLoad={lamaSewa()}>
         <div className="hero-pay-div">
           <div className="pay-back">
+            <Tooltip title="Kembali ke halaman sebelumnya">
             <button
               onClick={(e) => navigate(`/cars/${id}`)}
               style={{ cursor: "pointer" }}
@@ -122,6 +125,7 @@ const PaymentCar = () => {
             >
               <FontAwesomeIcon icon={faArrowLeft} size="2x" />
             </button>
+            </Tooltip>
             <strong className="ps-4 fs-5">Pembayaran</strong>
           </div>
           <div className="d-flex">

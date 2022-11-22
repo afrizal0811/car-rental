@@ -61,7 +61,7 @@ const CariMobil = () => {
       const filterData = savedCars.filter(
         (items) =>
           items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
-          items.category.includes(kategoriMobil)
+          items.category.includes(kategoriMobil) 
       );
 
       if (filterData.length > 0) {
@@ -74,7 +74,7 @@ const CariMobil = () => {
     setKategoriMobil("");
     setHargaMobil("");
   };
-
+    
   return (
     <div>
       <SectionHero />
@@ -126,6 +126,7 @@ const CariMobil = () => {
           variant="success"
           type="submit"
           className="mt-4"
+          id="searchBtn"
           onClick={handleCariMobil}
           disabled={!namaMobil && !kategoriMobil && !hargaMobil}
         >
@@ -160,6 +161,7 @@ const CariMobil = () => {
                 <Card
                   key={result.id}
                   style={{ width: "18rem", margin: "1rem" }}
+                  className="card-cont"
                 >
                   <Card.Img
                     variant="top"
