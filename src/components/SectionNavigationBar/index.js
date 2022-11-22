@@ -11,6 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import avatar from "../../assets/image/avatar.jpeg";
 // import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import Handlebutton from "../LoginLogic/handlebutton";
+import { Tooltip } from "@mui/material";
 
 const NavigationBar = () => {
   const locationNav = useLocation();
@@ -23,9 +24,11 @@ const NavigationBar = () => {
     <div>
       <Navbar key="md" expand="md" className="navigator">
         <Container fluid>
+        <Tooltip title="Homepage" placement="bottom" arrow>
           <Link to="/" className="brand-logo">
             <Navbar.Brand href="#" />
           </Link>
+          </Tooltip>
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-md"
@@ -77,6 +80,7 @@ const NavigationBar = () => {
                     </NavDropdown>
                   </div>
                 ) : (
+                  <Tooltip title="Register" placement="bottom" arrow>
                   <Link
                     to="/register"
                     className="navi-link"
@@ -86,6 +90,7 @@ const NavigationBar = () => {
                       "true"
                     }
                   >
+                    
                     <Nav.Link
                       href="#register"
                       style={{
@@ -97,10 +102,12 @@ const NavigationBar = () => {
                         justifyContent: "center",
                         borderRadius: "2px",
                       }}
+                      
                     >
                       Register
                     </Nav.Link>
                   </Link>
+                  </Tooltip>
                 )}
               </Nav>
             </Offcanvas.Body>

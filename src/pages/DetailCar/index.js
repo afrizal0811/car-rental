@@ -10,6 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import Cookies from "js-cookie";
 import LoadingSkeleton from "../../components/LoadingSkeleton/SkeDetailCars.js";
+import { Tooltip } from "@mui/material";
 
 const DetailCar = () => {
   const [car, setCar] = useState("");
@@ -138,6 +139,7 @@ const DetailCar = () => {
                   />
                   <Card.Text>{car.category}</Card.Text>
                 </div>
+                <Tooltip title="Pilih tanggal sewa" placement="bottom">
                 <div className="date-picker">
                   <Card.Text>Tentukan lama sewa mobil (max. 7 hari)</Card.Text>
                   <DateRangePicker
@@ -148,8 +150,9 @@ const DetailCar = () => {
                     // maxDate={maksDate}
                     rangeDivider={" to "}
                     className="tggl"
-                  />
+                  />  
                 </div>
+                </Tooltip>
                 <strong className="d-flex justify-content-between mt-5 mb-5">
                   <Card.Text>Total</Card.Text>
                   <IntlProvider locale="id">
