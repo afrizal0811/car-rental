@@ -34,7 +34,18 @@ const NavigationBar = () => {
   `;
   return (
     <div>
-      <Navbar key="md" expand="md" className="navigator">
+      <Navbar
+        key="md"
+        expand="md"
+        className={
+          locationNav.pathname === "/services" ||
+          locationNav.pathname === "/products" ||
+          locationNav.pathname === "/testi" ||
+          locationNav.pathname === "/faq"
+            ? "navi-white"
+            : "navigator"
+        }
+      >
         <Container fluid>
         <StyledTooltip title="Homepage" placement="bottom" arrow>
           <Link to="/" className="brand-logo">
@@ -93,32 +104,30 @@ const NavigationBar = () => {
                   </div>
                 ) : (
                   <Tooltip title="Register" placement="bottom" arrow>
-                  <Link
-                    to="/register"
-                    className="navi-link"
-                    hidden={
-                      (locationNav.pathname === "/login" ||
-                        locationNav.pathname === "/register") &&
-                      "true"
-                    }
-                  >
-                    
-                    <Nav.Link
-                      href="#register"
-                      style={{
-                        backgroundColor: "#5CB85F",
-                        color: "white",
-                        fontWeight: "700",
-                        width: "100px",
-                        display: "flex",
-                        justifyContent: "center",
-                        borderRadius: "2px",
-                      }}
-                      
+                    <Link
+                      to="/register"
+                      className="navi-link"
+                      hidden={
+                        (locationNav.pathname === "/login" ||
+                          locationNav.pathname === "/register") &&
+                        "true"
+                      }
                     >
-                      Register
-                    </Nav.Link>
-                  </Link>
+                      <Nav.Link
+                        href="#register"
+                        style={{
+                          backgroundColor: "#5CB85F",
+                          color: "white",
+                          fontWeight: "700",
+                          width: "100px",
+                          display: "flex",
+                          justifyContent: "center",
+                          borderRadius: "2px",
+                        }}
+                      >
+                        Register
+                      </Nav.Link>
+                    </Link>
                   </Tooltip>
                 )}
               </Nav>
