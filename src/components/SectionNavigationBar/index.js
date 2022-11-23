@@ -11,7 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import avatar from "../../assets/image/avatar.jpeg";
 // import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import Handlebutton from "../LoginLogic/handlebutton";
-import { Tooltip } from "@mui/material";
+import { Tooltip, styled } from "@mui/material";
 
 const NavigationBar = () => {
   const locationNav = useLocation();
@@ -20,15 +20,27 @@ const NavigationBar = () => {
 
   let details = localStorage.getItem("userIn");
   let user = JSON.parse(details);
+
+  const StyledTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))`
+    & .MuiTooltip-tooltip {
+      background: navy;
+      font-size: 14px;
+    }
+    .MuiTooltip-arrow {
+      color: navy;
+    }
+  `;
   return (
     <div>
       <Navbar key="md" expand="md" className="navigator">
         <Container fluid>
-        <Tooltip title="Homepage" placement="bottom" arrow>
+        <StyledTooltip title="Homepage" placement="bottom" arrow>
           <Link to="/" className="brand-logo">
             <Navbar.Brand href="#" />
           </Link>
-          </Tooltip>
+          </StyledTooltip>
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-md"

@@ -16,7 +16,7 @@ import Dropzone from "react-dropzone-uploader";
 import CountdownTimer from "react-component-countdown-timer";
 import Cookies from "js-cookie";
 import { confirmAlert } from "react-confirm-alert";
-import { Tooltip } from "@mui/material";
+import { Tooltip, styled } from "@mui/material";
 
 const PayInstruction = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -110,12 +110,22 @@ const PayInstruction = (props) => {
       ],
     });
   };
-
+  const StyledTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))`
+    & .MuiTooltip-tooltip {
+      background: navy;
+      font-size: 14px;
+    }
+    .MuiTooltip-arrow {
+      color: navy;
+    }
+  `;
   return (
     <div>
       <div className="hero-dv">
         <div className="tf-back">
-          <Tooltip title="Kembali ke halaman sebelumnya">
+          <StyledTooltip title="Kembali ke halaman sebelumnya">
           <button
             onClick={handleBack}
             style={{ cursor: "pointer" }}
@@ -123,7 +133,7 @@ const PayInstruction = (props) => {
           >
             <FontAwesomeIcon icon={faArrowLeft} size="2x" />
           </button>
-          </Tooltip>
+          </StyledTooltip>
           <div>
             <strong className="ps-4 fs-5">{bankName}</strong>
             <p className="ps-4 fs-7">Order ID: {orderId}</p>
@@ -176,9 +186,9 @@ const PayInstruction = (props) => {
                 <div className="copy">
                   <p style={{ margin: "0", padding: "0" }}>54104257877</p>
                   <a onClick={(e) => copyTeks(e, "rekening")}>
-                    <Tooltip title="Salin nomor rekening" arrow>
+                    <StyledTooltip title="Salin nomor rekening" arrow>
                     <FontAwesomeIcon icon={copied1 ? faCheck : faCopy} />
-                    </Tooltip>
+                    </StyledTooltip>
                   </a>
                 </div>
               </div>
@@ -189,9 +199,9 @@ const PayInstruction = (props) => {
                 <div className="copy">
                   <p style={{ margin: "0", padding: "0" }}>{harga}</p>
                   <a onClick={(e) => copyTeks(e, "uang")}>
-                  <Tooltip title="Salin total harga sewa" arrow>
+                  <StyledTooltip title="Salin total harga sewa" arrow>
                     <FontAwesomeIcon icon={copied2 ? faCheck : faCopy} />
-                    </Tooltip>
+                    </StyledTooltip>
                   </a>
                 </div>
               </div>
@@ -247,7 +257,7 @@ const PayInstruction = (props) => {
                   <div class="load"></div>
                 </div>
               ) : (
-                <Tooltip title="Pilih file" placement="top" arrow>
+                <StyledTooltip title="Pilih file" placement="top" arrow>
                 <div>
                   <Dropzone
                     getUploadParams={getUploadParams}
@@ -262,7 +272,7 @@ const PayInstruction = (props) => {
                     }}
                   />
                 </div>
-                </Tooltip>
+                </StyledTooltip>
               )}
 
               <div className="d-grid mt-auto">

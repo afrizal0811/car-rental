@@ -10,7 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import Cookies from "js-cookie";
 import LoadingSkeleton from "../../components/LoadingSkeleton/SkeDetailCars.js";
-import { Tooltip } from "@mui/material";
+import { Tooltip, styled } from "@mui/material";
 
 const DetailCar = () => {
   const [car, setCar] = useState("");
@@ -54,7 +54,17 @@ const DetailCar = () => {
 
     return;
   }
-
+  const StyledTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))`
+    & .MuiTooltip-tooltip {
+      background: navy;
+      font-size: 14px;
+    }
+    .MuiTooltip-arrow {
+      color: navy;
+    }
+  `;
   return (
     <div>
       <div key={car.id}>
@@ -139,7 +149,7 @@ const DetailCar = () => {
                   />
                   <Card.Text>{car.category}</Card.Text>
                 </div>
-                <Tooltip title="Pilih tanggal sewa" placement="bottom">
+                <StyledTooltip title="Pilih tanggal sewa" placement="bottom">
                 <div className="date-picker">
                   <Card.Text>Tentukan lama sewa mobil (max. 7 hari)</Card.Text>
                   <DateRangePicker
@@ -152,7 +162,7 @@ const DetailCar = () => {
                     className="tggl"
                   />  
                 </div>
-                </Tooltip>
+                </StyledTooltip>
                 <strong className="d-flex justify-content-between mt-5 mb-5">
                   <Card.Text>Total</Card.Text>
                   <IntlProvider locale="id">
