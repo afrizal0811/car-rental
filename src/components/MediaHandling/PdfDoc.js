@@ -80,7 +80,7 @@ const PdfDoc = () => {
     startDate = Cookies.get("startDate");
     endDate = Cookies.get("endDate");
     lamaSewa = Cookies.get("lamaHari");
-    harga = Cookies.get("harga");
+    harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
   }, []);
   return (
     <Document>
