@@ -34,6 +34,8 @@ const DetailCar = () => {
   }, []);
 
   function handleViewDetail(id) {
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    const lamaHari = Math.round(Math.abs((tanggal[0] - tanggal[1]) / oneDay));
     const tanggalAwal = tanggal[0].toLocaleDateString("en-GB", {
       day: "numeric",
       month: "short",
@@ -44,9 +46,9 @@ const DetailCar = () => {
       month: "short",
       year: "numeric",
     });
-    Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 });
-    Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 });
-
+    Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 / 3 });
+    Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 / 3 });
+    Cookies.set("lamaHari", `${lamaHari}`, { expires: 1 / 3 });
     const token = localStorage.getItem("userIn");
     if (token) {
       navigate(`/payment/${id}`);
@@ -150,18 +152,20 @@ const DetailCar = () => {
                   <Card.Text>{car.category}</Card.Text>
                 </div>
                 <StyledTooltip title="Pilih tanggal sewa" placement="bottom">
-                <div className="date-picker">
-                  <Card.Text>Tentukan lama sewa mobil (max. 7 hari)</Card.Text>
-                  <DateRangePicker
-                    onChange={setTanggal}
-                    value={tanggal}
-                    format="dd-MM-y"
-                    minDate={new Date()}
-                    // maxDate={maksDate}
-                    rangeDivider={" to "}
-                    className="tggl"
-                  />  
-                </div>
+                  <div className="date-picker">
+                    <Card.Text>
+                      Tentukan lama sewa mobil (max. 7 hari)
+                    </Card.Text>
+                    <DateRangePicker
+                      onChange={setTanggal}
+                      value={tanggal}
+                      format="dd-MM-y"
+                      minDate={new Date()}
+                      // maxDate={maksDate}
+                      rangeDivider={" to "}
+                      className="tggl"
+                    />
+                  </div>
                 </StyledTooltip>
                 <strong className="d-flex justify-content-between mt-5 mb-5">
                   <Card.Text>Total</Card.Text>

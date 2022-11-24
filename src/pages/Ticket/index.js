@@ -11,20 +11,10 @@ import {
 import { Button, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { useNavigate, useParams } from "react-router-dom";
 
 const Ticket = () => {
   const orderId = Cookies.get("order");
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  window.onload = function () {
-    if (!window.location.hash) {
-      window.location = window.location + "#loaded";
-      window.location.reload();
-    }
-  };
-
+  
   return (
     <div>
       <div className="hero-d">

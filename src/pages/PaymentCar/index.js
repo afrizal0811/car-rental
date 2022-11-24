@@ -29,7 +29,7 @@ const PaymentCar = () => {
   const SEARCH_URL = `https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`;
   const startDate = Cookies.get("startDate");
   const endDate = Cookies.get("endDate");
-  var lamaHari = 0;
+  const lamaHari = Cookies.get("lamaHari");
 
   useEffect(() => {
     axios
@@ -43,7 +43,7 @@ const PaymentCar = () => {
       });
   }, []);
 
-  const handleOnClick = (e, param) => {
+  const handleClickBank = (e, param) => {
     if (param === "BCA") {
       setIsCheck1(!isCheck1);
       setBankName("BCA Transfer");
@@ -80,23 +80,13 @@ const PaymentCar = () => {
     }
   };
 
-  function lamaSewa() {
-    var akhir = parseInt(endDate.trim().substring(0, 2));
-    var awal = parseInt(startDate.trim().substring(0, 2));
-    lamaHari = akhir - awal;
-    if (lamaHari < 0) {
-      lamaHari = 1;
-    }
-  }
-
   function handleBayar(id) {
     const orderId = Math.floor(Math.random() * 90000000);
-    Cookies.set("mobil", `${car.name}`, { expires: 1 });
-    Cookies.set("mobilId", `${car.id}`, { expires: 1 });
-    Cookies.set("order", `${orderId}`, { expires: 1 });
-    Cookies.set("bank", `${bankName}`, { expires: 1 });
-    Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 });
-    Cookies.set("lama", `${lamaHari}`, { expires: 1 });
+    Cookies.set("mobil", `${car.name}`, { expires: 1 / 3 });
+    Cookies.set("mobilId", `${car.id}`, { expires: 1 / 3 });
+    Cookies.set("order", `${orderId}`, { expires: 1 / 3 });
+    Cookies.set("bank", `${bankName}`, { expires: 1 / 3 });
+    Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 / 3 });
     confirmAlert({
       title: "Yakin?",
       message: "Periksa kembali detail pesanan.",
@@ -124,17 +114,17 @@ const PaymentCar = () => {
   `;
   return (
     <div>
-      <div key={car.id} onLoad={lamaSewa()}>
+      <div key={car.id}>
         <div className="hero-pay-div">
           <div className="pay-back">
             <StyledTooltip title="Kembali ke halaman sebelumnya">
-            <button
-              onClick={(e) => navigate(`/cars/${id}`)}
-              style={{ cursor: "pointer" }}
-              id="backBtn"
-            >
-              <FontAwesomeIcon icon={faArrowLeft} size="2x" />
-            </button>
+              <button
+                onClick={(e) => navigate(`/cars/${id}`)}
+                style={{ cursor: "pointer" }}
+                id="backBtn"
+              >
+                <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+              </button>
             </StyledTooltip>
             <strong className="ps-4 fs-5">Pembayaran</strong>
           </div>
@@ -188,7 +178,7 @@ const PaymentCar = () => {
                   </Card.Text>
                   <a
                     className="btn-bank"
-                    onClick={(e) => handleOnClick(e, "BCA")}
+                    onClick={(e) => handleClickBank(e, "BCA")}
                   >
                     <div className="tmbl">BCA</div>
                     <div className="tmbl-text">BCA Transfer</div>
@@ -198,7 +188,7 @@ const PaymentCar = () => {
                   </a>
                   <a
                     className="btn-bank"
-                    onClick={(e) => handleOnClick(e, "BNI")}
+                    onClick={(e) => handleClickBank(e, "BNI")}
                   >
                     <div className="tmbl">BNI</div>
                     <div className="tmbl-text">BNI Transfer</div>
@@ -208,7 +198,7 @@ const PaymentCar = () => {
                   </a>
                   <a
                     className="btn-bank"
-                    onClick={(e) => handleOnClick(e, "Mandiri")}
+                    onClick={(e) => handleClickBank(e, "Mandiri")}
                   >
                     <div className="tmbl">Mandiri</div>
                     <div className="tmbl-text">Mandiri Transfer</div>
