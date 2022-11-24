@@ -41,8 +41,10 @@ const NavigationBar = () => {
           locationNav.pathname === "/services" ||
           locationNav.pathname === "/products" ||
           locationNav.pathname === "/testi" ||
-          locationNav.pathname === "/faq"
-            ? "navi-white"
+          locationNav.pathname === "/faq" ||
+          locationNav.pathname === "/login" ||
+          locationNav.pathname === "/register"
+          ? "navi-white"
             : "navigator"
         }
       >
