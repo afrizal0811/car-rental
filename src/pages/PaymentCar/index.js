@@ -134,7 +134,7 @@ const PaymentCar = () => {
         </div>
         {catchVisible && (
           <Alert variant="danger">
-            Sambungan terputus. Periksa sambungan Internet.
+            Sambungan terputus. Periksa koneksi Internet.
           </Alert>
         )}
         {loading ? (

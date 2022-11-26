@@ -57,24 +57,25 @@ const CariMobil = () => {
 
   const handleCariMobil = (e) => {
     e.preventDefault();
+    console.log("savedCars :", savedCars);
     if (savedCars) {
       const filterData = savedCars.filter(
         (items) =>
           items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
-          items.category.includes(kategoriMobil) 
+          items.category.includes(kategoriMobil)
       );
-
       if (filterData.length > 0) {
         setMobil(filterData);
       } else {
         handleNotData();
+        setMobil(savedCars);
       }
     }
     setNamaMobil("");
     setKategoriMobil("");
     setHargaMobil("");
   };
-    
+
   return (
     <div>
       <SectionHero />
@@ -139,7 +140,7 @@ const CariMobil = () => {
 
         {catchVisible && (
           <Alert variant="danger">
-            Sambungan terputus. Periksa sambungan Internet.
+            Sambungan terputus. Periksa koneksi Internet.
           </Alert>
         )}
 

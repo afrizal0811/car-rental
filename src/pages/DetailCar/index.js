@@ -73,7 +73,7 @@ const DetailCar = () => {
         <div className="hero-div">
           {catchVisible && (
             <Alert variant="danger">
-              Sambungan terputus. Periksa sambungan Internet.
+              Sambungan terputus. Periksa koneksi Internet.
             </Alert>
           )}
         </div>
