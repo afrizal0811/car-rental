@@ -128,7 +128,7 @@ const PaymentCar = () => {
         <div className="hero-pay-div">
           <div className="pay-back">
             <StyledTooltip title="Kembali ke halaman sebelumnya">
-            <button
+            <button 
               onClick={(e) => navigate(`/cars/${id}`)}
               style={{ cursor: "pointer" }}
               id="backBtn"

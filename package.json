@@ -38,6 +38,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
+    "react-test-renderer": "^18.2.0",
     "react-toastify": "^9.1.1",
     "web-vitals": "^2.1.4"
   },
@@ -45,6 +46,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "atest": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -64,5 +66,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-jest": "^29.3.1"
   }
 }
