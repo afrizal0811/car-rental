@@ -14,9 +14,14 @@ import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 const Ticket = () => {
   const orderId = Cookies.get("order");
-  
+  function handleLoad() {
+    if (!window.location.hash) {
+      window.location = window.location + "#success";
+      window.location.reload();
+    }
+  }
   return (
-    <div>
+    <div onLoad={handleLoad()}>
       <div className="hero-d">
         <div className="tf-back">
           {/* <button

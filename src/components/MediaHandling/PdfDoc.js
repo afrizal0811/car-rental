@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
-  Image,
   Page,
   Text,
   View,
@@ -9,16 +8,15 @@ import {
   Svg,
   Line,
 } from "@react-pdf/renderer";
-import InvoiceImg from "../../assets/image/img_car.png";
 import Cookies from "js-cookie";
-var details = "";
-var user = "";
-var orderId = "";
-var mobil = "";
-var startDate = "";
-var endDate = "";
-var lamaSewa = "";
-var harga = "";
+const details = localStorage.getItem("userIn");
+const user = JSON.parse(details);
+const orderId = Cookies.get("order");
+const mobil = Cookies.get("mobil");
+const startDate = Cookies.get("startDate");
+const endDate = Cookies.get("endDate");
+const lamaSewa = Cookies.get("lamaHari");
+const harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 // Create styles
 const styles = StyleSheet.create({
   page: { backgroundColor: "#f1f3ff" },
@@ -72,18 +70,16 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const PdfDoc = () => {
-  useEffect(() => {
-    details = localStorage.getItem("userDetails");
-    user = JSON.parse(details);
-    orderId = Cookies.get("order");
-    mobil = Cookies.get("mobil");
-    startDate = Cookies.get("startDate");
-    endDate = Cookies.get("endDate");
-    lamaSewa = Cookies.get("lamaHari");
-    harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
-  }, []);
+
+  function handleLoad() {
+    if (!window.location.hash) {
+      window.location = window.location + "#success";
+      window.location.reload();
+    }
+  }
+
   return (
-    <Document>
+    <Document >
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           {/* <Image style={styles.image} src={InvoiceImg} /> */}
@@ -110,8 +106,8 @@ const PdfDoc = () => {
         </View>
         <View style={styles.infoWrapper}>
           <View style={styles.informasi}>
+            <Text style={styles.info}>Penyewa : {user.role}</Text>
             <Text style={styles.info}>Email Penyewa : {user.email}</Text>
-            <Text style={styles.info}>Nama Penyewa : {user.fullname}</Text>
             <Text style={styles.info}>Nama Mobil : {mobil}</Text>
           </View>
           <View style={styles.informasi}>
