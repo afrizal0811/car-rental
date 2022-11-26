@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   Page,
@@ -11,6 +11,14 @@ import {
 } from "@react-pdf/renderer";
 import InvoiceImg from "../../assets/image/img_car.png";
 import Cookies from "js-cookie";
+var details = "";
+var user = "";
+var orderId = "";
+var mobil = "";
+var startDate = "";
+var endDate = "";
+var lamaSewa = "";
+var harga = "";
 // Create styles
 const styles = StyleSheet.create({
   page: { backgroundColor: "#f1f3ff" },
@@ -61,60 +69,64 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
 });
-const details = localStorage.getItem("userDetails");
-const user = JSON.parse(details);
-const orderId = Cookies.get("order");
-const mobil = Cookies.get("mobil");
-const startDate = Cookies.get("startDate");
-const endDate = Cookies.get("endDate");
-const lamaSewa = Cookies.get("lama");
 
-// var akhir = parseInt(Cookies.get("endDate").trim().substring(0, 2));
-// var awal = parseInt(Cookies.get("startDate").trim().substring(0, 2));
-// var lamaSewa = akhir - awal;
-// if (lamaSewa < 0) {
-//   lamaSewa = 1;
-// }
-
-let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 // Create Document Component
-const PdfDoc = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        {/* <Image style={styles.image} src={InvoiceImg} /> */}
-        <Text style={styles.title}>BINAR CAR RENTAL</Text>
-        <Text style={styles.address}>
-          Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213
-        </Text>
-        <Text style={styles.address}>081-233-334-808</Text>
-        <Svg height="5" width="550">
-          <Line x1="10" y1="0" x2="520" y2="0" strokeWidth={5} stroke="black" />
-        </Svg>
-        <Text></Text>
-      </View>
-      <View style={styles.judul}>
-        <Text style={styles.subtitle}>Invoice Sewa Mobil</Text>
-        <Text style={styles.order}>Order ID: {orderId}</Text>
-      </View>
-      <View style={styles.infoWrapper}>
-        <View style={styles.informasi}>
-          <Text style={styles.info}>Email Penyewa : {user.email}</Text>
-          <Text style={styles.info}>Nama Penyewa : {user.fullname}</Text>
-          <Text style={styles.info}>Nama Mobil : {mobil}</Text>
+const PdfDoc = () => {
+  useEffect(() => {
+    details = localStorage.getItem("userDetails");
+    user = JSON.parse(details);
+    orderId = Cookies.get("order");
+    mobil = Cookies.get("mobil");
+    startDate = Cookies.get("startDate");
+    endDate = Cookies.get("endDate");
+    lamaSewa = Cookies.get("lamaHari");
+    harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
+  }, []);
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          {/* <Image style={styles.image} src={InvoiceImg} /> */}
+          <Text style={styles.title}>BINAR CAR RENTAL</Text>
+          <Text style={styles.address}>
+            Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213
+          </Text>
+          <Text style={styles.address}>081-233-334-808</Text>
+          <Svg height="5" width="550">
+            <Line
+              x1="10"
+              y1="0"
+              x2="520"
+              y2="0"
+              strokeWidth={5}
+              stroke="black"
+            />
+          </Svg>
+          <Text></Text>
         </View>
-        <View style={styles.informasi}>
-          <Text style={styles.info}>Tanggal Sewa : {startDate}</Text>
-          <Text style={styles.info}>Tanggal Kembali : {endDate}</Text>
-          <Text style={styles.info}>Lama Sewa : {lamaSewa} hari</Text>
+        <View style={styles.judul}>
+          <Text style={styles.subtitle}>Invoice Sewa Mobil</Text>
+          <Text style={styles.order}>Order ID: {orderId}</Text>
         </View>
-      </View>
-      <View style={styles.total}>
-        <Text style={styles.judulTotal}>Total Pembayaran</Text>
-        <Text style={styles.total}>{harga}</Text>
-      </View>
-    </Page>
-  </Document>
-);
+        <View style={styles.infoWrapper}>
+          <View style={styles.informasi}>
+            <Text style={styles.info}>Email Penyewa : {user.email}</Text>
+            <Text style={styles.info}>Nama Penyewa : {user.fullname}</Text>
+            <Text style={styles.info}>Nama Mobil : {mobil}</Text>
+          </View>
+          <View style={styles.informasi}>
+            <Text style={styles.info}>Tanggal Sewa : {startDate}</Text>
+            <Text style={styles.info}>Tanggal Kembali : {endDate}</Text>
+            <Text style={styles.info}>Lama Sewa : {lamaSewa} hari</Text>
+          </View>
+        </View>
+        <View style={styles.total}>
+          <Text style={styles.judulTotal}>Total Pembayaran</Text>
+          <Text style={styles.total}>{harga}</Text>
+        </View>
+      </Page>
+    </Document>
+  );
+};
 
 export default PdfDoc;
