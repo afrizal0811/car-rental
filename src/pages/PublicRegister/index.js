@@ -44,6 +44,7 @@ const PublicRegister = (submitForm) => {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email*</Form.Label>
             <Form.Control
+              data-testid="form1"
               type="email"
               placeholder="Contoh: johndee@gmail.com"
               value={value.email}
