@@ -1,5 +1,5 @@
 import "./App.css";
-
+import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import NavigationBar from "./components/SectionNavigationBar";

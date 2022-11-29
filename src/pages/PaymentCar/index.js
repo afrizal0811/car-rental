@@ -176,36 +176,45 @@ const PaymentCar = () => {
                     Kamu bisa membayar dengan transfer melalui ATM, Internet
                     Banking, atau Mobile Banking
                   </Card.Text>
+                  <StyledTooltip title="Klik untuk memilih" placement="top">
                   <a
                     className="btn-bank"
                     onClick={(e) => handleClickBank(e, "BCA")}
-                  >
+                  > 
                     <div className="tmbl">BCA</div>
                     <div className="tmbl-text">BCA Transfer</div>
                     {isCheck1 && (
                       <FontAwesomeIcon icon={faCheck} className="ico" />
                     )}
                   </a>
+                  </StyledTooltip>
+                  <StyledTooltip title="Klik untuk memilih" placement="top">
                   <a
                     className="btn-bank"
                     onClick={(e) => handleClickBank(e, "BNI")}
                   >
+                    
                     <div className="tmbl">BNI</div>
                     <div className="tmbl-text">BNI Transfer</div>
+                    
                     {isCheck2 && (
                       <FontAwesomeIcon icon={faCheck} className="ico" />
                     )}
                   </a>
+                  </StyledTooltip>
+                  <StyledTooltip title="Klik untuk memilih" placement="top">
                   <a
                     className="btn-bank"
                     onClick={(e) => handleClickBank(e, "Mandiri")}
-                  >
+                  > 
                     <div className="tmbl">Mandiri</div>
                     <div className="tmbl-text">Mandiri Transfer</div>
+                    
                     {isCheck3 && (
                       <FontAwesomeIcon icon={faCheck} className="ico" />
                     )}
                   </a>
+                  </StyledTooltip>
                 </Card.Body>
               </Card>
               <Card className="card-total-pay">
