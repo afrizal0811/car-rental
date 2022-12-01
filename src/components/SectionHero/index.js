@@ -1,12 +1,11 @@
 import React from "react";
-import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import CarImage from "../../assets/image/img_car.png";
 import "./index.css";
 
 const Hero = () => {
-  const [isHidden, setIsHidden] = useState(false);
+  var isHidden = false;
   const locationCarDetail = useLocation();
 
   return (

@@ -71,12 +71,12 @@ const styles = StyleSheet.create({
 // Create Document Component
 const PdfDoc = () => {
 
-  function handleLoad() {
-    if (!window.location.hash) {
-      window.location = window.location + "#success";
-      window.location.reload();
-    }
-  }
+  // function handleLoad() {
+  //   if (!window.location.hash) {
+  //     window.location = window.location + "#success";
+  //     window.location.reload();
+  //   }
+  // }
 
   return (
     <Document >

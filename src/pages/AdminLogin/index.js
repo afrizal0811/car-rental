@@ -2,7 +2,6 @@ import React from "react";
 import "./index.css";
 import AdminImage from "../../assets/image/admin-login.png";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 const AdminLogin = () => {
   return (
     <section className="admin-section">

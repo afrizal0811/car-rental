@@ -39,10 +39,10 @@ const PaymentCar = () => {
         setCar(response.data);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setCatchVisible(true);
         setLoading(false);
-        var internetCheck = false;
+        internetCheck = true;
       });
   }, []);
 
@@ -83,7 +83,7 @@ const PaymentCar = () => {
     }
   };
 
-  function handleBayar(id) {
+  function handleBayar() {
     const orderId = Math.floor(Math.random() * 90000000);
     Cookies.set("mobil", `${car.name}`, { expires: 1 / 3 });
     Cookies.set("mobilId", `${car.id}`, { expires: 1 / 3 });
@@ -122,7 +122,7 @@ const PaymentCar = () => {
           <div className="pay-back">
             <StyledTooltip title="Kembali ke halaman sebelumnya">
               <button
-                onClick={(e) => navigate(`/cars/${id}`)}
+                onClick={() => navigate(`/cars/${id}`)}
                 style={{ cursor: "pointer" }}
                 id="backBtn"
               >
@@ -137,7 +137,8 @@ const PaymentCar = () => {
         </div>
         {catchVisible && (
           <Alert variant="danger">
-            Koneksi terputus. Periksa kembali koneksi internet dan tunggu beberapa saat.
+            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
+            beberapa saat.
           </Alert>
         )}
         {loading ? (

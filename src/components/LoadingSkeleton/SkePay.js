@@ -13,7 +13,7 @@ const LoadingSkeleton = () => {
           />
           <div className="d-flex flex-wrap justify-content-between mt-4">
             {[...Array(4)].map((e, i) => (
-              <div>
+              <div key={i}>
                 <Skeleton width={150} height={15} />
                 <Skeleton
                   width={180}
@@ -34,7 +34,7 @@ const LoadingSkeleton = () => {
           />
           <Skeleton width={680} height={15} count={2} />
           {[...Array(3)].map((e, i) => (
-            <div className="d-flex flex-row mt-3">
+            <div className="d-flex flex-row mt-3" key={i}>
               <Skeleton
                 width={100}
                 height={50}

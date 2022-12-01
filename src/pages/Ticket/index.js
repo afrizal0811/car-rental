@@ -4,7 +4,6 @@ import Status from "../../components/Status";
 import PdfDoc from "../../components/MediaHandling/PdfDoc.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
   faCircleCheck,
   faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +13,7 @@ import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 const Ticket = () => {
   const orderId = Cookies.get("order");
+
   function handleLoad() {
     if (!window.location.hash) {
       window.location = window.location + "#success";
@@ -21,7 +21,7 @@ const Ticket = () => {
     }
   }
   return (
-    <div onLoad={handleLoad()}>
+    <div>
       <div className="hero-d">
         <div className="tf-back">
           {/* <button
@@ -53,7 +53,7 @@ const Ticket = () => {
           </p>
         </div>
       </div>
-      <Card className="ticket-card">
+      <Card className="ticket-card" onLoad={handleLoad()}>
         <Card.Body className="d-flex flex-column">
           <div className="d-flex justify-content-between m-2 mb-4">
             <Card.Title className="fw-bold fs-6">Invoice</Card.Title>

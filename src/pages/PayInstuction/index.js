@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import React, { useState } from "react";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./index.css";
 import Status from "../../components/Status";
@@ -18,14 +18,13 @@ import Cookies from "js-cookie";
 import { confirmAlert } from "react-confirm-alert";
 import { Tooltip, styled } from "@mui/material";
 
-const PayInstruction = (props) => {
+const PayInstruction = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isBack, setIsBack] = useState(true);
 
   let navigate = useNavigate();
   const { id } = useParams();
@@ -55,7 +54,7 @@ const PayInstruction = (props) => {
     return { url: "https://httpbin.org/post" };
   };
 
-  const handleChangeStatus = ({ meta, remove }, status) => {
+  const handleChangeStatus = ({ remove }, status) => {
     if (status === "preparing") {
       setIsLoading(true);
     } else if (status === "done") {
@@ -91,7 +90,7 @@ const PayInstruction = (props) => {
   };
 
 
-  const handleUpload = (id) => {
+  const handleUpload = () => {
     navigate(`/ticket/${orderId}`);
   }
 
@@ -126,13 +125,13 @@ const PayInstruction = (props) => {
       <div className="hero-dv">
         <div className="tf-back">
           <StyledTooltip title="Kembali ke halaman sebelumnya">
-          <button
-            onClick={handleBack}
-            style={{ cursor: "pointer" }}
-            id="backBtn"
-          >
-            <FontAwesomeIcon icon={faArrowLeft} size="2x" />
-          </button>
+            <button
+              onClick={handleBack}
+              style={{ cursor: "pointer" }}
+              id="backBtn"
+            >
+              <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+            </button>
           </StyledTooltip>
           <div>
             <strong className="ps-4 fs-5">{bankName}</strong>
@@ -187,7 +186,7 @@ const PayInstruction = (props) => {
                   <p style={{ margin: "0", padding: "0" }}>54104257877</p>
                   <a onClick={(e) => copyTeks(e, "rekening")}>
                     <StyledTooltip title="Salin nomor rekening" arrow>
-                    <FontAwesomeIcon icon={copied1 ? faCheck : faCopy} />
+                      <FontAwesomeIcon icon={copied1 ? faCheck : faCopy} />
                     </StyledTooltip>
                   </a>
                 </div>
@@ -199,8 +198,8 @@ const PayInstruction = (props) => {
                 <div className="copy">
                   <p style={{ margin: "0", padding: "0" }}>{harga}</p>
                   <a onClick={(e) => copyTeks(e, "uang")}>
-                  <StyledTooltip title="Salin total harga sewa" arrow>
-                    <FontAwesomeIcon icon={copied2 ? faCheck : faCopy} />
+                    <StyledTooltip title="Salin total harga sewa" arrow>
+                      <FontAwesomeIcon icon={copied2 ? faCheck : faCopy} />
                     </StyledTooltip>
                   </a>
                 </div>
@@ -254,24 +253,24 @@ const PayInstruction = (props) => {
 
               {isLoading ? (
                 <div className="load-wrapper">
-                  <div class="load"></div>
+                  <div className="load"></div>
                 </div>
               ) : (
                 <StyledTooltip title="Pilih file" placement="top" arrow>
-                <div>
-                  <Dropzone
-                    getUploadParams={getUploadParams}
-                    onChangeStatus={handleChangeStatus}
-                    maxFiles={1}
-                    multiple={false}
-                    canCancel={false}
-                    inputContent="Drop A File"
-                    accept="image/*"
-                    styles={{
-                      dropzone: { marginBottom: 20 },
-                    }}
-                  />
-                </div>
+                  <div>
+                    <Dropzone
+                      getUploadParams={getUploadParams}
+                      onChangeStatus={handleChangeStatus}
+                      maxFiles={1}
+                      multiple={false}
+                      canCancel={false}
+                      inputContent="Drop A File"
+                      accept="image/*"
+                      styles={{
+                        dropzone: { marginBottom: 20 },
+                      }}
+                    />
+                  </div>
                 </StyledTooltip>
               )}
 
@@ -294,7 +293,7 @@ const PayInstruction = (props) => {
                 Klik konfirmasi pembayaran untuk mempercepat proses pengecekan
               </Card.Text>
               <div className="d-grid mt-auto">
-                <Button variant="success" onClick={(e) => setIsClicked(true)}>
+                <Button variant="success" onClick={() => setIsClicked(true)}>
                   Konfirmasi Pembayaran
                 </Button>
               </div>

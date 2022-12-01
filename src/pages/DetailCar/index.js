@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Alert, Button, Card } from "react-bootstrap";
 import axios from "axios";
 import { IntlProvider, FormattedNumber } from "react-intl";
@@ -29,10 +29,10 @@ const DetailCar = () => {
         setCar(response.data);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setCatchVisible(true);
         setLoading(false);
-        var internetCheck = false;
+        internetCheck = true;
       });
   }, []);
 
