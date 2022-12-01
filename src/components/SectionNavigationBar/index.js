@@ -105,7 +105,7 @@ const NavigationBar = () => {
                     </NavDropdown>
                   </div>
                 ) : (
-                  <Tooltip title="Register" placement="bottom" arrow>
+                  <StyledTooltip title="Register" placement="bottom" arrow>
                     <Link
                       to="/register"
                       className="navi-link"
@@ -130,7 +130,7 @@ const NavigationBar = () => {
                         Register
                       </Nav.Link>
                     </Link>
-                  </Tooltip>
+                  </StyledTooltip>
                 )}
               </Nav>
             </Offcanvas.Body>
