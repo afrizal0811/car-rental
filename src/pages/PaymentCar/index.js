@@ -30,6 +30,7 @@ const PaymentCar = () => {
   const startDate = Cookies.get("startDate");
   const endDate = Cookies.get("endDate");
   const lamaHari = Cookies.get("lamaHari");
+  var internetCheck = false;
 
   useEffect(() => {
     axios
@@ -40,6 +41,8 @@ const PaymentCar = () => {
       })
       .catch((error) => {
         setCatchVisible(true);
+        setLoading(false);
+        var internetCheck = false;
       });
   }, []);
 
@@ -134,119 +137,98 @@ const PaymentCar = () => {
         </div>
         {catchVisible && (
           <Alert variant="danger">
-            Sambungan terputus. Periksa koneksi Internet.
+            Koneksi terputus. Periksa kembali koneksi internet dan tunggu beberapa saat.
           </Alert>
         )}
         {loading ? (
           <LoadingSkeleton />
         ) : (
-          <div>
-            <Form className="form-pesan">
-              <h1 className="fw-bold fs-6 mb-3">Detail Pesananmu</h1>
-              <div className="title-pesan">
-                <Form.Group controlId="namaMobil" className="isi-pesan ">
-                  <Form.Label>Nama Mobil</Form.Label>
-                  <Form.Label className="text-capitalize text-black-50">
-                    {car.name}
-                  </Form.Label>
-                </Form.Group>
-                <Form.Group controlId="kategoriMobil" className="isi-pesan">
-                  <Form.Label>Kategori</Form.Label>
-                  <Form.Label className="text-capitalize text-black-50">
-                    {car.category}
-                  </Form.Label>
-                </Form.Group>
-                <Form.Group controlId="mulaiSewa" className="isi-pesan">
-                  <Form.Label>Tanggal Mulai Sewa</Form.Label>
-                  <Form.Label className="text-black-50">{startDate}</Form.Label>
-                </Form.Group>
-                <Form.Group controlId="akhirSewa" className="isi-pesan">
-                  <Form.Label>Tanggal Akhir Sewa</Form.Label>
-                  <Form.Label className="text-black-50">{endDate}</Form.Label>
-                </Form.Group>
-              </div>
-            </Form>
-            <div className="select-bank">
-              <Card className="card-bank-detail">
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title className="fw-bold mb-4">
-                    Pilih Bank Transfer
-                  </Card.Title>
-                  <Card.Text>
-                    Kamu bisa membayar dengan transfer melalui ATM, Internet
-                    Banking, atau Mobile Banking
-                  </Card.Text>
-                  <a
-                    className="btn-bank"
-                    onClick={(e) => handleClickBank(e, "BCA")}
-                  >
-                    <div className="tmbl">BCA</div>
-                    <div className="tmbl-text">BCA Transfer</div>
-                    {isCheck1 && (
-                      <FontAwesomeIcon icon={faCheck} className="ico" />
-                    )}
-                  </a>
-                  <a
-                    className="btn-bank"
-                    onClick={(e) => handleClickBank(e, "BNI")}
-                  >
-                    <div className="tmbl">BNI</div>
-                    <div className="tmbl-text">BNI Transfer</div>
-                    {isCheck2 && (
-                      <FontAwesomeIcon icon={faCheck} className="ico" />
-                    )}
-                  </a>
-                  <a
-                    className="btn-bank"
-                    onClick={(e) => handleClickBank(e, "Mandiri")}
-                  >
-                    <div className="tmbl">Mandiri</div>
-                    <div className="tmbl-text">Mandiri Transfer</div>
-                    {isCheck3 && (
-                      <FontAwesomeIcon icon={faCheck} className="ico" />
-                    )}
-                  </a>
-                </Card.Body>
-              </Card>
-              <Card className="card-total-pay">
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title className="detail-title">{car.name}</Card.Title>
-                  <div className="d-flex category">
-                    <FontAwesomeIcon
-                      icon={faUserGroup}
-                      className="category-icon"
-                    />
-                    <Card.Text>{car.category}</Card.Text>
-                  </div>
-                  <Accordion>
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>
-                        Total
-                        <div className="kanan">
-                          <IntlProvider locale="id">
-                            <FormattedNumber
-                              value={car.price * lamaHari}
-                              style="currency"
-                              currency="IDR"
-                            />
-                          </IntlProvider>
-                        </div>
-                      </Accordion.Header>
-                      <Accordion.Body>
-                        <div className="py-1">
-                          <strong>Harga</strong>
-                          <ul className="total-pay">
-                            <li>
-                              Sewa Mobil{" "}
-                              <IntlProvider locale="id">
-                                <FormattedNumber
-                                  value={car.price}
-                                  style="currency"
-                                  currency="IDR"
-                                />
-                              </IntlProvider>{" "}
-                              x {lamaHari} hari
-                            </li>
+          internetCheck && (
+            <div>
+              <Form className="form-pesan">
+                <h1 className="fw-bold fs-6 mb-3">Detail Pesananmu</h1>
+                <div className="title-pesan">
+                  <Form.Group controlId="namaMobil" className="isi-pesan ">
+                    <Form.Label>Nama Mobil</Form.Label>
+                    <Form.Label className="text-capitalize text-black-50">
+                      {car.name}
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group controlId="kategoriMobil" className="isi-pesan">
+                    <Form.Label>Kategori</Form.Label>
+                    <Form.Label className="text-capitalize text-black-50">
+                      {car.category}
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group controlId="mulaiSewa" className="isi-pesan">
+                    <Form.Label>Tanggal Mulai Sewa</Form.Label>
+                    <Form.Label className="text-black-50">
+                      {startDate}
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group controlId="akhirSewa" className="isi-pesan">
+                    <Form.Label>Tanggal Akhir Sewa</Form.Label>
+                    <Form.Label className="text-black-50">{endDate}</Form.Label>
+                  </Form.Group>
+                </div>
+              </Form>
+              <div className="select-bank">
+                <Card className="card-bank-detail">
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title className="fw-bold mb-4">
+                      Pilih Bank Transfer
+                    </Card.Title>
+                    <Card.Text>
+                      Kamu bisa membayar dengan transfer melalui ATM, Internet
+                      Banking, atau Mobile Banking
+                    </Card.Text>
+                    <a
+                      className="btn-bank"
+                      onClick={(e) => handleClickBank(e, "BCA")}
+                    >
+                      <div className="tmbl">BCA</div>
+                      <div className="tmbl-text">BCA Transfer</div>
+                      {isCheck1 && (
+                        <FontAwesomeIcon icon={faCheck} className="ico" />
+                      )}
+                    </a>
+                    <a
+                      className="btn-bank"
+                      onClick={(e) => handleClickBank(e, "BNI")}
+                    >
+                      <div className="tmbl">BNI</div>
+                      <div className="tmbl-text">BNI Transfer</div>
+                      {isCheck2 && (
+                        <FontAwesomeIcon icon={faCheck} className="ico" />
+                      )}
+                    </a>
+                    <a
+                      className="btn-bank"
+                      onClick={(e) => handleClickBank(e, "Mandiri")}
+                    >
+                      <div className="tmbl">Mandiri</div>
+                      <div className="tmbl-text">Mandiri Transfer</div>
+                      {isCheck3 && (
+                        <FontAwesomeIcon icon={faCheck} className="ico" />
+                      )}
+                    </a>
+                  </Card.Body>
+                </Card>
+                <Card className="card-total-pay">
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title className="detail-title">{car.name}</Card.Title>
+                    <div className="d-flex category">
+                      <FontAwesomeIcon
+                        icon={faUserGroup}
+                        className="category-icon"
+                      />
+                      <Card.Text>{car.category}</Card.Text>
+                    </div>
+                    <Accordion>
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                          Total
+                          <div className="kanan">
                             <IntlProvider locale="id">
                               <FormattedNumber
                                 value={car.price * lamaHari}
@@ -254,63 +236,88 @@ const PaymentCar = () => {
                                 currency="IDR"
                               />
                             </IntlProvider>
-                          </ul>
-                        </div>
-                        <div className="py-1">
-                          <strong>Biaya Lainnya</strong>
-                          <ul className="total-pay">
-                            <div>
-                              <li>Pajak</li>
-                              <li>Biaya makan sopir</li>
-                            </div>
-                            <div>
-                              <p style={{ margin: 0, color: "#5CB85F" }}>
-                                Termasuk
-                              </p>
-                              <p style={{ margin: 0, color: "#5CB85F" }}>
-                                Termasuk
-                              </p>
-                            </div>
-                          </ul>
-                        </div>
-                        <div className="py-1">
-                          <strong>Belum Termasuk</strong>
-                          <ul className="total-pay">
-                            <div>
-                              <li>Bensin</li>
-                              <li>Tol dan parkir</li>
-                            </div>
-                          </ul>
-                        </div>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                  <hr />
-                  <div className="all-total">
-                    <strong>Total</strong>
-                    <strong>
-                      <IntlProvider locale="id">
-                        <FormattedNumber
-                          value={car.price * lamaHari}
-                          style="currency"
-                          currency="IDR"
-                        />
-                      </IntlProvider>
-                    </strong>
-                  </div>
-                  <div className="d-grid mt-auto">
-                    <Button
-                      variant="success"
-                      disabled={!bankName}
-                      onClick={() => handleBayar(`${id}`)}
-                    >
-                      Bayar
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
+                          </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div className="py-1">
+                            <strong>Harga</strong>
+                            <ul className="total-pay">
+                              <li>
+                                Sewa Mobil{" "}
+                                <IntlProvider locale="id">
+                                  <FormattedNumber
+                                    value={car.price}
+                                    style="currency"
+                                    currency="IDR"
+                                  />
+                                </IntlProvider>{" "}
+                                x {lamaHari} hari
+                              </li>
+                              <IntlProvider locale="id">
+                                <FormattedNumber
+                                  value={car.price * lamaHari}
+                                  style="currency"
+                                  currency="IDR"
+                                />
+                              </IntlProvider>
+                            </ul>
+                          </div>
+                          <div className="py-1">
+                            <strong>Biaya Lainnya</strong>
+                            <ul className="total-pay">
+                              <div>
+                                <li>Pajak</li>
+                                <li>Biaya makan sopir</li>
+                              </div>
+                              <div>
+                                <p style={{ margin: 0, color: "#5CB85F" }}>
+                                  Termasuk
+                                </p>
+                                <p style={{ margin: 0, color: "#5CB85F" }}>
+                                  Termasuk
+                                </p>
+                              </div>
+                            </ul>
+                          </div>
+                          <div className="py-1">
+                            <strong>Belum Termasuk</strong>
+                            <ul className="total-pay">
+                              <div>
+                                <li>Bensin</li>
+                                <li>Tol dan parkir</li>
+                              </div>
+                            </ul>
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                    <hr />
+                    <div className="all-total">
+                      <strong>Total</strong>
+                      <strong>
+                        <IntlProvider locale="id">
+                          <FormattedNumber
+                            value={car.price * lamaHari}
+                            style="currency"
+                            currency="IDR"
+                          />
+                        </IntlProvider>
+                      </strong>
+                    </div>
+                    <div className="d-grid mt-auto">
+                      <Button
+                        variant="success"
+                        disabled={!bankName}
+                        onClick={() => handleBayar(`${id}`)}
+                      >
+                        Bayar
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
             </div>
-          </div>
+          )
         )}
       </div>
     </div>

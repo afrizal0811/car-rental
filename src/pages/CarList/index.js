@@ -41,6 +41,7 @@ const CariMobil = () => {
       })
       .catch((error) => {
         setCatchVisible(true);
+        setLoading(false);
       });
   }
 
@@ -140,7 +141,8 @@ const CariMobil = () => {
 
         {catchVisible && (
           <Alert variant="danger">
-            Sambungan terputus. Periksa koneksi Internet.
+            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
+            beberapa saat.
           </Alert>
         )}
 
