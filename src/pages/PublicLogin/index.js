@@ -11,6 +11,7 @@ const PublicLogin = (submit) => {
   const location = useLocation();
   const queries = queryString.parse(location.search);
   // console.log(JSON.stringify(queryString.parse(location.search)));
+  console.log("haha")
 
   const { handleChange, handleSubmit, rentClick, errors, values, submitted } =
     Handlebutton(submit, queries);
