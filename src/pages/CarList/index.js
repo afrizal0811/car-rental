@@ -63,20 +63,46 @@ const CariMobil = () => {
     navigate(`/cars/${id}`);
   }
 
+  function hasilFilter(filterData) {
+    if (filterData.length > 0) {
+      setMobil(filterData);
+    } else {
+      handleNotData();
+      setMobil(savedCars);
+    }
+  }
   const handleCariMobil = (e) => {
     e.preventDefault();
     if (savedCars) {
-      const filterData = savedCars.filter(
-        (items) =>
-          items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
-          items.category.includes(kategoriMobil) &&
-          items.status.toString() === sewa
-      );
-      if (filterData.length > 0) {
-        setMobil(filterData);
-      } else {
-        handleNotData();
-        setMobil(savedCars);
+      if (hargaMobil) {
+        if (hargaMobil === "400000") {
+          const filterData = savedCars.filter(
+            (items) => items.price < hargaMobil
+          );
+          hasilFilter(filterData);
+        } else if (hargaMobil === "600000") {
+          const filterData = savedCars.filter(
+            (items) => items.price > hargaMobil
+          );
+          hasilFilter(filterData);
+        } else {
+          const filterData = savedCars.filter(
+            (items) => items.price >= 400000 && items.price <= 600000
+          );
+          hasilFilter(filterData);
+        }
+      } else if (sewa) {
+        const filterData = savedCars.filter(
+          (items) => items.status.toString() === sewa
+        );
+        hasilFilter(filterData);
+      } else if (namaMobil || kategoriMobil) {
+        const filterData = savedCars.filter(
+          (items) =>
+            items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
+            items.category.includes(kategoriMobil)
+        );
+        hasilFilter(filterData);
       }
     }
     setNamaMobil("");
@@ -117,7 +143,7 @@ const CariMobil = () => {
               Masukan Harga Sewa per Hari
             </option>
             <option value="400000"> &#60; Rp.400.000 </option>
-            <option value="500000">Rp.400.000 - Rp. 600.000</option>
+            <option value="antara">Rp.400.000 - Rp. 600.000</option>
             <option value="600000"> &#62; Rp. 600.000</option>
           </Form.Select>
         </Form.Group>
