@@ -1,4 +1,4 @@
-.cari-content p{
+.cari-content p {
   width: auto;
   font-size: 14px;
   font-weight: 700;
@@ -6,8 +6,9 @@
   margin: 0.5rem 0 0.5rem 0;
 }
 
-.cari-content{
-
+.cari-content {
+  position: relative;
+  bottom: 2rem;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -17,15 +18,15 @@
   margin: 0 2rem;
 }
 
-.hasil-card{
-  background-color: white;  
+.hasil-card {
+  background-color: white;
   box-shadow: 0 0 8px grey;
   border-radius: 15px;
   padding: 1.5rem;
   margin: 0 2rem;
 }
 
-.not-found{
+.not-found {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +35,7 @@
   font-weight: 700;
   margin-top: 1rem;
 }
+
 #searchBtn:hover {
   background-color: rgb(214, 242, 211);
   color: rgb(0, 0, 0);
@@ -43,23 +45,24 @@
 .card-cont:hover {
   transform: scale(1.07);
 }
+
 @media only screen and (min-width: 768px) {
-    .cari-content{
+  .cari-content {
     display: flex;
     flex-direction: column;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .cari-content{
-    position: relative;
+  .cari-content {
     bottom: 4rem;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     margin: 0 8rem;
   }
-  .hasil-card{
+
+  .hasil-card {
     position: relative;
     bottom: 4rem;
     margin: 0 8rem;
