@@ -18,7 +18,7 @@ export default function Handlebutton() {
 
   const fetchUsers = async () => {
     try {
-      const resp = await fetch("https://bootcamp-rent-car.herokuapp.com/", {
+      const resp = await fetch("https://bootcamp-rent-cars.herokuapp.com/", {
         method: "GET",
       });
       const users = await resp.json();
@@ -32,7 +32,7 @@ export default function Handlebutton() {
   const createUser = async () => {
     try {
       const resp = await fetch(
-        `https://bootcamp-rent-car.herokuapp.com/customer/auth/register`,
+        `https://bootcamp-rent-cars.herokuapp.com/customer/auth/register`,
         {
           method: "POST",
           headers: { "Content-type": "application/json" },

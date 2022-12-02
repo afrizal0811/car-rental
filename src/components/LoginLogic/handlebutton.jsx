@@ -11,7 +11,7 @@ export default function Handlebutton(submit, params) {
     })
     const signin = async () => {
         try {
-            const resp = await fetch(`https://bootcamp-rent-car.herokuapp.com/customer/auth/login`, {
+            const resp = await fetch(`https://bootcamp-rent-cars.herokuapp.com/customer/auth/login`, {
                 method: 'POST', headers:{'Content-type': 'application/json'}, body: JSON.stringify({
                     ...values
                 })   
