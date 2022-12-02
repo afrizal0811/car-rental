@@ -14,7 +14,7 @@ const NotFound = () => {
           </p>
 
           <p>
-            Let's go{" "}
+            Let&apos;s go{" "}
             <Link to="/" className="home-link">
               {" "}
               home{" "}

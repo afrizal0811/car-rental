@@ -2,7 +2,6 @@ import Validate from "./validation";
 import { Inuser } from "../localstore/localstore";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 export default function Handlebutton(submit, params) {
     const navigate = useNavigate()

@@ -1,4 +1,4 @@
-  .detail-section{
+  .detail-section {
     position: relative;
     bottom: 6rem;
     display: flex;
@@ -7,22 +7,26 @@
     justify-content: center;
     flex-direction: column-reverse;
   }
-  .card-detail, .card-detail-total{
+
+  .card-detail,
+  .card-detail-total {
     margin: 1rem 2rem;
     width: auto;
   }
 
-  .detail-list li{
+  .detail-list li {
     font-weight: 700;
-    font-size: 14px;  
+    font-size: 14px;
     color: #8A8A8A;
   }
-  .detail-title{
+
+  .detail-title {
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
   }
-  .category{
+
+  .category {
     font-size: 10px;
     font-weight: 700;
     line-height: 14px;
@@ -30,47 +34,54 @@
     color: #8A8A8A;
   }
 
-  .category-icon{
+  .category-icon {
     padding-right: 0.5rem;
   }
-  .date-picker{
+
+  .date-picker {
     font-weight: 300;
     font-size: 12px;
     line-height: 18px;
   }
-  .hero-div{
+
+  .hero-div {
     background-color: #F1F3FF;
     height: 200px;
   }
-  .tggl{
+
+  .tggl {
     width: 100% !important;
   }
-@media only screen and (min-width: 768px) { 
-  .detail-section{
-    align-items: stretch;
-    justify-content: center;
-    flex-direction: row;
-  }
-  .card-detail-total{
-    margin: 1rem;
-    width: 18rem;
-  }
-  .card-detail{
-    margin: 1rem;
-    width: 50%;
-  }
-  /* .card-detail, .card-detail-total{
+
+  @media only screen and (min-width: 768px) {
+    .detail-section {
+      align-items: stretch;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .card-detail-total {
+      margin: 1rem;
+      width: 18rem;
+    }
+
+    .card-detail {
+      margin: 1rem;
+      width: 50%;
+    }
+
+    /* .card-detail, .card-detail-total{
     width: auto;
   } */
-}
-
-@media only screen and (min-width: 1024px) { 
-
-  .detail-section{
-    margin-top: 2rem;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: center;
   }
 
-}
+  @media only screen and (min-width: 1024px) {
+
+    .detail-section {
+      margin-top: 2rem;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+  }

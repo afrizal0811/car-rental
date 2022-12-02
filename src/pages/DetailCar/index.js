@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Alert, Button, Card } from "react-bootstrap";
 import axios from "axios";
 import { IntlProvider, FormattedNumber } from "react-intl";
@@ -20,6 +20,7 @@ const DetailCar = () => {
   const { id } = useParams();
   let navigate = useNavigate();
   const SEARCH_URL = `https://bootcamp-rent-car.herokuapp.com/admin/car/${id}`;
+  var internetCheck = false;
 
   useEffect(() => {
     axios
@@ -28,8 +29,10 @@ const DetailCar = () => {
         setCar(response.data);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setCatchVisible(true);
+        setLoading(false);
+        internetCheck = true;
       });
   }, []);
 
@@ -70,125 +73,135 @@ const DetailCar = () => {
   return (
     <div>
       <div key={car.id}>
-        <div className="hero-div">
-          {catchVisible && (
-            <Alert variant="danger">
-              Sambungan terputus. Periksa koneksi Internet.
-            </Alert>
-          )}
-        </div>
+        <div className="hero-div"></div>
+        {catchVisible && (
+          <Alert variant="danger">
+            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
+            beberapa saat.
+          </Alert>
+        )}
         {loading ? (
           <LoadingSkeleton />
         ) : (
-          <div className="detail-section">
-            <Card className="card-detail">
-              <Card.Body className="d-flex flex-column">
-                <Card.Title className="detail-title">Tentang Paket</Card.Title>
-                <Card.Title className="detail-title">Include</Card.Title>
-                <ul className="detail-list">
-                  <li>
-                    Apa saja yang termasuk dalam paket misal durasi max 12 jam
-                  </li>
-                  <li>Sudah termasuk bensin selama 12 jam</li>
-                  <li>Sudah termasuk Tiket Wisata</li>
-                  <li>Sudah termasuk pajak</li>
-                </ul>
-                <Card.Title className="detail-title">Exclude</Card.Title>
-                <ul className="detail-list">
-                  <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                  <li>
-                    Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
-                    20.000/jam
-                  </li>
-                  <li>Tidak termasuk akomodasi penginapan</li>
-                </ul>
-                <Accordion>
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>
-                      Refund, Reschedule, Overtime
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <ul className="detail-list">
-                        <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                        <li>
-                          Jika overtime lebih dari 12 jam akan ada tambahan
-                          biaya Rp 20.000/jam
-                        </li>
-                        <li>Tidak termasuk akomodasi penginapan</li>
-                        <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                        <li>
-                          Jika overtime lebih dari 12 jam akan ada tambahan
-                          biaya Rp 20.000/jam
-                        </li>
-                        <li>Tidak termasuk akomodasi penginapan</li>
-                        <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                        <li>
-                          Jika overtime lebih dari 12 jam akan ada tambahan
-                          biaya Rp 20.000/jam
-                        </li>
-                        <li>Tidak termasuk akomodasi penginapan</li>
-                      </ul>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </Card.Body>
-            </Card>
-            <Card className="card-detail-total">
-              <Card.Img
-                variant="top"
-                src={
-                  car.image
-                    ? car.image
-                    : "https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740"
-                }
-              />
-              <Card.Body className="d-flex flex-column">
-                <Card.Title className="detail-title">{car.name}</Card.Title>
-                <div className="d-flex category">
-                  <FontAwesomeIcon
-                    icon={faUserGroup}
-                    className="category-icon"
-                  />
-                  <Card.Text>{car.category}</Card.Text>
-                </div>
-                <StyledTooltip title="Pilih tanggal sewa" placement="bottom">
-                  <div className="date-picker">
-                    <Card.Text>
-                      Tentukan lama sewa mobil (max. 7 hari)
-                    </Card.Text>
-                    <DateRangePicker
-                      onChange={setTanggal}
-                      value={tanggal}
-                      format="dd-MM-y"
-                      minDate={new Date()}
-                      // maxDate={maksDate}
-                      rangeDivider={" to "}
-                      className="tggl"
+          internetCheck && (
+            <div className="detail-section">
+              <Card className="card-detail">
+                <Card.Body className="d-flex flex-column">
+                  <Card.Title className="detail-title">
+                    Tentang Paket
+                  </Card.Title>
+                  <Card.Title className="detail-title">Include</Card.Title>
+                  <ul className="detail-list">
+                    <li>
+                      Apa saja yang termasuk dalam paket misal durasi max 12 jam
+                    </li>
+                    <li>Sudah termasuk bensin selama 12 jam</li>
+                    <li>Sudah termasuk Tiket Wisata</li>
+                    <li>Sudah termasuk pajak</li>
+                  </ul>
+                  <Card.Title className="detail-title">Exclude</Card.Title>
+                  <ul className="detail-list">
+                    <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                    <li>
+                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
+                      20.000/jam
+                    </li>
+                    <li>Tidak termasuk akomodasi penginapan</li>
+                  </ul>
+                  <Accordion>
+                    <Accordion.Item eventKey="0">
+                      <Accordion.Header>
+                        Refund, Reschedule, Overtime
+                      </Accordion.Header>
+                      <Accordion.Body>
+                        <ul className="detail-list">
+                          <li>
+                            Tidak termasuk biaya makan sopir Rp 75.000/hari
+                          </li>
+                          <li>
+                            Jika overtime lebih dari 12 jam akan ada tambahan
+                            biaya Rp 20.000/jam
+                          </li>
+                          <li>Tidak termasuk akomodasi penginapan</li>
+                          <li>
+                            Tidak termasuk biaya makan sopir Rp 75.000/hari
+                          </li>
+                          <li>
+                            Jika overtime lebih dari 12 jam akan ada tambahan
+                            biaya Rp 20.000/jam
+                          </li>
+                          <li>Tidak termasuk akomodasi penginapan</li>
+                          <li>
+                            Tidak termasuk biaya makan sopir Rp 75.000/hari
+                          </li>
+                          <li>
+                            Jika overtime lebih dari 12 jam akan ada tambahan
+                            biaya Rp 20.000/jam
+                          </li>
+                          <li>Tidak termasuk akomodasi penginapan</li>
+                        </ul>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                </Card.Body>
+              </Card>
+              <Card className="card-detail-total">
+                <Card.Img
+                  variant="top"
+                  src={
+                    car.image
+                      ? car.image
+                      : "https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740"
+                  }
+                />
+                <Card.Body className="d-flex flex-column">
+                  <Card.Title className="detail-title">{car.name}</Card.Title>
+                  <div className="d-flex category">
+                    <FontAwesomeIcon
+                      icon={faUserGroup}
+                      className="category-icon"
                     />
+                    <Card.Text>{car.category}</Card.Text>
                   </div>
-                </StyledTooltip>
-                <strong className="d-flex justify-content-between mt-5 mb-5">
-                  <Card.Text>Total</Card.Text>
-                  <IntlProvider locale="id">
-                    <FormattedNumber
-                      value={car.price}
-                      style="currency"
-                      currency="IDR"
-                    />
-                  </IntlProvider>
-                </strong>
-                <div className="d-grid mt-auto">
-                  <Button
-                    variant="success"
-                    disabled={!tanggal}
-                    onClick={() => handleViewDetail(`${id}`)}
-                  >
-                    Lanjutkan Pembayaran
-                  </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          </div>
+                  <StyledTooltip title="Pilih tanggal sewa" placement="bottom">
+                    <div className="date-picker">
+                      <Card.Text>
+                        Tentukan lama sewa mobil (max. 7 hari)
+                      </Card.Text>
+                      <DateRangePicker
+                        onChange={setTanggal}
+                        value={tanggal}
+                        format="dd-MM-y"
+                        minDate={new Date()}
+                        // maxDate={maksDate}
+                        rangeDivider={" to "}
+                        className="tggl"
+                      />
+                    </div>
+                  </StyledTooltip>
+                  <strong className="d-flex justify-content-between mt-5 mb-5">
+                    <Card.Text>Total</Card.Text>
+                    <IntlProvider locale="id">
+                      <FormattedNumber
+                        value={car.price}
+                        style="currency"
+                        currency="IDR"
+                      />
+                    </IntlProvider>
+                  </strong>
+                  <div className="d-grid mt-auto">
+                    <Button
+                      variant="success"
+                      disabled={!tanggal}
+                      onClick={() => handleViewDetail(`${id}`)}
+                    >
+                      Lanjutkan Pembayaran
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+          )
         )}
       </div>
     </div>

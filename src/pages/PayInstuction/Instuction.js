@@ -27,7 +27,7 @@ const Instuction = (props) => {
         <Accordion className="instruct-accord">
           {data.map((item, index) => {
             return (
-              <Accordion.Item eventKey={index}>
+              <Accordion.Item key={index}>
                 <Accordion.Header>{item.bank}</Accordion.Header>
                 <Accordion.Body>{item.isi}</Accordion.Body>
               </Accordion.Item>
@@ -74,7 +74,8 @@ const Instuction = (props) => {
               <ul>
                 <li>Masukkan kartu ATM, lalu PIN</li>
                 <li>
-                  Pilih menu “Transaksi Lainnya” – "Transfer” – “Ke Rek{" "}
+                  Pilih menu &quot;Transaksi Lainnya&quot; –
+                  &quot;Transfer&quot; – “Ke Rek{" "}
                   {props.bank.substring(0, props.bank.indexOf(" "))} Virtual
                   Account”
                 </li>

@@ -39,8 +39,9 @@ const CariMobil = () => {
         setSavedCars(filterNull);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setCatchVisible(true);
+        setLoading(false);
       });
   }
 
@@ -140,7 +141,8 @@ const CariMobil = () => {
 
         {catchVisible && (
           <Alert variant="danger">
-            Sambungan terputus. Periksa koneksi Internet.
+            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
+            beberapa saat.
           </Alert>
         )}
 
@@ -184,7 +186,7 @@ const CariMobil = () => {
                     </IntlProvider>
                     <Card.Text>
                       Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      make up the bulk of the card&apos;s content.
                     </Card.Text>
                     <div className="d-grid mt-auto">
                       <Button
