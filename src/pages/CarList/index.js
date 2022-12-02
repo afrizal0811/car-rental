@@ -9,7 +9,7 @@ import SectionHero from '../../components/SectionHero';
 import LoadingSkeleton from '../../components/LoadingSkeleton/SkeCars.js';
 
 const CariMobil = () => {
-	const BASE_URL = 'https://bootcamp-rent-cars.herokuapp.com/admin/car/';
+	const BASE_URL = 'https://bootcamp-rent-cars.herokuapp.com/customer/car/';
 
 	let navigate = useNavigate();
 	const [ savedCars, setSavedCars ] = useState([]);
@@ -26,8 +26,13 @@ const CariMobil = () => {
 	}, []);
 
 	function setCarsList(URL) {
+		const details = localStorage.getItem("userIn");
+		const userJSON = JSON.parse(details)
+
 		axios
-			.get(URL)
+			.get(URL, {headers: {
+				'access_token': details.access_token
+			}})
 			.then((response) => {
 				const filterNull = response.data.filter(
 					(items) => items.name !== null && items.category !== null && items.price !== null
