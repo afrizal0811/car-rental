@@ -75,9 +75,8 @@ const DetailCar = () => {
       <div key={car.id}>
         <div className="hero-div"></div>
         {catchVisible && (
-          <Alert variant="danger">
-            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
-            beberapa saat.
+          <Alert variant="danger" style={{ textAlign: "center" }}>
+            Telah terjadi kesalahan. Silahkan mencoba beberapa saat lagi.
           </Alert>
         )}
         {loading ? (

@@ -136,15 +136,14 @@ const PaymentCar = () => {
           </div>
         </div>
         {catchVisible && (
-          <Alert variant="danger">
-            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
-            beberapa saat.
+          <Alert variant="danger" style={{ textAlign: "center" }}>
+            Telah terjadi kesalahan. Silahkan mencoba beberapa saat lagi.
           </Alert>
         )}
         {loading ? (
           <LoadingSkeleton />
         ) : (
-          internetCheck && (
+          !internetCheck && (
             <div>
               <Form className="form-pesan">
                 <h1 className="fw-bold fs-6 mb-3">Detail Pesananmu</h1>

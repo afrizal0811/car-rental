@@ -80,7 +80,7 @@ const CariMobil = () => {
   return (
     <div>
       <SectionHero />
-      <Form className="cari-content">
+      <Form className="cari-content" >
         <Form.Group controlId="formNama" className="mt-3">
           <Form.Label>Nama Mobil</Form.Label>
           <Form.Control
@@ -140,9 +140,8 @@ const CariMobil = () => {
         {/* Alert saat tidak terhubung dengan API */}
 
         {catchVisible && (
-          <Alert variant="danger">
-            Koneksi terputus. Periksa kembali koneksi internet dan tunggu
-            beberapa saat.
+          <Alert variant="danger" style={{ textAlign : "center" }}>
+            Telah terjadi kesalahan. Silahkan mencoba beberapa saat lagi.
           </Alert>
         )}
 
