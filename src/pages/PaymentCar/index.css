@@ -152,20 +152,17 @@
 }
 @media only screen and (min-width: 1024px) {
     .form-pesan{
+        position: relative;
         margin: 0 12.3rem;
     }
     
     .select-bank{
-        margin-top: -1.5rem;
+        justify-content: space-between;
+        margin: -2rem 10rem 0;
     }
-    .card-bank-detail{
-        margin: 1rem;
-        width: 42.5%;
+    .card-bank-detail,
+    .card-total-pay {
+        /* margin: 1rem; */
+        width: 45%;
     }
-
-    .card-total-pay{
-        margin: 1rem;
-        width: 30%;
-    }
-
 }
