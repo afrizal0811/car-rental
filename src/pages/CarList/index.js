@@ -18,6 +18,7 @@ const CariMobil = () => {
   const [namaMobil, setNamaMobil] = useState("");
   const [kategoriMobil, setKategoriMobil] = useState("");
   const [hargaMobil, setHargaMobil] = useState("");
+  const [sewa, setSewa] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [catchVisible, setCatchVisible] = useState(false);
 
@@ -64,12 +65,12 @@ const CariMobil = () => {
 
   const handleCariMobil = (e) => {
     e.preventDefault();
-    console.log("savedCars :", savedCars);
     if (savedCars) {
       const filterData = savedCars.filter(
         (items) =>
           items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
-          items.category.includes(kategoriMobil)
+          items.category.includes(kategoriMobil) &&
+          items.status.toString() === sewa
       );
       if (filterData.length > 0) {
         setMobil(filterData);
@@ -81,6 +82,7 @@ const CariMobil = () => {
     setNamaMobil("");
     setKategoriMobil("");
     setHargaMobil("");
+    setSewa("");
   };
 
   return (
@@ -103,9 +105,9 @@ const CariMobil = () => {
             <option key="blankChoice" hidden selected={!kategoriMobil && true}>
               Masukan Kapasitas Mobil
             </option>
-            <option value="2 - 4 orang">2 - 4 Orang</option>
-            <option value="4 - 6 orang">4 - 6 Orang</option>
-            <option value="6 - 8 orang">6 - 8 Orang</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
           </Form.Select>
         </Form.Group>
         <Form.Group controlId="formHarga" className="mt-3">
@@ -121,12 +123,12 @@ const CariMobil = () => {
         </Form.Group>
         <Form.Group controlId="formSewa" className="mt-3">
           <Form.Label>Status</Form.Label>
-          <Form.Select disabled>
-            <option key="blankChoice" hidden>
+          <Form.Select onChange={(e) => setSewa(e.target.value)}>
+            <option key="blankChoice" hidden selected={!sewa && true}>
               Status Mobil
             </option>
-            <option value="sedia">Sedia</option>
-            <option value="sewa">Disewa</option>
+            <option value="false">Sedia</option>
+            <option value="true">Disewa</option>
           </Form.Select>
         </Form.Group>
 
@@ -136,7 +138,7 @@ const CariMobil = () => {
           className="mt-4"
           id="searchBtn"
           onClick={handleCariMobil}
-          disabled={!namaMobil && !kategoriMobil && !hargaMobil}
+          disabled={!namaMobil && !kategoriMobil && !hargaMobil && !sewa}
         >
           Cari Mobil
         </Button>
