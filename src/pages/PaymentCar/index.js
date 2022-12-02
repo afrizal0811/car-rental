@@ -143,7 +143,7 @@ const PaymentCar = () => {
         {loading ? (
           <LoadingSkeleton />
         ) : (
-          !internetCheck && (
+          internetCheck && (
             <div>
               <Form className="form-pesan">
                 <h1 className="fw-bold fs-6 mb-3">Detail Pesananmu</h1>
