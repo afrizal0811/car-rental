@@ -11,7 +11,7 @@ const PublicLogin = (submit) => {
   const location = useLocation();
   const queries = queryString.parse(location.search);
   // console.log(JSON.stringify(queryString.parse(location.search)));
-  console.log("haha")
+  
 
   const { handleChange, handleSubmit, rentClick, errors, values, submitted } =
     Handlebutton(submit, queries);
@@ -106,7 +106,7 @@ const PublicLogin = (submit) => {
             )}
           </div>
           <p>
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link to="/register" className="sign-link">
               Sign Up for free
             </Link>
