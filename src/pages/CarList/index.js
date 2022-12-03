@@ -18,6 +18,7 @@ const CariMobil = () => {
   const [namaMobil, setNamaMobil] = useState("");
   const [kategoriMobil, setKategoriMobil] = useState("");
   const [hargaMobil, setHargaMobil] = useState("");
+  const [sewa, setSewa] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [catchVisible, setCatchVisible] = useState(false);
 
@@ -61,25 +62,53 @@ const CariMobil = () => {
   function handlePayment(id) {
     navigate(`/cars/${id}`);
   }
+
+  function hasilFilter(filterData) {
+    if (filterData.length > 0) {
+      setMobil(filterData);
+    } else {
+      handleNotData();
+      setMobil(savedCars);
+    }
+  }
   const handleCariMobil = (e) => {
     e.preventDefault();
-    console.log("savedCars :", savedCars);
     if (savedCars) {
-      const filterData = savedCars.filter(
-        (items) =>
-          items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
-          items.category.includes(kategoriMobil)
-      );
-      if (filterData.length > 0) {
-        setMobil(filterData);
-      } else {
-        handleNotData();
-        setMobil(savedCars);
+      if (hargaMobil) {
+        if (hargaMobil === "400000") {
+          const filterData = savedCars.filter(
+            (items) => items.price < hargaMobil
+          );
+          hasilFilter(filterData);
+        } else if (hargaMobil === "600000") {
+          const filterData = savedCars.filter(
+            (items) => items.price > hargaMobil
+          );
+          hasilFilter(filterData);
+        } else {
+          const filterData = savedCars.filter(
+            (items) => items.price >= 400000 && items.price <= 600000
+          );
+          hasilFilter(filterData);
+        }
+      } else if (sewa) {
+        const filterData = savedCars.filter(
+          (items) => items.status.toString() === sewa
+        );
+        hasilFilter(filterData);
+      } else if (namaMobil || kategoriMobil) {
+        const filterData = savedCars.filter(
+          (items) =>
+            items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
+            items.category.includes(kategoriMobil)
+        );
+        hasilFilter(filterData);
       }
     }
     setNamaMobil("");
     setKategoriMobil("");
     setHargaMobil("");
+    setSewa("");
   };
 
   return (
@@ -102,9 +131,9 @@ const CariMobil = () => {
             <option key="blankChoice" hidden selected={!kategoriMobil && true}>
               Masukan Kapasitas Mobil
             </option>
-            <option value="2 - 4 orang">2 - 4 Orang</option>
-            <option value="4 - 6 orang">4 - 6 Orang</option>
-            <option value="6 - 8 orang">6 - 8 Orang</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
           </Form.Select>
         </Form.Group>
         <Form.Group controlId="formHarga" className="mt-3">
@@ -114,18 +143,18 @@ const CariMobil = () => {
               Masukan Harga Sewa per Hari
             </option>
             <option value="400000"> &#60; Rp.400.000 </option>
-            <option value="500000">Rp.400.000 - Rp. 600.000</option>
+            <option value="antara">Rp.400.000 - Rp. 600.000</option>
             <option value="600000"> &#62; Rp. 600.000</option>
           </Form.Select>
         </Form.Group>
         <Form.Group controlId="formSewa" className="mt-3">
           <Form.Label>Status</Form.Label>
-          <Form.Select disabled>
-            <option key="blankChoice" hidden>
+          <Form.Select onChange={(e) => setSewa(e.target.value)}>
+            <option key="blankChoice" hidden selected={!sewa && true}>
               Status Mobil
             </option>
-            <option value="sedia">Sedia</option>
-            <option value="sewa">Disewa</option>
+            <option value="false">Sedia</option>
+            <option value="true">Disewa</option>
           </Form.Select>
         </Form.Group>
 
@@ -135,7 +164,7 @@ const CariMobil = () => {
           className="mt-4"
           id="searchBtn"
           onClick={handleCariMobil}
-          disabled={!namaMobil && !kategoriMobil && !hargaMobil}
+          disabled={!namaMobil && !kategoriMobil && !hargaMobil && !sewa}
         >
           Cari Mobil
         </Button>
