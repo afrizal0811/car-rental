@@ -4,13 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 const Sewa = () => {
   const navigate = useNavigate();
+
   function handleSearch() {
     const token = localStorage.getItem("userIn");
     if (token) {
       navigate(`/cars`);
-    } else window.location.href = `/login?redirectFrom=/cars`;
-    return;
+    } else navigate(`/login?redirectFrom=/cars`);
   }
+
   return (
     <div>
       <section className="sewa-section">
@@ -23,8 +24,8 @@ const Sewa = () => {
             nihil vel sed.
           </p>
           <Button variant="success" onClick={handleSearch}>
-              Mulai Sewa Mobil
-            </Button>
+            Mulai Sewa Mobil
+          </Button>
         </div>
       </section>
     </div>

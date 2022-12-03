@@ -6,15 +6,14 @@ import "./index.css";
 
 const Hero = () => {
   var isHidden = false;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const locationCarDetail = useLocation();
 
   function handleSearch() {
     const token = localStorage.getItem("userIn");
     if (token) {
       navigate(`/cars`);
-    } else window.location.href = `/login?redirectFrom=/cars`;
-    return;
+    } else navigate(`/login?redirectFrom=/cars`);
   }
 
   return (
@@ -34,7 +33,9 @@ const Hero = () => {
                 locationCarDetail.pathname !== "/cars" ? isHidden : !isHidden
               }
             >
-              <Button variant="success" onClick={handleSearch}>Mulai Sewa Mobil</Button>
+              <Button variant="success" onClick={handleSearch}>
+                Mulai Sewa Mobil
+              </Button>
             </div>
           </div>
         </div>

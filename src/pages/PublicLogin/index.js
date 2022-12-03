@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { Alert } from "react-bootstrap";
 import SignImage from "../../assets/image/sign-in.png";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -10,31 +11,32 @@ import queryString from "query-string";
 const PublicLogin = (submit) => {
   const location = useLocation();
   const queries = queryString.parse(location.search);
-  // console.log(JSON.stringify(queryString.parse(location.search)));
-  
 
-  const { handleChange, handleSubmit, rentClick, errors, values, submitted } =
+  const { handleChange, handleSubmit, errors, values, submitted } =
     Handlebutton(submit, queries);
   return (
     <section className="sign-section">
       <div className="sign-form">
-        {/* {Object.keys(errors).length === 0 && submitted ? (
-          <div className="success">
-          <div className="signinsuccess">Signed In successfully!</div>
-          </div>
-          ) : (
-            <p id="null"></p>
-          )} */}
-        {Object.keys(errors).length === 0 && submitted && (
+        {/* {Object.keys(errors).length === 0 && submitted && (
           <div className="success">
             <div className="signinsuccess">Signed In successfully!</div>
+          </div>
+        )}  */}
+        {errors.status && (
+          <div className="status-error">
+            <Alert variant="danger" style={{ textAlign: "center" }}>
+              {errors.status}
+            </Alert>
           </div>
         )}
         <div className="square"></div>
         <h1>Welcome Back!</h1>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email</Form.Label>{" "}
+            {errors.email && (
+              <span style={{ color: "red" }}>&#42;{errors.email}</span>
+            )}
             <Form.Control
               type="email"
               placeholder="Contoh: johndee@gmail.com"
@@ -42,18 +44,13 @@ const PublicLogin = (submit) => {
               value={values.email}
               name="email"
             />
-            {errors.email && (
-              <p className="error">
-                <span>
-                  <sup>*</sup>
-                  {errors.email}
-                </span>
-              </p>
-            )}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Password</Form.Label>{" "}
+            {errors.password && (
+              <span style={{ color: "red" }}>&#42;{errors.password}</span>
+            )}
             <Form.Control
               type="password"
               placeholder="6+ Password"
@@ -61,14 +58,6 @@ const PublicLogin = (submit) => {
               value={values.password}
               name="password"
             />
-            {errors.password && (
-              <p className="error">
-                <span>
-                  <sup>*</sup>
-                  {errors.password}
-                </span>
-              </p>
-            )}
           </Form.Group>
           <div className="d-grid gap-2">
             {!submitted && (
@@ -91,7 +80,7 @@ const PublicLogin = (submit) => {
                 Sign In
               </Button>
             )}
-            {Object.keys(errors).length === 0 && submitted ? (
+            {/* {Object.keys(errors).length === 0 && submitted && (
               <div className="success">
                 <Button
                   variant="primary"
@@ -101,9 +90,7 @@ const PublicLogin = (submit) => {
                   Rent a Car!
                 </Button>
               </div>
-            ) : (
-              <p id="null"></p>
-            )}
+            )} */}
           </div>
           <p>
             Don&apos;t have an account?{" "}

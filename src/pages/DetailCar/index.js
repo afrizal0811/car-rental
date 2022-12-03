@@ -55,7 +55,7 @@ const DetailCar = () => {
     Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 / 3 });
     Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 / 3 });
     Cookies.set("lamaHari", `${lamaHari}`, { expires: 1 / 3 });
-    navigate(`/payment/${id}`)  
+    navigate(`/payment/${id}`);
   }
   const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
