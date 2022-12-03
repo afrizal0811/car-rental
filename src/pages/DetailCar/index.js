@@ -55,12 +55,7 @@ const DetailCar = () => {
     Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 / 3 });
     Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 / 3 });
     Cookies.set("lamaHari", `${lamaHari}`, { expires: 1 / 3 });
-    const token = localStorage.getItem("userIn");
-    if (token) {
-      navigate(`/payment/${id}`);
-    } else window.location.href = `/login?redirectFrom=/payment/${id}`;
-
-    return;
+    navigate(`/payment/${id}`)  
   }
   const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />

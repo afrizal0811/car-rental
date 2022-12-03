@@ -1,12 +1,21 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CarImage from "../../assets/image/img_car.png";
 import "./index.css";
 
 const Hero = () => {
   var isHidden = false;
+  const navigate = useNavigate()
   const locationCarDetail = useLocation();
+
+  function handleSearch() {
+    const token = localStorage.getItem("userIn");
+    if (token) {
+      navigate(`/cars`);
+    } else window.location.href = `/login?redirectFrom=/cars`;
+    return;
+  }
 
   return (
     <div>
@@ -25,9 +34,7 @@ const Hero = () => {
                 locationCarDetail.pathname !== "/cars" ? isHidden : !isHidden
               }
             >
-              <Link to="/cars">
-                <Button variant="success">Mulai Sewa Mobil</Button>
-              </Link>
+              <Button variant="success" onClick={handleSearch}>Mulai Sewa Mobil</Button>
             </div>
           </div>
         </div>

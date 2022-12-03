@@ -61,7 +61,6 @@ const CariMobil = () => {
   function handlePayment(id) {
     navigate(`/cars/${id}`);
   }
-
   const handleCariMobil = (e) => {
     e.preventDefault();
     console.log("savedCars :", savedCars);
