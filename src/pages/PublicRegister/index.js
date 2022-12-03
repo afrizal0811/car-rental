@@ -1,8 +1,9 @@
 import React from "react";
+import "./index.css";
 import SignImage from "../../assets/image/sign-in.png";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./index.css";
+import { Alert } from "react-bootstrap";
 import Handlebutton from "../../components/registerlogic/Handlebutton";
 import { useNavigate } from "react-router-dom";
 
@@ -15,16 +16,26 @@ const PublicRegister = (submitForm) => {
   return (
     <section className="sign-section">
       <div className="sign-form">
-        {Object.keys(errors).length === 0 && submitted ? (
+        {/* {Object.keys(errors).length === 0 && submitted ? (
           <div id="signupcheck">Signed Up successfully!</div>
         ) : (
           <p id="alertup">Please fill in the form correctly!</p>
+        )} */}
+        {errors.status && (
+          <div className="status-error">
+            <Alert variant="danger" style={{ textAlign: "center" }}>
+              {errors.status}
+            </Alert>
+          </div>
         )}
         <div className="square"></div>
         <h1>Sign Up</h1>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Name*</Form.Label>
+            <Form.Label>Name</Form.Label>{" "}
+            {errors.fullname && (
+              <span style={{ color: "red" }}>&#42;{errors.fullname}</span>
+            )}
             <Form.Control
               type="name"
               placeholder="Nama Lengkap"
@@ -32,17 +43,12 @@ const PublicRegister = (submitForm) => {
               name="fullname"
               onChange={handleChange}
             />
-            {errors.fullname && (
-              <p className="error">
-                <span>
-                  <sup>*</sup>
-                  {errors.fullname}
-                </span>
-              </p>
-            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email*</Form.Label>
+            <Form.Label>Email</Form.Label>{" "}
+            {errors.email && (
+              <span style={{ color: "red" }}>&#42;{errors.email}</span>
+            )}
             <Form.Control
               data-testid="form1"
               type="email"
@@ -51,18 +57,13 @@ const PublicRegister = (submitForm) => {
               name="email"
               onChange={handleChange}
             />
-            {errors.email && (
-              <p className="erroremail">
-                <span>
-                  <sup>*</sup>
-                  {errors.email}
-                </span>
-              </p>
-            )}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Create Password*</Form.Label>
+            <Form.Label>Create Password</Form.Label>{" "}
+            {errors.password && (
+              <span style={{ color: "red" }}>&#42;{errors.password}</span>
+            )}
             <Form.Control
               type="password"
               placeholder="6+ Password"
@@ -70,14 +71,6 @@ const PublicRegister = (submitForm) => {
               value={value.password}
               onChange={handleChange}
             />
-            {errors.password && (
-              <p className="error">
-                <span>
-                  <sup>*</sup>
-                  {errors.password}
-                </span>
-              </p>
-            )}
           </Form.Group>
           <div className="d-grid gap-2">
             {!submitted && (
@@ -100,7 +93,7 @@ const PublicRegister = (submitForm) => {
                 Sign Up
               </Button>
             )}
-            {Object.keys(errors).length === 0 && submitted ? (
+            {/* {Object.keys(errors).length === 0 && submitted ? (
               <div className="success">
                 <Button
                   variant="primary"
@@ -116,7 +109,7 @@ const PublicRegister = (submitForm) => {
               </div>
             ) : (
               <p id="null"></p>
-            )}
+            )} */}
           </div>
           <p>
             Already have an account?{" "}

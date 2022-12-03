@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import Handlebutton from "../../components/LoginLogic/handlebutton";
 import { useLocation } from "react-router";
 import queryString from "query-string";
+import Cookies from "js-cookie";
 
 const PublicLogin = (submit) => {
+  const isRegis = Cookies.get("isRegis");
   const location = useLocation();
   const queries = queryString.parse(location.search);
 
@@ -22,6 +24,13 @@ const PublicLogin = (submit) => {
             <div className="signinsuccess">Signed In successfully!</div>
           </div>
         )}  */}
+        {isRegis && (
+          <div className="status-error">
+            <Alert variant="success" style={{ textAlign: "center" }}>
+              Registration Success! Please login.
+            </Alert>
+          </div>
+        )}
         {errors.status && (
           <div className="status-error">
             <Alert variant="danger" style={{ textAlign: "center" }}>

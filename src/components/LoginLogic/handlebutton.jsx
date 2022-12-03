@@ -1,7 +1,7 @@
 import Validate from "./validation";
 import { Inuser } from "../localstore/localstore";
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
 export default function Handlebutton(submit, params) {
@@ -13,6 +13,7 @@ export default function Handlebutton(submit, params) {
     email: "",
     password: "",
   });
+  
   var axiosConfig = {
     method: "post",
     url: "https://bootcamp-rent-cars.herokuapp.com/customer/auth/login",
