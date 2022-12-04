@@ -3,6 +3,7 @@ import { Inuser } from "../localstore/localstore";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function Handlebutton(submit, params) {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function Handlebutton(submit, params) {
     email: "",
     password: "",
   });
-  
+
   var axiosConfig = {
     method: "post",
     url: "https://bootcamp-rent-cars.herokuapp.com/customer/auth/login",
@@ -59,15 +60,16 @@ export default function Handlebutton(submit, params) {
     signin();
   };
 
-//   const rentClick = (e) => {
-//     e.preventDefault();
-//     navigate("/");
-//     setLoggedin(true);
-//   };
+  //   const rentClick = (e) => {
+  //     e.preventDefault();
+  //     navigate("/");
+  //     setLoggedin(true);
+  //   };
   const logout = (e) => {
     e.preventDefault();
     navigate("/login");
     localStorage.clear();
+    Cookies.remove("isRegis", { path: "/" });
     setLoggedin(false);
   };
 
