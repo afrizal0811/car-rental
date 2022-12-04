@@ -100,7 +100,7 @@ const CariMobil = () => {
         const filterData = savedCars.filter(
           (items) =>
             items.name.toLowerCase().includes(namaMobil.toLowerCase()) &&
-            items.category.includes(kategoriMobil)
+            items.category.toLowerCase().includes(kategoriMobil.toLowerCase())
         );
         hasilFilter(filterData);
       }
