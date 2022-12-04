@@ -10,9 +10,10 @@ export default function Handlebutton() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmited] = useState(false);
   const [value, setValue] = useState({
-    fullname: "",
+    // fullname: "",
     email: "",
-    password: "",
+    password1: "",
+    password2: "",
   });
 
   // const setUsers = [];
@@ -46,9 +47,16 @@ export default function Handlebutton() {
   };
 
   const createUser = async () => {
+    if (value.password1.length >= 6 && value.password2.length >= 6) {
+      if (value.password1 == value.password2) {
+        let newEmail = value.email;
+        let newPassword = value.password1;
+        setValue({ ...value, email: newEmail, password: newPassword });
+      }
+    }
     axios(axiosConfig)
       .then(function (response) {
-        Cookies.set("isRegis", 'true', { expires: 1 / 3 });
+        Cookies.set("isRegis", "true", { expires: 1 / 3 });
         Storeuser(JSON.stringify(response.data));
         navigate("/login");
       })

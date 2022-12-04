@@ -31,7 +31,7 @@ const PublicRegister = (submitForm) => {
         <div className="square"></div>
         <h1>Sign Up</h1>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          {/* <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Name</Form.Label>{" "}
             {errors.fullname && (
               <span style={{ color: "red" }}>&#42;{errors.fullname}</span>
@@ -43,7 +43,7 @@ const PublicRegister = (submitForm) => {
               name="fullname"
               onChange={handleChange}
             />
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>{" "}
             {errors.email && (
@@ -61,14 +61,27 @@ const PublicRegister = (submitForm) => {
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Create Password</Form.Label>{" "}
-            {errors.password && (
-              <span style={{ color: "red" }}>&#42;{errors.password}</span>
+            {errors.password1 && (
+              <span style={{ color: "red" }}>&#42;{errors.password1}</span>
             )}
             <Form.Control
               type="password"
               placeholder="6+ Password"
-              name="password"
-              value={value.password}
+              name="password1"
+              value={value.password1}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Confirm Password</Form.Label>{" "}
+            {errors.password2 && (
+              <span style={{ color: "red" }}>&#42;{errors.password2}</span>
+            )}
+            <Form.Control
+              type="password"
+              placeholder="6+ Password"
+              name="password2"
+              value={value.password2}
               onChange={handleChange}
             />
           </Form.Group>
