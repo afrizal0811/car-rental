@@ -1,5 +1,7 @@
 This project was created for the final exam of the Platinum Challenge Binar academy Bootcamp level. On this project contains web customers for car rental. The project starts from October 11, 2022 until the end of December 5, 2022
 
+This project is assessed and guided by the Facilitator https://github.com/aramadsanar
+
 Link Vercel Public:
 https://rental-public.vercel.app/
 
