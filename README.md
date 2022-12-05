@@ -1,5 +1,8 @@
 This project was created for the final exam of the Platinum Challenge Binar academy Bootcamp level. On this project contains web customers for car rental. The project starts from October 11, 2022 until the end of December 5, 2022
 
+Link Vercel Public:
+https://rental-public.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
