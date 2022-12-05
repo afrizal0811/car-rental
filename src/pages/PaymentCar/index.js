@@ -29,15 +29,34 @@ const PaymentCar = () => {
   const SEARCH_URL = `https://bootcamp-rent-cars.herokuapp.com/customer/car/${id}`;
   const startDate = Cookies.get("startDate");
   const endDate = Cookies.get("endDate");
+  const tanggalMulai = Cookies.get("tanggalMulai");
+  const tanggalSelesai = Cookies.get("tanggalSelesai");
   const lamaHari = Cookies.get("lamaHari");
   // var internetCheck = false;
   const details = localStorage.getItem("userIn");
+  let user = JSON.parse(details);
+  // console.log('details.access_token :', details.access_token);
+
+  var axiosConfigPost = {
+    method: "post",
+    url: "https://bootcamp-rent-cars.herokuapp.com/customer/order",
+    headers: {
+      access_token: user.access_token,
+      Content: "application/json",
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      start_rent_at: tanggalMulai,
+      finish_rent_at: tanggalSelesai,
+      car_id: id,
+    }),
+  };
 
   useEffect(() => {
     axios
       .get(SEARCH_URL, {
         headers: {
-          access_token: details.access_token,
+          access_token: user.access_token,
         },
       })
       .then((response) => {
@@ -89,19 +108,29 @@ const PaymentCar = () => {
   };
 
   function handleBayar() {
-    const orderId = Math.floor(Math.random() * 90000000);
-    Cookies.set("mobil", `${car.name}`, { expires: 1 / 3 });
-    Cookies.set("mobilId", `${car.id}`, { expires: 1 / 3 });
-    Cookies.set("order", `${orderId}`, { expires: 1 / 3 });
-    Cookies.set("bank", `${bankName}`, { expires: 1 / 3 });
-    Cookies.set("harga", `${car.price * lamaHari}`, { expires: 1 / 3 });
     confirmAlert({
       title: "Yakin?",
       message: "Periksa kembali detail pesanan.",
       buttons: [
         {
           label: "Lanjutkan Pesanan",
-          onClick: () => navigate(`/payments/${orderId}`),
+          onClick: () =>
+            axios(axiosConfigPost)
+              .then(function (response) {
+                const orderId = response.data.id;
+                console.log("orderId :", orderId);
+                Cookies.set("mobil", `${car.name}`, { expires: 1 / 3 });
+                Cookies.set("mobilId", `${car.id}`, { expires: 1 / 3 });
+                Cookies.set("order", `${orderId}`, { expires: 1 / 3 });
+                Cookies.set("bank", `${bankName}`, { expires: 1 / 3 });
+                Cookies.set("harga", `${car.price * lamaHari}`, {
+                  expires: 1 / 3,
+                });
+                navigate(`/payments/${orderId}`);
+              })
+              .catch((e) => {
+                console.error(e);
+              }),
         },
         {
           label: "Periksa Kembali",

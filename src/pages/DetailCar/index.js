@@ -52,6 +52,18 @@ const DetailCar = () => {
       month: "short",
       year: "numeric",
     });
+    const tanggalMulai = tanggal[0].toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+    const tanggalSelesai = tanggal[1].toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+    Cookies.set("tanggalMulai", `${tanggalMulai}`, { expires: 1 / 3 });
+    Cookies.set("tanggalSelesai", `${tanggalSelesai}`, { expires: 1 / 3 });
     Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 / 3 });
     Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 / 3 });
     Cookies.set("lamaHari", `${lamaHari}`, { expires: 1 / 3 });

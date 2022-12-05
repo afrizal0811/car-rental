@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import Status from "../../components/Status";
 import Instuction from "./Instuction.js";
@@ -17,6 +17,7 @@ import CountdownTimer from "react-component-countdown-timer";
 import Cookies from "js-cookie";
 import { confirmAlert } from "react-confirm-alert";
 import { Tooltip, styled } from "@mui/material";
+import axios from "axios";
 
 const PayInstruction = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -31,7 +32,9 @@ const PayInstruction = () => {
   const orderId = Cookies.get("order");
   const bankName = Cookies.get("bank");
   const mobilId = Cookies.get("mobilId");
-  
+  const details = localStorage.getItem("userIn");
+  let user = JSON.parse(details);
+
   let harga = "Rp" + new Intl.NumberFormat("id").format(Cookies.get("harga"));
 
   var nextDate = new Date();
@@ -89,10 +92,19 @@ const PayInstruction = () => {
     }
   };
 
-
   const handleUpload = () => {
     navigate(`/ticket/${orderId}`);
-  }
+  };
+
+  var axiosConfigDelete = {
+    method: "delete",
+    url: `https://bootcamp-rent-cars.herokuapp.com/customer/order/${orderId}`,
+    headers: {
+      access_token: user.access_token,
+      Content: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
 
   const handleBack = () => {
     confirmAlert({
@@ -101,7 +113,14 @@ const PayInstruction = () => {
       buttons: [
         {
           label: "Tentu",
-          onClick: () => navigate(`/payment/${mobilId}`),
+          onClick: () =>
+            axios(axiosConfigDelete)
+              .then(function (response) {
+                navigate(`/payment/${mobilId}`);
+              })
+              .catch((e) => {
+                console.error(e);
+              }),
         },
         {
           label: "Tidak",
