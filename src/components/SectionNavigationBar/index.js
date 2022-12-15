@@ -20,6 +20,7 @@ const NavigationBar = () => {
 
   let details = localStorage.getItem("userIn");
   let user = JSON.parse(details);
+  
 
   const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -44,15 +45,15 @@ const NavigationBar = () => {
           locationNav.pathname === "/faq" ||
           locationNav.pathname === "/login" ||
           locationNav.pathname === "/register"
-          ? "navi-white"
+            ? "navi-white"
             : "navigator"
         }
       >
         <Container fluid>
-        <StyledTooltip title="Homepage" placement="bottom" arrow>
-          <Link to="/" className="brand-logo">
-            <Navbar.Brand href="#" />
-          </Link>
+          <StyledTooltip title="Homepage" placement="bottom" arrow>
+            <Link to="/" className="brand-logo">
+              <Navbar.Brand href="#" />
+            </Link>
           </StyledTooltip>
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
           <Navbar.Offcanvas
@@ -94,7 +95,7 @@ const NavigationBar = () => {
                     <img src={avatar} alt="user avatar" id="userava" />
                     <NavDropdown
                       id="nav-dropdown-dark-example"
-                      title={user.role}
+                      title={user.email}
                       menuVariant="dark"
                     >
                       <NavDropdown.Item>

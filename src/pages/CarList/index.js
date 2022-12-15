@@ -9,7 +9,7 @@ import SectionHero from "../../components/SectionHero";
 import LoadingSkeleton from "../../components/LoadingSkeleton/SkeCars.js";
 
 const CariMobil = () => {
-  const BASE_URL = "https://bootcamp-rent-cars.herokuapp.com/customer/car/";
+  const BASE_URL = `${process.env.REACT_APP_BASE_URL}/customer/car/`;
 
   let navigate = useNavigate();
   const [savedCars, setSavedCars] = useState([]);

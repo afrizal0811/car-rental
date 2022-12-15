@@ -16,7 +16,6 @@ import Ticket from "./pages/Ticket";
 import LandingPage from "./pages/LandingPage";
 import PublicLogin from "./pages/PublicLogin";
 import PublicRegister from "./pages/PublicRegister";
-import AdminLogin from "./pages/AdminLogin";
 function App() {
   return (
     <div className="App">
@@ -35,7 +34,6 @@ function App() {
           <Route path="/ticket/:id" element={<Ticket />} />
           <Route path="/login" element={<PublicLogin />} />
           <Route path="/register" element={<PublicRegister />} />
-          <Route path="/admin" element={<AdminLogin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -98,7 +98,7 @@ const PayInstruction = () => {
 
   var axiosConfigDelete = {
     method: "delete",
-    url: `https://bootcamp-rent-cars.herokuapp.com/customer/order/${orderId}`,
+    url: `${process.env.REACT_APP_BASE_URL}/customer/order/${orderId}`,
     headers: {
       access_token: user.access_token,
       Content: "application/json",

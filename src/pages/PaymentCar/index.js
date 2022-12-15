@@ -26,7 +26,7 @@ const PaymentCar = () => {
   const [bankName, setBankName] = useState("");
   let navigate = useNavigate();
   const { id } = useParams();
-  const SEARCH_URL = `https://bootcamp-rent-cars.herokuapp.com/customer/car/${id}`;
+  const SEARCH_URL = `${process.env.REACT_APP_BASE_URL}/customer/car/${id}`;
   const startDate = Cookies.get("startDate");
   const endDate = Cookies.get("endDate");
   const tanggalMulai = Cookies.get("tanggalMulai");
@@ -39,7 +39,7 @@ const PaymentCar = () => {
 
   var axiosConfigPost = {
     method: "post",
-    url: "https://bootcamp-rent-cars.herokuapp.com/customer/order",
+    url: `${process.env.REACT_APP_BASE_URL}/customer/order`,
     headers: {
       access_token: user.access_token,
       Content: "application/json",
@@ -118,7 +118,6 @@ const PaymentCar = () => {
             axios(axiosConfigPost)
               .then(function (response) {
                 const orderId = response.data.id;
-                console.log("orderId :", orderId);
                 Cookies.set("mobil", `${car.name}`, { expires: 1 / 3 });
                 Cookies.set("mobilId", `${car.id}`, { expires: 1 / 3 });
                 Cookies.set("order", `${orderId}`, { expires: 1 / 3 });

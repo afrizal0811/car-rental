@@ -5,22 +5,14 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import Handlebutton from "../../components/registerlogic/Handlebutton";
-import { useNavigate } from "react-router-dom";
 
 const PublicRegister = (submitForm) => {
   const { handleChange, handleSubmit, errors, value, submitted } =
     Handlebutton(submitForm);
 
-  const navigate = useNavigate();
-
   return (
     <section className="sign-section">
       <div className="sign-form">
-        {/* {Object.keys(errors).length === 0 && submitted ? (
-          <div id="signupcheck">Signed Up successfully!</div>
-        ) : (
-          <p id="alertup">Please fill in the form correctly!</p>
-        )} */}
         {errors.status && (
           <div className="status-error">
             <Alert variant="danger" style={{ textAlign: "center" }}>
@@ -31,19 +23,6 @@ const PublicRegister = (submitForm) => {
         <div className="square"></div>
         <h1>Sign Up</h1>
         <Form>
-          {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Name</Form.Label>{" "}
-            {errors.fullname && (
-              <span style={{ color: "red" }}>&#42;{errors.fullname}</span>
-            )}
-            <Form.Control
-              type="name"
-              placeholder="Nama Lengkap"
-              value={value.fullname}
-              name="fullname"
-              onChange={handleChange}
-            />
-          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>{" "}
             {errors.email && (
@@ -86,43 +65,14 @@ const PublicRegister = (submitForm) => {
             />
           </Form.Group>
           <div className="d-grid gap-2">
-            {!submitted && (
-              <Button
-                variant="primary"
-                type="submit"
-                className="btn-submit"
-                onClick={handleSubmit}
-              >
-                Sign Up
-              </Button>
-            )}
-            {submitted && (
-              <Button
-                variant="primary"
-                type="submit"
-                className="btn-submit"
-                onClick={handleSubmit}
-              >
-                Sign Up
-              </Button>
-            )}
-            {/* {Object.keys(errors).length === 0 && submitted ? (
-              <div className="success">
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="signinBtn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/login");
-                  }}
-                >
-                  Sign In
-                </Button>
-              </div>
-            ) : (
-              <p id="null"></p>
-            )} */}
+            <Button
+              variant="primary"
+              type="submit"
+              className="btn-submit"
+              onClick={handleSubmit}
+            >
+              Sign Up
+            </Button>
           </div>
           <p>
             Already have an account?{" "}

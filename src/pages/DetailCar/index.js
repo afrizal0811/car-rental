@@ -19,7 +19,7 @@ const DetailCar = () => {
   const [tanggal, setTanggal] = useState("");
   const { id } = useParams();
   let navigate = useNavigate();
-  const SEARCH_URL = `https://bootcamp-rent-cars.herokuapp.com/customer/car/${id}`;
+  const SEARCH_URL = `${process.env.REACT_APP_BASE_URL}/customer/car/${id}`;
   const details = localStorage.getItem("userIn");
 
   useEffect(() => {

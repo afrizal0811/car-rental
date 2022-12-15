@@ -19,11 +19,6 @@ const PublicLogin = (submit) => {
   return (
     <section className="sign-section">
       <div className="sign-form">
-        {/* {Object.keys(errors).length === 0 && submitted && (
-          <div className="success">
-            <div className="signinsuccess">Signed In successfully!</div>
-          </div>
-        )}  */}
         {isRegis && (
           <div className="status-error">
             <Alert variant="success" style={{ textAlign: "center" }}>
@@ -89,17 +84,6 @@ const PublicLogin = (submit) => {
                 Sign In
               </Button>
             )}
-            {/* {Object.keys(errors).length === 0 && submitted && (
-              <div className="success">
-                <Button
-                  variant="primary"
-                  className="Rentbtn"
-                  onClick={rentClick}
-                >
-                  Rent a Car!
-                </Button>
-              </div>
-            )} */}
           </div>
           <p>
             Don&apos;t have an account?{" "}
