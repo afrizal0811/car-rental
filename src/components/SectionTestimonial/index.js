@@ -1,26 +1,25 @@
-import React, { Component } from "react";
-import "./index.css";
-import Icon1 from "../../assets/image/img_photo-1.png";
-import Icon2 from "../../assets/image/img_photo-2.png";
-import Slider from "react-slick";
 import {
   faChevronCircleLeft,
   faChevronCircleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Row, Card, Col } from "react-bootstrap";
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { Component } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
+import Slider from 'react-slick'
+import imagePath from '../../constants/imagePath'
+import './index.css'
 
 export default class PreviousNextMethods extends Component {
   constructor(props) {
-    super(props);
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
+    super(props)
+    this.next = this.next.bind(this)
+    this.previous = this.previous.bind(this)
   }
   next() {
-    this.slider.slickNext();
+    this.slider.slickNext()
   }
   previous() {
-    this.slider.slickPrev();
+    this.slider.slickPrev()
   }
   render() {
     const settings = {
@@ -48,81 +47,90 @@ export default class PreviousNextMethods extends Component {
           },
         },
       ],
-    };
+    }
 
     const data = [
       {
-        icon: Icon1,
-        name: "Siti Budomon",
-        age: "21",
-        location: "Jakarta",
+        icon: imagePath.consumenOne,
+        name: 'Siti Budomon',
+        age: '21',
+        location: 'Jakarta',
         text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
       },
       {
-        icon: Icon2,
-        name: "Sita Budeman",
-        age: "27",
-        location: "Bandung",
+        icon: imagePath.consumenTwo,
+        name: 'Sita Budeman',
+        age: '27',
+        location: 'Bandung',
         text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
       },
       {
-        icon: Icon1,
-        name: "Siki Budimun",
-        age: "28",
-        location: "Surabaya",
+        icon: imagePath.consumenOne,
+        name: 'Siki Budimun',
+        age: '28',
+        location: 'Surabaya',
         text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
       },
       {
-        icon: Icon2,
-        name: "Sidi Budimin",
-        age: "24",
-        location: "Riau",
+        icon: imagePath.consumenTwo,
+        name: 'Sidi Budimin',
+        age: '24',
+        location: 'Riau',
         text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
       },
       {
-        icon: Icon1,
-        name: "Siri Budimon",
-        age: "23",
-        location: "Balikpapan",
+        icon: imagePath.consumenOne,
+        name: 'Siri Budimon',
+        age: '23',
+        location: 'Balikpapan',
         text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
       },
       {
-        icon: Icon2,
-        name: "Simi Budimen",
-        age: "34",
-        location: "Bali",
+        icon: imagePath.consumenTwo,
+        name: 'Simi Budimen',
+        age: '34',
+        location: 'Bali',
         text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
       },
-    ];
+    ]
 
     return (
       <div>
-        <section id="testi" className="testi-section">
-          <div className="testi-title">
+        <section
+          id='testi'
+          className='testi-section'
+        >
+          <div className='testi-title'>
             <h1>Testimonial</h1>
             <p>Berbagai review positif dari para pelanggan kami</p>
           </div>
-          <div className="testi-card-container">
-            <Slider ref={(c) => (this.slider = c)} {...settings}>
+          <div className='testi-card-container'>
+            <Slider
+              ref={(c) => (this.slider = c)}
+              {...settings}
+            >
               {data.map((item, index) => {
                 return (
                   <div key={index}>
                     <Row>
-                      <Col className="p-2">
-                        <Card className="testi-card-content">
-                          <div className="testi-image">
-                            <img src={item.icon} alt="icon" />
+                      <Col className='p-2'>
+                        <Card className='testi-card-content'>
+                          <div className='testi-image'>
+                            <img
+                              src={item.icon}
+                              alt='icon'
+                            />
                           </div>
                           <div>
-                            <div className="testi-star">
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
+                            <div className='testi-star'>
+                              <i className='fa fa-star'></i>
+                              <i className='fa fa-star'></i>
+                              <i className='fa fa-star'></i>
+                              <i className='fa fa-star'></i>
+                              <i className='fa fa-star'></i>
                             </div>
-                            <div className="testi-text">
-                              <p style={{ fontWeight: "700" }}>{item.text}</p>
+                            <div className='testi-text'>
+                              <p style={{ fontWeight: '700' }}>{item.text}</p>
                               <p>
                                 {item.name} {item.age}, {item.location}
                               </p>
@@ -132,38 +140,38 @@ export default class PreviousNextMethods extends Component {
                       </Col>
                     </Row>
                   </div>
-                );
+                )
               })}
             </Slider>
           </div>
 
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: 'center' }}>
             <a
-              className="btn"
+              className='btn'
               onClick={this.previous}
-              style={{ padding: "0", marginTop: "1.5rem" }}
+              style={{ padding: '0', marginTop: '1.5rem' }}
             >
               <FontAwesomeIcon
                 icon={faChevronCircleLeft}
-                size="2x"
-                className="ikon"
+                size='2x'
+                className='ikon'
               />
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a
-              className="btn"
+              className='btn'
               onClick={this.next}
-              style={{ padding: "0", marginTop: "1.5rem" }}
+              style={{ padding: '0', marginTop: '1.5rem' }}
             >
               <FontAwesomeIcon
                 icon={faChevronCircleRight}
-                size="2x"
-                className="ikon"
+                size='2x'
+                className='ikon'
               />
             </a>
           </div>
         </section>
       </div>
-    );
+    )
   }
 }

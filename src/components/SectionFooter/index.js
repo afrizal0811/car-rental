@@ -1,63 +1,79 @@
-import React from "react";
-import "./index.css";
-import IconFacebook from "../../assets/image/icon_facebook.png";
-import IconInstagram from "../../assets/image/icon_instagram.png";
-import IconTwitter from "../../assets/image/icon_twitter.png";
-import IconMail from "../../assets/image/icon_mail.png";
-import IconTwitch from "../../assets/image/icon_twitch.png";
-import { useLocation } from "react-router-dom";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
+import imagePath from '../../constants/imagePath'
+import './index.css'
 
 const Footer = () => {
-  const locationFoot = useLocation();
+  const locationFoot = useLocation()
 
   return (
     <div
       hidden={
-        (locationFoot.pathname === "/login" ||
-          locationFoot.pathname === "/register" ||
-          locationFoot.pathname === "/admin") &&
-        "true"
+        (locationFoot.pathname === '/login' ||
+          locationFoot.pathname === '/register' ||
+          locationFoot.pathname === '/admin') &&
+        'true'
       }
     >
-      <div className="footer-container">
-        <div className="footer-detail">
+      <div className='footer-container'>
+        <div className='footer-detail'>
           <p>Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213</p>
           <p>binarcarrental@gmail.com</p>
           <p>081-233-334-808</p>
         </div>
-        <div className="footer-list">
-          <ul className="menu-list">
+        <div className='footer-list'>
+          <ul className='menu-list'>
             <li>
-              <a href="#services">Our Services</a>
+              <a href='#services'>Our Services</a>
             </li>
             <li>
-              <a href="#products">Why Us</a>
+              <a href='#products'>Why Us</a>
             </li>
             <li>
-              <a href="#testi">Testimonial</a>
+              <a href='#testi'>Testimonial</a>
             </li>
             <li>
-              <a href="#faq">FAQ</a>
+              <a href='#faq'>FAQ</a>
             </li>
           </ul>
         </div>
-        <div className="footer-connect">
+        <div className='footer-connect'>
           <p>Connect with us</p>
           <div>
-            <img src={IconFacebook} alt="" className="connect" />
-            <img src={IconInstagram} alt="" className="connect" />
-            <img src={IconTwitter} alt="" className="connect" />
-            <img src={IconMail} alt="" className="connect" />
-            <img src={IconTwitch} alt="" className="connect" />
+            <img
+              src={imagePath.iconFacebook}
+              alt=''
+              className='connect'
+            />
+            <img
+              src={imagePath.iconInstagram}
+              alt=''
+              className='connect'
+            />
+            <img
+              src={imagePath.iconTwitter}
+              alt=''
+              className='connect'
+            />
+            <img
+              src={imagePath.iconEmail}
+              alt=''
+              className='connect'
+            />
+            <img
+              src={imagePath.iconTwitch}
+              alt=''
+              className='connect'
+            />
           </div>
         </div>
-        <div className="footer-copyright">
+        <div className='footer-copyright'>
           <p>Copyright &copy; 2022 Binar Car Rental</p>
-          <div className="logo-square"></div>
+          <div className='logo-square'></div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

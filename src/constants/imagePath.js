@@ -1,0 +1,26 @@
+const imagePath = {
+  carAvanza: './images/avanza.jpg',
+  carAyla: './images/ayla.jpg',
+  carCalya: './images/calya.jpg',
+  carPajero: './images/pajero.jpg',
+  carXenia: './images/xenia.jpg',
+  carXpander: './images/xpander.jpg',
+  consumenOne: './images/consumen_1.png',
+  consumenTwo: './images/consumen_2.png',
+  hero: './images/hero.png',
+  iconAvatar: './icon/avatar.png',
+  iconComplete: './icon/icon_complete.png',
+  iconEmail: './icon/icon_mail.png',
+  iconFacebook: './icon/icon_facebook.png',
+  iconInstagram: './icon/icon_instagram.png',
+  iconPrice: './icon/icon_24hrs.png',
+  iconProfessional: './icon/icon_complete.png',
+  iconTime: './icon/icon_24hrs.png',
+  iconTwitch: './icon/icon_facebook.png',
+  iconTwitter: './icon/icon_instagram.png',
+  logo: './images/logo.png',
+  signIn: './images/sign-in.png',
+  services: './images/services.png',
+}
+
+export default imagePath

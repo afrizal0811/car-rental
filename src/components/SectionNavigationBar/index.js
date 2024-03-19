@@ -8,7 +8,7 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import avatar from "../../assets/image/avatar.jpeg";
+import imagePath from "../../constants/imagePath";
 // import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import Handlebutton from "../LoginLogic/handlebutton";
 import { Tooltip, styled } from "@mui/material";
@@ -92,7 +92,7 @@ const NavigationBar = () => {
                 </Link>
                 {loggedin && user ? (
                   <div className="showuser">
-                    <img src={avatar} alt="user avatar" id="userava" />
+                    <img src={imagePath.iconAvatar} alt="user avatar" id="userava" />
                     <NavDropdown
                       id="nav-dropdown-dark-example"
                       title={user.email}
