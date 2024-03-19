@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Button, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+// import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 const Ticket = () => {
   const orderId = Cookies.get("order");
@@ -47,7 +47,7 @@ const Ticket = () => {
         <Card.Body className="d-flex flex-column">
           <div className="d-flex justify-content-between m-2 mb-4">
             <Card.Title className="fw-bold fs-6">Invoice</Card.Title>
-            <PDFDownloadLink document={<PdfDoc />} fileName="Invoice.pdf`">
+            {/* <PDFDownloadLink document={<PdfDoc />} fileName="Invoice.pdf`">
               <Button id="downloadBtn">
                 <FontAwesomeIcon
                   icon={faRightToBracket}
@@ -57,11 +57,11 @@ const Ticket = () => {
                 />
                 Unduh
               </Button>
-            </PDFDownloadLink>
+            </PDFDownloadLink> */}
           </div>
-          <PDFViewer style={{ height: "390px" }}>
+          {/* <PDFViewer style={{ height: "390px" }}>
             <PdfDoc />
-          </PDFViewer>
+          </PDFViewer> */}
         </Card.Body>
       </Card>
     </div>
