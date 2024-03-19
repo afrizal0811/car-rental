@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
+import BsButton from '../bootstrapComponent/button/BsButton'
 import './index.css'
 
 const Hero = () => {
@@ -33,12 +33,11 @@ const Hero = () => {
                 locationCarDetail.pathname !== '/cars' ? isHidden : !isHidden
               }
             >
-              <Button
+              <BsButton
                 variant='success'
                 onClick={handleSearch}
-              >
-                Mulai Sewa Mobil
-              </Button>
+                text='Mulai Sewa Mobil'
+              />
             </div>
           </div>
         </div>

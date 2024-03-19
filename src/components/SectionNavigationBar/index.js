@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
+import BsButton from '../bootstrapComponent/button/BsButton'
 import './index.css'
 
 const NavigationBar = () => {
@@ -27,7 +28,7 @@ const NavigationBar = () => {
       <p className='p-navi'>{title}</p>
     </Nav.Link>
   )
-  
+
   return (
     <div>
       <Navbar
@@ -68,13 +69,12 @@ const NavigationBar = () => {
                 {navLink('/#products', 'Why Us')}
                 {navLink('/#testi', 'Testimonial')}
                 {navLink('/#faq', 'FAQ')}
-                <Button
+                <BsButton
                   variant='success'
                   onClick={() => navigate('/register')}
                   hidden={hiddenRegister}
-                >
-                  Register
-                </Button>
+                  text='Register'
+                />
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
 import './index.css'
+import BsButton from '../../components/bootstrapComponent/button/BsButton'
 
 const PublicLogin = () => {
   const formGroup = (label, type, placeholder, name) => (
@@ -28,13 +29,12 @@ const PublicLogin = () => {
           {formGroup('Email', 'email', 'Contoh: johndee@gmail.com', 'email')}
           {formGroup('Password', 'password', '6+ Password', 'password')}
           <div className='d-grid gap-2'>
-            <Button
+            <BsButton
               variant='primary'
               type='submit'
               className='btn-submit'
-            >
-              Sign In
-            </Button>
+              text='Sign In'
+            />
           </div>
           <p>
             Don&apos;t have an account?{' '}

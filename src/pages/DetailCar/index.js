@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
-import "./index.css";
-import { useParams, useNavigate } from "react-router-dom";
-import { Alert, Button, Card } from "react-bootstrap";
-import axios from "axios";
-import { IntlProvider, FormattedNumber } from "react-intl";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
-import Accordion from "react-bootstrap/Accordion";
-import DateRangePicker from "@wojtekmaj/react-daterange-picker";
-import Cookies from "js-cookie";
-import LoadingSkeleton from "../../components/LoadingSkeleton/SkeDetailCars.js";
-import { Tooltip, styled } from "@mui/material";
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { styled, Tooltip } from '@mui/material'
+import DateRangePicker from '@wojtekmaj/react-daterange-picker'
+import axios from 'axios'
+import Cookies from 'js-cookie'
+import React, { useEffect, useState } from 'react'
+import { Alert, Card } from 'react-bootstrap'
+import Accordion from 'react-bootstrap/Accordion'
+import { FormattedNumber, IntlProvider } from 'react-intl'
+import { useNavigate, useParams } from 'react-router-dom'
+import BsButton from '../../components/bootstrapComponent/button/BsButton'
+import LoadingSkeleton from '../../components/LoadingSkeleton/SkeDetailCars.js'
+import './index.css'
 
 const DetailCar = () => {
-  const [car, setCar] = useState("");
-  const [catchVisible, setCatchVisible] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [tanggal, setTanggal] = useState("");
-  const { id } = useParams();
-  let navigate = useNavigate();
-  const SEARCH_URL = `${process.env.REACT_APP_BASE_URL}/customer/car/${id}`;
-  const details = localStorage.getItem("userIn");
+  const [car, setCar] = useState('')
+  const [catchVisible, setCatchVisible] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [tanggal, setTanggal] = useState('')
+  const { id } = useParams()
+  let navigate = useNavigate()
+  const SEARCH_URL = `${process.env.REACT_APP_BASE_URL}/customer/car/${id}`
+  const details = localStorage.getItem('userIn')
 
   useEffect(() => {
     axios
@@ -30,47 +31,50 @@ const DetailCar = () => {
         },
       })
       .then((response) => {
-        setCar(response.data);
-        setLoading(false);
+        setCar(response.data)
+        setLoading(false)
       })
       .catch(() => {
-        setCatchVisible(true);
-        setLoading(false);
-      });
-  }, []);
+        setCatchVisible(true)
+        setLoading(false)
+      })
+  }, [])
 
   function handleViewDetail(id) {
-    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-    const lamaHari = Math.round(Math.abs((tanggal[0] - tanggal[1]) / oneDay));
-    const tanggalAwal = tanggal[0].toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-    const tanggalAkhir = tanggal[1].toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-    const tanggalMulai = tanggal[0].toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "numeric",
-      year: "numeric",
-    });
-    const tanggalSelesai = tanggal[1].toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "numeric",
-      year: "numeric",
-    });
-    Cookies.set("tanggalMulai", `${tanggalMulai}`, { expires: 1 / 3 });
-    Cookies.set("tanggalSelesai", `${tanggalSelesai}`, { expires: 1 / 3 });
-    Cookies.set("startDate", `${tanggalAwal}`, { expires: 1 / 3 });
-    Cookies.set("endDate", `${tanggalAkhir}`, { expires: 1 / 3 });
-    Cookies.set("lamaHari", `${lamaHari}`, { expires: 1 / 3 });
-    navigate(`/payment/${id}`);
+    const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
+    const lamaHari = Math.round(Math.abs((tanggal[0] - tanggal[1]) / oneDay))
+    const tanggalAwal = tanggal[0].toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    })
+    const tanggalAkhir = tanggal[1].toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    })
+    const tanggalMulai = tanggal[0].toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    })
+    const tanggalSelesai = tanggal[1].toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    })
+    Cookies.set('tanggalMulai', `${tanggalMulai}`, { expires: 1 / 3 })
+    Cookies.set('tanggalSelesai', `${tanggalSelesai}`, { expires: 1 / 3 })
+    Cookies.set('startDate', `${tanggalAwal}`, { expires: 1 / 3 })
+    Cookies.set('endDate', `${tanggalAkhir}`, { expires: 1 / 3 })
+    Cookies.set('lamaHari', `${lamaHari}`, { expires: 1 / 3 })
+    navigate(`/payment/${id}`)
   }
   const StyledTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
+    <Tooltip
+      {...props}
+      classes={{ popper: className }}
+    />
   ))`
     & .MuiTooltip-tooltip {
       background: navy;
@@ -79,13 +83,16 @@ const DetailCar = () => {
     .MuiTooltip-arrow {
       color: navy;
     }
-  `;
+  `
   return (
     <div>
       <div key={car.id}>
-        <div className="hero-div" />
+        <div className='hero-div' />
         {catchVisible && (
-          <Alert variant="danger" style={{ textAlign: "center" }}>
+          <Alert
+            variant='danger'
+            style={{ textAlign: 'center' }}
+          >
             Telah terjadi kesalahan. Silahkan mencoba beberapa saat lagi.
           </Alert>
         )}
@@ -93,14 +100,14 @@ const DetailCar = () => {
           <LoadingSkeleton />
         ) : (
           !loading && (
-            <div className="detail-section">
-              <Card className="card-detail">
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title className="detail-title">
+            <div className='detail-section'>
+              <Card className='card-detail'>
+                <Card.Body className='d-flex flex-column'>
+                  <Card.Title className='detail-title'>
                     Tentang Paket
                   </Card.Title>
-                  <Card.Title className="detail-title">Include</Card.Title>
-                  <ul className="detail-list">
+                  <Card.Title className='detail-title'>Include</Card.Title>
+                  <ul className='detail-list'>
                     <li>
                       Apa saja yang termasuk dalam paket misal durasi max 12 jam
                     </li>
@@ -108,8 +115,8 @@ const DetailCar = () => {
                     <li>Sudah termasuk Tiket Wisata</li>
                     <li>Sudah termasuk pajak</li>
                   </ul>
-                  <Card.Title className="detail-title">Exclude</Card.Title>
-                  <ul className="detail-list">
+                  <Card.Title className='detail-title'>Exclude</Card.Title>
+                  <ul className='detail-list'>
                     <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
                     <li>
                       Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
@@ -118,12 +125,12 @@ const DetailCar = () => {
                     <li>Tidak termasuk akomodasi penginapan</li>
                   </ul>
                   <Accordion>
-                    <Accordion.Item eventKey="0">
+                    <Accordion.Item eventKey='0'>
                       <Accordion.Header>
                         Refund, Reschedule, Overtime
                       </Accordion.Header>
                       <Accordion.Body>
-                        <ul className="detail-list">
+                        <ul className='detail-list'>
                           <li>
                             Tidak termasuk biaya makan sopir Rp 75.000/hari
                           </li>
@@ -154,58 +161,60 @@ const DetailCar = () => {
                   </Accordion>
                 </Card.Body>
               </Card>
-              <Card className="card-detail-total">
+              <Card className='card-detail-total'>
                 <Card.Img
-                  variant="top"
+                  variant='top'
                   src={
                     car.image
                       ? car.image
-                      : "https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740"
+                      : 'https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740'
                   }
                 />
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title className="detail-title">{car.name}</Card.Title>
-                  <div className="d-flex category">
+                <Card.Body className='d-flex flex-column'>
+                  <Card.Title className='detail-title'>{car.name}</Card.Title>
+                  <div className='d-flex category'>
                     <FontAwesomeIcon
                       icon={faUserGroup}
-                      className="category-icon"
+                      className='category-icon'
                     />
                     <Card.Text>{car.category}</Card.Text>
                   </div>
-                  <StyledTooltip title="Pilih tanggal sewa" placement="bottom">
-                    <div className="date-picker">
+                  <StyledTooltip
+                    title='Pilih tanggal sewa'
+                    placement='bottom'
+                  >
+                    <div className='date-picker'>
                       <Card.Text>
                         Tentukan lama sewa mobil (max. 7 hari)
                       </Card.Text>
                       <DateRangePicker
                         onChange={setTanggal}
                         value={tanggal}
-                        format="dd-MM-y"
+                        format='dd-MM-y'
                         minDate={new Date()}
                         // maxDate={maksDate}
-                        rangeDivider={" to "}
-                        className="tggl"
+                        rangeDivider={' to '}
+                        className='tggl'
                       />
                     </div>
                   </StyledTooltip>
-                  <strong className="d-flex justify-content-between mt-5 mb-5">
+                  <strong className='d-flex justify-content-between mt-5 mb-5'>
                     <Card.Text>Total</Card.Text>
-                    <IntlProvider locale="id">
+                    <IntlProvider locale='id'>
                       <FormattedNumber
                         value={car.price}
-                        style="currency"
-                        currency="IDR"
+                        style='currency'
+                        currency='IDR'
                       />
                     </IntlProvider>
                   </strong>
-                  <div className="d-grid mt-auto">
-                    <Button
-                      variant="success"
+                  <div className='d-grid mt-auto'>
+                    <BsButton
+                      variant='success'
                       disabled={!tanggal}
                       onClick={() => handleViewDetail(`${id}`)}
-                    >
-                      Lanjutkan Pembayaran
-                    </Button>
+                      text='Lanjutkan Pembayaran'
+                    />
                   </div>
                 </Card.Body>
               </Card>
@@ -214,7 +223,7 @@ const DetailCar = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DetailCar;
+export default DetailCar

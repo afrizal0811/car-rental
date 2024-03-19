@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import imagePath from '../../constants/imagePath'
 import './index.css'
 
@@ -29,13 +30,12 @@ const PublicRegister = () => {
           {formGroup('Create Password', 'password', '6+ Password', 'password')}
           {formGroup('Confirm Password', 'password', '6+ Password', 'password')}
           <div className='d-grid gap-2'>
-            <Button
+            <BsButton
               variant='primary'
               type='submit'
               className='btn-submit'
-            >
-              Sign Up
-            </Button>
+              text='Sign Up'
+            />
           </div>
           <p>
             Already have an account?{' '}

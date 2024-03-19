@@ -1,21 +1,22 @@
-import React from "react";
-import "./index.css";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import BsButton from '../bootstrapComponent/button/BsButton'
+import './index.css'
+
 const Sewa = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function handleSearch() {
-    const token = localStorage.getItem("userIn");
+    const token = localStorage.getItem('userIn')
     if (token) {
-      navigate(`/cars`);
-    } else navigate(`/login?redirectFrom=/cars`);
+      navigate(`/cars`)
+    } else navigate(`/login?redirectFrom=/cars`)
   }
 
   return (
     <div>
-      <section className="sewa-section">
-        <div className="sewa-container">
+      <section className='sewa-section'>
+        <div className='sewa-container'>
           <h1>Sewa Mobil di Jawa Timur Sekarang</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet odio
@@ -23,13 +24,15 @@ const Sewa = () => {
             exercitationem, rem porro quia atque aspernatur cum, ipsum nemo
             nihil vel sed.
           </p>
-          <Button variant="success" onClick={handleSearch}>
-            Mulai Sewa Mobil
-          </Button>
+          <BsButton
+            variant='success'
+            onClick={handleSearch}
+            text='Mulai Sewa Mobil'
+          />
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Sewa;
+export default Sewa
