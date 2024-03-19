@@ -1,6 +1,7 @@
 import React from 'react'
-import imagePath from '../../constants/imagePath';
-import "./index.css";
+import imagePath from '../../constants/imagePath'
+import { dataServices } from './help'
+import './index.css'
 
 const Services = () => {
   return (
@@ -27,11 +28,9 @@ const Services = () => {
               wedding, meeting, dll.
             </p>
             <ul className='services-list'>
-              <li>Sewa Mobil dengan Supit di Bali 12 Jam</li>
-              <li>Sewa Mobil Lepas Kunci di Bali 24 Jam</li>
-              <li>Sewa Mobil Jangka Panjang Bulanan</li>
-              <li>Gratis Antar-Jemput Mobil di Bandara</li>
-              <li>Layanan Airport Transfer/Drop In Out</li>
+              {dataServices.map((data, index) => (
+                <li key={index}>{data}</li>
+              ))}
             </ul>
           </div>
         </div>

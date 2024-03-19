@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { Component } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
 import Slider from 'react-slick'
-import imagePath from '../../constants/imagePath'
+import { dataTestimonials, sliderSetting } from './help'
 import './index.css'
 
 export default class PreviousNextMethods extends Component {
@@ -22,77 +22,15 @@ export default class PreviousNextMethods extends Component {
     this.slider.slickPrev()
   }
   render() {
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 1500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      initialSlide: 0,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            speed: 1000,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-          },
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    }
-
-    const data = [
-      {
-        icon: imagePath.consumenOne,
-        name: 'Siti Budomon',
-        age: '21',
-        location: 'Jakarta',
-        text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
-      },
-      {
-        icon: imagePath.consumenTwo,
-        name: 'Sita Budeman',
-        age: '27',
-        location: 'Bandung',
-        text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
-      },
-      {
-        icon: imagePath.consumenOne,
-        name: 'Siki Budimun',
-        age: '28',
-        location: 'Surabaya',
-        text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
-      },
-      {
-        icon: imagePath.consumenTwo,
-        name: 'Sidi Budimin',
-        age: '24',
-        location: 'Riau',
-        text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
-      },
-      {
-        icon: imagePath.consumenOne,
-        name: 'Siri Budimon',
-        age: '23',
-        location: 'Balikpapan',
-        text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
-      },
-      {
-        icon: imagePath.consumenTwo,
-        name: 'Simi Budimen',
-        age: '34',
-        location: 'Bali',
-        text: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus explicabo reprehenderit quisquam neque ducimus laborum architecto sit, repellat saepe, at consequuntur deleniti facere unde cumque alias quaerat beatae fugiat accusantium."`,
-      },
-    ]
+    const starComponent = (
+      <div>
+        <i className='fa fa-star' />
+        <i className='fa fa-star' />
+        <i className='fa fa-star' />
+        <i className='fa fa-star' />
+        <i className='fa fa-star' />
+      </div>
+    )
 
     return (
       <div>
@@ -107,9 +45,9 @@ export default class PreviousNextMethods extends Component {
           <div className='testi-card-container'>
             <Slider
               ref={(c) => (this.slider = c)}
-              {...settings}
+              {...sliderSetting}
             >
-              {data.map((item, index) => {
+              {dataTestimonials.map((item, index) => {
                 return (
                   <div key={index}>
                     <Row>
@@ -122,13 +60,7 @@ export default class PreviousNextMethods extends Component {
                             />
                           </div>
                           <div>
-                            <div className='testi-star'>
-                              <i className='fa fa-star'></i>
-                              <i className='fa fa-star'></i>
-                              <i className='fa fa-star'></i>
-                              <i className='fa fa-star'></i>
-                              <i className='fa fa-star'></i>
-                            </div>
+                            <div className='testi-star'>{starComponent}</div>
                             <div className='testi-text'>
                               <p style={{ fontWeight: '700' }}>{item.text}</p>
                               <p>

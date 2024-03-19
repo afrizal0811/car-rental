@@ -1,41 +1,40 @@
-.navi-white{
+.navi-white {
   background-color: #ffffff;
 }
-.navigator{
-  background-color: #F1F3FF;
+.navigator {
+  background-color: #f1f3ff;
 }
 
-.navi-link{
+.navi-link {
   text-decoration: none;
   padding: 0;
 }
 
-.p-navi{
+.p-navi {
   margin: 0;
   color: black;
 }
-.brand-logo{
+.brand-logo {
   margin-left: 0.5rem;
   width: 100px;
   height: 34px;
-  background-color: #0D28A6;
 }
-.offset-brand-logo{
+.offset-brand-logo {
   width: 100px;
   height: 34px;
   text-decoration: none;
-  color:black;
+  color: black;
   font-size: 25px;
   font-weight: bolder;
 }
 
-.btn-register{
-  display:flex;
-  justify-content:center;
-  background-color: #5CB85F;
+.btn-register {
+  display: flex;
+  justify-content: center;
+  background-color: #5cb85f;
   color: white;
   font-weight: 700;
-  width:100px;
+  width: 100px;
 }
 #userava {
   border-radius: 50%;
@@ -50,20 +49,19 @@
   background: none;
   font-weight: bold;
 }
-.showuser{
+.showuser {
   display: flex;
   flex-direction: row;
 }
 
 @media only screen and (min-width: 1024px) {
-  .brand-logo{
+  .brand-logo {
     margin-left: 4.5rem;
   }
-  
-  .navi-link{
-  color: black;
-  text-decoration: none;
-  padding: 0 0.6rem
-}
 
+  .navi-link {
+    color: black;
+    text-decoration: none;
+    padding: 0 0.6rem;
+  }
 }

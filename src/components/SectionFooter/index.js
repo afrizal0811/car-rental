@@ -69,7 +69,13 @@ const Footer = () => {
         </div>
         <div className='footer-copyright'>
           <p>Copyright &copy; 2022 Binar Car Rental</p>
-          <div className='logo-square'></div>
+          <div className='logo-square'>
+            <img
+              src={imagePath.logo}
+              alt=''
+              width={100}
+            />
+          </div>
         </div>
       </div>
     </div>
