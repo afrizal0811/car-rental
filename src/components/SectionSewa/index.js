@@ -6,13 +6,6 @@ import './index.css'
 const Sewa = () => {
   const navigate = useNavigate()
 
-  function handleSearch() {
-    const token = localStorage.getItem('userIn')
-    if (token) {
-      navigate(`/cars`)
-    } else navigate(`/login?redirectFrom=/cars`)
-  }
-
   return (
     <div>
       <section className='sewa-section'>
@@ -26,7 +19,7 @@ const Sewa = () => {
           </p>
           <BsButton
             variant='success'
-            onClick={handleSearch}
+            onClick={() => navigate(`/cars`)}
             text='Mulai Sewa Mobil'
           />
         </div>

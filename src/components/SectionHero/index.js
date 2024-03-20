@@ -9,13 +9,6 @@ const Hero = () => {
   const navigate = useNavigate()
   const locationCarDetail = useLocation()
 
-  function handleSearch() {
-    const token = localStorage.getItem('userIn')
-    if (token) {
-      navigate(`/cars`)
-    } else navigate(`/login?redirectFrom=/cars`)
-  }
-
   return (
     <div>
       <section className='hero-section'>
@@ -35,7 +28,7 @@ const Hero = () => {
             >
               <BsButton
                 variant='success'
-                onClick={handleSearch}
+                onClick={() => navigate(`/cars`)}
                 text='Mulai Sewa Mobil'
               />
             </div>

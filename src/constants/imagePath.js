@@ -19,8 +19,10 @@ const imagePath = {
   iconTwitch: './icons/icon_twitch.png',
   iconTwitter: './icons/icon_twitter.png',
   logo: './images/logo.png',
+  noCar: 'https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740',
   signIn: './images/sign-in.png',
   services: './images/services.png',
+
 }
 
 export default imagePath

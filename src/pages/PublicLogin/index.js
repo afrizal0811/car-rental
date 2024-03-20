@@ -1,33 +1,41 @@
 import React from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import BsButton from '../../components/bootstrapComponent/button/BsButton'
+import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
+import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
 import imagePath from '../../constants/imagePath'
 import './index.css'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
 
 const PublicLogin = () => {
-  const formGroup = (label, type, placeholder, name) => (
-    <Form.Group
-      className='mb-3'
-      controlId='formBasicEmail'
-    >
-      <Form.Label>{label}</Form.Label>{' '}
-      <Form.Control
-        type={type}
-        placeholder={placeholder}
-        name={name}
-      />
-    </Form.Group>
-  )
-  
   return (
     <section className='sign-section'>
       <div className='sign-form'>
         <div className='square'></div>
         <h1>Welcome Back!</h1>
         <Form>
-          {formGroup('Email', 'email', 'Contoh: johndee@gmail.com', 'email')}
-          {formGroup('Password', 'password', '6+ Password', 'password')}
+          <BsFormGroup
+            controlId='FormEmail'
+            className='m-3'
+            label='Email'
+          >
+            <BsFormControl
+              type='email'
+              placeholder='Contoh: johndee@gmail.com'
+              name='email'
+            />
+          </BsFormGroup>
+          <BsFormGroup
+            controlId='FormPassword'
+            className='m-3'
+            label='Create Password'
+          >
+            <BsFormControl
+              type='password'
+              placeholder='6+ Password'
+              name='password'
+            />
+          </BsFormGroup>
           <div className='d-grid gap-2'>
             <BsButton
               variant='primary'

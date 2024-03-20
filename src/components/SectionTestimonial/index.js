@@ -22,7 +22,7 @@ export default class PreviousNextMethods extends Component {
     this.slider.slickPrev()
   }
   render() {
-    const starComponent = (
+    const renderStar = (
       <div>
         <i className='fa fa-star' />
         <i className='fa fa-star' />
@@ -32,6 +32,26 @@ export default class PreviousNextMethods extends Component {
       </div>
     )
 
+    const renderTestiImage = (item) => (
+      <div className='testi-image'>
+        <img
+          src={item.icon}
+          alt='icon'
+        />
+      </div>
+    )
+
+    const renderTestiText = (item) => (
+      <div>
+        <div className='testi-star'>{renderStar}</div>
+        <div className='testi-text'>
+          <p style={{ fontWeight: '700' }}>{item.text}</p>
+          <p>
+            {item.name} {item.age}, {item.location}
+          </p>
+        </div>
+      </div>
+    )
     return (
       <div>
         <section
@@ -49,29 +69,14 @@ export default class PreviousNextMethods extends Component {
             >
               {dataTestimonials.map((item, index) => {
                 return (
-                  <div key={index}>
-                    <Row>
-                      <Col className='p-2'>
-                        <Card className='testi-card-content'>
-                          <div className='testi-image'>
-                            <img
-                              src={item.icon}
-                              alt='icon'
-                            />
-                          </div>
-                          <div>
-                            <div className='testi-star'>{starComponent}</div>
-                            <div className='testi-text'>
-                              <p style={{ fontWeight: '700' }}>{item.text}</p>
-                              <p>
-                                {item.name} {item.age}, {item.location}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </div>
+                  <Row key={index}>
+                    <Col className='p-2'>
+                      <Card className='testi-card-content'>
+                        {renderTestiImage(item)}
+                        {renderTestiText(item)}
+                      </Card>
+                    </Col>
+                  </Row>
                 )
               })}
             </Slider>
