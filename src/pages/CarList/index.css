@@ -42,6 +42,11 @@
   transform: scale(1.1);
 }
 
+.card-cont {
+  width: 18rem;
+  margin: 1rem;
+}
+
 .card-cont:hover {
   transform: scale(1.07);
 }

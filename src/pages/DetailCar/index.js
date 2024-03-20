@@ -1,226 +1,93 @@
-import { faUserGroup } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { styled, Tooltip } from '@mui/material'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import React, { useEffect, useState } from 'react'
-import { Alert, Card } from 'react-bootstrap'
-import Accordion from 'react-bootstrap/Accordion'
-import { FormattedNumber, IntlProvider } from 'react-intl'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import BsAccordion from '../../components/bootstrapComponent/accordion/BsAccordion'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import LoadingSkeleton from '../../components/LoadingSkeleton/SkeDetailCars.js'
+import BsCard from '../../components/bootstrapComponent/card/BsCard'
+import CurrencyComp from '../../components/currencyComp/CurrencyComp'
+import carList from '../../constants/carList'
+import localDateString from '../../utilities/localDateString'
+import setCookies from '../../utilities/setCookies'
+import { dataList } from './help'
 import './index.css'
 
 const DetailCar = () => {
-  const [car, setCar] = useState('')
-  const [catchVisible, setCatchVisible] = useState(false)
-  const [loading, setLoading] = useState(true)
   const [tanggal, setTanggal] = useState('')
   const { id } = useParams()
-  let navigate = useNavigate()
-  const SEARCH_URL = `${process.env.REACT_APP_BASE_URL}/customer/car/${id}`
-  const details = localStorage.getItem('userIn')
-
-  useEffect(() => {
-    axios
-      .get(SEARCH_URL, {
-        headers: {
-          access_token: details.access_token,
-        },
-      })
-      .then((response) => {
-        setCar(response.data)
-        setLoading(false)
-      })
-      .catch(() => {
-        setCatchVisible(true)
-        setLoading(false)
-      })
-  }, [])
+  const navigate = useNavigate()
+  const dateNow = new Date()
+  const endDate = (date, days) => {
+    let result = new Date(date)
+    result.setDate(result.getDate() + days)
+    return result
+  }
+  const selectedCar = carList.find((data) => data.id === parseInt(id))
 
   function handleViewDetail(id) {
     const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
     const lamaHari = Math.round(Math.abs((tanggal[0] - tanggal[1]) / oneDay))
-    const tanggalAwal = tanggal[0].toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-    const tanggalAkhir = tanggal[1].toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-    const tanggalMulai = tanggal[0].toLocaleDateString('en-US', {
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-    })
-    const tanggalSelesai = tanggal[1].toLocaleDateString('en-US', {
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-    })
-    Cookies.set('tanggalMulai', `${tanggalMulai}`, { expires: 1 / 3 })
-    Cookies.set('tanggalSelesai', `${tanggalSelesai}`, { expires: 1 / 3 })
-    Cookies.set('startDate', `${tanggalAwal}`, { expires: 1 / 3 })
-    Cookies.set('endDate', `${tanggalAkhir}`, { expires: 1 / 3 })
-    Cookies.set('lamaHari', `${lamaHari}`, { expires: 1 / 3 })
+    const tanggalAwal = localDateString('uk', tanggal[0])
+    const tanggalAkhir = localDateString('uk', tanggal[1])
+    const tanggalMulai = localDateString('us', tanggal[0])
+    const tanggalSelesai = localDateString('us', tanggal[1])
+    setCookies('tanggalMulai', `${tanggalMulai}`)
+    setCookies('tanggalSelesai', `${tanggalSelesai}`)
+    setCookies('startDate', `${tanggalAwal}`)
+    setCookies('endDate', `${tanggalAkhir}`)
+    setCookies('lamaHari', `${lamaHari}`)
     navigate(`/payment/${id}`)
   }
-  const StyledTooltip = styled(({ className, ...props }) => (
-    <Tooltip
-      {...props}
-      classes={{ popper: className }}
-    />
-  ))`
-    & .MuiTooltip-tooltip {
-      background: navy;
-      font-size: 14px;
-    }
-    .MuiTooltip-arrow {
-      color: navy;
-    }
-  `
+  const renderDataList = (
+    <ul className='detail-list'>
+      {dataList.map((data, index) => (
+        <li key={index}>{data}</li>
+      ))}
+    </ul>
+  )
+
   return (
-    <div>
-      <div key={car.id}>
-        <div className='hero-div' />
-        {catchVisible && (
-          <Alert
-            variant='danger'
-            style={{ textAlign: 'center' }}
-          >
-            Telah terjadi kesalahan. Silahkan mencoba beberapa saat lagi.
-          </Alert>
-        )}
-        {loading ? (
-          <LoadingSkeleton />
-        ) : (
-          !loading && (
-            <div className='detail-section'>
-              <Card className='card-detail'>
-                <Card.Body className='d-flex flex-column'>
-                  <Card.Title className='detail-title'>
-                    Tentang Paket
-                  </Card.Title>
-                  <Card.Title className='detail-title'>Include</Card.Title>
-                  <ul className='detail-list'>
-                    <li>
-                      Apa saja yang termasuk dalam paket misal durasi max 12 jam
-                    </li>
-                    <li>Sudah termasuk bensin selama 12 jam</li>
-                    <li>Sudah termasuk Tiket Wisata</li>
-                    <li>Sudah termasuk pajak</li>
-                  </ul>
-                  <Card.Title className='detail-title'>Exclude</Card.Title>
-                  <ul className='detail-list'>
-                    <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                    <li>
-                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
-                      20.000/jam
-                    </li>
-                    <li>Tidak termasuk akomodasi penginapan</li>
-                  </ul>
-                  <Accordion>
-                    <Accordion.Item eventKey='0'>
-                      <Accordion.Header>
-                        Refund, Reschedule, Overtime
-                      </Accordion.Header>
-                      <Accordion.Body>
-                        <ul className='detail-list'>
-                          <li>
-                            Tidak termasuk biaya makan sopir Rp 75.000/hari
-                          </li>
-                          <li>
-                            Jika overtime lebih dari 12 jam akan ada tambahan
-                            biaya Rp 20.000/jam
-                          </li>
-                          <li>Tidak termasuk akomodasi penginapan</li>
-                          <li>
-                            Tidak termasuk biaya makan sopir Rp 75.000/hari
-                          </li>
-                          <li>
-                            Jika overtime lebih dari 12 jam akan ada tambahan
-                            biaya Rp 20.000/jam
-                          </li>
-                          <li>Tidak termasuk akomodasi penginapan</li>
-                          <li>
-                            Tidak termasuk biaya makan sopir Rp 75.000/hari
-                          </li>
-                          <li>
-                            Jika overtime lebih dari 12 jam akan ada tambahan
-                            biaya Rp 20.000/jam
-                          </li>
-                          <li>Tidak termasuk akomodasi penginapan</li>
-                        </ul>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Card.Body>
-              </Card>
-              <Card className='card-detail-total'>
-                <Card.Img
-                  variant='top'
-                  src={
-                    car.image
-                      ? car.image
-                      : 'https://img.freepik.com/premium-vector/car-cartoon-vehicle-transportation-isolated_138676-2473.jpg?w=740'
-                  }
-                />
-                <Card.Body className='d-flex flex-column'>
-                  <Card.Title className='detail-title'>{car.name}</Card.Title>
-                  <div className='d-flex category'>
-                    <FontAwesomeIcon
-                      icon={faUserGroup}
-                      className='category-icon'
-                    />
-                    <Card.Text>{car.category}</Card.Text>
-                  </div>
-                  <StyledTooltip
-                    title='Pilih tanggal sewa'
-                    placement='bottom'
-                  >
-                    <div className='date-picker'>
-                      <Card.Text>
-                        Tentukan lama sewa mobil (max. 7 hari)
-                      </Card.Text>
-                      <DateRangePicker
-                        onChange={setTanggal}
-                        value={tanggal}
-                        format='dd-MM-y'
-                        minDate={new Date()}
-                        // maxDate={maksDate}
-                        rangeDivider={' to '}
-                        className='tggl'
-                      />
-                    </div>
-                  </StyledTooltip>
-                  <strong className='d-flex justify-content-between mt-5 mb-5'>
-                    <Card.Text>Total</Card.Text>
-                    <IntlProvider locale='id'>
-                      <FormattedNumber
-                        value={car.price}
-                        style='currency'
-                        currency='IDR'
-                      />
-                    </IntlProvider>
-                  </strong>
-                  <div className='d-grid mt-auto'>
-                    <BsButton
-                      variant='success'
-                      disabled={!tanggal}
-                      onClick={() => handleViewDetail(`${id}`)}
-                      text='Lanjutkan Pembayaran'
-                    />
-                  </div>
-                </Card.Body>
-              </Card>
-            </div>
-          )
-        )}
+    <div key={selectedCar.id}>
+      <div className='hero-div' />
+      <div className='detail-section'>
+        <BsCard
+          title='Tentang Paket'
+          info='Include'
+          className='card-detail'
+        >
+          {renderDataList}
+          <BsAccordion header='Refund, Reschedule, Overtime'>
+            {renderDataList}
+          </BsAccordion>
+        </BsCard>
+        <BsCard
+          data={selectedCar}
+          info='Tentukan lama sewa mobil (max. 7 hari)'
+          infoClass='date-picker'
+          className='card-detail-total'
+          isHaveImage='true'
+        >
+          <DateRangePicker
+            onChange={setTanggal}
+            value={tanggal}
+            format='dd-MM-y'
+            minDate={dateNow}
+            maxDate={endDate(dateNow, 6)}
+            rangeDivider={' to '}
+            className='tggl'
+          />
+          <strong className='d-flex justify-content-between mt-5'>
+            <p>Total</p>
+            <CurrencyComp value={selectedCar.price} />
+          </strong>
+          <div className='d-grid mt-auto'>
+            <BsButton
+              variant='success'
+              disabled={!tanggal}
+              onClick={() => handleViewDetail(`${id}`)}
+              text='Lanjutkan Pembayaran'
+            />
+          </div>
+        </BsCard>
       </div>
     </div>
   )

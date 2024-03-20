@@ -8,8 +8,7 @@ const CurrencyComp = (props) => {
         value={props.value}
         style='currency'
         currency='IDR'
-      />{' '}
-      / hari
+      />
     </IntlProvider>
   )
 }

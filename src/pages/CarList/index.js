@@ -1,17 +1,19 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsCardImage from '../../components/bootstrapComponent/card/BsCardImage'
+import BsCard from '../../components/bootstrapComponent/card/BsCard'
 import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
 import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
 import BsFormSelect from '../../components/bootstrapComponent/formSelects/BsFormSelect'
 import CurrencyComp from '../../components/currencyComp/CurrencyComp'
 import SectionHero from '../../components/SectionHero'
 import carList from '../../constants/carList'
+import { useNavigate } from 'react-router-dom'
 import { hargaOptions, kategoriOptions, statusOptions } from './help'
 import './index.css'
 
 const CariMobil = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <SectionHero />
@@ -70,18 +72,21 @@ const CariMobil = () => {
         <div className='d-flex flex-wrap align-items-stretch justify-content-around'>
           {carList.map((result) => {
             return (
-              <BsCardImage
-                result={result}
+              <BsCard
+                data={result}
                 key={result.id}
+                className='card-cont'
+                isHaveImage='true'
               >
                 <CurrencyComp value={result.price} />
                 <div className='d-grid mt-auto pt-3'>
                   <BsButton
                     variant='success'
                     text='Pilih Mobil'
+                    onClick={() => navigate(`/cars/${result.id}`)}
                   />
                 </div>
-              </BsCardImage>
+              </BsCard>
             )
           })}
         </div>

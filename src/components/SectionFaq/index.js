@@ -1,5 +1,5 @@
 import React from 'react'
-import Accordion from 'react-bootstrap/Accordion'
+import BsAccordion from '../bootstrapComponent/accordion/BsAccordion'
 import { dataFaq } from './help'
 import './index.css'
 
@@ -15,19 +15,16 @@ const Faq = () => {
       </div>
 
       <div className='faq-content'>
-        <Accordion>
-          {dataFaq.map((item, index) => {
-            return (
-              <Accordion.Item
-                key={index}
-                eventKey={index}
-              >
-                <Accordion.Header>{item.question}</Accordion.Header>
-                <Accordion.Body>{item.answer}</Accordion.Body>
-              </Accordion.Item>
-            )
-          })}
-        </Accordion>
+        {dataFaq.map((item, index) => {
+          return (
+            <BsAccordion
+              header={item.question}
+              key={index}
+            >
+              {item.answer}
+            </BsAccordion>
+          )
+        })}
       </div>
     </section>
   )
