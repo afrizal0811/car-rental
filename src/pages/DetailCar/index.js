@@ -7,7 +7,7 @@ import BsCard from '../../components/bootstrapComponent/card/BsCard'
 import CurrencyComp from '../../components/currencyComp/CurrencyComp'
 import carList from '../../constants/carList'
 import localDateString from '../../utilities/localDateString'
-import setCookies from '../../utilities/setCookies'
+import { setCookies } from '../../utilities/handleCookies'
 import { dataList } from './help'
 import './index.css'
 
@@ -26,17 +26,17 @@ const DetailCar = () => {
   function handleViewDetail(id) {
     const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
     const lamaHari = Math.round(Math.abs((tanggal[0] - tanggal[1]) / oneDay))
-    const tanggalAwal = localDateString('uk', tanggal[0])
-    const tanggalAkhir = localDateString('uk', tanggal[1])
-    const tanggalMulai = localDateString('us', tanggal[0])
-    const tanggalSelesai = localDateString('us', tanggal[1])
-    setCookies('tanggalMulai', `${tanggalMulai}`)
-    setCookies('tanggalSelesai', `${tanggalSelesai}`)
-    setCookies('startDate', `${tanggalAwal}`)
-    setCookies('endDate', `${tanggalAkhir}`)
-    setCookies('lamaHari', `${lamaHari}`)
+    const tanggalAwal = localDateString(tanggal[0])
+    const tanggalAkhir = localDateString(tanggal[1])
+    const cookies = [
+      { name: 'tanggalAwal', value: tanggalAwal },
+      { name: 'tanggalAkhir', value: tanggalAkhir },
+      { name: 'lamaHari', value: lamaHari },
+    ]
+    setCookies(cookies)
     navigate(`/payment/${id}`)
   }
+
   const renderDataList = (
     <ul className='detail-list'>
       {dataList.map((data, index) => (
