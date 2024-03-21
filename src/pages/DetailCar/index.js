@@ -32,6 +32,7 @@ const DetailCar = () => {
       { name: 'tanggalAwal', value: tanggalAwal },
       { name: 'tanggalAkhir', value: tanggalAkhir },
       { name: 'lamaHari', value: lamaHari },
+      { name: 'car', value: selectedCar },
     ]
     setCookies(cookies)
     navigate(`/payment/${id}`)

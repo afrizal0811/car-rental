@@ -30,7 +30,7 @@ const PayInstruction = () => {
   const bankName = Cookies.get('bank')
   const mobilId = Cookies.get('mobilId')
   const details = localStorage.getItem('userIn')
-  let user = JSON.parse(details)
+  // let user = JSON.parse(details)
 
   let harga = 'Rp' + new Intl.NumberFormat('id').format(Cookies.get('harga'))
 
@@ -93,38 +93,38 @@ const PayInstruction = () => {
     navigate(`/ticket/${orderId}`)
   }
 
-  var axiosConfigDelete = {
-    method: 'delete',
-    url: `${process.env.REACT_APP_BASE_URL}/customer/order/${orderId}`,
-    headers: {
-      access_token: user.access_token,
-      Content: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  }
+  // var axiosConfigDelete = {
+  //   method: 'delete',
+  //   url: `${process.env.REACT_APP_BASE_URL}/customer/order/${orderId}`,
+  //   headers: {
+  //     access_token: user.access_token,
+  //     Content: 'application/json',
+  //     'Content-Type': 'application/json',
+  //   },
+  // }
 
-  const handleBack = () => {
-    confirmAlert({
-      title: 'Yakin?',
-      message: 'Jika kembali, pesanan akan dibatalkan',
-      buttons: [
-        {
-          label: 'Tentu',
-          onClick: () =>
-            axios(axiosConfigDelete)
-              .then(function (response) {
-                navigate(`/payment/${mobilId}`)
-              })
-              .catch((e) => {
-                console.error(e)
-              }),
-        },
-        {
-          label: 'Tidak',
-        },
-      ],
-    })
-  }
+  // const handleBack = () => {
+  //   confirmAlert({
+  //     title: 'Yakin?',
+  //     message: 'Jika kembali, pesanan akan dibatalkan',
+  //     buttons: [
+  //       {
+  //         label: 'Tentu',
+  //         onClick: () =>
+  //           axios(axiosConfigDelete)
+  //             .then(function (response) {
+  //               navigate(`/payment/${mobilId}`)
+  //             })
+  //             .catch((e) => {
+  //               console.error(e)
+  //             }),
+  //       },
+  //       {
+  //         label: 'Tidak',
+  //       },
+  //     ],
+  //   })
+  // }
   const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip
       {...props}
@@ -145,7 +145,7 @@ const PayInstruction = () => {
         <div className='tf-back'>
           <StyledTooltip title='Kembali ke halaman sebelumnya'>
             <button
-              onClick={handleBack}
+              // onClick={handleBack}
               style={{ cursor: 'pointer' }}
               id='backBtn'
             >
@@ -192,9 +192,9 @@ const PayInstruction = () => {
                 Lakukan Transfer Ke
               </Card.Title>
               <div className='btn-bank'>
-                <div className='tmbl'>
+                {/* <div className='tmbl'>
                   {bankName.substring(0, bankName.indexOf(' '))}
-                </div>
+                </div> */}
                 <div className='d-flex flex-column'>
                   <div>{bankName}</div>
                   <div>a.n Binar Car Rental</div>
@@ -239,7 +239,7 @@ const PayInstruction = () => {
               <Card.Title className='fw-bold fs-6 ms-1 mb-3'>
                 Instruksi Pembayaran
               </Card.Title>
-              <Instuction bank={bankName} />
+              {/* <Instuction bank={bankName} /> */}
             </Card.Body>
           </Card>
         </div>
