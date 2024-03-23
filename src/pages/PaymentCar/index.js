@@ -137,7 +137,7 @@ const PaymentCar = () => {
               className='isi-pesan'
               label='Kategori'
             >
-              <p className='text-capitalize text-black-50'>{car.name}</p>
+              <p className='text-capitalize text-black-50'>{car.category}</p>
             </BsFormGroup>
             <BsFormGroup
               controlId='mulaiSewa'
@@ -167,17 +167,11 @@ const PaymentCar = () => {
             {renderBankButton('Mandiri', isMandiriCheck)}
           </BsCard>
           <BsCard
+            info={car.category}
             className='card-total-pay'
             title={car.name}
-            infoClass='detail-title'
+            infoClass='date-picker'
           >
-            <div className='d-flex category'>
-              <FontAwesomeIcon
-                icon={faUserGroup}
-                className='category-icon'
-              />
-              <p>1</p>
-            </div>
             <div className='py-1'>
               <strong>Harga</strong>
               <ul className='total-pay'>

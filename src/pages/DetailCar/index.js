@@ -66,6 +66,7 @@ const DetailCar = () => {
           infoClass='date-picker'
           className='card-detail-total'
           isHaveImage='true'
+          isHaveCategory='true'
         >
           <DateRangePicker
             onChange={setTanggal}

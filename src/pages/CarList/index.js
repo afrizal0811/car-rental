@@ -67,7 +67,6 @@ const CariMobil = () => {
           text='Cari Mobil'
         />
       </Form>
-
       <div className='mt-5 hasil-card'>
         <div className='d-flex flex-wrap align-items-stretch justify-content-around'>
           {carList.map((result) => {
@@ -76,7 +75,9 @@ const CariMobil = () => {
                 data={result}
                 key={result.id}
                 className='card-cont'
+                infoClass='date-picker'
                 isHaveImage='true'
+                isHaveCategory='true'
               >
                 <CurrencyComp value={result.price} />
                 <div className='d-grid mt-auto pt-3'>
