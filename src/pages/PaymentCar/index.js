@@ -94,7 +94,7 @@ const PaymentCar = () => {
     return <CurrencyComp value={value} />
   }
 
-  const handleNext = () => navigate(`/payments/1`)
+  const handleNext = () => navigate(`/instruction/1`)
 
   return (
     <div key={car.id}>
