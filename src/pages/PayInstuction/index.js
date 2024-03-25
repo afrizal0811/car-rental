@@ -70,7 +70,7 @@ const PayInstruction = () => {
   )
 
   const uploadInfo =
-    'Terima kasih teslah melakukan konfirmasi pembayaran. Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi. Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu'
+    'Terima kasih telah melakukan konfirmasi pembayaran. Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi. Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu'
 
   const renderUploadButton = (
     <BsCard
