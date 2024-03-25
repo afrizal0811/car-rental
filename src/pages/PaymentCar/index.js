@@ -1,8 +1,4 @@
-import {
-  faArrowLeft,
-  faCheck,
-  faUserGroup,
-} from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
@@ -13,7 +9,11 @@ import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGro
 import BsModal from '../../components/bootstrapComponent/modal/BsModal'
 import CurrencyComp from '../../components/currencyComp/CurrencyComp'
 import Status from '../../components/Status'
-import { getCookies } from '../../utilities/handleCookies'
+import {
+  getCookies,
+  setCookies,
+  findCookiesItem,
+} from '../../utilities/handleCookies'
 import './index.css'
 
 const PaymentCar = () => {
@@ -25,21 +25,17 @@ const PaymentCar = () => {
   let navigate = useNavigate()
   const { id } = useParams()
 
-  const findItem = (data, text) => {
-    return data.find((data) => data.name === text).value
-  }
-
   const cookiesData = getCookies()
-  const tanggalAwal = findItem(cookiesData, 'tanggalAwal')
-  const tanggalAkhir = findItem(cookiesData, 'tanggalAkhir')
-  const lamaHari = findItem(cookiesData, 'lamaHari')
-  const car = findItem(cookiesData, 'car')
+  const tanggalAwal = findCookiesItem(cookiesData, 'tanggalAwal')
+  const tanggalAkhir = findCookiesItem(cookiesData, 'tanggalAkhir')
+  const lamaHari = findCookiesItem(cookiesData, 'lamaHari')
+  const car = findCookiesItem(cookiesData, 'car')
 
   const handleClickBank = (e, param) => {
     e.preventDefault()
     if (param === 'BCA') {
       setIsBcaCheck(!isBcaCheck)
-      setBankName('BCA Transfer')
+      setBankName(param)
       if (isBcaCheck) {
         setBankName('')
       }
@@ -50,7 +46,7 @@ const PaymentCar = () => {
       }
     } else if (param === 'BNI') {
       setIsBniCheck(!isBniCheck)
-      setBankName('BNI Transfer')
+      setBankName(param)
       if (isBniCheck) {
         setBankName('')
       }
@@ -61,7 +57,7 @@ const PaymentCar = () => {
       }
     } else if (param === 'Mandiri') {
       setIsMandiriCheck(!isMandiriCheck)
-      setBankName('Mandiri Transfer')
+      setBankName(param)
       if (isMandiriCheck) {
         setBankName('')
       }
@@ -71,6 +67,17 @@ const PaymentCar = () => {
         setIsBniCheck(!isBniCheck)
       }
     }
+  }
+
+
+  const handleNext = () => {
+    const idNumber = Math.floor(Math.random() * 100001) + 100000
+    const bank = { name: 'bankName', value: bankName }
+    const orderId = { name: 'orderId', value: idNumber }
+    const price = { name: 'price', value: car.price * lamaHari }
+    cookiesData.push(bank, orderId, price)
+    setCookies(cookiesData)
+    navigate(`/instruction/1`)
   }
 
   const renderBankButton = (name, state) => (
@@ -93,8 +100,6 @@ const PaymentCar = () => {
     const value = isTotal ? car.price * lamaHari : car.price
     return <CurrencyComp value={value} />
   }
-
-  const handleNext = () => navigate(`/instruction/1`)
 
   return (
     <div key={car.id}>

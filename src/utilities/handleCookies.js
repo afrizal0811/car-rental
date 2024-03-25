@@ -4,7 +4,7 @@ export const setCookies = (value) => {
   time += 3600 * 1000
   now.setTime(time)
   const stringy = JSON.stringify(value)
-  document.cookie = 'data=' + stringy + '; expires=' + now.toString()
+  document.cookie = 'data=' + stringy + '; expires=' + now.toString() + '; path=/'
 }
 
 export const getCookies = () => {
@@ -13,3 +13,6 @@ export const getCookies = () => {
   return JSON.parse(arrayOfStrings[1])
 }
 
+export const findCookiesItem = (data, text) => {
+  return data.find((data) => data.name === text).value
+}

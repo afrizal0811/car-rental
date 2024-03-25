@@ -6,7 +6,7 @@ import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
 import CurrencyComp from '../../components/currencyComp/CurrencyComp'
 import carList from '../../constants/carList'
-import localDateString from '../../utilities/localDateString'
+import { localeDateAllNumber } from '../../utilities/handleLocale'
 import { setCookies } from '../../utilities/handleCookies'
 import { dataList } from './help'
 import './index.css'
@@ -26,8 +26,8 @@ const DetailCar = () => {
   function handleViewDetail(id) {
     const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
     const lamaHari = Math.round(Math.abs((tanggal[0] - tanggal[1]) / oneDay))
-    const tanggalAwal = localDateString(tanggal[0])
-    const tanggalAkhir = localDateString(tanggal[1])
+    const tanggalAwal = localeDateAllNumber(tanggal[0])
+    const tanggalAkhir = localeDateAllNumber(tanggal[1])
     const cookies = [
       { name: 'tanggalAwal', value: tanggalAwal },
       { name: 'tanggalAkhir', value: tanggalAkhir },
