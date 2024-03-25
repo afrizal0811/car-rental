@@ -1,14 +1,14 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import SectionHero from '../../components/SectionHero'
+import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
-import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
 import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
 import BsFormSelect from '../../components/bootstrapComponent/formSelects/BsFormSelect'
-import CurrencyComp from '../../components/currencyComp/CurrencyComp'
-import SectionHero from '../../components/SectionHero'
 import carList from '../../constants/carList'
-import { useNavigate } from 'react-router-dom'
+import { localePriceFormat } from '../../utilities/handleLocale'
 import { hargaOptions, kategoriOptions, statusOptions } from './help'
 import './index.css'
 
@@ -79,7 +79,7 @@ const CariMobil = () => {
                 isHaveImage='true'
                 isHaveCategory='true'
               >
-                <CurrencyComp value={result.price} />
+                {localePriceFormat(result.price)}
                 <div className='d-grid mt-auto pt-3'>
                   <BsButton
                     variant='success'

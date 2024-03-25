@@ -22,3 +22,10 @@ export const localeTime = (date) => {
     minute: '2-digit',
   })
 }
+
+export const localePriceFormat = (price) => {
+  return new Intl.NumberFormat('id', {
+    style: 'currency',
+    currency: 'IDR',
+  }).format(price)
+}

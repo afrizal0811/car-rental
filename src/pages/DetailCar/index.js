@@ -4,10 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import BsAccordion from '../../components/bootstrapComponent/accordion/BsAccordion'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
-import CurrencyComp from '../../components/currencyComp/CurrencyComp'
 import carList from '../../constants/carList'
-import { localeDateAllNumber } from '../../utilities/handleLocale'
 import { setCookies } from '../../utilities/handleCookies'
+import {
+  localeDateAllNumber,
+  localePriceFormat,
+} from '../../utilities/handleLocale'
 import { dataList } from './help'
 import './index.css'
 
@@ -79,7 +81,7 @@ const DetailCar = () => {
           />
           <strong className='d-flex justify-content-between mt-5'>
             <p>Total</p>
-            <CurrencyComp value={selectedCar.price} />
+            {localePriceFormat(selectedCar.price)}
           </strong>
           <div className='d-grid mt-auto'>
             <BsButton

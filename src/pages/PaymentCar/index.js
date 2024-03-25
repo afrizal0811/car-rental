@@ -3,17 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
+import Status from '../../components/Status'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
 import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
 import BsModal from '../../components/bootstrapComponent/modal/BsModal'
-import CurrencyComp from '../../components/currencyComp/CurrencyComp'
-import Status from '../../components/Status'
 import {
+  findCookiesItem,
   getCookies,
   setCookies,
-  findCookiesItem,
 } from '../../utilities/handleCookies'
+import { localePriceFormat } from '../../utilities/handleLocale'
 import './index.css'
 
 const PaymentCar = () => {
@@ -69,7 +69,6 @@ const PaymentCar = () => {
     }
   }
 
-
   const handleNext = () => {
     const idNumber = Math.floor(Math.random() * 100001) + 100000
     const bank = { name: 'bankName', value: bankName }
@@ -97,8 +96,8 @@ const PaymentCar = () => {
   )
 
   const renderCost = (isTotal) => {
-    const value = isTotal ? car.price * lamaHari : car.price
-    return <CurrencyComp value={value} />
+    const price = isTotal ? car.price * lamaHari : car.price
+    return localePriceFormat(price)
   }
 
   return (
