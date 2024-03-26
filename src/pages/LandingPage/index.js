@@ -1,10 +1,10 @@
-import React from "react";
-import Hero from "../../components/SectionHero";
-import Services from "../../components/SectionServices";
-import Products from "../../components/SectionProducts";
-import Testimonial from "../../components/SectionTestimonial";
-import Sewa from "../../components/SectionSewa";
-import Faq from "../..//components/SectionFaq";
+import React from 'react'
+import Faq from '../../components/sectionFaq'
+import Hero from '../../components/sectionHero'
+import Products from '../../components/sectionProducts'
+import Services from '../../components/sectionServices'
+import Sewa from '../../components/sectionSewa'
+import Testimonial from '../../components/sectionTestimonial'
 const LandingPage = () => {
   return (
     <div>
@@ -15,7 +15,7 @@ const LandingPage = () => {
       <Sewa />
       <Faq />
     </div>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage
