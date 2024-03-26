@@ -1,25 +1,15 @@
 import React from 'react'
-import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
+import { hiddenPathname } from '../../constants/pathnames'
 import BsButton from '../bootstrapComponent/button/BsButton'
 import './index.css'
 
-const NavigationBar = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const pathname = [
-    '/services',
-    '/products',
-    '/testi',
-    '/faq',
-    '/login',
-    '/register',
-    '/login',
-    '/register',
-  ]
-  const hiddenRegister = pathname.includes(location.pathname)
-  const navbarClass = pathname.includes(location.pathname)
+const NavigationBar = (props) => {
+  const { navigate, pathname } = props
+  const hiddenRegister = hiddenPathname.includes(pathname)
+  const navbarClass = hiddenPathname.includes(pathname)
     ? 'navi-white'
     : 'navigator'
 

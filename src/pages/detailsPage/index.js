@@ -1,6 +1,6 @@
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import BsAccordion from '../../components/bootstrapComponent/accordion/BsAccordion'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
@@ -13,10 +13,9 @@ import {
 import { dataList } from './help'
 import './index.css'
 
-const DetailCar = () => {
+const DetailCar = (props) => {
   const [tanggal, setTanggal] = useState('')
   const { id } = useParams()
-  const navigate = useNavigate()
   const dateNow = new Date()
   const endDate = (date, days) => {
     let result = new Date(date)
@@ -37,7 +36,7 @@ const DetailCar = () => {
       { name: 'car', value: selectedCar },
     ]
     setCookies(cookies)
-    navigate(`/payment/${id}`)
+    props.navigate(`/payment/${id}`)
   }
 
   const renderDataList = (

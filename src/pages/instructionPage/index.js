@@ -1,7 +1,7 @@
 import { faArrowLeft, faCheck, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
@@ -15,13 +15,12 @@ import {
 import Instuction from './Instuction'
 import './index.css'
 
-const PayInstruction = () => {
+const PayInstruction = (props) => {
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
   const [isCopied, seIsCopied] = useState({ rekening: false, harga: false })
   const [isLoading, setIsLoading] = useState(false)
 
-  const navigate = useNavigate()
   const { id } = useParams()
   const cookiesData = getCookies()
   const bankName = findCookiesItem(cookiesData, 'bankName')
@@ -85,7 +84,7 @@ const PayInstruction = () => {
         <BsButton
           variant='success'
           disabled={!isUploaded}
-          onClick={() => navigate(`/ticket/${id}`)}
+          onClick={() => props.navigate(`/ticket/${id}`)}
           text='Next'
         />
       </div>

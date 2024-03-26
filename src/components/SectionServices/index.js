@@ -5,37 +5,35 @@ import './index.css'
 
 const Services = () => {
   return (
-    <div>
-      <section
-        id='services'
-        className='services-section'
-      >
-        <div className='services-flex services-image'>
-          <img
-            src={imagePath.services}
-            alt='img-services'
-            width='80%'
-            height='auto'
-          />
+    <section
+      id='services'
+      className='services-section'
+    >
+      <div className='services-flex services-image'>
+        <img
+          src={imagePath.services}
+          alt='img-services'
+          width='80%'
+          height='auto'
+        />
+      </div>
+      <div className='services-flex services-content'>
+        <div className='services-title'>
+          <h1>Best Car Rental for any kind of trip in East Java!</h1>
+          <p>
+            Sewa mobil di Jawa Timur bersama Binar Car Rental jaminan harga
+            lebih murah dibandingkan yang lain, kondisi mobil baru, serta
+            kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding,
+            meeting, dll.
+          </p>
+          <ul className='services-list'>
+            {dataServices.map((data, index) => (
+              <li key={index}>{data}</li>
+            ))}
+          </ul>
         </div>
-        <div className='services-flex services-content'>
-          <div className='services-title'>
-            <h1>Best Car Rental for any kind of trip in East Java!</h1>
-            <p>
-              Sewa mobil di Jawa Timur bersama Binar Car Rental jaminan harga
-              lebih murah dibandingkan yang lain, kondisi mobil baru, serta
-              kualitas pelayanan terbaik untuk perjalanan wisata, bisnis,
-              wedding, meeting, dll.
-            </p>
-            <ul className='services-list'>
-              {dataServices.map((data, index) => (
-                <li key={index}>{data}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }
 

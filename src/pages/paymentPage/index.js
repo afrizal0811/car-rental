@@ -2,7 +2,7 @@ import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
@@ -16,13 +16,12 @@ import {
 import { localePriceFormat } from '../../utilities/handleLocale'
 import './index.css'
 
-const PaymentCar = () => {
+const PaymentCar = (props) => {
   const [isBcaCheck, setIsBcaCheck] = useState(false)
   const [isBniCheck, setIsBniCheck] = useState(false)
   const [isMandiriCheck, setIsMandiriCheck] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [bankName, setBankName] = useState('')
-  let navigate = useNavigate()
   const { id } = useParams()
 
   const cookiesData = getCookies()
@@ -76,7 +75,7 @@ const PaymentCar = () => {
     const price = { name: 'price', value: car.price * lamaHari }
     cookiesData.push(bank, orderId, price)
     setCookies(cookiesData)
-    navigate(`/instruction/1`)
+    props.navigate(`/instruction/1`)
   }
 
   const renderBankButton = (name, state) => (
@@ -110,7 +109,7 @@ const PaymentCar = () => {
       <div className='hero-pay-div'>
         <div className='pay-back'>
           <button
-            onClick={() => navigate(`/cars/${id}`)}
+            onClick={() => props.navigate(`/cars/${id}`)}
             style={{ cursor: 'pointer' }}
             id='backBtn'
           >

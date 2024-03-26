@@ -1,75 +1,75 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from './components/notFound'
-import Faq from './components/sectionFaq'
-import Products from './components/sectionProducts'
-import Services from './components/sectionServices'
-import Testimonial from './components/sectionTestimonial'
-import CarList from './pages/carPage'
-import DetailCar from './pages/detailsPage'
+import Footer from './components/sectionFooter'
+import NavigationBar from './components/sectionNavigationBar'
+import CarPage from './pages/carPage'
+import DetailsPage from './pages/detailsPage'
+import InstructionPage from './pages/instructionPage'
 import LandingPage from './pages/landingPage'
-import PayInstruction from './pages/instructionPage'
-import PaymentCar from './pages/paymentPage'
-import PublicLogin from './pages/loginPage'
-import PublicRegister from './pages/registerPage'
-import Ticket from './pages/ticketPage'
+import LoginPage from './pages/loginPage'
+import PaymentPage from './pages/paymentPage'
+import RegisterPage from './pages/registerPage'
+import TicketPage from './pages/ticketPage'
 
 const RouteHandler = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { pathname } = location
+
   return (
-    <Routes>
-      <Route
-        path='/'
-        element={<LandingPage />}
+    <div>
+      <NavigationBar
+        navigate={navigate}
+        pathname={pathname}
       />
-      <Route
-        path='/services'
-        element={<Services />}
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <LandingPage
+              navigate={navigate}
+              pathname={pathname}
+            />
+          }
+        />
+        <Route
+          path='/cars'
+          element={<CarPage navigate={navigate} />}
+        />
+        <Route
+          path='/cars/:id'
+          element={<DetailsPage navigate={navigate} />}
+        />
+        <Route
+          path='/payment/:id'
+          element={<PaymentPage navigate={navigate} />}
+        />
+        <Route
+          path='/instruction/:id'
+          element={<InstructionPage navigate={navigate} />}
+        />
+        <Route
+          path='/ticket/:id'
+          element={<TicketPage />}
+        />
+        <Route
+          path='/login'
+          element={<LoginPage />}
+        />
+        <Route
+          path='/register'
+          element={<RegisterPage />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+      </Routes>
+      <Footer
+        pathname={pathname}
       />
-      <Route
-        path='/products'
-        element={<Products />}
-      />
-      <Route
-        path='/testi'
-        element={<Testimonial />}
-      />
-      <Route
-        path='/faq'
-        element={<Faq />}
-      />
-      <Route
-        path='/cars'
-        element={<CarList />}
-      />
-      <Route
-        path='/cars/:id'
-        element={<DetailCar />}
-      />
-      <Route
-        path='/payment/:id'
-        element={<PaymentCar />}
-      />
-      <Route
-        path='/instruction/:id'
-        element={<PayInstruction />}
-      />
-      <Route
-        path='/ticket/:id'
-        element={<Ticket />}
-      />
-      <Route
-        path='/login'
-        element={<PublicLogin />}
-      />
-      <Route
-        path='/register'
-        element={<PublicRegister />}
-      />
-      <Route
-        path='*'
-        element={<NotFound />}
-      />
-    </Routes>
+    </div>
   )
 }
 

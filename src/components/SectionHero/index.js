@@ -1,14 +1,10 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
 import BsButton from '../bootstrapComponent/button/BsButton'
 import './index.css'
 
-const Hero = () => {
-  var isHidden = false
-  const navigate = useNavigate()
-  const locationCarDetail = useLocation()
-
+const Hero = (props) => {
+  const { navigate, pathname } = props
   return (
     <div>
       <section className='hero-section'>
@@ -22,9 +18,7 @@ const Hero = () => {
             </p>
             <div
               className='hero-button'
-              hidden={
-                locationCarDetail.pathname !== '/cars' ? isHidden : !isHidden
-              }
+              hidden={pathname !== '/cars' ? false : true}
             >
               <BsButton
                 variant='success'

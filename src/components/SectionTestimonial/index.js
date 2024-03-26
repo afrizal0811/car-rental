@@ -53,62 +53,60 @@ export default class PreviousNextMethods extends Component {
       </div>
     )
     return (
-      <div>
-        <section
-          id='testi'
-          className='testi-section'
-        >
-          <div className='testi-title'>
-            <h1>Testimonial</h1>
-            <p>Berbagai review positif dari para pelanggan kami</p>
-          </div>
-          <div className='testi-card-container'>
-            <Slider
-              ref={(c) => (this.slider = c)}
-              {...sliderSetting}
-            >
-              {dataTestimonials.map((item, index) => {
-                return (
-                  <Row key={index}>
-                    <Col className='p-2'>
-                      <Card className='testi-card-content'>
-                        {renderTestiImage(item)}
-                        {renderTestiText(item)}
-                      </Card>
-                    </Col>
-                  </Row>
-                )
-              })}
-            </Slider>
-          </div>
+      <section
+        id='testi'
+        className='testi-section'
+      >
+        <div className='testi-title'>
+          <h1>Testimonial</h1>
+          <p>Berbagai review positif dari para pelanggan kami</p>
+        </div>
+        <div className='testi-card-container'>
+          <Slider
+            ref={(c) => (this.slider = c)}
+            {...sliderSetting}
+          >
+            {dataTestimonials.map((item, index) => {
+              return (
+                <Row key={index}>
+                  <Col className='p-2'>
+                    <Card className='testi-card-content'>
+                      {renderTestiImage(item)}
+                      {renderTestiText(item)}
+                    </Card>
+                  </Col>
+                </Row>
+              )
+            })}
+          </Slider>
+        </div>
 
-          <div style={{ textAlign: 'center' }}>
-            <a
-              className='btn'
-              onClick={this.previous}
-              style={{ padding: '0', marginTop: '1.5rem' }}
-            >
-              <FontAwesomeIcon
-                icon={faChevronCircleLeft}
-                size='2x'
-                className='ikon'
-              />
-            </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a
-              className='btn'
-              onClick={this.next}
-              style={{ padding: '0', marginTop: '1.5rem' }}
-            >
-              <FontAwesomeIcon
-                icon={faChevronCircleRight}
-                size='2x'
-                className='ikon'
-              />
-            </a>
-          </div>
-        </section>
-      </div>
+        <div style={{ textAlign: 'center' }}>
+          <a
+            className='btn'
+            onClick={this.previous}
+            style={{ padding: '0', marginTop: '1.5rem' }}
+          >
+            <FontAwesomeIcon
+              icon={faChevronCircleLeft}
+              size='2x'
+              className='ikon'
+            />
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            className='btn'
+            onClick={this.next}
+            style={{ padding: '0', marginTop: '1.5rem' }}
+          >
+            <FontAwesomeIcon
+              icon={faChevronCircleRight}
+              size='2x'
+              className='ikon'
+            />
+          </a>
+        </div>
+      </section>
     )
   }
 }

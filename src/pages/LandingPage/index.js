@@ -5,14 +5,14 @@ import Products from '../../components/sectionProducts'
 import Services from '../../components/sectionServices'
 import Sewa from '../../components/sectionSewa'
 import Testimonial from '../../components/sectionTestimonial'
-const LandingPage = () => {
+const LandingPage = (props) => {
   return (
     <div>
-      <Hero />
+      <Hero {...props} />
       <Services />
       <Products />
       <Testimonial />
-      <Sewa />
+      <Sewa {...props} />
       <Faq />
     </div>
   )

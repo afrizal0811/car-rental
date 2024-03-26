@@ -6,29 +6,27 @@ import './index.css'
 
 const Products = () => {
   return (
-    <div>
-      <section
-        id='products'
-        className='product-section'
-      >
-        <div className='product-title'>
-          <h1>Why Us?</h1>
-          <p>Mengapa harus pilih Binar Car Rental?</p>
-        </div>
-        <div className='product-card-container'>
-          <Row>
-            {dataProducts.map((item, index) => (
-              <CardComponent
-                key={index}
-                produk={item.produk}
-                text={item.text}
-                icon={item.icon}
-              />
-            ))}
-          </Row>
-        </div>
-      </section>
-    </div>
+    <section
+      id='products'
+      className='product-section'
+    >
+      <div className='product-title'>
+        <h1>Why Us?</h1>
+        <p>Mengapa harus pilih Binar Car Rental?</p>
+      </div>
+      <div className='product-card-container'>
+        <Row>
+          {dataProducts.map((item, index) => (
+            <CardComponent
+              key={index}
+              produk={item.produk}
+              text={item.text}
+              icon={item.icon}
+            />
+          ))}
+        </Row>
+      </div>
+    </section>
   )
 }
 

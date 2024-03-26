@@ -11,9 +11,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <ScrollToTop />
-        <NavigationBar />
         <RouteHandler />
-        <Footer />
       </BrowserRouter>
     </div>
   )

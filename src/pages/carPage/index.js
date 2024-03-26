@@ -1,6 +1,5 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
 import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
 import BsButton from '../../components/bootstrapComponent/button/BsButton'
 import BsCard from '../../components/bootstrapComponent/card/BsCard'
@@ -12,8 +11,7 @@ import { localePriceFormat } from '../../utilities/handleLocale'
 import { hargaOptions, kategoriOptions, statusOptions } from './help'
 import './index.css'
 
-const CariMobil = () => {
-  const navigate = useNavigate()
+const CariMobil = (props) => {
   return (
     <div>
       <SectionHero />
@@ -84,7 +82,7 @@ const CariMobil = () => {
                   <BsButton
                     variant='success'
                     text='Pilih Mobil'
-                    onClick={() => navigate(`/cars/${result.id}`)}
+                    onClick={() => props.navigate(`/cars/${result.id}`)}
                   />
                 </div>
               </BsCard>

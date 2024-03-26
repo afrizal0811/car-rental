@@ -1,20 +1,20 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
+import { hiddenPathname } from '../../constants/pathnames'
 import './index.css'
+import { list } from './help'
 
-const Footer = () => {
-  const locationFoot = useLocation()
-
+const Footer = (props) => {
+  const hiddenFooter = hiddenPathname.includes(props.pathname)
+  const renderImage = (src) => (
+    <img
+      src={src}
+      alt=''
+      className='connect'
+    />
+  )
   return (
-    <div
-      hidden={
-        (locationFoot.pathname === '/login' ||
-          locationFoot.pathname === '/register' ||
-          locationFoot.pathname === '/admin') &&
-        'true'
-      }
-    >
+    <div hidden={hiddenFooter}>
       <div className='footer-container'>
         <div className='footer-detail'>
           <p>Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213</p>
@@ -23,59 +23,26 @@ const Footer = () => {
         </div>
         <div className='footer-list'>
           <ul className='menu-list'>
-            <li>
-              <a href='#services'>Our Services</a>
-            </li>
-            <li>
-              <a href='#products'>Why Us</a>
-            </li>
-            <li>
-              <a href='#testi'>Testimonial</a>
-            </li>
-            <li>
-              <a href='#faq'>FAQ</a>
-            </li>
+            {list.map((data, index) => (
+              <li key={index}>
+                <a href={data.link}>{data.title}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div className='footer-connect'>
           <p>Connect with us</p>
           <div>
-            <img
-              src={imagePath.iconFacebook}
-              alt=''
-              className='connect'
-            />
-            <img
-              src={imagePath.iconInstagram}
-              alt=''
-              className='connect'
-            />
-            <img
-              src={imagePath.iconTwitter}
-              alt=''
-              className='connect'
-            />
-            <img
-              src={imagePath.iconEmail}
-              alt=''
-              className='connect'
-            />
-            <img
-              src={imagePath.iconTwitch}
-              alt=''
-              className='connect'
-            />
+            {renderImage(imagePath.iconFacebook)}
+            {renderImage(imagePath.iconInstagram)}
+            {renderImage(imagePath.iconTwitter)}
+            {renderImage(imagePath.iconEmail)}
+            {renderImage(imagePath.iconTwitch)}
           </div>
         </div>
         <div className='footer-copyright'>
           <p>Copyright &copy; 2022 Binar Car Rental</p>
-          <div className='logo-square'>
-            <img
-              src={imagePath.logo}
-              alt=''
-              width={100}
-            />
-          </div>
+          <div className='logo-square'>{renderImage(imagePath.logo)}</div>
         </div>
       </div>
     </div>
