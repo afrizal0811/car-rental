@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
 import React from 'react'
 import Status from '../../components/Status'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsCard from '../../components/bootstrapComponent/card/BsCard'
+import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
 import './index.css'
 
@@ -15,7 +14,7 @@ const Ticket = () => {
       document={pdfDocument}
       fileName='Invoice.pdf'
     >
-      <BsButton
+      <Button
         text='Unduh'
         id='downloadBtn'
       />
@@ -49,13 +48,13 @@ const Ticket = () => {
           </p>
         </div>
       </div>
-      <BsCard
+      <Card
         title={renderDownload}
         className='ticket-card'
         titleClass='fw-bold fs-6'
       >
         <PDFViewer style={{ height: '100%' }}>{pdfDocument}</PDFViewer>
-      </BsCard>
+      </Card>
     </div>
   )
 }

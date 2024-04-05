@@ -1,9 +1,7 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
-import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
+import { Button, FormControl, FormGroup } from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
 import './index.css'
 
@@ -14,41 +12,41 @@ const PublicRegister = () => {
         <div className='square'></div>
         <h1>Sign Up</h1>
         <Form>
-          <BsFormGroup
+          <FormGroup
             controlId='FormEmail'
             className='m-3'
             label='Email'
           >
-            <BsFormControl
+            <FormControl
               type='email'
               placeholder='Contoh: johndee@gmail.com'
               name='email'
             />
-          </BsFormGroup>
-          <BsFormGroup
+          </FormGroup>
+          <FormGroup
             controlId='FormPassword'
             className='m-3'
             label='Create Password'
           >
-            <BsFormControl
+            <FormControl
               type='password'
               placeholder='6+ Password'
               name='password'
             />
-          </BsFormGroup>
-          <BsFormGroup
+          </FormGroup>
+          <FormGroup
             controlId='FormPasswordConfirm'
             className='m-3'
             label='Confirm Password'
           >
-            <BsFormControl
+            <FormControl
               type='password'
               placeholder='6+ Password'
               name='confirm-password'
             />
-          </BsFormGroup>
+          </FormGroup>
           <div className='d-grid gap-2'>
-            <BsButton
+            <Button
               variant='primary'
               type='submit'
               className='btn-submit'

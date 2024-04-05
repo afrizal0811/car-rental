@@ -4,10 +4,13 @@ import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsCard from '../../components/bootstrapComponent/card/BsCard'
-import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
-import BsModal from '../../components/bootstrapComponent/modal/BsModal'
+import {
+  Button,
+  Card,
+  FormGroup,
+  Modal,
+} from '../../components/bootstrapComponent'
+
 import {
   findCookiesItem,
   getCookies,
@@ -101,7 +104,7 @@ const PaymentCar = (props) => {
 
   return (
     <div key={car.id}>
-      <BsModal
+      <Modal
         show={showModal}
         handleClose={() => setShowModal(false)}
         handleNext={handleNext}
@@ -128,38 +131,38 @@ const PaymentCar = (props) => {
         <Form className='form-pesan'>
           <h1 className='fw-bold fs-6 mb-3'>Detail Pesananmu</h1>
           <div className='title-pesan'>
-            <BsFormGroup
+            <FormGroup
               controlId='namaMobil'
               className='isi-pesan'
               label='Nama Mobil'
             >
               <p className='text-capitalize text-black-50'>{car.name}</p>
-            </BsFormGroup>
-            <BsFormGroup
+            </FormGroup>
+            <FormGroup
               controlId='kategoriMobil'
               className='isi-pesan'
               label='Kategori'
             >
               <p className='text-capitalize text-black-50'>{car.category}</p>
-            </BsFormGroup>
-            <BsFormGroup
+            </FormGroup>
+            <FormGroup
               controlId='mulaiSewa'
               className='isi-pesan'
               label='Tanggal Mulai Sewa'
             >
               <p className='text-capitalize text-black-50'>{tanggalAwal}</p>
-            </BsFormGroup>
-            <BsFormGroup
+            </FormGroup>
+            <FormGroup
               controlId='akhirSewa'
               className='isi-pesan'
               label='Tanggal Akhir Sewa'
             >
               <p className='text-capitalize text-black-50'>{tanggalAkhir}</p>
-            </BsFormGroup>
+            </FormGroup>
           </div>
         </Form>
         <div className='select-bank'>
-          <BsCard
+          <Card
             className='card-bank-detail'
             title='Pilih Bank Transfer'
             info='Kamu bisa membayar dengan transfer melalui ATM, Internet Banking, atau Mobile Banking'
@@ -168,8 +171,8 @@ const PaymentCar = (props) => {
             {renderBankButton('BCA', isBcaCheck)}
             {renderBankButton('BNI', isBniCheck)}
             {renderBankButton('Mandiri', isMandiriCheck)}
-          </BsCard>
-          <BsCard
+          </Card>
+          <Card
             info={car.category}
             className='card-total-pay'
             title={car.name}
@@ -210,14 +213,14 @@ const PaymentCar = (props) => {
               <strong>{renderCost(true)}</strong>
             </div>
             <div className='d-grid mt-auto'>
-              <BsButton
+              <Button
                 variant='success'
                 disabled={!bankName}
                 onClick={() => setShowModal(true)}
                 text='Bayar'
               />
             </div>
-          </BsCard>
+          </Card>
         </div>
       </div>
     </div>

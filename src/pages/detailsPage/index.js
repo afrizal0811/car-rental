@@ -1,9 +1,7 @@
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import BsAccordion from '../../components/bootstrapComponent/accordion/BsAccordion'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsCard from '../../components/bootstrapComponent/card/BsCard'
+import { Accordion, Button, Card } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
 import { setCookies } from '../../utilities/handleCookies'
 import {
@@ -51,17 +49,17 @@ const DetailCar = (props) => {
     <div key={selectedCar.id}>
       <div className='hero-div' />
       <div className='detail-section'>
-        <BsCard
+        <Card
           title='Tentang Paket'
           info='Include'
           className='card-detail'
         >
           {renderDataList}
-          <BsAccordion header='Refund, Reschedule, Overtime'>
+          <Accordion header='Refund, Reschedule, Overtime'>
             {renderDataList}
-          </BsAccordion>
-        </BsCard>
-        <BsCard
+          </Accordion>
+        </Card>
+        <Card
           data={selectedCar}
           info='Tentukan lama sewa mobil (max. 7 hari)'
           infoClass='date-picker'
@@ -83,14 +81,14 @@ const DetailCar = (props) => {
             {localePriceFormat(selectedCar.price)}
           </strong>
           <div className='d-grid mt-auto'>
-            <BsButton
+            <Button
               variant='success'
               disabled={!tanggal}
               onClick={() => handleViewDetail(`${id}`)}
               text='Lanjutkan Pembayaran'
             />
           </div>
-        </BsCard>
+        </Card>
       </div>
     </div>
   )

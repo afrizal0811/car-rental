@@ -1,5 +1,5 @@
 import React from 'react'
-import BsButton from '../bootstrapComponent/button/BsButton'
+import { Button } from '../bootstrapComponent'
 import './index.css'
 
 const Sewa = (props) => {
@@ -13,7 +13,7 @@ const Sewa = (props) => {
           exercitationem, rem porro quia atque aspernatur cum, ipsum nemo nihil
           vel sed.
         </p>
-        <BsButton
+        <Button
           variant='success'
           onClick={() => props.navigate(`/cars`)}
           text='Mulai Sewa Mobil'

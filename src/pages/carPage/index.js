@@ -1,10 +1,12 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
-import BsFormControl from '../../components/bootstrapComponent/FormControl/BsFormControl'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsCard from '../../components/bootstrapComponent/card/BsCard'
-import BsFormGroup from '../../components/bootstrapComponent/formGroup/BsFormGroup'
-import BsFormSelect from '../../components/bootstrapComponent/formSelects/BsFormSelect'
+import {
+  Button,
+  Card,
+  FormControl,
+  FormGroup,
+  FormSelect,
+} from '../../components/bootstrapComponent'
 import SectionHero from '../../components/sectionHero'
 import carList from '../../constants/carList'
 import { localePriceFormat } from '../../utilities/handleLocale'
@@ -16,48 +18,48 @@ const CariMobil = (props) => {
     <div>
       <SectionHero />
       <Form className='cari-content'>
-        <BsFormGroup
+        <FormGroup
           controlId='formNama'
           className='mt-3'
           label='Nama Mobil'
         >
-          <BsFormControl
+          <FormControl
             type='text'
             placeholder='Ketik Nama/Tipe Mobil'
             autoComplete='off'
           />
-        </BsFormGroup>
-        <BsFormGroup
+        </FormGroup>
+        <FormGroup
           controlId='formKategori'
           className='mt-3'
           label='Kategori'
         >
-          <BsFormSelect
+          <FormSelect
             title='Masukan Kapasitas Mobil'
             option={kategoriOptions}
           />
-        </BsFormGroup>
-        <BsFormGroup
+        </FormGroup>
+        <FormGroup
           controlId='formHarga'
           className='mt-3'
           label='Harga'
         >
-          <BsFormSelect
+          <FormSelect
             title='Masukan Harga Sewa per Hari'
             option={hargaOptions}
           />
-        </BsFormGroup>
-        <BsFormGroup
+        </FormGroup>
+        <FormGroup
           controlId='formSewa'
           className='mt-3'
           label='Status'
         >
-          <BsFormSelect
+          <FormSelect
             title='Status Mobil'
             option={statusOptions}
           />
-        </BsFormGroup>
-        <BsButton
+        </FormGroup>
+        <Button
           variant='success'
           type='submit'
           className='mt-4'
@@ -69,7 +71,7 @@ const CariMobil = (props) => {
         <div className='d-flex flex-wrap align-items-stretch justify-content-around'>
           {carList.map((result) => {
             return (
-              <BsCard
+              <Card
                 data={result}
                 key={result.id}
                 className='card-cont'
@@ -79,13 +81,13 @@ const CariMobil = (props) => {
               >
                 {localePriceFormat(result.price)}
                 <div className='d-grid mt-auto pt-3'>
-                  <BsButton
+                  <Button
                     variant='success'
                     text='Pilih Mobil'
                     onClick={() => props.navigate(`/cars/${result.id}`)}
                   />
                 </div>
-              </BsCard>
+              </Card>
             )
           })}
         </div>

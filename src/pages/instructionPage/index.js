@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
-import BsButton from '../../components/bootstrapComponent/button/BsButton'
-import BsCard from '../../components/bootstrapComponent/card/BsCard'
+import { Button, Card } from '../../components/bootstrapComponent'
 import DropzoneComp from '../../components/dropzoneComp/DropzoneComp'
 import { findCookiesItem, getCookies } from '../../utilities/handleCookies'
 import {
@@ -72,7 +71,7 @@ const PayInstruction = (props) => {
     'Terima kasih telah melakukan konfirmasi pembayaran. Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi. Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu'
 
   const renderUploadButton = (
-    <BsCard
+    <Card
       title={
         !isUploaded ? 'Konfirmasi Pembayaran' : 'File berhasil di-upload !'
       }
@@ -81,29 +80,29 @@ const PayInstruction = (props) => {
     >
       {isLoading ? renderLoading : !isUploaded && renderDropzone}
       <div className='d-grid mt-auto'>
-        <BsButton
+        <Button
           variant='success'
           disabled={!isUploaded}
           onClick={() => props.navigate(`/ticket/${id}`)}
           text='Next'
         />
       </div>
-    </BsCard>
+    </Card>
   )
 
   const renderConfirmButton = (
-    <BsCard
+    <Card
       className='ins-item upload'
       info=' Klik konfirmasi pembayaran untuk mempercepat proses pengecekan'
     >
       <div className='d-grid mt-auto'>
-        <BsButton
+        <Button
           variant='success'
           onClick={() => setIsConfirmed(true)}
           text='Konfirmasi Pembayaran'
         />
       </div>
-    </BsCard>
+    </Card>
   )
 
   return (
@@ -131,13 +130,13 @@ const PayInstruction = (props) => {
       </div>
       <div className='ins-container'>
         <div>
-          <BsCard
+          <Card
             className='ins-item'
             titleClass='fw-bold fs-6'
             title='Selesaikan Pembayaran Sebelum'
             info={tomorrow}
           />
-          <BsCard
+          <Card
             className='ins-item'
             titleClass='fw-bold fs-6 ms-1'
             title='Lakukan Transfer Ke'
@@ -151,14 +150,14 @@ const PayInstruction = (props) => {
             </div>
             {renderCopyText('54104257877', 'rekening', isCopied.rekening)}
             {renderCopyText(price, 'harga', isCopied.harga)}
-          </BsCard>
-          <BsCard
+          </Card>
+          <Card
             className='ins-item'
             titleClass='fw-bold fs-6 ms-1 mb-3'
             title='Instruksi Pembayaran'
           >
             <Instuction bank={bankName} />
-          </BsCard>
+          </Card>
         </div>
         {isConfirmed ? renderUploadButton : renderConfirmButton}
       </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import BsAccordion from '../bootstrapComponent/accordion/BsAccordion'
+import { Accordion } from '../bootstrapComponent'
 import { dataFaq } from './help'
 import './index.css'
 
@@ -17,12 +17,12 @@ const Faq = () => {
       <div className='faq-content'>
         {dataFaq.map((item, index) => {
           return (
-            <BsAccordion
+            <Accordion
               header={item.question}
               key={index}
             >
               {item.answer}
-            </BsAccordion>
+            </Accordion>
           )
         })}
       </div>

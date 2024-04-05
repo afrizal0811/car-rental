@@ -1,6 +1,6 @@
 import React from 'react'
 import imagePath from '../../constants/imagePath'
-import BsButton from '../bootstrapComponent/button/BsButton'
+import { Button } from '../bootstrapComponent'
 import './index.css'
 
 const Hero = (props) => {
@@ -20,7 +20,7 @@ const Hero = (props) => {
               className='hero-button'
               hidden={pathname !== '/cars' ? false : true}
             >
-              <BsButton
+              <Button
                 variant='success'
                 onClick={() => navigate(`/cars`)}
                 text='Mulai Sewa Mobil'

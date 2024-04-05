@@ -3,7 +3,7 @@ import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import imagePath from '../../constants/imagePath'
 import { hiddenPathname } from '../../constants/pathnames'
-import BsButton from '../bootstrapComponent/button/BsButton'
+import { Button } from '../bootstrapComponent'
 import './index.css'
 
 const NavigationBar = (props) => {
@@ -59,7 +59,7 @@ const NavigationBar = (props) => {
                 {navLink('/#products', 'Why Us')}
                 {navLink('/#testi', 'Testimonial')}
                 {navLink('/#faq', 'FAQ')}
-                <BsButton
+                <Button
                   variant='success'
                   onClick={() => navigate('/register')}
                   hidden={hiddenRegister}
