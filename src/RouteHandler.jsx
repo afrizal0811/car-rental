@@ -66,9 +66,7 @@ const RouteHandler = () => {
           element={<NotFound />}
         />
       </Routes>
-      <Footer
-        pathname={pathname}
-      />
+      <Footer pathname={pathname} />
     </div>
   )
 }
