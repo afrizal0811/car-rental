@@ -16,11 +16,9 @@ const Hero = (props) => {
               kualitas terbaik dengan harga terjangkau. Selalu siap melayani
               kebutuhanmu untuk sewa mobil selama 24 jam.
             </p>
-            <div
-              className='hero-button'
-              hidden={pathname !== '/cars' ? false : true}
-            >
+            <div className='hero-button'>
               <Button
+                hidden={pathname !== '/cars' ? false : true}
                 variant='success'
                 onClick={() => navigate(`/cars`)}
                 text='Mulai Sewa Mobil'

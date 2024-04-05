@@ -35,7 +35,12 @@ const RouteHandler = () => {
         />
         <Route
           path='/cars'
-          element={<CarPage navigate={navigate} />}
+          element={
+            <CarPage
+              navigate={navigate}
+              pathname={pathname}
+            />
+          }
         />
         <Route
           path='/cars/:id'

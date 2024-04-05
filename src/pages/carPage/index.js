@@ -13,10 +13,10 @@ import { localePriceFormat } from '../../utilities/handleLocale'
 import { hargaOptions, kategoriOptions, statusOptions } from './help'
 import './index.css'
 
-const CariMobil = (props) => {
+const carPage = (props) => {
   return (
     <div>
-      <SectionHero />
+      <SectionHero {...props} />
       <Form className='cari-content'>
         <FormGroup
           controlId='formNama'
@@ -96,4 +96,4 @@ const CariMobil = (props) => {
   )
 }
 
-export default CariMobil
+export default carPage
