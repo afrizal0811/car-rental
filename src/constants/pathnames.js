@@ -1,1 +1,1 @@
-export const hiddenPathname = ['/login', '/register']
+export const showPathname = ['/', '/cars', '/payment', '/instruction', '/ticket']

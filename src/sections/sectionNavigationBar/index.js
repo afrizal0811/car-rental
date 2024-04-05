@@ -1,15 +1,15 @@
 import React from 'react'
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import imagePath from '../../constants/imagePath'
-import { hiddenPathname } from '../../constants/pathnames'
 import { Button } from '../../components/bootstrapComponent'
+import imagePath from '../../constants/imagePath'
+import { showPathname } from '../../constants/pathnames'
 import './index.css'
 
 const NavigationBar = (props) => {
   const { navigate, pathname } = props
-  const isHidden = hiddenPathname.includes(pathname)
-  const navbarClass = isHidden ? 'navi-white' : 'navigator'
+  const isShowElement = showPathname.includes(pathname)
+  const navbarClass = !isShowElement ? 'navi-white' : 'navigator'
 
   const navLink = (href, title) => (
     <Nav.Link href={href}>
@@ -60,7 +60,7 @@ const NavigationBar = (props) => {
                 <Button
                   variant='success'
                   onClick={() => navigate('/register')}
-                  hidden={isHidden}
+                  hidden={!isShowElement}
                   text='Register'
                 />
               </Nav>
