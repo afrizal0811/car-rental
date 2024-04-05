@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion } from '../bootstrapComponent'
+import { Accordion } from '../../components/bootstrapComponent'
 import { dataFaq } from './help'
 import './index.css'
 

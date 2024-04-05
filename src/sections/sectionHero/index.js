@@ -1,6 +1,6 @@
 import React from 'react'
 import imagePath from '../../constants/imagePath'
-import { Button } from '../bootstrapComponent'
+import { Button } from '../../components/bootstrapComponent'
 import './index.css'
 
 const Hero = (props) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../bootstrapComponent'
+import { Button } from '../../components/bootstrapComponent'
 import './index.css'
 
 const Sewa = (props) => {

@@ -5,7 +5,7 @@ import './index.css'
 import { list } from './help'
 
 const Footer = (props) => {
-  const hiddenFooter = hiddenPathname.includes(props.pathname)
+  const isHidden = hiddenPathname.includes(props.pathname)
   const renderImage = (src) => (
     <img
       src={src}
@@ -14,7 +14,7 @@ const Footer = (props) => {
     />
   )
   return (
-    <div hidden={hiddenFooter}>
+    <div hidden={isHidden}>
       <div className='footer-container'>
         <div className='footer-detail'>
           <p>Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213</p>

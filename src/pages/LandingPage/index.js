@@ -1,10 +1,11 @@
 import React from 'react'
-import Faq from '../../components/sectionFaq'
-import Hero from '../../components/sectionHero'
-import Products from '../../components/sectionProducts'
-import Services from '../../components/sectionServices'
-import Sewa from '../../components/sectionSewa'
-import Testimonial from '../../components/sectionTestimonial'
+import Faq from '../../sections/sectionFaq'
+import Hero from '../../sections/sectionHero'
+import Products from '../../sections/sectionProducts'
+import Services from '../../sections/sectionServices'
+import Sewa from '../../sections/sectionSewa'
+import Testimonial from '../../sections/sectionTestimonial'
+
 const LandingPage = (props) => {
   return (
     <div>

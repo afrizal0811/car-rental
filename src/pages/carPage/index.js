@@ -7,7 +7,7 @@ import {
   FormGroup,
   FormSelect,
 } from '../../components/bootstrapComponent'
-import SectionHero from '../../components/sectionHero'
+import SectionHero from '../../sections/sectionHero'
 import carList from '../../constants/carList'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import { hargaOptions, kategoriOptions, statusOptions } from './help'
