@@ -8,9 +8,9 @@ import './index.css'
 
 const NavigationBar = (props) => {
   const { navigate, pathname } = props
-  const isShowElement = showPathname.includes(pathname)
+  const newPathname = pathname.substr(0, pathname.lastIndexOf(`/`))
+  const isShowElement = showPathname.includes(newPathname)
   const navbarClass = !isShowElement ? 'navi-white' : 'navigator'
-
   const navLink = (href, title) => (
     <Nav.Link href={href}>
       <p className='p-navi'>{title}</p>

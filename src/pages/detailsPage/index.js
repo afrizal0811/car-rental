@@ -55,7 +55,10 @@ const DetailCar = (props) => {
           className='card-detail'
         >
           {renderDataList}
-          <Accordion header='Refund, Reschedule, Overtime'>
+          <Accordion
+            header='Refund, Reschedule, Overtime'
+            index={selectedCar.id}
+          >
             {renderDataList}
           </Accordion>
         </Card>

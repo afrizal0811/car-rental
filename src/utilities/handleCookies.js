@@ -4,7 +4,7 @@ export const setCookies = (value) => {
   time += 3600 * 1000
   now.setTime(time)
   const stringy = JSON.stringify(value)
-  document.cookie = 'data=' + stringy + '; expires=' + now.toString() + '; path=/'
+  document.cookie = 'data=' + stringy + '; expires=' + now.toGMTString() + '; path=/'
 }
 
 export const getCookies = () => {

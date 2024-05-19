@@ -20,6 +20,7 @@ const Faq = () => {
             <Accordion
               header={item.question}
               key={index}
+              index={index}
             >
               {item.answer}
             </Accordion>
