@@ -3,24 +3,24 @@ import Modal from 'react-bootstrap/Modal'
 import BsButton from '../button/BsButton'
 
 const BsModal = (props) => {
-  const { show, handleClose, handleNext } = props
+  const { show, handleClose, handleNext, title, textRefuse, textAccept } = props
   return (
     <Modal
       show={show}
       onHide={handleClose}
       centered
     >
-      <Modal.Body>Periksa kembali detail pesanan</Modal.Body>
+      <Modal.Body>{title}</Modal.Body>
       <Modal.Footer>
         <BsButton
           variant='secondary'
           onClick={handleClose}
-          text='Periksa Kembali'
+          text={textRefuse}
         />
         <BsButton
           variant='primary'
           onClick={handleNext}
-          text='Lanjutkan Pesanan'
+          text={textAccept}
         />
       </Modal.Footer>
     </Modal>

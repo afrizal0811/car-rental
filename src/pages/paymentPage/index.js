@@ -108,6 +108,9 @@ const PaymentCar = (props) => {
         show={showModal}
         handleClose={() => setShowModal(false)}
         handleNext={handleNext}
+        title='Periksa kembali detail pesanan'
+        textRefuse='Periksa Kembali'
+        textAccept='Lanjutkan Pesanan'
       />
       <div className='hero-pay-div'>
         <div className='pay-back'>

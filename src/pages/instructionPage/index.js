@@ -3,36 +3,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
-import { Button, Card } from '../../components/bootstrapComponent'
+import { Button, Card, Tooltip, Modal } from '../../components/bootstrapComponent'
 import DropzoneComp from '../../components/dropzoneComp/DropzoneComp'
-import { findCookiesItem, getCookies } from '../../utilities/handleCookies'
-import {
-  localeDateShortMonth,
-  localeDateWeekday,
-  localeTime,
-} from '../../utilities/handleLocale'
 import Instuction from './Instuction'
+import { cookiesData, tommorowDate } from './help'
 import './index.css'
 
 const PayInstruction = (props) => {
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
-  const [isCopied, seIsCopied] = useState({ rekening: false, harga: false })
+  const [isCopied, seIsCopied] = useState({
+    'Nomor Rekening': false,
+    Harga: false,
+  })
   const [isLoading, setIsLoading] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const { id } = useParams()
-  const cookiesData = getCookies()
-  const bankName = findCookiesItem(cookiesData, 'bankName')
-  const orderId = findCookiesItem(cookiesData, 'orderId')
-  const price = findCookiesItem(cookiesData, 'price')
-
-  let nextDate = new Date()
-  nextDate.setDate(new Date().getDate() + 1)
-
-  const tgl = localeDateShortMonth(nextDate)
-  const hari = localeDateWeekday(nextDate)
-  const jam = localeTime(nextDate)
-  const tomorrow = hari + ', ' + tgl + ' jam ' + jam
+  const data = cookiesData()
 
   const copyText = (text, type) => {
     navigator.clipboard.writeText(text)
@@ -44,12 +32,17 @@ const PayInstruction = (props) => {
 
   const renderCopyText = (text, type, isCopy) => (
     <div>
-      <p className='fs-6 mt-3 ms-1 mb-1'>Nomor Rekening</p>
+      <p className='fs-6 mt-3 ms-1 mb-1'>{type}</p>
       <div className='copy'>
         <p style={{ margin: '0', padding: '0' }}>{text}</p>
-        <a onClick={() => copyText(text, type)}>
-          <FontAwesomeIcon icon={isCopy ? faCheck : faCopy} />
-        </a>
+        <Tooltip
+          id={text}
+          title='copy'
+        >
+          <a onClick={() => copyText(text, type)}>
+            <FontAwesomeIcon icon={isCopy ? faCheck : faCopy} />
+          </a>
+        </Tooltip>
       </div>
     </div>
   )
@@ -107,10 +100,18 @@ const PayInstruction = (props) => {
 
   return (
     <div>
+      <Modal
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        handleNext={() => props.navigate(`/payment/${id}`)}
+        title='Apakah Anda yakin ingin kembali?'
+        textRefuse='Tidak'
+        textAccept='Ya'
+      />
       <div className='hero-dv'>
         <div className='tf-back'>
           <button
-            // onClick={handleBack}
+            onClick={() => setShowModal(true)}
             style={{ cursor: 'pointer' }}
             id='backBtn'
           >
@@ -120,8 +121,8 @@ const PayInstruction = (props) => {
             />
           </button>
           <div>
-            <strong className='ps-4 fs-5'>{bankName} Transfer</strong>
-            <p className='ps-4 fs-7'>Order ID: {orderId}</p>
+            <strong className='ps-4 fs-5'>{data.bankName} Transfer</strong>
+            <p className='ps-4 fs-7'>Order ID: {data.orderId}</p>
           </div>
         </div>
         <div className=' pb-4'>
@@ -134,7 +135,7 @@ const PayInstruction = (props) => {
             className='ins-item'
             titleClass='fw-bold fs-6'
             title='Selesaikan Pembayaran Sebelum'
-            info={tomorrow}
+            info={tommorowDate()}
           />
           <Card
             className='ins-item'
@@ -142,21 +143,25 @@ const PayInstruction = (props) => {
             title='Lakukan Transfer Ke'
           >
             <div className='btn-bank'>
-              <div className='tmbl'>{bankName}</div>
+              <div className='tmbl'>{data.bankName}</div>
               <div className='d-flex flex-column'>
-                <div>{bankName}</div>
+                <div>{data.bankName}</div>
                 <div>a.n Binar Car Rental</div>
               </div>
             </div>
-            {renderCopyText('54104257877', 'rekening', isCopied.rekening)}
-            {renderCopyText(price, 'harga', isCopied.harga)}
+            {renderCopyText(
+              '54104257877',
+              'Nomor Rekening',
+              isCopied['Nomor Rekening']
+            )}
+            {renderCopyText(data.price, 'Harga', isCopied['Harga'])}
           </Card>
           <Card
             className='ins-item'
             titleClass='fw-bold fs-6 ms-1 mb-3'
             title='Instruksi Pembayaran'
           >
-            <Instuction bank={bankName} />
+            <Instuction bank={data.bankName} />
           </Card>
         </div>
         {isConfirmed ? renderUploadButton : renderConfirmButton}
