@@ -16,7 +16,7 @@ const PublicLogin = () => {
   const renderAlert = (
     <Alert
       variant='danger'
-      text='Login gagal karena tidak dapat mengakses API'
+      text='Gagal! Tidak tidak dapat mengakses API'
     />
   )
 

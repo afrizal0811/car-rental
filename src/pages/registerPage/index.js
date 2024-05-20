@@ -15,7 +15,7 @@ const PublicRegister = () => {
   const renderAlert = (
     <Alert
       variant='danger'
-      text='Register gagal karena tidak dapat mengakses API'
+      text='Gagal! Tidak tidak dapat mengakses API'
     />
   )
 
