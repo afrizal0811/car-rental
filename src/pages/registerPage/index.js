@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Button, FormControl, FormGroup } from '../../components/bootstrapComponent'
+import {
+  Alert,
+  Button,
+  FormControl,
+  FormGroup,
+} from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
 import './index.css'
 
 const PublicRegister = () => {
+  const [isClicked, setIsClicked] = useState(false)
+  const renderAlert = (
+    <Alert
+      variant='danger'
+      text='Register gagal karena tidak dapat mengakses API'
+    />
+  )
+
   return (
     <section className='sign-section'>
       <div className='sign-form'>
-        <div className='square'></div>
+        {isClicked && renderAlert}
         <h1>Sign Up</h1>
         <Form>
           <FormGroup
@@ -47,10 +60,11 @@ const PublicRegister = () => {
           </FormGroup>
           <div className='d-grid gap-2'>
             <Button
-              variant='primary'
-              type='submit'
               className='btn-submit'
+              onClick={() => setIsClicked(true)}
               text='Sign Up'
+              type='button'
+              variant='primary'
             />
           </div>
           <p>
