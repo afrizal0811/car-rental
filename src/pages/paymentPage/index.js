@@ -10,75 +10,50 @@ import {
   FormGroup,
   Modal,
 } from '../../components/bootstrapComponent'
-
-import {
-  findCookiesItem,
-  getCookies,
-  setCookies,
-} from '../../utilities/handleCookies'
+import { getCookies, setCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
+import { cookiesData } from './help'
 import './index.css'
 
 const PaymentCar = (props) => {
-  const [isBcaCheck, setIsBcaCheck] = useState(false)
-  const [isBniCheck, setIsBniCheck] = useState(false)
-  const [isMandiriCheck, setIsMandiriCheck] = useState(false)
+  const [isBankCheck, setIsBankCheck] = useState({
+    BCA: false,
+    BNI: false,
+    Mandiri: false,
+  })
   const [showModal, setShowModal] = useState(false)
   const [bankName, setBankName] = useState('')
-  const { id } = useParams()
 
-  const cookiesData = getCookies()
-  const tanggalAwal = findCookiesItem(cookiesData, 'tanggalAwal')
-  const tanggalAkhir = findCookiesItem(cookiesData, 'tanggalAkhir')
-  const lamaHari = findCookiesItem(cookiesData, 'lamaHari')
-  const car = findCookiesItem(cookiesData, 'car')
+  const { id } = useParams()
+  const data = cookiesData()
 
   const handleClickBank = (e, param) => {
+    const bank = ['BCA', 'BNI', 'Mandiri']
+    const filterBank = bank.filter((data) => data !== param)
     e.preventDefault()
-    if (param === 'BCA') {
-      setIsBcaCheck(!isBcaCheck)
-      setBankName(param)
-      if (isBcaCheck) {
-        setBankName('')
-      }
-      if (isBniCheck === true) {
-        setIsBniCheck(!isBniCheck)
-      } else if (isMandiriCheck === true) {
-        setIsMandiriCheck(!isMandiriCheck)
-      }
-    } else if (param === 'BNI') {
-      setIsBniCheck(!isBniCheck)
-      setBankName(param)
-      if (isBniCheck) {
-        setBankName('')
-      }
-      if (isBcaCheck === true) {
-        setIsBcaCheck(!isBcaCheck)
-      } else if (isMandiriCheck === true) {
-        setIsMandiriCheck(!isMandiriCheck)
-      }
-    } else if (param === 'Mandiri') {
-      setIsMandiriCheck(!isMandiriCheck)
-      setBankName(param)
-      if (isMandiriCheck) {
-        setBankName('')
-      }
-      if (isBcaCheck === true) {
-        setIsBcaCheck(!isBcaCheck)
-      } else if (isBniCheck === true) {
-        setIsBniCheck(!isBniCheck)
-      }
+    setBankName(param)
+    setIsBankCheck((prev) => ({ ...prev, [param]: !isBankCheck[param] }))
+    filterBank.map((data) => {
+      console.log(data)
+      setIsBankCheck((prev) => ({ ...prev, [data]: false }))
+    })
+    if (isBankCheck[param]) {
+      setBankName('')
     }
   }
 
   const handleNext = () => {
+    const cookiesData = getCookies()
     const idNumber = Math.floor(Math.random() * 100001) + 100000
     const bank = { name: 'bankName', value: bankName }
     const orderId = { name: 'orderId', value: idNumber }
-    const price = { name: 'price', value: car.price * lamaHari }
+    const price = {
+      name: 'price',
+      value: data.car.price * data.lamaHari,
+    }
     cookiesData.push(bank, orderId, price)
     setCookies(cookiesData)
-    props.navigate(`/instruction/1`)
+    props.navigate(`/instruction/${id}`)
   }
 
   const renderBankButton = (name, state) => (
@@ -98,12 +73,12 @@ const PaymentCar = (props) => {
   )
 
   const renderCost = (isTotal) => {
-    const price = isTotal ? car.price * lamaHari : car.price
+    const price = isTotal ? data.car.price * data.lamaHari : data.car.price
     return localePriceFormat(price)
   }
 
   return (
-    <div key={car.id}>
+    <div key={data.car.id}>
       <Modal
         show={showModal}
         handleClose={() => setShowModal(false)}
@@ -139,28 +114,34 @@ const PaymentCar = (props) => {
               className='isi-pesan'
               label='Nama Mobil'
             >
-              <p className='text-capitalize text-black-50'>{car.name}</p>
+              <p className='text-capitalize text-black-50'>{data.car.name}</p>
             </FormGroup>
             <FormGroup
               controlId='kategoriMobil'
               className='isi-pesan'
               label='Kategori'
             >
-              <p className='text-capitalize text-black-50'>{car.category}</p>
+              <p className='text-capitalize text-black-50'>
+                {data.car.category}
+              </p>
             </FormGroup>
             <FormGroup
               controlId='mulaiSewa'
               className='isi-pesan'
               label='Tanggal Mulai Sewa'
             >
-              <p className='text-capitalize text-black-50'>{tanggalAwal}</p>
+              <p className='text-capitalize text-black-50'>
+                {data.tanggalAwal}
+              </p>
             </FormGroup>
             <FormGroup
               controlId='akhirSewa'
               className='isi-pesan'
               label='Tanggal Akhir Sewa'
             >
-              <p className='text-capitalize text-black-50'>{tanggalAkhir}</p>
+              <p className='text-capitalize text-black-50'>
+                {data.tanggalAkhir}
+              </p>
             </FormGroup>
           </div>
         </Form>
@@ -171,21 +152,21 @@ const PaymentCar = (props) => {
             info='Kamu bisa membayar dengan transfer melalui ATM, Internet Banking, atau Mobile Banking'
             titleClass='fw-bold mb-4'
           >
-            {renderBankButton('BCA', isBcaCheck)}
-            {renderBankButton('BNI', isBniCheck)}
-            {renderBankButton('Mandiri', isMandiriCheck)}
+            {renderBankButton('BCA', isBankCheck.BCA)}
+            {renderBankButton('BNI', isBankCheck.BNI)}
+            {renderBankButton('Mandiri', isBankCheck.Mandiri)}
           </Card>
           <Card
-            info={car.category}
+            info={data.car.category}
             className='card-total-pay'
-            title={car.name}
+            title={data.car.name}
             infoClass='date-picker'
           >
             <div className='py-1'>
               <strong>Harga</strong>
               <ul className='total-pay'>
                 <li>
-                  Sewa Mobil {renderCost(false)} x {lamaHari} hari
+                  Sewa Mobil {renderCost(false)} x {data.lamaHari} hari
                 </li>
                 {renderCost(true)}
               </ul>
@@ -205,7 +186,7 @@ const PaymentCar = (props) => {
             </div>
             <div className='py-1'>
               <strong>Belum Termasuk</strong>
-              <ul className='total-pay'>
+              <ul style={{ fontSize: '12px', paddingTop: '0.5rem' }}>
                 <li>Bensin</li>
                 <li>Tol dan parkir</li>
               </ul>
