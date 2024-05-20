@@ -3,14 +3,14 @@ import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Button } from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
-import { showPathname } from '../../constants/pathnames'
+import { showPathname } from './help'
 import './index.css'
 
 const NavigationBar = (props) => {
   const { navigate, pathname } = props
-  const newPathname = pathname.substr(0, pathname.lastIndexOf(`/`))
-  const isShowElement = showPathname.includes(newPathname)
-  const navbarClass = !isShowElement ? 'navi-white' : 'navigator'
+  const isShowElement = showPathname.includes(pathname)
+  const navbarClass = isShowElement ? 'navi-white' : 'navigator'
+
   const navLink = (href, title) => (
     <Nav.Link href={href}>
       <p className='p-navi'>{title}</p>
@@ -60,7 +60,7 @@ const NavigationBar = (props) => {
                 <Button
                   variant='success'
                   onClick={() => navigate('/register')}
-                  hidden={!isShowElement}
+                  hidden={isShowElement}
                   text='Register'
                 />
               </Nav>

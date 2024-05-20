@@ -1,11 +1,11 @@
 import React from 'react'
 import imagePath from '../../constants/imagePath'
-import { showPathname } from '../../constants/pathnames'
+import { showPathname } from './help'
 import { list } from './help'
 import './index.css'
 
 const Footer = (props) => {
-  const isShowElement = !showPathname.includes(props.pathname)
+  const isShowElement = showPathname.includes(props.pathname)
   const renderImage = (src) => (
     <img
       src={src}
@@ -14,7 +14,7 @@ const Footer = (props) => {
     />
   )
   return (
-    <div hidden={isShowElement}>
+    <div hidden={!isShowElement}>
       <div className='footer-container'>
         <div className='footer-detail'>
           <p>Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213</p>

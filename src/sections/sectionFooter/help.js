@@ -16,3 +16,5 @@ export const list = [
     link: '#faq',
   },
 ]
+
+export const showPathname = ['/', '/cars']
