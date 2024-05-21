@@ -10,7 +10,7 @@ import {
   FormGroup,
   Modal,
 } from '../../components/bootstrapComponent'
-import { getCookies, setCookies } from '../../utilities/handleCookies'
+import { setCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import { cookiesData } from './help'
 import './index.css'
@@ -34,7 +34,6 @@ const PaymentCar = (props) => {
     setBankName(param)
     setIsBankCheck((prev) => ({ ...prev, [param]: !isBankCheck[param] }))
     filterBank.map((data) => {
-      console.log(data)
       setIsBankCheck((prev) => ({ ...prev, [data]: false }))
     })
     if (isBankCheck[param]) {
@@ -43,7 +42,6 @@ const PaymentCar = (props) => {
   }
 
   const handleNext = () => {
-    const cookiesData = getCookies()
     const idNumber = Math.floor(Math.random() * 100001) + 100000
     const bank = { name: 'bankName', value: bankName }
     const orderId = { name: 'orderId', value: idNumber }
@@ -51,8 +49,8 @@ const PaymentCar = (props) => {
       name: 'price',
       value: data.car.price * data.lamaHari,
     }
-    cookiesData.push(bank, orderId, price)
-    setCookies(cookiesData)
+    const cookies = [bank, orderId, price]
+    setCookies('payment', cookies)
     props.navigate(`/instruction/${id}`)
   }
 

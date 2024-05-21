@@ -3,7 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
-import { Button, Card, Tooltip, Modal } from '../../components/bootstrapComponent'
+import {
+  Button,
+  Card,
+  Modal,
+  Tooltip,
+} from '../../components/bootstrapComponent'
 import DropzoneComp from '../../components/dropzoneComp/DropzoneComp'
 import Instuction from './Instuction'
 import { cookiesData, tommorowDate } from './help'
@@ -61,7 +66,7 @@ const PayInstruction = (props) => {
   )
 
   const uploadInfo =
-    'Terima kasih telah melakukan konfirmasi pembayaran. Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi. Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu'
+    'Terima kasih telah melakukan konfirmasi pembayaran. Upload bukti bayarmu untuk mempermudah proses penyewaan.'
 
   const renderUploadButton = (
     <Card
@@ -104,7 +109,7 @@ const PayInstruction = (props) => {
         show={showModal}
         handleClose={() => setShowModal(false)}
         handleNext={() => props.navigate(`/payment/${id}`)}
-        title='Apakah Anda yakin ingin kembali?'
+        title='Apakah kamu yakin ingin kembali?'
         textRefuse='Tidak'
         textAccept='Ya'
       />

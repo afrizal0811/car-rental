@@ -33,7 +33,7 @@ const DetailCar = (props) => {
       { name: 'lamaHari', value: lamaHari },
       { name: 'car', value: selectedCar },
     ]
-    setCookies(cookies)
+    setCookies('detail', cookies)
     props.navigate(`/payment/${id}`)
   }
 

@@ -17,7 +17,7 @@ export const tommorowDate = () => {
 }
 
 export const cookiesData = () => {
-  const cookiesData = getCookies()
+  const cookiesData = getCookies(1)
   const bankName = findCookiesItem(cookiesData, 'bankName')
   const orderId = findCookiesItem(cookiesData, 'orderId')
   const price = findCookiesItem(cookiesData, 'price')
