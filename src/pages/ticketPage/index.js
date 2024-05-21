@@ -7,19 +7,19 @@ import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
 import { cookiesData } from './help'
 import './index.css'
-
-const Ticket = () => {
+const Ticket = (props) => {
   const data = cookiesData()
+  if (!data) props.navigate('/')
 
   const pdfDocument = <PdfComp data={data} />
   const renderDownload = (
     <PDFDownloadLink
       document={pdfDocument}
-      fileName='Invoice.pdf'
+      fileName={`Invoice-${data.orderId}.pdf`}
     >
       <Button
         text='Unduh'
-        id='downloadBtn'
+        id='ticketBtn'
       />
     </PDFDownloadLink>
   )
@@ -49,6 +49,11 @@ const Ticket = () => {
           <p className='text-muted mt-3'>
             Tunjukkan invoice ini ke petugas BCR di titik temu.
           </p>
+          <Button
+            text='Kembali'
+            id='ticketBtn'
+            onClick={() => props.navigate('/')}
+          />
         </div>
       </div>
       <Card

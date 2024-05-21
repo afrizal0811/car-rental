@@ -53,12 +53,22 @@ export const styles = StyleSheet.create({
 
 export const cookiesData = () => {
   const cookiesData = getCookies(0)
-  const orderId = findCookiesItem(cookiesData, 'orderId')
-  const mobil = findCookiesItem(cookiesData, 'car')
-  const tanggalAwal = findCookiesItem(cookiesData, 'tanggalAwal')
-  const tanggalAkhir = findCookiesItem(cookiesData, 'tanggalAkhir')
-  const lamaHari = findCookiesItem(cookiesData, 'lamaHari')
-  const harga = findCookiesItem(cookiesData, 'price')
-  const formattedHarga = localePriceFormat(harga)
-  return { orderId, mobil, tanggalAwal, tanggalAkhir, lamaHari, formattedHarga }
+  if (cookiesData) {
+    const orderId = findCookiesItem(cookiesData, 'orderId')
+    const mobil = findCookiesItem(cookiesData, 'car')
+    const tanggalAwal = findCookiesItem(cookiesData, 'tanggalAwal')
+    const tanggalAkhir = findCookiesItem(cookiesData, 'tanggalAkhir')
+    const lamaHari = findCookiesItem(cookiesData, 'lamaHari')
+    const harga = findCookiesItem(cookiesData, 'price')
+    const formattedHarga = localePriceFormat(harga)
+    return {
+      orderId,
+      mobil,
+      tanggalAwal,
+      tanggalAkhir,
+      lamaHari,
+      formattedHarga,
+    }
+  }
+  return null
 }

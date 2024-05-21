@@ -9,9 +9,13 @@ export const setCookies = (name, value) => {
 }
 
 export const getCookies = (index) => {
-  const cookieArray = document.cookie.split('; ')
-  const arrayOfStrings = cookieArray[index].split('=')
-  return JSON.parse(arrayOfStrings[1])
+  const cookie = document.cookie
+  if (cookie) {
+    const cookieArray = document.cookie.split('; ')
+    const arrayOfStrings = cookieArray[index].split('=')
+    return JSON.parse(arrayOfStrings[1])
+  }
+  return null
 }
 
 export const deleteAllCookies = () => {

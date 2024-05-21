@@ -62,7 +62,7 @@ const RouteHandler = () => {
         />
         <Route
           path='/ticket/:id'
-          element={<TicketPage />}
+          element={<TicketPage navigate={navigate} />}
         />
         <Route
           path='/login'
