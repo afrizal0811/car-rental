@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from './notFound'
 import Footer from './sections/sectionFooter'
@@ -11,11 +11,17 @@ import LoginPage from './pages/loginPage'
 import PaymentPage from './pages/paymentPage'
 import RegisterPage from './pages/registerPage'
 import TicketPage from './pages/ticketPage'
-
+import { deleteAllCookies } from './utilities/handleCookies'
 const RouteHandler = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { pathname } = location
+  
+  useEffect(() => {
+    const path = ['/', '/cars']
+    const isDelete = path.includes(pathname)
+    if (isDelete) deleteAllCookies()
+  }, [pathname])
 
   return (
     <div>

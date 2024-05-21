@@ -1,3 +1,5 @@
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -47,7 +49,21 @@ const DetailCar = (props) => {
 
   return (
     <div key={selectedCar.id}>
-      <div className='hero-div' />
+      <div className='hero-car-div'>
+        <div className='car-back'>
+          <button
+            onClick={() => props.navigate(`/cars`)}
+            style={{ cursor: 'pointer' }}
+            id='backBtn'
+          >
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              size='2x'
+            />
+          </button>
+          <strong className='ps-4 fs-5'>Kembali</strong>
+        </div>
+      </div>
       <div className='detail-section'>
         <Card
           title='Tentang Paket'
