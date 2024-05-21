@@ -1,6 +1,8 @@
 import { StyleSheet } from '@react-pdf/renderer'
+import { findCookiesItem, getCookies } from '../../utilities/handleCookies'
+import { localePriceFormat } from '../../utilities/handleLocale'
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   page: { backgroundColor: '#f1f3ff' },
   section: { textAlign: 'center', margin: 30 },
   judul: { textAlign: 'center', marginBottom: 30 },
@@ -49,4 +51,14 @@ const styles = StyleSheet.create({
   },
 })
 
-export default styles
+export const cookiesData = () => {
+  const cookiesData = getCookies(0)
+  const orderId = findCookiesItem(cookiesData, 'orderId')
+  const mobil = findCookiesItem(cookiesData, 'car')
+  const tanggalAwal = findCookiesItem(cookiesData, 'tanggalAwal')
+  const tanggalAkhir = findCookiesItem(cookiesData, 'tanggalAkhir')
+  const lamaHari = findCookiesItem(cookiesData, 'lamaHari')
+  const harga = findCookiesItem(cookiesData, 'price')
+  const formattedHarga = localePriceFormat(harga)
+  return { orderId, mobil, tanggalAwal, tanggalAkhir, lamaHari, formattedHarga }
+}

@@ -5,10 +5,13 @@ import React from 'react'
 import Status from '../../components/Status'
 import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
+import { cookiesData } from './help'
 import './index.css'
 
 const Ticket = () => {
-  const pdfDocument = <PdfComp />
+  const data = cookiesData()
+
+  const pdfDocument = <PdfComp data={data} />
   const renderDownload = (
     <PDFDownloadLink
       document={pdfDocument}
@@ -27,7 +30,7 @@ const Ticket = () => {
         <div className='tf-back'>
           <div>
             <strong className='ps-4 fs-5'>Ticket</strong>
-            <p className='ps-4 fs-7'>Order ID: 111</p>
+            <p className='ps-4 fs-7'>Order ID: {data.orderId}</p>
           </div>
         </div>
         <div className=' pb-4'>

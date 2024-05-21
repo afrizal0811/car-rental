@@ -10,6 +10,11 @@ import {
   Tooltip,
 } from '../../components/bootstrapComponent'
 import DropzoneComp from '../../components/dropzoneComp/DropzoneComp'
+import {
+  getCookies,
+  setCookies,
+  deleteAllCookies,
+} from '../../utilities/handleCookies'
 import Instuction from './Instuction'
 import { cookiesData, tommorowDate } from './help'
 import './index.css'
@@ -27,6 +32,15 @@ const PayInstruction = (props) => {
   const { id } = useParams()
   const data = cookiesData()
 
+  const handleOnClick = () => {
+    let cookies = []
+    for (let i = 0; i < 2; i++) {
+      cookies = cookies.concat(getCookies(i))
+    }
+    deleteAllCookies()
+    setCookies('cookies', cookies)
+    props.navigate(`/ticket/${id}`)
+  }
   const copyText = (text, type) => {
     navigator.clipboard.writeText(text)
     seIsCopied((prev) => ({ ...prev, [type]: true }))
@@ -81,7 +95,7 @@ const PayInstruction = (props) => {
         <Button
           variant='success'
           disabled={!isUploaded}
-          onClick={() => props.navigate(`/ticket/${id}`)}
+          onClick={handleOnClick}
           text='Next'
         />
       </div>
@@ -126,7 +140,9 @@ const PayInstruction = (props) => {
             />
           </button>
           <div>
-            <strong className='ps-4 fs-5'>{data.bankName} Transfer</strong>
+            <strong className='ps-4 fs-5'>
+              {data.bankName} Transfer
+            </strong>
             <p className='ps-4 fs-7'>Order ID: {data.orderId}</p>
           </div>
         </div>

@@ -1,18 +1,9 @@
 import { Document, Line, Page, Svg, Text, View } from '@react-pdf/renderer'
 import React from 'react'
-import { findCookiesItem, getCookies } from '../../utilities/handleCookies'
-import { localePriceFormat } from '../../utilities/handleLocale'
-import styles from './help'
+import { styles } from './help'
 
-const PdfComp = () => {
-  const cookiesData = getCookies()
-  const orderId = findCookiesItem(cookiesData, 'orderId')
-  const mobil = findCookiesItem(cookiesData, 'car')
-  const tanggalAwal = findCookiesItem(cookiesData, 'tanggalAwal')
-  const tanggalAkhir = findCookiesItem(cookiesData, 'tanggalAkhir')
-  const lamaHari = findCookiesItem(cookiesData, 'lamaHari')
-  const harga = findCookiesItem(cookiesData, 'price')
-  const formattedHarga = localePriceFormat(harga)
+const PdfComp = (props) => {
+  const { data } = props
 
   return (
     <Document>
@@ -42,23 +33,25 @@ const PdfComp = () => {
         </View>
         <View style={styles.judul}>
           <Text style={styles.subtitle}>Invoice Sewa Mobil</Text>
-          <Text style={styles.order}>Order ID: {orderId}</Text>
+          <Text style={styles.order}>Order ID: {data.orderId}</Text>
         </View>
         <View style={styles.infoWrapper}>
           <View style={styles.informasi}>
             <Text style={styles.info}>Penyewa : Developer</Text>
             <Text style={styles.info}>Email Penyewa : developer@mail.com</Text>
-            <Text style={styles.info}>Nama Mobil : {mobil.name}</Text>
+            <Text style={styles.info}>Nama Mobil : {data.mobil.name}</Text>
           </View>
           <View style={styles.informasi}>
-            <Text style={styles.info}>Tanggal Sewa : {tanggalAwal}</Text>
-            <Text style={styles.info}>Tanggal Kembali : {tanggalAkhir}</Text>
-            <Text style={styles.info}>Lama Sewa : {lamaHari} hari</Text>
+            <Text style={styles.info}>Tanggal Sewa : {data.tanggalAwal}</Text>
+            <Text style={styles.info}>
+              Tanggal Kembali : {data.tanggalAkhir}
+            </Text>
+            <Text style={styles.info}>Lama Sewa : {data.lamaHari} hari</Text>
           </View>
         </View>
         <View style={styles.total}>
           <Text style={styles.judulTotal}>Total Pembayaran</Text>
-          <Text style={styles.total}>{formattedHarga}</Text>
+          <Text style={styles.total}>{data.formattedHarga}</Text>
         </View>
       </Page>
     </Document>
