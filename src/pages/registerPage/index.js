@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {
@@ -8,32 +8,50 @@ import {
   FormGroup,
 } from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
+import handleButton from './help'
 import './index.css'
 
 const PublicRegister = () => {
-  const [isClicked, setIsClicked] = useState(false)
+  const {
+    errors,
+    handleChange,
+    handleOnSubmit,
+    isLoading,
+    isSubmitted,
+    validated,
+    value,
+  } = handleButton()
+
   const renderAlert = (
     <Alert
-      variant='danger'
-      text='Gagal! Tidak tidak dapat mengakses API'
+      variant='success'
+      text='Berhasil! Silahkan login dengan akun yang sudah dibuat'
     />
   )
-
   return (
     <section className='sign-section'>
       <div className='sign-form'>
-        {isClicked && renderAlert}
+        {isSubmitted && renderAlert}
         <h1>Sign Up</h1>
-        <Form>
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={handleOnSubmit}
+        >
           <FormGroup
             controlId='FormEmail'
             className='m-3'
             label='Email'
           >
             <FormControl
-              type='email'
-              placeholder='Contoh: johndee@gmail.com'
+              isInvalid={validated && errors.email}
+              minLength={6}
               name='email'
+              onChange={handleChange}
+              placeholder='Contoh: johndee@gmail.com'
+              required
+              type='email'
+              value={value.email}
             />
           </FormGroup>
           <FormGroup
@@ -42,9 +60,14 @@ const PublicRegister = () => {
             label='Create Password'
           >
             <FormControl
-              type='password'
-              placeholder='6+ Password'
+              isInvalid={validated && errors.password}
+              minLength={6}
               name='password'
+              onChange={handleChange}
+              placeholder='6+ Password'
+              required
+              type='password'
+              value={value.password}
             />
           </FormGroup>
           <FormGroup
@@ -53,18 +76,23 @@ const PublicRegister = () => {
             label='Confirm Password'
           >
             <FormControl
-              type='password'
+              isInvalid={validated && errors.confirmPassword}
+              minLength={6}
+              name='confirmPassword'
+              onChange={handleChange}
               placeholder='6+ Password'
-              name='confirm-password'
+              required
+              type='password'
+              value={value.confirmPassword}
             />
           </FormGroup>
           <div className='d-grid gap-2'>
             <Button
               className='btn-submit'
-              onClick={() => setIsClicked(true)}
               text='Sign Up'
-              type='button'
+              type='submit'
               variant='primary'
+              disabled={isLoading}
             />
           </div>
           <p>
