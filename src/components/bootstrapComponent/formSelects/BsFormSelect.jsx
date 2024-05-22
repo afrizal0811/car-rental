@@ -2,24 +2,26 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 
 const BsFormSelect = (props) => {
-  const { title, option } = props
+  const { title, option, name } = props
   const blankOption = (
     <option
-      key='blankChoice'
+      disabled
       hidden
+      key='blankChoice'
+      selected
     >
       {title}
     </option>
   )
   return (
-    <Form.Select>
+    <Form.Select name={name}>
       {blankOption}
       {option.map((data, index) => (
         <option
-          value={data}
+          value={data.value}
           key={index}
         >
-          {data}
+          {data.text}
         </option>
       ))}
     </Form.Select>

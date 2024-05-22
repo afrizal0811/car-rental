@@ -8,6 +8,7 @@ const carList = [
     price: 200000,
     category: 'Toyota',
     info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio beatae aliquam eveniet!',
+    isAvailable: false,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const carList = [
     price: 150000,
     category: 'Daihatsu',
     info: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus, at?',
+    isAvailable: true,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const carList = [
     price: 150000,
     category: 'Toyota',
     info: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+    isAvailable: true,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const carList = [
     price: 350000,
     category: 'Mitshubishi',
     info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam doloremque corporis maiores inventore! Odit, magni?',
+    isAvailable: false,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const carList = [
     price: 250000,
     category: 'Daihatsu',
     info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, facilis?',
+    isAvailable: false,
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ const carList = [
     price: 300000,
     category: 'Mitshubishi',
     info: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, nemo distinctio?',
+    isAvailable: true,
   },
 ]
 
