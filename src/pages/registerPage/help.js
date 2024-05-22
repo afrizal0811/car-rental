@@ -20,13 +20,6 @@ export default function handleButton() {
 
   useEffect(() => {
     setErrors(validateForm(value))
-    console.log('isSubmutted :', isSubmitted)
-    if (isSubmitted) {
-
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, '3000')
-    }
   }, [value])
 
   const createUser = async () => {
