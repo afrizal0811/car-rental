@@ -32,11 +32,12 @@ const carPage = (props) => {
       ]
       const isAvailable =
         params.isAvailable && params.isAvailable.toLowerCase() === 'true'
+      console.log('isAvailable :', isAvailable)
       const filteredCar = carList.filter(
         (data) =>
           data.name.toLowerCase() === params.name.toLowerCase() ||
           data.category === params.category ||
-          (isAvailable && data.isAvailable === isAvailable) ||
+          data.isAvailable === isAvailable ||
           (prices && data.price >= prices[0] && data.price <= prices[1])
       )
       setFilteredCarList(filteredCar)
