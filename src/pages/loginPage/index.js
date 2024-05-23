@@ -16,8 +16,8 @@ const LoginPage = () => {
     errors,
     handleChange,
     handleOnSubmit,
-    isFailed,
     isLoading,
+    isSubmitted,
     validated,
     value,
   } = handleButton()
@@ -32,7 +32,7 @@ const LoginPage = () => {
   return (
     <section className='sign-section'>
       <div className='sign-form'>
-        {isFailed && renderAlert}
+        {isSubmitted && renderAlert}
         <h1>Welcome Back!</h1>
         <Form
           noValidate

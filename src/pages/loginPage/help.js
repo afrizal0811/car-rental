@@ -10,12 +10,12 @@ export default function handleButton() {
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [isFailed, setIsFailed] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [value, setValue] = useState({
     email: '',
     password: '',
   })
-  
+
   useEffect(() => {
     const fetch = async () => {
       const url = process.env.REACT_APP_BASE_URL
@@ -25,20 +25,23 @@ export default function handleButton() {
   }, [])
 
   useEffect(() => {
-    setIsFailed(false)
+    setIsSubmitted(false)
     setErrors(validateForm(value))
   }, [value])
 
   const getUser = () => {
     setIsLoading(true)
+    const isErrorEmpty = isEmpty(errors)
     const filterUser = users.filter(
       (data) => data.password === value.password && data.email === value.email
     )
 
-    if (!isEmpty(filterUser) && isEmpty(errors)) {
+    if (!isEmpty(filterUser) && isErrorEmpty) {
       //   setCookies('token', 'testToken123')
       navigate('/')
-    } else setIsFailed(true)
+    } else {
+      isErrorEmpty && setIsSubmitted(true)
+    }
 
     setIsLoading(false)
   }
@@ -61,8 +64,8 @@ export default function handleButton() {
     errors,
     handleChange,
     handleOnSubmit,
-    isFailed,
     isLoading,
+    isSubmitted,
     validated,
     value,
   }

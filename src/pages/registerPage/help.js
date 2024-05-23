@@ -34,12 +34,13 @@ export default function handleButton() {
 
   const createUser = async () => {
     setIsLoading(true)
+    const isErrorEmpty = isEmpty(errors)
     const url = process.env.REACT_APP_BASE_URL
     const isValueEmpty = isSomeEmpty(value)
     const filterUser = users.filter((data) => data.email === value.email)
-    
+
     if (isEmpty(filterUser)) {
-      if (!isValueEmpty && isEmpty(errors)) {
+      if (!isValueEmpty && isErrorEmpty) {
         const params = {
           email: value.email,
           password: value.password,
@@ -48,8 +49,10 @@ export default function handleButton() {
         setIsSubmitted(true)
       }
     } else {
-      setIsSubmitted(true)
-      setErrors((prev) => ({ ...prev, hasEmail: 'Email sudah terdaftar.' }))
+      if (isErrorEmpty) {
+        setIsSubmitted(true)
+        setErrors((prev) => ({ ...prev, hasEmail: 'Email sudah terdaftar.' }))
+      }
     }
     setIsLoading(false)
   }
