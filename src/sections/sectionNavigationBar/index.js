@@ -26,6 +26,19 @@ const NavigationBar = (props) => {
     </Nav.Link>
   )
 
+  const logo = (
+    <Link
+      to='/'
+      className='brand-logo'
+    >
+      <img
+        src={imagePath.logo}
+        alt=''
+        width={100}
+      />
+    </Link>
+  )
+  
   return (
     <div>
       <Navbar
@@ -34,16 +47,7 @@ const NavigationBar = (props) => {
         className={navbarClass}
       >
         <Container fluid>
-          <Link
-            to='/'
-            className='brand-logo'
-          >
-            <img
-              src={imagePath.logo}
-              alt=''
-              width={100}
-            />
-          </Link>
+          {logo}
           <Navbar.Toggle aria-controls='offcanvasNavbar-expand-md' />
           <Navbar.Offcanvas
             id='offcanvasNavbar-expand-md'
@@ -51,15 +55,7 @@ const NavigationBar = (props) => {
             placement='end'
             style={{ width: '50%' }}
           >
-            <Offcanvas.Header closeButton>
-              <Link
-                to='/'
-                className='offset-brand-logo'
-              >
-                <p>BCR</p>
-                <Navbar.Brand href='#' />
-              </Link>
-            </Offcanvas.Header>
+            <Offcanvas.Header closeButton>{logo}</Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className='justify-content-end flex-grow-1 pe-5'>
                 {navLink('/#services', 'Our Services')}

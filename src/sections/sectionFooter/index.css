@@ -35,8 +35,8 @@
 }
 
 .logo-square {
-  width: 100px;
-  height: 34px;
+  width: 70px;
+  height: 24px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -77,5 +77,9 @@
   .menu-list {
     list-style-type: none;
     padding: 0;
+  }
+  .logo-square {
+    width: 100px;
+    height: 34px;
   }
 }
