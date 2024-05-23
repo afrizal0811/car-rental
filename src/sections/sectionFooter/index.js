@@ -6,11 +6,12 @@ import './index.css'
 
 const Footer = (props) => {
   const isShowElement = showPathname.includes(props.pathname)
-  const renderImage = (src) => (
+  const renderImage = (src, width = 40) => (
     <img
-      src={src}
       alt=''
       className='connect'
+      src={src}
+      width={width}
     />
   )
   return (
@@ -42,7 +43,7 @@ const Footer = (props) => {
         </div>
         <div className='footer-copyright'>
           <p>Copyright &copy; 2022 Binar Car Rental</p>
-          <div className='logo-square'>{renderImage(imagePath.logo)}</div>
+          <div className='logo-square'>{renderImage(imagePath.logo, 80)}</div>
         </div>
       </div>
     </div>
