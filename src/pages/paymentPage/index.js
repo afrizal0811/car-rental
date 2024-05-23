@@ -15,7 +15,7 @@ import { localePriceFormat } from '../../utilities/handleLocale'
 import { cookiesData } from './help'
 import './index.css'
 
-const PaymentCar = (props) => {
+const PaymentPage = (props) => {
   const [isBankCheck, setIsBankCheck] = useState({
     BCA: false,
     BNI: false,
@@ -209,4 +209,4 @@ const PaymentCar = (props) => {
   )
 }
 
-export default PaymentCar
+export default PaymentPage

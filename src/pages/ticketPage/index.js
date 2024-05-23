@@ -7,7 +7,8 @@ import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
 import { cookiesData } from './help'
 import './index.css'
-const Ticket = (props) => {
+
+const TicketPage = (props) => {
   const data = cookiesData()
   if (!data) props.navigate('/')
 
@@ -67,4 +68,4 @@ const Ticket = (props) => {
   )
 }
 
-export default Ticket
+export default TicketPage

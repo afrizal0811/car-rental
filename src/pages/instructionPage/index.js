@@ -19,7 +19,7 @@ import Instuction from './Instuction'
 import { cookiesData, tommorowDate } from './help'
 import './index.css'
 
-const PayInstruction = (props) => {
+const InstructionPage = (props) => {
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
   const [isCopied, seIsCopied] = useState({
@@ -191,4 +191,4 @@ const PayInstruction = (props) => {
   )
 }
 
-export default PayInstruction
+export default InstructionPage

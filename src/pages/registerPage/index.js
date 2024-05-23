@@ -12,7 +12,7 @@ import handleButton from './help'
 import './index.css'
 import { isEmpty } from 'lodash'
 
-const PublicRegister = () => {
+const RegisterPage = () => {
   const {
     errors,
     handleChange,
@@ -115,4 +115,4 @@ const PublicRegister = () => {
   )
 }
 
-export default PublicRegister
+export default RegisterPage

@@ -11,7 +11,7 @@ import imagePath from '../../constants/imagePath'
 import handleButton from './help'
 import './index.css'
 
-const PublicLogin = () => {
+const LoginPage = () => {
   const {
     errors,
     handleChange,
@@ -99,4 +99,4 @@ const PublicLogin = () => {
   )
 }
 
-export default PublicLogin
+export default LoginPage

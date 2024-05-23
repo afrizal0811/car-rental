@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from './notFound'
-import LandingPage from './pages/LandingPage'
+import LandingPage from './pages/landingPage'
 import CarPage from './pages/carPage'
 import DetailsPage from './pages/detailsPage'
 import InstructionPage from './pages/instructionPage'
@@ -12,6 +12,7 @@ import TicketPage from './pages/ticketPage'
 import Footer from './sections/sectionFooter'
 import NavigationBar from './sections/sectionNavigationBar'
 import { deleteAllCookies } from './utilities/handleCookies'
+
 const RouteHandler = () => {
   const navigate = useNavigate()
   const location = useLocation()
