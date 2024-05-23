@@ -17,7 +17,7 @@ const NavigationBar = (props) => {
 
   const handleLogout = () => {
     deleteLocalStorage()
-    location.reload()
+    navigate('/')
   }
 
   const navLink = (href, title) => (
