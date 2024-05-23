@@ -16,6 +16,7 @@ import { cookiesData } from './help'
 import './index.css'
 
 const PaymentPage = (props) => {
+  const { userToken, navigate } = props
   const [isBankCheck, setIsBankCheck] = useState({
     BCA: false,
     BNI: false,
@@ -73,6 +74,11 @@ const PaymentPage = (props) => {
   const renderCost = (isTotal) => {
     const price = isTotal ? data.car.price * data.lamaHari : data.car.price
     return localePriceFormat(price)
+  }
+
+  if (!userToken) {
+    navigate('/login')
+    return
   }
 
   return (

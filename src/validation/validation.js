@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getApi, postApi } from '../utilities/handleApi'
-// import { setCookies } from '../../utilities/handleCookies'
+import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
 
 const isSomeEmpty = (obj) => {
@@ -43,7 +43,7 @@ const validation = (props) => {
     )
 
     if (!isEmpty(filterUser) && isErrorEmpty) {
-      //   setCookies('token', 'testToken123')
+      setLocalStorage('token', 'testToken123')
       navigate('/')
     } else {
       isErrorEmpty && setIsSubmitted(true)

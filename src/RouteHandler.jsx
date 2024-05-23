@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import NotFound from './pages/notFound'
 import LandingPage from './pages/LandingPage'
 import CarPage from './pages/carPage'
 import DetailsPage from './pages/detailsPage'
 import InstructionPage from './pages/instructionPage'
 import LoginPage from './pages/loginPage'
+import NotFound from './pages/notFound'
 import PaymentPage from './pages/paymentPage'
 import RegisterPage from './pages/registerPage'
 import TicketPage from './pages/ticketPage'
 import Footer from './sections/sectionFooter'
 import NavigationBar from './sections/sectionNavigationBar'
 import { deleteAllCookies } from './utilities/handleCookies'
+import { getLocalStorage } from './utilities/handleStorage'
 
 const RouteHandler = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { pathname } = location
+  const userToken = getLocalStorage('token')
 
   useEffect(() => {
     const path = ['/', '/cars']
@@ -29,6 +31,7 @@ const RouteHandler = () => {
       <NavigationBar
         navigate={navigate}
         pathname={pathname}
+        userToken={userToken}
       />
       <Routes>
         <Route
@@ -44,6 +47,7 @@ const RouteHandler = () => {
           path='/cars'
           element={
             <CarPage
+              userToken={userToken}
               navigate={navigate}
               pathname={pathname}
             />
@@ -51,19 +55,39 @@ const RouteHandler = () => {
         />
         <Route
           path='/cars/:id'
-          element={<DetailsPage navigate={navigate} />}
+          element={
+            <DetailsPage
+              userToken={userToken}
+              navigate={navigate}
+            />
+          }
         />
         <Route
           path='/payment/:id'
-          element={<PaymentPage navigate={navigate} />}
+          element={
+            <PaymentPage
+              userToken={userToken}
+              navigate={navigate}
+            />
+          }
         />
         <Route
           path='/instruction/:id'
-          element={<InstructionPage navigate={navigate} />}
+          element={
+            <InstructionPage
+              userToken={userToken}
+              navigate={navigate}
+            />
+          }
         />
         <Route
           path='/ticket/:id'
-          element={<TicketPage navigate={navigate} />}
+          element={
+            <TicketPage
+              userToken={userToken}
+              navigate={navigate}
+            />
+          }
         />
         <Route
           path='/login'

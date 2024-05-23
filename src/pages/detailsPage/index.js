@@ -10,18 +10,13 @@ import {
   localeDateAllNumber,
   localePriceFormat,
 } from '../../utilities/handleLocale'
-import { dataList } from './help'
+import { dataList, dateNow, endDate } from './help'
 import './index.css'
 
 const DetailCar = (props) => {
+  const { userToken, navigate } = props
   const [tanggal, setTanggal] = useState('')
   const { id } = useParams()
-  const dateNow = new Date()
-  const endDate = (date, days) => {
-    let result = new Date(date)
-    result.setDate(result.getDate() + days)
-    return result
-  }
   const selectedCar = carList.find((data) => data.id === parseInt(id))
 
   function handleViewDetail(id) {
@@ -46,6 +41,11 @@ const DetailCar = (props) => {
       ))}
     </ul>
   )
+
+  if (!userToken) {
+    navigate('/login')
+    return null
+  }
 
   return (
     <div key={selectedCar.id}>

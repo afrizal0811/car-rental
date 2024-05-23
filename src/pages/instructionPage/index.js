@@ -11,15 +11,16 @@ import {
 } from '../../components/bootstrapComponent'
 import DropzoneComp from '../../components/dropzoneComp/DropzoneComp'
 import {
+  deleteAllCookies,
   getCookies,
   setCookies,
-  deleteAllCookies,
 } from '../../utilities/handleCookies'
 import Instuction from './Instuction'
 import { cookiesData, tommorowDate } from './help'
 import './index.css'
 
 const InstructionPage = (props) => {
+  const { userToken, navigate } = props
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
   const [isCopied, seIsCopied] = useState({
@@ -39,8 +40,9 @@ const InstructionPage = (props) => {
     }
     deleteAllCookies()
     setCookies('cookies', cookies)
-    props.navigate(`/ticket/${id}`)
+    navigate(`/ticket/${id}`)
   }
+
   const copyText = (text, type) => {
     navigator.clipboard.writeText(text)
     seIsCopied((prev) => ({ ...prev, [type]: true }))
@@ -117,12 +119,17 @@ const InstructionPage = (props) => {
     </Card>
   )
 
+  if (!userToken) {
+    navigate('/login')
+    return null
+  }
+
   return (
     <div>
       <Modal
         show={showModal}
         handleClose={() => setShowModal(false)}
-        handleNext={() => props.navigate(`/payment/${id}`)}
+        handleNext={() => navigate(`/payment/${id}`)}
         title='Apakah kamu yakin ingin kembali?'
         textRefuse='Tidak'
         textAccept='Ya'
@@ -140,9 +147,7 @@ const InstructionPage = (props) => {
             />
           </button>
           <div>
-            <strong className='ps-4 fs-5'>
-              {data.bankName} Transfer
-            </strong>
+            <strong className='ps-4 fs-5'>{data.bankName} Transfer</strong>
             <p className='ps-4 fs-7'>Order ID: {data.orderId}</p>
           </div>
         </div>

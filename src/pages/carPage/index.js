@@ -17,6 +17,7 @@ import './index.css'
 const carPage = (props) => {
   const [filteredCarList, setFilteredCarList] = useState('')
   const [searchParams] = useSearchParams()
+  const { userToken, navigate } = props
 
   useEffect(() => {
     const params = {}
@@ -43,6 +44,11 @@ const carPage = (props) => {
     }
   }, [])
   const newCarList = filteredCarList !== '' ? filteredCarList : carList
+
+  if (!userToken) {
+    navigate('/login')
+    return null
+  }
 
   return (
     <div>

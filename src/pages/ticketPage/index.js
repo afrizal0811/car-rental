@@ -9,8 +9,9 @@ import { cookiesData } from './help'
 import './index.css'
 
 const TicketPage = (props) => {
+  const { userToken, navigate } = props
   const data = cookiesData()
-  if (!data) props.navigate('/')
+  if (!data) navigate('/')
 
   const pdfDocument = <PdfComp data={data} />
   const renderDownload = (
@@ -25,6 +26,10 @@ const TicketPage = (props) => {
     </PDFDownloadLink>
   )
 
+  if (!userToken) {
+    navigate('/login')
+    return null
+  }
   return (
     <div>
       <div className='hero-d'>
