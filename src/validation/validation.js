@@ -1,13 +1,17 @@
 import { isEmpty } from 'lodash'
 import { useEffect, useState } from 'react'
-import { getApi, postApi } from '../../utilities/handleApi'
-import validateForm from '../../utilities/validationForm'
+import { useNavigate } from 'react-router-dom'
+import { getApi, postApi } from '../utilities/handleApi'
+// import { setCookies } from '../../utilities/handleCookies'
+import validateForm from '../utilities/validationForm'
 
 const isSomeEmpty = (obj) => {
   return Object.values(obj).some((x) => x === null || x === '')
 }
 
-export default function handleButton() {
+const validation = (props) => {
+  const navigate = useNavigate()
+
   const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
@@ -16,7 +20,6 @@ export default function handleButton() {
   const [value, setValue] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
   })
 
   useEffect(() => {
@@ -31,6 +34,23 @@ export default function handleButton() {
     setIsSubmitted(false)
     setErrors(validateForm(value))
   }, [value])
+
+  const getUser = () => {
+    setIsLoading(true)
+    const isErrorEmpty = isEmpty(errors)
+    const filterUser = users.filter(
+      (data) => data.password === value.password && data.email === value.email
+    )
+
+    if (!isEmpty(filterUser) && isErrorEmpty) {
+      //   setCookies('token', 'testToken123')
+      navigate('/')
+    } else {
+      isErrorEmpty && setIsSubmitted(true)
+    }
+
+    setIsLoading(false)
+  }
 
   const createUser = async () => {
     setIsLoading(true)
@@ -61,7 +81,8 @@ export default function handleButton() {
     e.preventDefault()
     e.stopPropagation()
     setValidated(true)
-    createUser()
+    if (props.pathname === '/register') createUser()
+    if (props.pathname === '/login') getUser()
   }
 
   const handleChange = (e) => {
@@ -81,3 +102,5 @@ export default function handleButton() {
     value,
   }
 }
+
+export default validation

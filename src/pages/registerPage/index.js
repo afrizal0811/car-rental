@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash'
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -8,11 +9,10 @@ import {
   FormGroup,
 } from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
-import handleButton from './help'
+import validation from '../../validation/validation'
 import './index.css'
-import { isEmpty } from 'lodash'
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
   const {
     errors,
     handleChange,
@@ -21,12 +21,16 @@ const RegisterPage = () => {
     isSubmitted,
     validated,
     value,
-  } = handleButton()
+  } = validation(props)
 
   const renderAlert = (
     <Alert
-      variant={ isEmpty(errors) ? 'success' : 'danger'}
-      text={isEmpty(errors) ?'Berhasil! Silahkan login dengan akun yang sudah dibuat.' : errors.hasEmail}
+      variant={isEmpty(errors) ? 'success' : 'danger'}
+      text={
+        isEmpty(errors)
+          ? 'Berhasil! Silahkan login dengan akun yang sudah dibuat.'
+          : errors.hasEmail
+      }
     />
   )
   return (

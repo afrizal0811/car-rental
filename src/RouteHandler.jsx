@@ -67,11 +67,11 @@ const RouteHandler = () => {
         />
         <Route
           path='/login'
-          element={<LoginPage />}
+          element={<LoginPage pathname={pathname} />}
         />
         <Route
           path='/register'
-          element={<RegisterPage />}
+          element={<RegisterPage pathname={pathname} />}
         />
         <Route
           path='*'
