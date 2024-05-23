@@ -1,40 +1,45 @@
 import { isEmpty } from 'lodash'
 import { useEffect, useState } from 'react'
-import { postApi } from '../../utilities/handleApi'
+import { useNavigate } from 'react-router-dom'
+import { getApi } from '../../utilities/handleApi'
+// import { setCookies } from '../../utilities/handleCookies'
 import validateForm from '../../utilities/validationForm'
-
-const isSomeEmpty = (obj) => {
-  return Object.values(obj).some((x) => x === null || x === '')
-}
-
 export default function handleButton() {
+  const navigate = useNavigate()
+  const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isFailed, setIsFailed] = useState(false)
   const [value, setValue] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
   })
+  
+  useEffect(() => {
+    const fetch = async () => {
+      const url = process.env.REACT_APP_BASE_URL
+      setUsers(await getApi(url))
+    }
+    fetch()
+  }, [])
 
   useEffect(() => {
-    setIsSubmitted(false)
+    setIsFailed(false)
     setErrors(validateForm(value))
   }, [value])
 
-  const createUser = async () => {
+  const getUser = () => {
     setIsLoading(true)
-    const url = process.env.REACT_APP_BASE_URL
-    const isValueEmpty = isSomeEmpty(value)
-    if (!isValueEmpty && isEmpty(errors)) {
-      const params = {
-        email: value.email,
-        password: value.password,
-      }
-      await postApi(url, params)
-      setIsSubmitted(true)
-    }
+    const filterUser = users.filter(
+      (data) => data.password === value.password && data.email === value.email
+    )
+
+    if (!isEmpty(filterUser) && isEmpty(errors)) {
+      //   setCookies('token', 'testToken123')
+      navigate('/')
+    } else setIsFailed(true)
+
     setIsLoading(false)
   }
 
@@ -42,7 +47,7 @@ export default function handleButton() {
     e.preventDefault()
     e.stopPropagation()
     setValidated(true)
-    createUser()
+    getUser()
   }
 
   const handleChange = (e) => {
@@ -56,8 +61,8 @@ export default function handleButton() {
     errors,
     handleChange,
     handleOnSubmit,
+    isFailed,
     isLoading,
-    isSubmitted,
     validated,
     value,
   }

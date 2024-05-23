@@ -32,7 +32,6 @@ const carPage = (props) => {
       ]
       const isAvailable =
         params.isAvailable && params.isAvailable.toLowerCase() === 'true'
-      console.log('isAvailable :', isAvailable)
       const filteredCar = carList.filter(
         (data) =>
           data.name.toLowerCase() === params.name.toLowerCase() ||

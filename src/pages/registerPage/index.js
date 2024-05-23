@@ -25,7 +25,7 @@ const PublicRegister = () => {
   const renderAlert = (
     <Alert
       variant='success'
-      text='Berhasil! Silahkan login dengan akun yang sudah dibuat'
+      text='Berhasil! Silahkan login dengan akun yang sudah dibuat.'
     />
   )
   return (
@@ -45,7 +45,6 @@ const PublicRegister = () => {
           >
             <FormControl
               isInvalid={validated && errors.email}
-              minLength={6}
               name='email'
               onChange={handleChange}
               placeholder='Contoh: johndee@gmail.com'

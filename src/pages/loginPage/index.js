@@ -7,34 +7,51 @@ import {
   FormControl,
   FormGroup,
 } from '../../components/bootstrapComponent'
-
 import imagePath from '../../constants/imagePath'
+import handleButton from './help'
 import './index.css'
 
 const PublicLogin = () => {
-  const [isClicked, setIsClicked] = useState(false)
+  const {
+    errors,
+    handleChange,
+    handleOnSubmit,
+    isFailed,
+    isLoading,
+    validated,
+    value,
+  } = handleButton()
+
   const renderAlert = (
     <Alert
       variant='danger'
-      text='Gagal! Tidak tidak dapat mengakses API'
+      text='Gagal! Email atau password salah.'
     />
   )
 
   return (
     <section className='sign-section'>
       <div className='sign-form'>
-        {isClicked && renderAlert}
+        {isFailed && renderAlert}
         <h1>Welcome Back!</h1>
-        <Form>
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={handleOnSubmit}
+        >
           <FormGroup
             controlId='FormEmail'
             className='m-3'
             label='Email'
           >
             <FormControl
-              type='email'
-              placeholder='Contoh: johndee@gmail.com'
+              isInvalid={validated && errors.email}
               name='email'
+              onChange={handleChange}
+              placeholder='Contoh: johndee@gmail.com'
+              required
+              type='email'
+              value={value.email}
             />
           </FormGroup>
           <FormGroup
@@ -43,18 +60,23 @@ const PublicLogin = () => {
             label='Create Password'
           >
             <FormControl
-              type='password'
-              placeholder='6+ Password'
+              isInvalid={validated && errors.password}
+              minLength={6}
               name='password'
+              onChange={handleChange}
+              placeholder='6+ Password'
+              required
+              type='password'
+              value={value.password}
             />
           </FormGroup>
           <div className='d-grid gap-2'>
             <Button
               className='btn-submit'
-              onClick={() => setIsClicked(true)}
               text='Sign In'
-              type='button'
+              type='submit'
               variant='primary'
+              disabled={isLoading}
             />
           </div>
           <p>
