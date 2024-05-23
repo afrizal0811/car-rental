@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash'
 import { useEffect, useState } from 'react'
-import { postApi } from '../../utilities/handleApi'
+import { getApi, postApi } from '../../utilities/handleApi'
 import validateForm from '../../utilities/validationForm'
 
 const isSomeEmpty = (obj) => {
@@ -8,6 +8,7 @@ const isSomeEmpty = (obj) => {
 }
 
 export default function handleButton() {
+  const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -19,6 +20,14 @@ export default function handleButton() {
   })
 
   useEffect(() => {
+    const fetch = async () => {
+      const url = process.env.REACT_APP_BASE_URL
+      setUsers(await getApi(url))
+    }
+    fetch()
+  }, [])
+
+  useEffect(() => {
     setIsSubmitted(false)
     setErrors(validateForm(value))
   }, [value])
@@ -27,13 +36,20 @@ export default function handleButton() {
     setIsLoading(true)
     const url = process.env.REACT_APP_BASE_URL
     const isValueEmpty = isSomeEmpty(value)
-    if (!isValueEmpty && isEmpty(errors)) {
-      const params = {
-        email: value.email,
-        password: value.password,
+    const filterUser = users.filter((data) => data.email === value.email)
+    
+    if (isEmpty(filterUser)) {
+      if (!isValueEmpty && isEmpty(errors)) {
+        const params = {
+          email: value.email,
+          password: value.password,
+        }
+        await postApi(url, params)
+        setIsSubmitted(true)
       }
-      await postApi(url, params)
+    } else {
       setIsSubmitted(true)
+      setErrors((prev) => ({ ...prev, hasEmail: 'Email sudah terdaftar.' }))
     }
     setIsLoading(false)
   }

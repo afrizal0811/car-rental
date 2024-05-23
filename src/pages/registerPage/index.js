@@ -10,6 +10,7 @@ import {
 import imagePath from '../../constants/imagePath'
 import handleButton from './help'
 import './index.css'
+import { isEmpty } from 'lodash'
 
 const PublicRegister = () => {
   const {
@@ -24,8 +25,8 @@ const PublicRegister = () => {
 
   const renderAlert = (
     <Alert
-      variant='success'
-      text='Berhasil! Silahkan login dengan akun yang sudah dibuat.'
+      variant={ isEmpty(errors) ? 'success' : 'danger'}
+      text={isEmpty(errors) ?'Berhasil! Silahkan login dengan akun yang sudah dibuat.' : errors.hasEmail}
     />
   )
   return (
