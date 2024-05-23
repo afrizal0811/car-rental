@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from './pages/notFound'
-import LandingPage from './pages/landingPage'
+import LandingPage from './pages/LandingPage'
 import CarPage from './pages/carPage'
 import DetailsPage from './pages/detailsPage'
 import InstructionPage from './pages/instructionPage'
