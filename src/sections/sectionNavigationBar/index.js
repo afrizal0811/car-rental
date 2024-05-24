@@ -5,11 +5,11 @@ import { Button } from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
 import { deleteAllCookies } from '../../utilities/handleCookies'
 import { deleteLocalStorage } from '../../utilities/handleStorage'
-import { showPathname } from './help'
 import './index.css'
 
 const NavigationBar = (props) => {
   const { navigate, pathname, isLoggin } = props
+  const showPathname = ['/login', '/register']
   const isShowElement = showPathname.includes(pathname)
   const navbarClass = isShowElement ? 'navi-white' : 'navigator'
 
@@ -20,7 +20,7 @@ const NavigationBar = (props) => {
   const handleLogout = () => {
     deleteLocalStorage()
     deleteAllCookies()
-    navigate('/')
+    handleLogin()
   }
 
   const navLink = (href, title) => (
@@ -66,7 +66,7 @@ const NavigationBar = (props) => {
                 {navLink('/#testi', 'Testimonial')}
                 {navLink('/#faq', 'FAQ')}
                 <Button
-                  variant='success'
+                  variant={!isLoggin ? 'success' : 'danger'}
                   onClick={!isLoggin ? handleLogin : handleLogout}
                   hidden={isShowElement}
                   text={!isLoggin ? 'Login' : 'Logout'}
