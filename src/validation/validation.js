@@ -1,6 +1,5 @@
 import { isEmpty } from 'lodash'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { getApi, postApi } from '../utilities/handleApi'
 import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
@@ -10,8 +9,6 @@ const isSomeEmpty = (obj) => {
 }
 
 const validation = (props) => {
-  const navigate = useNavigate()
-
   const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
@@ -44,7 +41,7 @@ const validation = (props) => {
 
     if (!isEmpty(filterUser) && isErrorEmpty) {
       setLocalStorage('token', 'testToken123')
-      navigate('/')
+      props.navigate('/')
     } else {
       isErrorEmpty && setIsSubmitted(true)
     }
