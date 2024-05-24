@@ -8,20 +8,24 @@ import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
 import { cookiesData } from './help'
 import './index.css'
-
 const TicketPage = (props) => {
   const { isLoggin, navigate } = props
   const data = cookiesData()
+  const isDataEmpty = isEmpty(data)
 
   useEffect(() => {
     if (!isLoggin) {
       navigate('/login')
+    } else if (isDataEmpty) {
+      navigate('/')
     }
   }, [])
 
   if (!isLoggin) {
     navigate('/login')
     return null
+  } else if (isDataEmpty) {
+    navigate('/')
   }
 
   const pdfDocument = <PdfComp data={data} />
