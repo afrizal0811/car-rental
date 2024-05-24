@@ -1,3 +1,4 @@
+import { includes } from 'lodash'
 import React from 'react'
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -10,7 +11,7 @@ import './index.css'
 const NavigationBar = (props) => {
   const { navigate, pathname, isLoggin } = props
   const showPathname = ['/login', '/register']
-  const isShowElement = showPathname.includes(pathname)
+  const isShowElement = includes(showPathname, pathname)
   const navbarClass = isShowElement ? 'navi-white' : 'navigator'
 
   const handleLogin = () => {

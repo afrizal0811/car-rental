@@ -1,17 +1,18 @@
+import { map } from 'lodash'
 import carList from '../../constants/carList'
 
 const removeDuplicates = (arr) => {
   return arr.filter((item, index) => arr.indexOf(item) === index)
 }
 
-const kategori = carList.map((data) => data.category)
+const kategori = map(carList, (data) => data.category)
 const filteredKategori = removeDuplicates(kategori)
-export const kategoriOptions = filteredKategori.map((data) => ({
+export const kategoriOptions = map(filteredKategori, (data) => ({
   text: data,
   value: data,
 }))
 
-const prices = carList.map((data) => data.price)
+const prices = map(carList, (data) => data.price)
 const maxPrice = Math.max(...prices)
 export const hargaOptions = [
   { text: '< 200.000', value: [0, 200000] },

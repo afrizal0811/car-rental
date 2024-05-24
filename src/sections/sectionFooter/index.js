@@ -1,11 +1,11 @@
+import { includes, map } from 'lodash'
 import React from 'react'
 import imagePath from '../../constants/imagePath'
-import { showPathname } from './help'
-import { list } from './help'
+import { list, showPathname } from './help'
 import './index.css'
 
 const Footer = (props) => {
-  const isShowElement = showPathname.includes(props.pathname)
+  const isShowElement = includes(showPathname, props.pathname)
   const renderImage = (src, width = 40) => (
     <img
       alt=''
@@ -14,6 +14,7 @@ const Footer = (props) => {
       width={width}
     />
   )
+
   return (
     <div hidden={!isShowElement}>
       <div className='footer-container'>
@@ -24,7 +25,7 @@ const Footer = (props) => {
         </div>
         <div className='footer-list'>
           <ul className='menu-list'>
-            {list.map((data, index) => (
+            {map(list, (data, index) => (
               <li key={index}>
                 <a href={data.link}>{data.title}</a>
               </li>

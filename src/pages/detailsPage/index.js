@@ -1,6 +1,7 @@
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
+import { map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Accordion, Button, Card } from '../../components/bootstrapComponent'
@@ -42,7 +43,7 @@ const DetailCar = (props) => {
 
   const renderDataList = (
     <ul className='detail-list'>
-      {dataList.map((data, index) => (
+      {map(dataList, (data, index) => (
         <li key={index}>{data}</li>
       ))}
     </ul>

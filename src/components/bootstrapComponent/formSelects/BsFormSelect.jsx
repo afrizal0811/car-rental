@@ -1,3 +1,4 @@
+import { map } from 'lodash'
 import React from 'react'
 import { Form } from 'react-bootstrap'
 
@@ -16,7 +17,7 @@ const BsFormSelect = (props) => {
   return (
     <Form.Select name={name}>
       {blankOption}
-      {option.map((data, index) => (
+      {map(option, (data, index) => (
         <option
           value={data.value}
           key={index}

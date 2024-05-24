@@ -1,3 +1,4 @@
+import { map } from 'lodash'
 import React from 'react'
 import imagePath from '../../constants/imagePath'
 import { dataServices } from './help'
@@ -27,7 +28,7 @@ const Services = () => {
             meeting, dll.
           </p>
           <ul className='services-list'>
-            {dataServices.map((data, index) => (
+            {map(dataServices, (data, index) => (
               <li key={index}>{data}</li>
             ))}
           </ul>

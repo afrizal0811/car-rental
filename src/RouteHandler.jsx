@@ -1,3 +1,4 @@
+import { includes, isNull } from 'lodash'
 import React, { useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
@@ -13,7 +14,6 @@ import Footer from './sections/sectionFooter'
 import NavigationBar from './sections/sectionNavigationBar'
 import { deleteAllCookies } from './utilities/handleCookies'
 import { getLocalStorage } from './utilities/handleStorage'
-import { isNull } from 'lodash'
 
 const RouteHandler = () => {
   const navigate = useNavigate()
@@ -23,7 +23,7 @@ const RouteHandler = () => {
 
   useEffect(() => {
     const path = ['/', '/cars']
-    const isDelete = path.includes(pathname)
+    const isDelete = includes(path, pathname)
     if (isDelete) deleteAllCookies()
   }, [pathname])
 

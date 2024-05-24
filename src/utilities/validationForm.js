@@ -1,6 +1,10 @@
+import { isEmpty, some } from 'lodash'
+
 const validateForm = (value) => {
+  
   const isSomeEmpty = (obj) => {
-    return Object.values(obj).some((x) => x === null || x === '')
+    const values = Object.values(obj)
+    return some(values, (x) => isEmpty(x))
   }
 
   let errors = {}

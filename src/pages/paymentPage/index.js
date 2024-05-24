@@ -1,6 +1,6 @@
 import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { isEmpty } from 'lodash'
+import { isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
@@ -15,6 +15,7 @@ import { setCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import { cookiesData } from './help'
 import './index.css'
+
 const PaymentPage = (props) => {
   const { isLoggin, navigate } = props
   const { id } = useParams()
@@ -40,7 +41,7 @@ const PaymentPage = (props) => {
     e.preventDefault()
     setBankName(param)
     setIsBankCheck((prev) => ({ ...prev, [param]: !isBankCheck[param] }))
-    filterBank.map((data) => {
+    map(filterBank, (data) => {
       setIsBankCheck((prev) => ({ ...prev, [data]: false }))
     })
     if (isBankCheck[param]) {

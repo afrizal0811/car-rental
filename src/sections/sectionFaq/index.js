@@ -1,3 +1,4 @@
+import { map } from 'lodash'
 import React from 'react'
 import { Accordion } from '../../components/bootstrapComponent'
 import { dataFaq } from './help'
@@ -15,7 +16,7 @@ const Faq = () => {
       </div>
 
       <div className='faq-content'>
-        {dataFaq.map((item, index) => {
+        {map(dataFaq, (item, index) => {
           return (
             <Accordion
               header={item.question}

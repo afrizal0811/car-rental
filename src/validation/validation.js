@@ -1,11 +1,12 @@
-import { isEmpty } from 'lodash'
+import { isEmpty, some } from 'lodash'
 import { useEffect, useState } from 'react'
 import { getApi, postApi } from '../utilities/handleApi'
 import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
 
 const isSomeEmpty = (obj) => {
-  return Object.values(obj).some((x) => x === null || x === '')
+  const values = Object.values(obj)
+  return some(values, (x) => isEmpty(x))
 }
 
 const validation = (props) => {

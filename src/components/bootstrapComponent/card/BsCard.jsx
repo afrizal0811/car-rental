@@ -1,3 +1,4 @@
+import { isObject } from 'lodash'
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import imagePath from '../../../constants/imagePath'
@@ -15,7 +16,7 @@ const BsCard = (props) => {
     isHaveCategory,
   } = props
 
-  const isDataObject = typeof data === 'object'
+  const isDataObject = isObject(data)
   const dataKey = isDataObject ? data.id : '0'
   const dataName = isDataObject && !title ? data.name : title
   const dataInfo = isDataObject && !info ? data.info : info

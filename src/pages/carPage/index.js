@@ -1,3 +1,4 @@
+import { every, isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
@@ -31,8 +32,8 @@ const carPage = (props) => {
       Object.assign(params, { [key]: value })
     })
 
-    const isEmpty = Object.values(params).every((x) => x === null || x === '')
-    if (!isEmpty) {
+    const isDataEmpty = every(Object.values(params), (x) => isEmpty(x))
+    if (!isDataEmpty) {
       const prices = params.price && [
         Number(params.price.split(',')[0]),
         Number(params.price.split(',')[1]),
@@ -111,7 +112,7 @@ const carPage = (props) => {
       </Form>
       <div className='mt-5 hasil-card'>
         <div className='d-flex flex-wrap align-items-stretch justify-content-around'>
-          {sorting(newCarList).map((result) => {
+          {map(sorting(newCarList), (result) => {
             const { id, price, isAvailable } = result
             return (
               <Card

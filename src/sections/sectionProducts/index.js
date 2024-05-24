@@ -1,3 +1,4 @@
+import { map } from 'lodash'
 import React from 'react'
 import { Row } from 'react-bootstrap'
 import CardComponent from './CardComponent'
@@ -16,7 +17,7 @@ const Products = () => {
       </div>
       <div className='product-card-container'>
         <Row>
-          {dataProducts.map((item, index) => (
+          {map(dataProducts, (item, index) => (
             <CardComponent
               key={index}
               produk={item.produk}

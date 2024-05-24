@@ -3,6 +3,7 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { map } from 'lodash'
 import React, { Component } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
 import Slider from 'react-slick'
@@ -66,7 +67,7 @@ export default class PreviousNextMethods extends Component {
             ref={(c) => (this.slider = c)}
             {...sliderSetting}
           >
-            {dataTestimonials.map((item, index) => {
+            {map(dataTestimonials, (item, index) => {
               return (
                 <Row key={index}>
                   <Col className='p-2'>
