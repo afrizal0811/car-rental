@@ -1,7 +1,7 @@
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Accordion, Button, Card } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
@@ -14,10 +14,16 @@ import { dataList, dateNow, endDate } from './help'
 import './index.css'
 
 const DetailCar = (props) => {
-  const { userToken, navigate } = props
+  const { isLoggin, navigate } = props
   const [tanggal, setTanggal] = useState('')
   const { id } = useParams()
   const selectedCar = carList.find((data) => data.id === parseInt(id))
+
+  useEffect(() => {
+    if (!isLoggin) {
+      navigate('/login', { replace: true })
+    }
+  }, [])
 
   function handleViewDetail(id) {
     const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
@@ -41,11 +47,6 @@ const DetailCar = (props) => {
       ))}
     </ul>
   )
-
-  if (!userToken) {
-    navigate('/login')
-    return null
-  }
 
   return (
     <div key={selectedCar.id}>

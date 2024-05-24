@@ -1,6 +1,7 @@
 import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import { isEmpty } from 'lodash'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
@@ -14,9 +15,9 @@ import { setCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import { cookiesData } from './help'
 import './index.css'
-
 const PaymentPage = (props) => {
-  const { userToken, navigate } = props
+  const { isLoggin, navigate } = props
+  const { id } = useParams()
   const [isBankCheck, setIsBankCheck] = useState({
     BCA: false,
     BNI: false,
@@ -24,9 +25,14 @@ const PaymentPage = (props) => {
   })
   const [showModal, setShowModal] = useState(false)
   const [bankName, setBankName] = useState('')
-
-  const { id } = useParams()
   const data = cookiesData()
+  const isDataEmpty = isEmpty(data)
+
+  useEffect(() => {
+    if (!isLoggin || isDataEmpty) {
+      navigate('/login')
+    }
+  }, [])
 
   const handleClickBank = (e, param) => {
     const bank = ['BCA', 'BNI', 'Mandiri']
@@ -74,11 +80,6 @@ const PaymentPage = (props) => {
   const renderCost = (isTotal) => {
     const price = isTotal ? data.car.price * data.lamaHari : data.car.price
     return localePriceFormat(price)
-  }
-
-  if (!userToken) {
-    navigate('/login')
-    return
   }
 
   return (

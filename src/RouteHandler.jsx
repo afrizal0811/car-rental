@@ -13,12 +13,13 @@ import Footer from './sections/sectionFooter'
 import NavigationBar from './sections/sectionNavigationBar'
 import { deleteAllCookies } from './utilities/handleCookies'
 import { getLocalStorage } from './utilities/handleStorage'
+import { isNull } from 'lodash'
 
 const RouteHandler = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { pathname } = location
-  const userToken = getLocalStorage('token')
+  const isLoggin = !isNull(getLocalStorage('token'))
 
   useEffect(() => {
     const path = ['/', '/cars']
@@ -29,9 +30,9 @@ const RouteHandler = () => {
   return (
     <div>
       <NavigationBar
+        isLoggin={isLoggin}
         navigate={navigate}
         pathname={pathname}
-        userToken={userToken}
       />
       <Routes>
         <Route
@@ -47,7 +48,7 @@ const RouteHandler = () => {
           path='/cars'
           element={
             <CarPage
-              userToken={userToken}
+              isLoggin={isLoggin}
               navigate={navigate}
               pathname={pathname}
             />
@@ -57,7 +58,7 @@ const RouteHandler = () => {
           path='/cars/:id'
           element={
             <DetailsPage
-              userToken={userToken}
+              isLoggin={isLoggin}
               navigate={navigate}
             />
           }
@@ -66,7 +67,7 @@ const RouteHandler = () => {
           path='/payment/:id'
           element={
             <PaymentPage
-              userToken={userToken}
+              isLoggin={isLoggin}
               navigate={navigate}
             />
           }
@@ -75,7 +76,7 @@ const RouteHandler = () => {
           path='/instruction/:id'
           element={
             <InstructionPage
-              userToken={userToken}
+              isLoggin={isLoggin}
               navigate={navigate}
             />
           }
@@ -84,7 +85,7 @@ const RouteHandler = () => {
           path='/ticket/:id'
           element={
             <TicketPage
-              userToken={userToken}
+              isLoggin={isLoggin}
               navigate={navigate}
             />
           }

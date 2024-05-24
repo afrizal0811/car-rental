@@ -1,6 +1,6 @@
 import { faArrowLeft, faCheck, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import {
@@ -18,9 +18,9 @@ import {
 import Instuction from './Instuction'
 import { cookiesData, tommorowDate } from './help'
 import './index.css'
-
 const InstructionPage = (props) => {
-  const { userToken, navigate } = props
+  const { isLoggin, navigate } = props
+  const { id } = useParams()
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
   const [isCopied, seIsCopied] = useState({
@@ -29,9 +29,18 @@ const InstructionPage = (props) => {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
-
-  const { id } = useParams()
   const data = cookiesData()
+
+  useEffect(() => {
+    if (!isLoggin) {
+      navigate('/login', { replace: true })
+    }
+  }, [])
+
+  if (!isLoggin) {
+    navigate('/login', { replace: true })
+    return null
+  }
 
   const handleOnClick = () => {
     let cookies = []
@@ -118,11 +127,6 @@ const InstructionPage = (props) => {
       </div>
     </Card>
   )
-
-  if (!userToken) {
-    navigate('/login')
-    return null
-  }
 
   return (
     <div>

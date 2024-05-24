@@ -1,7 +1,8 @@
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
-import React from 'react'
+import { isEmpty } from 'lodash'
+import React, { useEffect } from 'react'
 import Status from '../../components/Status'
 import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
@@ -9,9 +10,19 @@ import { cookiesData } from './help'
 import './index.css'
 
 const TicketPage = (props) => {
-  const { userToken, navigate } = props
+  const { isLoggin, navigate } = props
   const data = cookiesData()
-  if (!data) navigate('/')
+
+  useEffect(() => {
+    if (!isLoggin) {
+      navigate('/login')
+    }
+  }, [])
+
+  if (!isLoggin) {
+    navigate('/login')
+    return null
+  }
 
   const pdfDocument = <PdfComp data={data} />
   const renderDownload = (
@@ -26,10 +37,6 @@ const TicketPage = (props) => {
     </PDFDownloadLink>
   )
 
-  if (!userToken) {
-    navigate('/login')
-    return null
-  }
   return (
     <div>
       <div className='hero-d'>

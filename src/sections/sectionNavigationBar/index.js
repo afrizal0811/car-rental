@@ -3,11 +3,13 @@ import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Button } from '../../components/bootstrapComponent'
 import imagePath from '../../constants/imagePath'
+import { deleteAllCookies } from '../../utilities/handleCookies'
 import { deleteLocalStorage } from '../../utilities/handleStorage'
 import { showPathname } from './help'
 import './index.css'
+
 const NavigationBar = (props) => {
-  const { navigate, pathname, userToken } = props
+  const { navigate, pathname, isLoggin } = props
   const isShowElement = showPathname.includes(pathname)
   const navbarClass = isShowElement ? 'navi-white' : 'navigator'
 
@@ -17,6 +19,7 @@ const NavigationBar = (props) => {
 
   const handleLogout = () => {
     deleteLocalStorage()
+    deleteAllCookies()
     navigate('/')
   }
 
@@ -38,7 +41,7 @@ const NavigationBar = (props) => {
       />
     </Link>
   )
-  
+
   return (
     <div>
       <Navbar
@@ -64,9 +67,9 @@ const NavigationBar = (props) => {
                 {navLink('/#faq', 'FAQ')}
                 <Button
                   variant='success'
-                  onClick={!userToken ? handleLogin : handleLogout}
+                  onClick={!isLoggin ? handleLogin : handleLogout}
                   hidden={isShowElement}
-                  text={!userToken ? 'Login' : 'Logout'}
+                  text={!isLoggin ? 'Login' : 'Logout'}
                 />
               </Nav>
             </Offcanvas.Body>

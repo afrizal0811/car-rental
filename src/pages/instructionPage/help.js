@@ -1,10 +1,10 @@
+import { isNull } from 'lodash'
 import { findCookiesItem, getCookies } from '../../utilities/handleCookies'
 import {
   localeDateShortMonth,
   localeDateWeekday,
   localeTime,
 } from '../../utilities/handleLocale'
-
 export const tommorowDate = () => {
   let nextDate = new Date()
   nextDate.setDate(new Date().getDate() + 1)
@@ -18,8 +18,11 @@ export const tommorowDate = () => {
 
 export const cookiesData = () => {
   const cookiesData = getCookies(1)
-  const bankName = findCookiesItem(cookiesData, 'bankName')
-  const orderId = findCookiesItem(cookiesData, 'orderId')
-  const price = findCookiesItem(cookiesData, 'price')
-  return { bankName, orderId, price }
+  if (!isNull(cookiesData)) {
+    const bankName = findCookiesItem(cookiesData, 'bankName')
+    const orderId = findCookiesItem(cookiesData, 'orderId')
+    const price = findCookiesItem(cookiesData, 'price')
+    return { bankName, orderId, price }
+  }
+  return {}
 }
