@@ -1,9 +1,9 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { isUndefined } from 'lodash'
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import './index.css'
-
 const BsFormControl = (props) => {
   const {
     autoComplete,
@@ -42,7 +42,10 @@ const BsFormControl = (props) => {
   )
 
   const isTypePassword = type === 'password'
-
+  const isUndefinedType = isUndefined(isVisible[`${name}`])
+  const inputType =
+    !isUndefinedType && !isVisible[`${name}`] ? 'password' : 'text'
+    
   return (
     <div>
       <div className='password-container '>
@@ -54,7 +57,7 @@ const BsFormControl = (props) => {
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-          type={!isVisible[`${name}`] ? 'password' : 'text'}
+          type={inputType}
         />
         {isTypePassword && visibleIcon}
       </div>
