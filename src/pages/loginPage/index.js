@@ -25,7 +25,7 @@ const LoginPage = (props) => {
   const renderAlert = (
     <Alert
       variant='danger'
-      text='Gagal! Email atau password salah.'
+      text={errors.failedAlert}
     />
   )
 

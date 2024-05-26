@@ -5,11 +5,6 @@ import { getApi, postApi } from '../utilities/handleApi'
 import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
 
-const isSomeEmpty = (obj) => {
-  const values = Object.values(obj)
-  return some(values, (x) => isEmpty(x))
-}
-
 const validation = (props) => {
   const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
@@ -34,22 +29,32 @@ const validation = (props) => {
     setErrors(validateForm(value))
   }, [value])
 
+  const isSomeEmpty = (obj) => {
+    const values = Object.values(obj)
+    return some(values, (x) => isEmpty(x))
+  }
+
   const filterUser = () => {
     return filter(users, (data) => data.email === value.email)
   }
+
   const getUser = async () => {
     setIsLoading(true)
     const isErrorEmpty = isEmpty(errors)
     const isSamePassword = await compare(value.password, users[0].password)
     const filteredUser = filterUser(users)
-
     if (!isEmpty(filteredUser) && isSamePassword && isErrorEmpty) {
       setLocalStorage('token', 'testToken123')
       props.navigate('/')
     } else {
-      isErrorEmpty && setIsSubmitted(true)
+      if (isErrorEmpty) {
+        setIsSubmitted(true)
+        setErrors((prev) => ({
+          ...prev,
+          failedAlert: 'Gagal! Email atau password salah.',
+        }))
+      }
     }
-
     setIsLoading(false)
   }
 
@@ -61,7 +66,6 @@ const validation = (props) => {
     const filteredUser = filterUser(users)
     const salt = genSaltSync(10)
     const newPassword = await hash(value.password, salt)
-
     if (isEmpty(filteredUser)) {
       if (!isValueEmpty && isErrorEmpty) {
         const params = {
@@ -70,11 +74,15 @@ const validation = (props) => {
         }
         await postApi(url, params)
         setIsSubmitted(true)
+        props.navigate('/login')
       }
     } else {
       if (isErrorEmpty) {
         setIsSubmitted(true)
-        setErrors((prev) => ({ ...prev, hasEmail: 'Email sudah terdaftar.' }))
+        setErrors((prev) => ({
+          ...prev,
+          failedAlert: 'Email sudah terdaftar.',
+        }))
       }
     }
     setIsLoading(false)

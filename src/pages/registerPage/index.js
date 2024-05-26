@@ -1,4 +1,3 @@
-import { isEmpty } from 'lodash'
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -25,14 +24,11 @@ const RegisterPage = (props) => {
 
   const renderAlert = (
     <Alert
-      variant={isEmpty(errors) ? 'success' : 'danger'}
-      text={
-        isEmpty(errors)
-          ? 'Berhasil! Silahkan login dengan akun yang sudah dibuat.'
-          : errors.hasEmail
-      }
+      variant='danger'
+      text={errors.failedAlert}
     />
   )
+  
   return (
     <section className='sign-section'>
       <div className='sign-form'>
