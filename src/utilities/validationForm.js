@@ -1,12 +1,4 @@
-import { isEmpty, some } from 'lodash'
-
-const validateForm = (value) => {
-  
-  const isSomeEmpty = (obj) => {
-    const values = Object.values(obj)
-    return some(values, (x) => isEmpty(x))
-  }
-
+const validateForm = (value, isRegister) => {
   let errors = {}
   const invalidEmail = (data) =>
     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(data)
@@ -18,7 +10,7 @@ const validateForm = (value) => {
     errors.password = 'This field is required'
   } else if (value.password.length < 6) {
     errors.password = 'Password must contain at least six characters'
-  } else if (isSomeEmpty(value) && !value.confirmPassword) {
+  } else if (isRegister && !value.confirmPassword) {
     errors.confirmPassword = 'This field is required'
   } else if (value.confirmPassword) {
     if (value.password !== value.confirmPassword) {

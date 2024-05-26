@@ -40,12 +40,12 @@ const LoginPage = (props) => {
           onSubmit={handleOnSubmit}
         >
           <FormGroup
-            controlId='FormEmail'
             className='m-3'
+            controlId='FormEmail'
+            isInvalid={validated && errors.email}
             label='Email'
           >
             <FormControl
-              isInvalid={validated && errors.email}
               name='email'
               onChange={handleChange}
               placeholder='Contoh: johndee@gmail.com'
@@ -55,12 +55,12 @@ const LoginPage = (props) => {
             />
           </FormGroup>
           <FormGroup
-            controlId='FormPassword'
             className='m-3'
+            controlId='FormPassword'
+            isInvalid={validated && errors.password}
             label='Create Password'
           >
             <FormControl
-              isInvalid={validated && errors.password}
               minLength={6}
               name='password'
               onChange={handleChange}

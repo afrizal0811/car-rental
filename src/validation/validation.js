@@ -1,4 +1,4 @@
-import { compare, genSaltSync, hash } from 'bcryptjs'
+// import { compare, genSaltSync, hash } from 'bcryptjs'
 import { filter, isEmpty, some } from 'lodash'
 import { useEffect, useState } from 'react'
 import { getApi, postApi } from '../utilities/handleApi'
@@ -6,6 +6,8 @@ import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
 
 const validation = (props) => {
+  const isRegister = props.pathname === '/register'
+  const isLogin = props.pathname === '/login'
   const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
@@ -17,16 +19,18 @@ const validation = (props) => {
   })
 
   useEffect(() => {
+    const confirmPw = { confirmPassword: '' }
     const fetch = async () => {
       const url = process.env.REACT_APP_BASE_URL
       setUsers(await getApi(url))
     }
     fetch()
+    isRegister && Object.assign(value, confirmPw)
   }, [])
 
   useEffect(() => {
     setIsSubmitted(false)
-    setErrors(validateForm(value))
+    setErrors(validateForm(value, isRegister))
   }, [value])
 
   const isSomeEmpty = (obj) => {
@@ -34,16 +38,19 @@ const validation = (props) => {
     return some(values, (x) => isEmpty(x))
   }
 
-  const filterUser = () => {
-    return filter(users, (data) => data.email === value.email)
-  }
+  // const filterUser = () => {
+  //   return filter(users, (data) => data.email === value.email)
+  // }
 
   const getUser = async () => {
     setIsLoading(true)
     const isErrorEmpty = isEmpty(errors)
-    const isSamePassword = await compare(value.password, users[0].password)
-    const filteredUser = filterUser(users)
-    if (!isEmpty(filteredUser) && isSamePassword && isErrorEmpty) {
+    // const isSamePassword = await compare(value.password, users[0].password)
+    const filteredUser = filter(
+      users,
+      (data) => data.email === value.email && data.password === value.password
+    )
+    if (!isEmpty(filteredUser) && isErrorEmpty) {
       setLocalStorage('token', 'testToken123')
       props.navigate('/')
     } else {
@@ -63,14 +70,14 @@ const validation = (props) => {
     const url = process.env.REACT_APP_BASE_URL
     const isErrorEmpty = isEmpty(errors)
     const isValueEmpty = isSomeEmpty(value)
-    const filteredUser = filterUser(users)
-    const salt = genSaltSync(10)
-    const newPassword = await hash(value.password, salt)
+    const filteredUser = filter(users, (data) => data.email === value.email)
+    // const salt = genSaltSync(10)
+    // const newPassword = await hash(value.password, salt)
     if (isEmpty(filteredUser)) {
       if (!isValueEmpty && isErrorEmpty) {
         const params = {
           email: value.email,
-          password: newPassword,
+          password: value.password,
         }
         await postApi(url, params)
         setIsSubmitted(true)
@@ -92,8 +99,8 @@ const validation = (props) => {
     e.preventDefault()
     e.stopPropagation()
     setValidated(true)
-    if (props.pathname === '/register') createUser()
-    if (props.pathname === '/login') getUser()
+    if (isRegister) createUser()
+    if (isLogin) getUser()
   }
 
   const handleChange = (e) => {

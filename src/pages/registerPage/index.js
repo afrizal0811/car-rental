@@ -28,7 +28,7 @@ const RegisterPage = (props) => {
       text={errors.failedAlert}
     />
   )
-  
+
   return (
     <section className='sign-section'>
       <div className='sign-form'>
@@ -40,12 +40,12 @@ const RegisterPage = (props) => {
           onSubmit={handleOnSubmit}
         >
           <FormGroup
-            controlId='FormEmail'
             className='m-3'
+            controlId='FormEmail'
+            isInvalid={validated && errors.email}
             label='Email'
           >
             <FormControl
-              isInvalid={validated && errors.email}
               name='email'
               onChange={handleChange}
               placeholder='Contoh: johndee@gmail.com'
@@ -55,12 +55,12 @@ const RegisterPage = (props) => {
             />
           </FormGroup>
           <FormGroup
-            controlId='FormPassword'
             className='m-3'
+            controlId='FormPassword'
+            isInvalid={validated && errors.password}
             label='Create Password'
           >
             <FormControl
-              isInvalid={validated && errors.password}
               minLength={6}
               name='password'
               onChange={handleChange}
@@ -71,12 +71,12 @@ const RegisterPage = (props) => {
             />
           </FormGroup>
           <FormGroup
-            controlId='FormPasswordConfirm'
             className='m-3'
+            controlId='FormPasswordConfirm'
+            isInvalid={validated && errors.confirmPassword}
             label='Confirm Password'
           >
             <FormControl
-              isInvalid={validated && errors.confirmPassword}
               minLength={6}
               name='confirmPassword'
               onChange={handleChange}

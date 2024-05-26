@@ -26,11 +26,6 @@ const BsFormControl = (props) => {
       [name]: !isVisible[name],
     }))
   }
-
-  const feedbackComp = (
-    <Form.Control.Feedback type='invalid'>{isInvalid}</Form.Control.Feedback>
-  )
-  const renderFeedback = isInvalid ? feedbackComp : null
   const visibleIcon = (
     <a
       onClick={handleOnClick}
@@ -45,10 +40,10 @@ const BsFormControl = (props) => {
   const isUndefinedType = isUndefined(isVisible[`${name}`])
   const inputType =
     !isUndefinedType && !isVisible[`${name}`] ? 'password' : 'text'
-    
+
   return (
     <div>
-      <div className='password-container '>
+      <span className='password-container '>
         <Form.Control
           autoComplete={autoComplete}
           isInvalid={isInvalid}
@@ -60,8 +55,7 @@ const BsFormControl = (props) => {
           type={inputType}
         />
         {isTypePassword && visibleIcon}
-      </div>
-      {renderFeedback}
+      </span>
     </div>
   )
 }
