@@ -1,0 +1,16 @@
+.password-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.visible-icon {
+  background-color: var(--bs-gray-200);
+  align-items: center;
+  display: flex;
+  height: 38px;
+  border-radius: 0 25% 25% 0;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem;
+}
