@@ -10,12 +10,12 @@ import {
   FormSelect,
 } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
-import SectionHero from '../../sections/sectionHero'
+import SectionHero from '../../sections/hero/Hero'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import { hargaOptions, kategoriOptions, sorting, statusOptions } from './help'
-import './index.css'
+import './Styled.css'
 
-const carPage = (props) => {
+const CarPage = (props) => {
   const [filteredCarList, setFilteredCarList] = useState('')
   const [searchParams] = useSearchParams()
   const { isLoggin, navigate } = props
@@ -141,4 +141,4 @@ const carPage = (props) => {
   )
 }
 
-export default carPage
+export default CarPage
