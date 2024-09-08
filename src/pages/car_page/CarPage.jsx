@@ -129,7 +129,7 @@ const CarPage = (props) => {
                     variant='success'
                     text='Pilih Mobil'
                     disabled={!isAvailable}
-                    onClick={() => props.navigate(`/cars/${id}`)}
+                    onClick={() => navigate(`/cars/${id}`)}
                   />
                 </div>
               </Card>

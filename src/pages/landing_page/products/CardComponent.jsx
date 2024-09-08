@@ -9,7 +9,8 @@ const CardComponent = (props) => {
     <Col
       sm='12'
       md='6'
-      lg='3'
+      lg='6'
+      xl='3'
       className='p-2'
     >
       <Card className='product-card-content'>

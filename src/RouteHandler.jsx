@@ -10,15 +10,8 @@ import NotFound from './pages/not_found_page/NotFound'
 import PaymentPage from './pages/payment_page/PaymentPage'
 import RegisterPage from './pages/register_page/RegisterPage'
 import TicketPage from './pages/ticket_page/TicketPage'
-// import { deleteAllCookies } from './utilities/handleCookies'
 
 const RouteHandler = () => {
-  // useEffect(() => {
-  //   const path = ['/', '/cars']
-  //   const isDelete = includes(path, pathname)
-  //   if (isDelete) deleteAllCookies()
-  // }, [pathname])
-
   return (
     <Routes>
       <Route element={<Layout />}>

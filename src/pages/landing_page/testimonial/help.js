@@ -1,9 +1,9 @@
-import imagePath from "../../../constants/imagePath"
+import imagePath from '../../../constants/imagePath'
 
 export const sliderSetting = {
   dots: false,
   infinite: true,
-  speed: 1500,
+  speed: 1000,
   slidesToShow: 3,
   slidesToScroll: 3,
   initialSlide: 0,
@@ -11,7 +11,6 @@ export const sliderSetting = {
     {
       breakpoint: 1024,
       settings: {
-        speed: 1000,
         slidesToShow: 2,
         slidesToScroll: 2,
       },
@@ -19,7 +18,6 @@ export const sliderSetting = {
     {
       breakpoint: 768,
       settings: {
-        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
       },

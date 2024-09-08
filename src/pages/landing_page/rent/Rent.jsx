@@ -1,8 +1,9 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
 import { Button } from '../../../components/bootstrapComponent'
 import './Styled.css'
-
-const Rent = (props) => {
+const Rent = () => {
+  const { navigate } = useOutletContext()
   return (
     <section className='sewa-section'>
       <div className='sewa-container'>
@@ -15,7 +16,7 @@ const Rent = (props) => {
         </p>
         <Button
           variant='success'
-          onClick={() => props.navigate(`/cars`)}
+          onClick={() => navigate(`/cars`)}
           text='Mulai Sewa Mobil'
         />
       </div>

@@ -2,18 +2,18 @@ import React from 'react'
 import Faq from './faq/Faq'
 import Hero from './hero/Hero'
 import Products from './products/Products'
-import Services from './services/Services'
 import Rent from './rent/Rent'
+import Services from './services/Services'
 import Testimonial from './testimonial'
 
-const LandingPage = (props) => {
+const LandingPage = () => {
   return (
     <div>
-      <Hero {...props} />
+      <Hero />
       <Services />
       <Products />
       <Testimonial />
-      <Rent {...props} />
+      <Rent />
       <Faq />
     </div>
   )
