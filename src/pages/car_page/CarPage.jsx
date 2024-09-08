@@ -1,6 +1,6 @@
 import { every, isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { Form } from 'react-bootstrap'
+import { Col, Form, Row } from 'react-bootstrap'
 import { useOutletContext, useSearchParams } from 'react-router-dom'
 import {
   Button,
@@ -55,70 +55,112 @@ const CarPage = (props) => {
   return (
     <div>
       <SectionHero {...props} />
-      <Form className='cari-content'>
-        <FormGroup
-          controlId='formNama'
-          className='mt-3'
-          label='Nama Mobil'
-        >
-          <FormControl
-            type='text'
-            placeholder='Ketik Nama/Tipe Mobil'
-            autoComplete='off'
-            name='name'
-          />
-        </FormGroup>
-        <FormGroup
-          controlId='formKategori'
-          className='mt-3'
-          label='Kategori'
-        >
-          <FormSelect
-            name='category'
-            title='Masukan Kapasitas Mobil'
-            option={kategoriOptions}
-          />
-        </FormGroup>
-        <FormGroup
-          controlId='formHarga'
-          className='mt-3'
-          label='Harga'
-        >
-          <FormSelect
-            title='Masukan Harga Sewa per Hari'
-            option={hargaOptions}
-            name='price'
-            isPrice='true'
-          />
-        </FormGroup>
-        <FormGroup
-          controlId='formSewa'
-          className='mt-3'
-          label='Status'
-        >
-          <FormSelect
-            title='Status Mobil'
-            option={statusOptions}
-            name='isAvailable'
-          />
-        </FormGroup>
-        <Button
-          variant='success'
-          type='submit'
-          className='mt-4'
-          id='searchBtn'
-          text='Cari Mobil'
-        />
+      <Form>
+        <Row className='p-4 mx-5 shadow rounded bg-white cari-content '>
+          <Col
+            sm='12'
+            md='6'
+            lg='3'
+          >
+            <FormGroup
+              controlId='formNama'
+              className='mt-3'
+              label='Nama Mobil'
+            >
+              <FormControl
+                type='text'
+                placeholder='Ketik Nama/Tipe Mobil'
+                autoComplete='off'
+                name='name'
+              />
+            </FormGroup>
+          </Col>
+          <Col
+            sm='12'
+            md='6'
+            lg='3'
+          >
+            <FormGroup
+              controlId='formKategori'
+              className='mt-3'
+              label='Kategori'
+            >
+              <FormSelect
+                name='category'
+                title='Masukan Kapasitas Mobil'
+                option={kategoriOptions}
+              />
+            </FormGroup>
+          </Col>
+          <Col
+            sm='12'
+            md='6'
+            lg='3'
+          >
+            <FormGroup
+              controlId='formHarga'
+              className='mt-3'
+              label='Harga'
+            >
+              <FormSelect
+                title='Masukan Harga Sewa per Hari'
+                option={hargaOptions}
+                name='price'
+                isPrice='true'
+              />
+            </FormGroup>
+          </Col>
+          <Col
+            sm='12'
+            md='6'
+            lg='3'
+          >
+            <FormGroup
+              controlId='formSewa'
+              className='mt-3'
+              label='Status'
+            >
+              <FormSelect
+                title='Status Mobil'
+                option={statusOptions}
+                name='isAvailable'
+              />
+            </FormGroup>
+          </Col>
+
+          <Col
+            sm='12'
+            md='6'
+            lg='12'
+            className='d-flex gap-3 justify-content-end mt-4'
+          >
+            <Button
+              variant='light'
+              text='Reset Filter'
+              onClick={() => navigate('/cars')}
+            />
+            <Button
+              variant='success'
+              type='submit'
+              text='Cari Mobil'
+            />
+          </Col>
+        </Row>
       </Form>
-      <div className='mt-5 hasil-card'>
-        <div className='d-flex flex-wrap align-items-stretch justify-content-around'>
-          {map(sorting(newCarList), (result) => {
-            const { id, price, isAvailable } = result
-            return (
+      <Row className='d-flex align-items-stretch justify-content-evenly p-4 mx-5 mb-5 shadow rounded bg-white '>
+        {map(sorting(newCarList), (result) => {
+          const { id, price, isAvailable } = result
+          return (
+            <Col
+              sm='12'
+              md='6'
+              lg='4'
+              className='d-flex py-2'
+            >
               <Card
                 data={result}
                 key={id}
-                className={`card-cont ${!isAvailable && `dimmer`}`}
+                className={`hover-transform ${!isAvailable && `dimmer`}`}
                 infoClass='date-picker'
                 isHaveImage='true'
                 isHaveCategory='true'
@@ -133,10 +175,10 @@ const CarPage = (props) => {
                   />
                 </div>
               </Card>
-            )
-          })}
-        </div>
-      </div>
+            </Col>
+          )
+        })}
+      </Row>
     </div>
   )
 }
