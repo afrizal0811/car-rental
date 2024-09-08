@@ -1,6 +1,6 @@
 import React from 'react'
-import imagePath from '../../constants/imagePath'
-import { Button } from '../../components/bootstrapComponent'
+import imagePath from '../../../constants/imagePath'
+import { Button } from '../../../components/bootstrapComponent'
 import './Styled.css'
 
 const Hero = (props) => {

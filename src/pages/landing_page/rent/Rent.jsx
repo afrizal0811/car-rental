@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button } from '../../components/bootstrapComponent'
+import { Button } from '../../../components/bootstrapComponent'
 import './Styled.css'
 
-const Sewa = (props) => {
+const Rent = (props) => {
   return (
     <section className='sewa-section'>
       <div className='sewa-container'>
@@ -23,4 +23,4 @@ const Sewa = (props) => {
   )
 }
 
-export default Sewa
+export default Rent

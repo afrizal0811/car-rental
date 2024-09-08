@@ -1,6 +1,6 @@
 import { map } from 'lodash'
 import React from 'react'
-import { Accordion } from '../../components/bootstrapComponent'
+import { Accordion } from '../../../components/bootstrapComponent'
 import { dataFaq } from './help'
 import './Styled.css'
 

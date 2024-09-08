@@ -1,6 +1,6 @@
 import { map } from 'lodash'
 import React from 'react'
-import imagePath from '../../constants/imagePath'
+import imagePath from '../../../constants/imagePath'
 import { dataServices } from './help'
 import './Styled.css'
 

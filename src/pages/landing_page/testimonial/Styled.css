@@ -76,13 +76,8 @@
 }
 @media only screen and (min-width: 1024px) {
 
-  .testi-section{
-
-  padding: 1rem 4.3rem;
-}
-
   .testi-card-content {
-    flex-direction: row !important;
+    flex-direction: row;
   }
   
   .testi-image img{

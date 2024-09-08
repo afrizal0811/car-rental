@@ -10,7 +10,7 @@ import {
   FormSelect,
 } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
-import SectionHero from '../../sections/hero/Hero'
+import SectionHero from '../landing_page/hero/Hero'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import { hargaOptions, kategoriOptions, sorting, statusOptions } from './help'
 import './Styled.css'

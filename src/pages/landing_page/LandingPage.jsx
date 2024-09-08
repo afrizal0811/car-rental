@@ -1,10 +1,10 @@
 import React from 'react'
-import Faq from '../../sections/faq/Faq'
-import Hero from '../../sections/hero/Hero'
-import Products from '../../sections/products/Products'
-import Services from '../../sections/services/Services'
-import Sewa from '../../sections/sewa/Sewa'
-import Testimonial from '../../sections/testimonial'
+import Faq from './faq/Faq'
+import Hero from './hero/Hero'
+import Products from './products/Products'
+import Services from './services/Services'
+import Rent from './rent/Rent'
+import Testimonial from './testimonial'
 
 const LandingPage = (props) => {
   return (
@@ -13,7 +13,7 @@ const LandingPage = (props) => {
       <Services />
       <Products />
       <Testimonial />
-      <Sewa {...props} />
+      <Rent {...props} />
       <Faq />
     </div>
   )
