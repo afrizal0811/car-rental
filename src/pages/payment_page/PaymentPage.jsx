@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import {
   Button,
@@ -16,8 +16,8 @@ import { localePriceFormat } from '../../utilities/handleLocale'
 import { cookiesData } from './help'
 import './Styled.css'
 
-const PaymentPage = (props) => {
-  const { isLoggin, navigate } = props
+const PaymentPage = () => {
+  const { isLoggin, navigate } = useOutletContext()
   const { id } = useParams()
   const [isBankCheck, setIsBankCheck] = useState({
     BCA: false,
@@ -59,7 +59,7 @@ const PaymentPage = (props) => {
     }
     const cookies = [bank, orderId, price]
     setCookies('payment', cookies)
-    props.navigate(`/instruction/${id}`)
+    navigate(`/instruction/${id}`)
   }
 
   const renderBankButton = (name, state) => (
@@ -96,7 +96,7 @@ const PaymentPage = (props) => {
       <div className='hero-pay-div'>
         <div className='pay-back'>
           <button
-            onClick={() => props.navigate(`/cars/${id}`)}
+            onClick={() => navigate(`/cars/${id}`)}
             style={{ cursor: 'pointer' }}
             id='backBtn'
           >

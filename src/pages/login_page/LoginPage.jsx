@@ -10,8 +10,9 @@ import {
 import imagePath from '../../constants/imagePath'
 import validation from '../../validation/validation'
 import './Styled.css'
-
+import { useOutletContext } from 'react-router-dom'
 const LoginPage = (props) => {
+  const { navigate, pathname } = useOutletContext()
   const {
     errors,
     handleChange,
@@ -20,7 +21,7 @@ const LoginPage = (props) => {
     isSubmitted,
     validated,
     value,
-  } = validation(props)
+  } = validation(navigate, pathname)
 
   const renderAlert = (
     <Alert
@@ -58,7 +59,7 @@ const LoginPage = (props) => {
             className='m-3'
             controlId='FormPassword'
             isInvalid={validated && errors.password}
-            label='Create Password'
+            label='Password'
           >
             <FormControl
               minLength={6}

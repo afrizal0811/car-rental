@@ -1,11 +1,12 @@
 import { includes, map } from 'lodash'
 import React from 'react'
 import imagePath from '../../constants/imagePath'
-import { list, showPathname } from './help'
 import './Styled.css'
+import { list, showPathname } from './help'
 
 const Footer = (props) => {
-  const isShowElement = includes(showPathname, props.pathname)
+  const { context } = props
+  const isShowElement = includes(showPathname, context.pathname)
   const renderImage = (src, width = 40) => (
     <img
       alt=''

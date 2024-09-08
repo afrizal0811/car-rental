@@ -1,120 +1,74 @@
-import { includes, isNull } from 'lodash'
-import React, { useEffect } from 'react'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import LandingPage from './pages/landing_page/LandingPage'
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Layout from './Layout'
 import CarPage from './pages/car_page/CarPage'
 import DetailsPage from './pages/details_page/DetailsPage'
 import InstructionPage from './pages/instruction_page/InstructionPage'
+import LandingPage from './pages/landing_page/LandingPage'
 import LoginPage from './pages/login_page/LoginPage'
 import NotFound from './pages/not_found_page/NotFound'
 import PaymentPage from './pages/payment_page/PaymentPage'
 import RegisterPage from './pages/register_page/RegisterPage'
 import TicketPage from './pages/ticket_page/TicketPage'
-import Footer from './components/footer/Footer'
-import NavigationBar from './components/navigation_bar/NavigationBar'
-import { deleteAllCookies } from './utilities/handleCookies'
-import { getLocalStorage } from './utilities/handleStorage'
+// import { deleteAllCookies } from './utilities/handleCookies'
 
 const RouteHandler = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { pathname } = location
-  const isLoggin = !isNull(getLocalStorage('token'))
-
-  useEffect(() => {
-    const path = ['/', '/cars']
-    const isDelete = includes(path, pathname)
-    if (isDelete) deleteAllCookies()
-  }, [pathname])
+  // useEffect(() => {
+  //   const path = ['/', '/cars']
+  //   const isDelete = includes(path, pathname)
+  //   if (isDelete) deleteAllCookies()
+  // }, [pathname])
 
   return (
-    <div>
-      <NavigationBar
-        isLoggin={isLoggin}
-        navigate={navigate}
-        pathname={pathname}
-      />
-      <Routes>
+    <Routes>
+      <Route element={<Layout />}>
         <Route
           path='/'
-          element={
-            <LandingPage
-              navigate={navigate}
-              pathname={pathname}
-            />
-          }
+          element={<LandingPage />}
         />
         <Route
           path='/cars'
-          element={
-            <CarPage
-              isLoggin={isLoggin}
-              navigate={navigate}
-              pathname={pathname}
-            />
-          }
+          element={<CarPage />}
         />
         <Route
           path='/cars/:id'
-          element={
-            <DetailsPage
-              isLoggin={isLoggin}
-              navigate={navigate}
-            />
-          }
+          element={<DetailsPage />}
         />
         <Route
           path='/payment/:id'
-          element={
-            <PaymentPage
-              isLoggin={isLoggin}
-              navigate={navigate}
-            />
-          }
+          element={<PaymentPage />}
         />
         <Route
           path='/instruction/:id'
-          element={
-            <InstructionPage
-              isLoggin={isLoggin}
-              navigate={navigate}
-            />
-          }
+          element={<InstructionPage />}
         />
         <Route
           path='/ticket/:id'
-          element={
-            <TicketPage
-              isLoggin={isLoggin}
-              navigate={navigate}
-            />
-          }
+          element={<TicketPage />}
         />
         <Route
           path='/login'
-          element={
-            <LoginPage
-              navigate={navigate}
-              pathname={pathname}
-            />
-          }
+          element={<LoginPage />}
         />
         <Route
           path='/register'
-          element={
-            <RegisterPage
-              navigate={navigate}
-              pathname={pathname}
-            />
-          }
+          element={<RegisterPage />}
         />
         <Route
-          path='*'
           element={<NotFound />}
+          path='404'
         />
-      </Routes>
-      <Footer pathname={pathname} />
-    </div>
+        <Route
+          element={
+            <Navigate
+              replace
+              to='404'
+            />
+          }
+          path='*'
+        />
+      </Route>
+    </Routes>
   )
 }
 

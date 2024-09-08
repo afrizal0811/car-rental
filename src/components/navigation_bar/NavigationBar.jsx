@@ -2,14 +2,15 @@ import { includes } from 'lodash'
 import React from 'react'
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Button } from '../bootstrapComponent'
 import imagePath from '../../constants/imagePath'
 import { deleteAllCookies } from '../../utilities/handleCookies'
 import { deleteLocalStorage } from '../../utilities/handleStorage'
+import { Button } from '../bootstrapComponent'
 import './Styled.css'
 
 const NavigationBar = (props) => {
-  const { navigate, pathname, isLoggin } = props
+  const { context } = props
+  const { navigate, pathname, isLoggin } = context
   const showPathname = ['/login', '/register']
   const isShowElement = includes(showPathname, pathname)
   const navbarClass = isShowElement ? 'navi-white' : 'navigator'

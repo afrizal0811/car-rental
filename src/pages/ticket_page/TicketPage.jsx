@@ -3,13 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
 import { isEmpty } from 'lodash'
 import React, { useEffect } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import Status from '../../components/Status'
 import { Button, Card } from '../../components/bootstrapComponent'
 import PdfComp from './PdfComp'
-import { cookiesData } from './help'
 import './Styled.css'
-const TicketPage = (props) => {
-  const { isLoggin, navigate } = props
+import { cookiesData } from './help'
+
+const TicketPage = () => {
+  const { isLoggin, navigate } = useOutletContext()
   const data = cookiesData()
   const isDataEmpty = isEmpty(data)
 
@@ -69,7 +71,7 @@ const TicketPage = (props) => {
           <Button
             text='Kembali'
             id='ticketBtn'
-            onClick={() => props.navigate('/')}
+            onClick={() => navigate('/')}
           />
         </div>
       </div>

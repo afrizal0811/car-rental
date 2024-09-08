@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import { map } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import { Accordion, Button, Card } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
 import { setCookies } from '../../utilities/handleCookies'
@@ -11,11 +11,11 @@ import {
   localeDateAllNumber,
   localePriceFormat,
 } from '../../utilities/handleLocale'
-import { dataList, dateNow, endDate } from './help'
 import './Styled.css'
+import { dataList, dateNow, endDate } from './help'
 
-const DetailsPage = (props) => {
-  const { isLoggin, navigate } = props
+const DetailsPage = () => {
+  const { isLoggin, navigate } = useOutletContext()
   const [tanggal, setTanggal] = useState('')
   const { id } = useParams()
   const selectedCar = carList.find((data) => data.id === parseInt(id))
@@ -38,7 +38,7 @@ const DetailsPage = (props) => {
       { name: 'car', value: selectedCar },
     ]
     setCookies('detail', cookies)
-    props.navigate(`/payment/${id}`)
+    navigate(`/payment/${id}`)
   }
 
   const renderDataList = (
@@ -54,7 +54,7 @@ const DetailsPage = (props) => {
       <div className='hero-car-div'>
         <div className='car-back'>
           <button
-            onClick={() => props.navigate(`/cars`)}
+            onClick={() => navigate(`/cars`)}
             style={{ cursor: 'pointer' }}
             id='backBtn'
           >

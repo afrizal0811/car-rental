@@ -1,7 +1,7 @@
 import { faArrowLeft, faCheck, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import {
   Button,
@@ -16,11 +16,11 @@ import {
   setCookies,
 } from '../../utilities/handleCookies'
 import InstructionItem from './InstructionItem'
-import { cookiesData, tommorowDate } from './help'
 import './Styled.css'
+import { cookiesData, tommorowDate } from './help'
 
-const InstructionPage = (props) => {
-  const { isLoggin, navigate } = props
+const InstructionPage = () => {
+  const { isLoggin, navigate } = useOutletContext()
   const { id } = useParams()
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)

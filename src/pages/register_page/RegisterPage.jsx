@@ -58,7 +58,7 @@ const RegisterPage = (props) => {
             className='m-3'
             controlId='FormPassword'
             isInvalid={validated && errors.password}
-            label='Create Password'
+            label='Password'
           >
             <FormControl
               minLength={6}

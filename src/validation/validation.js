@@ -5,9 +5,9 @@ import { getApi, postApi } from '../utilities/handleApi'
 import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
 
-const validation = (props) => {
-  const isRegister = props.pathname === '/register'
-  const isLogin = props.pathname === '/login'
+const validation = (navigate, pathname) => {
+  const isRegister = pathname === '/register'
+  const isLogin = pathname === '/login'
   const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
@@ -52,7 +52,7 @@ const validation = (props) => {
     )
     if (!isEmpty(filteredUser) && isErrorEmpty) {
       setLocalStorage('token', 'testToken123')
-      props.navigate('/')
+      navigate('/')
     } else {
       if (isErrorEmpty) {
         setIsSubmitted(true)
@@ -81,7 +81,7 @@ const validation = (props) => {
         }
         await postApi(url, params)
         setIsSubmitted(true)
-        props.navigate('/login')
+        navigate('/login')
       }
     } else {
       if (isErrorEmpty) {

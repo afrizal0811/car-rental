@@ -1,7 +1,7 @@
 import { every, isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
-import { useSearchParams } from 'react-router-dom'
+import { useOutletContext, useSearchParams } from 'react-router-dom'
 import {
   Button,
   Card,
@@ -10,15 +10,15 @@ import {
   FormSelect,
 } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
-import SectionHero from '../landing_page/hero/Hero'
 import { localePriceFormat } from '../../utilities/handleLocale'
-import { hargaOptions, kategoriOptions, sorting, statusOptions } from './help'
+import SectionHero from '../landing_page/hero/Hero'
 import './Styled.css'
+import { hargaOptions, kategoriOptions, sorting, statusOptions } from './help'
 
 const CarPage = (props) => {
   const [filteredCarList, setFilteredCarList] = useState('')
   const [searchParams] = useSearchParams()
-  const { isLoggin, navigate } = props
+  const { isLoggin, navigate } = useOutletContext()
 
   useEffect(() => {
     if (!isLoggin) {

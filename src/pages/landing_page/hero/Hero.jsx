@@ -1,10 +1,11 @@
 import React from 'react'
-import imagePath from '../../../constants/imagePath'
+import { useOutletContext } from 'react-router-dom'
 import { Button } from '../../../components/bootstrapComponent'
+import imagePath from '../../../constants/imagePath'
 import './Styled.css'
 
-const Hero = (props) => {
-  const { navigate, pathname } = props
+const Hero = () => {
+  const { navigate, pathname } = useOutletContext()
   return (
     <div>
       <section className='hero-section'>
