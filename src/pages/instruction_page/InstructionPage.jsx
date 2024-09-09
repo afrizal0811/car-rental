@@ -1,6 +1,7 @@
 import { faArrowLeft, faCheck, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
+import { Col, Row } from 'react-bootstrap'
 import { useOutletContext, useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import {
@@ -22,11 +23,11 @@ import { cookiesData, tommorowDate } from './help'
 const InstructionPage = () => {
   const { isLoggin, navigate } = useOutletContext()
   const { id } = useParams()
-  const [isConfirmed, setIsConfirmed] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
   const [isCopied, seIsCopied] = useState({
     'Nomor Rekening': false,
     Harga: false,
+    'Order Id': false,
   })
   const [isLoading, setIsLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
@@ -63,9 +64,9 @@ const InstructionPage = () => {
 
   const renderCopyText = (text, type, isCopy) => (
     <div>
-      <p className='fs-6 mt-3 ms-1 mb-1'>{type}</p>
-      <div className='copy'>
-        <p style={{ margin: '0', padding: '0' }}>{text}</p>
+      <p className='fs-6 mt-3 mb-1'>{type}</p>
+      <div className='d-flex align-items-center justify-content-between p-2 border border-dark'>
+        <p className='m-0 p-0'>{text}</p>
         <Tooltip
           id={text}
           title='copy'
@@ -86,48 +87,18 @@ const InstructionPage = () => {
   )
 
   const renderLoading = (
-    <div className='load-wrapper'>
-      <div className='load'></div>
+    <div className='d-flex align-items-center justify-content-center border mb-3'>
+      <div
+        className='spinner-grow m-5'
+        role='status'
+      >
+        <span className='sr-only'>Loading...</span>
+      </div>
     </div>
   )
 
   const uploadInfo =
     'Terima kasih telah melakukan konfirmasi pembayaran. Upload bukti bayarmu untuk mempermudah proses penyewaan.'
-
-  const renderUploadButton = (
-    <Card
-      title={
-        !isUploaded ? 'Konfirmasi Pembayaran' : 'File berhasil di-upload !'
-      }
-      info={!isUploaded && uploadInfo}
-      className='ins-item upload'
-    >
-      {isLoading ? renderLoading : !isUploaded && renderDropzone}
-      <div className='d-grid mt-auto'>
-        <Button
-          variant='success'
-          disabled={!isUploaded}
-          onClick={handleOnClick}
-          text='Next'
-        />
-      </div>
-    </Card>
-  )
-
-  const renderConfirmButton = (
-    <Card
-      className='ins-item upload'
-      info=' Klik konfirmasi pembayaran untuk mempercepat proses pengecekan'
-    >
-      <div className='d-grid mt-auto'>
-        <Button
-          variant='success'
-          onClick={() => setIsConfirmed(true)}
-          text='Konfirmasi Pembayaran'
-        />
-      </div>
-    </Card>
-  )
 
   return (
     <div>
@@ -139,63 +110,89 @@ const InstructionPage = () => {
         textRefuse='Tidak'
         textAccept='Ya'
       />
-      <div className='hero-dv'>
-        <div className='tf-back'>
-          <button
+      <div className='d-flex flex-column flex-md-row align items-start align-items-md-center justify-content-center justify-content-md-between px-3 px-md-5 gap-3 gap-md-0 w-100 hero-inst-div'>
+        <div>
+          <Button
+            icon={<FontAwesomeIcon icon={faArrowLeft} />}
+            variant='success'
             onClick={() => setShowModal(true)}
-            style={{ cursor: 'pointer' }}
-            id='backBtn'
-          >
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              size='2x'
-            />
-          </button>
-          <div>
-            <strong className='ps-4 fs-5'>{data.bankName} Transfer</strong>
-            <p className='ps-4 fs-7'>Order ID: {data.orderId}</p>
-          </div>
+            text='Kembali'
+          />
         </div>
-        <div className=' pb-4'>
+        <div className='d-flex flex-column gap-1'>
           <Status current={['current', 'current', 'num']} />
         </div>
       </div>
-      <div className='ins-container'>
-        <div>
-          <Card
-            className='ins-item'
-            titleClass='fw-bold fs-6'
-            title='Selesaikan Pembayaran Sebelum'
-            info={tommorowDate()}
-          />
-          <Card
-            className='ins-item'
-            titleClass='fw-bold fs-6 ms-1'
-            title='Lakukan Transfer Ke'
+      <div className='d-flex flex-column flex-md-row gap-3 px-1 mx-1 px-md-4 mx-md-3'>
+        <Row className='d-flex flex-column flex-md-row justify-content-between align-items-center gap-3  w-100 inst-container'>
+          <Col
+            sm='12'
+            md='12'
           >
-            <div className='btn-bank'>
-              <div className='tmbl'>{data.bankName}</div>
-              <div className='d-flex flex-column'>
-                <div>{data.bankName}</div>
-                <div>a.n Binar Car Rental</div>
+            <Card
+              className='mx-2'
+              titleClass='fw-bold fs-6'
+              title='Selesaikan Pembayaran Sebelum'
+              info={tommorowDate()}
+            />
+          </Col>
+          <Col md='12'>
+            <Card
+              className='mx-2'
+              titleClass='fw-bold fs-6'
+              title='Lakukan Transfer Ke'
+            >
+              <div className='d-flex w-100 align-items-center text-decoration-none text-dark my-2 gap-3'>
+                <div className='d-flex align-items-center justify-content-center py-2 w-25 rounded border'>
+                  {data.bankName}
+                </div>
+                <div className='d-flex flex-column'>
+                  <div>{data.bankName}</div>
+                  <div>a.n Binar Car Rental</div>
+                </div>
               </div>
-            </div>
-            {renderCopyText(
-              '54104257877',
-              'Nomor Rekening',
-              isCopied['Nomor Rekening']
-            )}
-            {renderCopyText(data.price, 'Harga', isCopied['Harga'])}
-          </Card>
-          <Card
-            className='ins-item'
-            titleClass='fw-bold fs-6 ms-1 mb-3'
-            title='Instruksi Pembayaran'
-          >
-            <InstructionItem bank={data.bankName} />
-          </Card>
-        </div>
-        {isConfirmed ? renderUploadButton : renderConfirmButton}
+              {renderCopyText(data.orderId, 'Order Id', isCopied['Order Id'])}
+              {renderCopyText(
+                '54104257877',
+                'Nomor Rekening',
+                isCopied['Nomor Rekening']
+              )}
+              {renderCopyText(data.price, 'Harga', isCopied['Harga'])}
+            </Card>
+          </Col>
+          <Col md='12'>
+            <Card
+              className='mx-2'
+              titleClass='fw-bold fs-6'
+              title='Instruksi Pembayaran'
+            >
+              <InstructionItem />
+            </Card>
+          </Col>
+        </Row>
+        <Row className='d-flex flex-column flex-md-row gap-3  w-100 inst-container'>
+          <Col md='12'>
+            <Card
+              title={
+                !isUploaded
+                  ? 'Konfirmasi Pembayaran'
+                  : 'File berhasil di-upload !'
+              }
+              info={!isUploaded && uploadInfo}
+              className='mx-2'
+            >
+              {isLoading ? renderLoading : !isUploaded && renderDropzone}
+              <div className='d-grid mt-auto'>
+                <Button
+                  variant='success'
+                  disabled={!isUploaded}
+                  onClick={handleOnClick}
+                  text='Next'
+                />
+              </div>
+            </Card>
+          </Col>
+        </Row>
       </div>
     </div>
   )
