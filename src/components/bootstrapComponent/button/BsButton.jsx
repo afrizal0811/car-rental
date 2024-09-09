@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 const BsButton = (props) => {
-  const { variant, type, className, text, onClick, hidden, id, disabled } = props || ''
+  const { icon, variant, type, className, text, onClick, hidden, id, disabled } = props || ''
   return (
     <Button
       variant={variant}
@@ -13,7 +13,7 @@ const BsButton = (props) => {
       id={id}
       disabled={disabled}
     >
-      {text}
+      {icon} {text}
     </Button>
   )
 }

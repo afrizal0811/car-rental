@@ -1,22 +1,6 @@
 .detail-section {
   position: relative;
   bottom: 6rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column-reverse;
-}
-
-.car-back {
-  display: flex;
-  padding-bottom: 1rem;
-}
-
-.card-detail,
-.card-detail-total {
-  margin: 1rem 2rem;
-  width: auto;
 }
 
 .detail-list li {
@@ -25,25 +9,7 @@
   color: #8a8a8a;
 }
 
-.detail-title {
-  font-weight: 700;
-  font-size: 114px;
-  line-height: 20px;
-}
-
-.category {
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 14px;
-  padding-bottom: 1rem;
-  color: #8a8a8a;
-}
-
-.category-icon {
-  padding-right: 0.5rem;
-}
-
-.date-picker {
+.card-info {
   font-weight: 300;
   font-size: 12px;
   line-height: 18px;
@@ -52,47 +18,4 @@
 .hero-car-div {
   background-color: #f1f3ff;
   height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 0 2.2rem;
-}
-
-.tggl {
-  width: 100% !important;
-}
-
-@media only screen and (min-width: 768px) {
-  .detail-section {
-    align-items: stretch;
-    justify-content: center;
-    flex-direction: row;
-  }
-
-  .card-detail-total {
-    margin: 1rem;
-    width: 18rem;
-  }
-
-  .card-detail {
-    margin: 1rem;
-    width: 50%;
-  }
-
-  .hero-car-div {
-    padding: 0 4rem;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .detail-section {
-    margin-top: 2rem;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: center;
-  }
-  .hero-car-div {
-    padding: 0 15rem;
-  }
 }

@@ -1,8 +1,9 @@
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
-import { map } from 'lodash'
+import { find, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
+import { Col, Row } from 'react-bootstrap'
 import { useOutletContext, useParams } from 'react-router-dom'
 import { Accordion, Button, Card } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
@@ -18,7 +19,7 @@ const DetailsPage = () => {
   const { isLoggin, navigate } = useOutletContext()
   const [tanggal, setTanggal] = useState('')
   const { id } = useParams()
-  const selectedCar = carList.find((data) => data.id === parseInt(id))
+  const selectedCar = find(carList, { id: parseInt(id) })
 
   useEffect(() => {
     if (!isLoggin) {
@@ -51,66 +52,68 @@ const DetailsPage = () => {
 
   return (
     <div key={selectedCar.id}>
-      <div className='hero-car-div'>
-        <div className='car-back'>
-          <button
-            onClick={() => navigate(`/cars`)}
-            style={{ cursor: 'pointer' }}
-            id='backBtn'
-          >
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              size='2x'
-            />
-          </button>
-          <strong className='ps-4 fs-5'>Kembali</strong>
-        </div>
+      <div className='d-flex flex-column align-items-start justify-content-center px-5 hero-car-div'>
+        <Button
+          icon={<FontAwesomeIcon icon={faArrowLeft} />}
+          variant='success'
+          onClick={() => navigate('/cars')}
+          text='Kembali'
+        />
       </div>
-      <div className='detail-section'>
-        <Card
-          title='Tentang Paket'
-          info='Include'
-          className='card-detail'
+      <Row className='flex-column-reverse flex-lg-row align-items-center align-items-md-stretch justify-content-center m-4 detail-section'>
+        <Col
+          sm='12'
+          lg='6'
         >
-          {renderDataList}
-          <Accordion
-            header='Refund, Reschedule, Overtime'
-            index={selectedCar.id}
+          <Card
+            title='Tentang Paket'
+            info='Include'
+            className='w-100 h-100 my-2 mx-2 '
           >
             {renderDataList}
-          </Accordion>
-        </Card>
-        <Card
-          data={selectedCar}
-          info='Tentukan lama sewa mobil (max. 7 hari)'
-          infoClass='date-picker'
-          className='card-detail-total'
-          isHaveImage='true'
-          isHaveCategory='true'
+            <Accordion
+              header='Refund, Reschedule, Overtime'
+              index={selectedCar.id}
+            >
+              {renderDataList}
+            </Accordion>
+          </Card>
+        </Col>
+        <Col
+          sm='12'
+          lg='6'
         >
-          <DateRangePicker
-            onChange={setTanggal}
-            value={tanggal}
-            format='dd-MM-y'
-            minDate={dateNow}
-            maxDate={endDate(dateNow, 6)}
-            rangeDivider={' to '}
-            className='tggl'
-          />
-          <strong className='d-flex justify-content-between mt-5'>
-            <p>Total</p>
-            {localePriceFormat(selectedCar.price)}
-          </strong>
-          <div className='d-grid mt-auto'>
-            <Button
-              variant='success'
-              disabled={!tanggal}
-              onClick={() => handleViewDetail(`${id}`)}
-              text='Lanjutkan Pembayaran'
+          <Card
+            data={selectedCar}
+            info='Tentukan lama sewa mobil (max. 7 hari)'
+            infoClass='card-info'
+            className='w-100 h-100 my-2 mx-2'
+            isHaveImage='true'
+            isHaveCategory='true'
+          >
+            <DateRangePicker
+              onChange={setTanggal}
+              value={tanggal}
+              format='dd-MM-y'
+              minDate={dateNow}
+              maxDate={endDate(dateNow, 6)}
+              rangeDivider={' to '}
             />
-          </div>
-        </Card>
-      </div>
+            <strong className='d-flex justify-content-between mt-5'>
+              <p>Total</p>
+              {localePriceFormat(selectedCar.price)}
+            </strong>
+            <div className='d-grid mt-auto'>
+              <Button
+                variant='success'
+                disabled={!tanggal}
+                onClick={() => handleViewDetail(`${id}`)}
+                text='Lanjutkan Pembayaran'
+              />
+            </div>
+          </Card>
+        </Col>
+      </Row>
     </div>
   )
 }

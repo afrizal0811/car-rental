@@ -135,7 +135,7 @@ const CarPage = (props) => {
             className='d-flex gap-3 justify-content-end mt-4'
           >
             <Button
-              variant='light'
+              variant='outline-success'
               text='Reset Filter'
               onClick={() => navigate('/cars')}
             />
