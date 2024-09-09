@@ -6,16 +6,13 @@ import imagePath from '../../constants/imagePath'
 import { deleteAllCookies } from '../../utilities/handleCookies'
 import { deleteLocalStorage } from '../../utilities/handleStorage'
 import { Button } from '../bootstrapComponent'
-import './Styled.css'
+import { showPathname } from './help'
 
 const NavigationBar = (props) => {
   const { context } = props
   const { navigate, pathname, params, isLoggin } = context
-  const {id} = params
-  const showPathname = ['/login', '/register', '/404', `/ticket/${id}`]
-  const isShowElement = includes(showPathname, pathname)
-  const navbarClass = isShowElement ? 'navi-white' : 'navigator'
-
+  const { id } = params
+  const isShowElement = includes(showPathname(id), pathname)
 
   const handleLogin = () => {
     navigate('/login')
@@ -29,14 +26,14 @@ const NavigationBar = (props) => {
 
   const navLink = (href, title) => (
     <Nav.Link href={href}>
-      <p className='p-navi'>{title}</p>
+      <p className='m-0 text-black'>{title}</p>
     </Nav.Link>
   )
 
   const logo = (
     <Link
       to='/'
-      className='brand-logo'
+      className='ms-2 ms-md-5'
     >
       <img
         src={imagePath.logo}
@@ -51,7 +48,8 @@ const NavigationBar = (props) => {
       <Navbar
         key='md'
         expand='md'
-        className={`py-3 ${navbarClass}`}
+        style={{ backgroundColor: !isShowElement && '#f1f3ff' }}
+        className={`py-3 ${isShowElement && 'bg-white shadow-sm'}`}
       >
         <Container fluid>
           {logo}
@@ -74,6 +72,7 @@ const NavigationBar = (props) => {
                   onClick={!isLoggin ? handleLogin : handleLogout}
                   hidden={isShowElement}
                   text={!isLoggin ? 'Login' : 'Logout'}
+                  
                 />
               </Nav>
             </Offcanvas.Body>
