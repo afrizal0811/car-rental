@@ -68,11 +68,10 @@ const NavigationBar = (props) => {
                 {navLink('/#testi', 'Testimonial')}
                 {navLink('/#faq', 'FAQ')}
                 <Button
-                  variant={!isLoggin ? 'success' : 'danger'}
+                  variant={!isLoggin ? 'outline-success' : 'outline-danger'}
                   onClick={!isLoggin ? handleLogin : handleLogout}
                   hidden={isShowElement}
                   text={!isLoggin ? 'Login' : 'Logout'}
-                  
                 />
               </Nav>
             </Offcanvas.Body>
