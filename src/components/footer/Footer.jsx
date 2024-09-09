@@ -1,16 +1,17 @@
 import { includes, map } from 'lodash'
 import React from 'react'
+import { Col, Row } from 'react-bootstrap'
 import imagePath from '../../constants/imagePath'
-import './Styled.css'
 import { list, showPathname } from './help'
 
 const Footer = (props) => {
   const { context } = props
-  const isShowElement = includes(showPathname, context.pathname)
+  const { pathname } = context
+  const isShowElement = includes(showPathname, pathname)
   const renderImage = (src, width = 40) => (
     <img
       alt=''
-      className='connect'
+      className='px-1'
       src={src}
       width={width}
     />
@@ -18,22 +19,43 @@ const Footer = (props) => {
 
   return (
     <div hidden={!isShowElement}>
-      <div className='footer-container'>
-        <div className='footer-detail'>
+      <Row
+        className='p-5 d-flex '
+        style={{ backgroundColor: '#f1f3ff' }}
+      >
+        <Col
+          sm='12'
+          md='3'
+          className='lh-1'
+        >
           <p>Jalan Suroyo No. 161 Mayangan Kota Probolinggo, 67213</p>
           <p>binarcarrental@gmail.com</p>
           <p>081-233-334-808</p>
-        </div>
-        <div className='footer-list'>
-          <ul className='menu-list'>
+        </Col>
+        <Col
+          sm='12'
+          md='3'
+        >
+          <ul
+            className='d-flex flex-column gap-1 p-0 w-75 m-auto'
+            style={{ listStyleType: 'none' }}
+          >
             {map(list, (data, index) => (
               <li key={index}>
-                <a href={data.link}>{data.title}</a>
+                <a
+                  href={data.link}
+                  className='text-decoration-none text-black '
+                >
+                  {data.title}
+                </a>
               </li>
             ))}
           </ul>
-        </div>
-        <div className='footer-connect'>
+        </Col>
+        <Col
+          sm='12'
+          md='3'
+        >
           <p>Connect with us</p>
           <div>
             {renderImage(imagePath.iconFacebook)}
@@ -42,12 +64,15 @@ const Footer = (props) => {
             {renderImage(imagePath.iconEmail)}
             {renderImage(imagePath.iconTwitch)}
           </div>
-        </div>
-        <div className='footer-copyright'>
+        </Col>
+        <Col
+          sm='12'
+          md='3'
+        >
           <p>Copyright &copy; 2022 Binar Car Rental</p>
-          <div className='logo-square'>{renderImage(imagePath.logo, 80)}</div>
-        </div>
-      </div>
+          {renderImage(imagePath.logo, 100)}
+        </Col>
+      </Row>
     </div>
   )
 }

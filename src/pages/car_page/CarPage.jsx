@@ -130,8 +130,6 @@ const CarPage = (props) => {
 
           <Col
             sm='12'
-            md='6'
-            lg='12'
             className='d-flex gap-3 justify-content-end mt-4'
           >
             <Button

@@ -1,19 +1,19 @@
 export const list = [
   {
     title: 'Our Services',
-    link: '#services',
+    link: '/#services',
   },
   {
     title: 'Why Us',
-    link: '#products',
+    link: '/#products',
   },
   {
     title: 'Testimonial',
-    link: '#testi',
+    link: '/#testi',
   },
   {
     title: 'FAQ',
-    link: '#faq',
+    link: '/#faq',
   },
 ]
 
