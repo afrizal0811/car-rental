@@ -1,8 +1,8 @@
-import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { Form } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useOutletContext, useParams } from 'react-router-dom'
 import Status from '../../components/Status'
 import {
@@ -13,8 +13,8 @@ import {
 } from '../../components/bootstrapComponent'
 import { setCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
-import { cookiesData } from './help'
 import './Styled.css'
+import { cookiesData } from './help'
 
 const PaymentPage = () => {
   const { isLoggin, navigate } = useOutletContext()
@@ -62,19 +62,19 @@ const PaymentPage = () => {
     navigate(`/instruction/${id}`)
   }
 
-  const renderBankButton = (name, state) => (
+  const renderBankButton = (name) => (
     <a
-      className='btn-bank'
+      className='d-flex w-100 align-items-center text-decoration-none text-dark my-2 gap-3 btn-hover'
       onClick={(e) => handleClickBank(e, name)}
     >
-      <div className='tmbl'>{name}</div>
+      <div
+        className={`d-flex align-items-center justify-content-center py-2 w-25 rounded border ${
+          isBankCheck[name] ? 'text-success border-success' : 'text-dark'
+        }`}
+      >
+        {name}
+      </div>
       <div className='tmbl-text'>{name} Transfer</div>
-      {state && (
-        <FontAwesomeIcon
-          icon={faCheck}
-          className='ico'
-        />
-      )}
     </a>
   )
 
@@ -93,125 +93,134 @@ const PaymentPage = () => {
         textRefuse='Periksa Kembali'
         textAccept='Lanjutkan Pesanan'
       />
-      <div className='hero-pay-div'>
-        <div className='pay-back'>
-          <button
-            onClick={() => navigate(`/cars/${id}`)}
-            style={{ cursor: 'pointer' }}
-            id='backBtn'
-          >
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              size='2x'
-            />
-          </button>
-          <strong className='ps-4 fs-5'>Pembayaran</strong>
+      <div className='d-flex flex-column flex-md-row align items-start align-items-md-center justify-content-center justify-content-md-between px-3 px-md-5 gap-4 gap-md-0 w-100 hero-pay-div'>
+        <div>
+          <Button
+            icon={<FontAwesomeIcon icon={faArrowLeft} />}
+            variant='success'
+            onClick={() => navigate('/cars/' + id)}
+            text='Kembali'
+          />
         </div>
         <div className='d-flex'>
           <Status current={['current', 'num', 'num']} />
         </div>
       </div>
       <div>
-        <Form className='form-pesan'>
-          <h1 className='fw-bold fs-6 mb-3'>Detail Pesananmu</h1>
-          <div className='title-pesan'>
-            <FormGroup
-              controlId='namaMobil'
-              className='isi-pesan'
-              label='Nama Mobil'
-            >
-              <p className='text-capitalize text-black-50'>{data.car.name}</p>
-            </FormGroup>
-            <FormGroup
-              controlId='kategoriMobil'
-              className='isi-pesan'
-              label='Kategori'
-            >
-              <p className='text-capitalize text-black-50'>
-                {data.car.category}
-              </p>
-            </FormGroup>
-            <FormGroup
-              controlId='mulaiSewa'
-              className='isi-pesan'
-              label='Tanggal Mulai Sewa'
-            >
-              <p className='text-capitalize text-black-50'>
-                {data.tanggalAwal}
-              </p>
-            </FormGroup>
-            <FormGroup
-              controlId='akhirSewa'
-              className='isi-pesan'
-              label='Tanggal Akhir Sewa'
-            >
-              <p className='text-capitalize text-black-50'>
-                {data.tanggalAkhir}
-              </p>
-            </FormGroup>
-          </div>
-        </Form>
-        <div className='select-bank'>
-          <Card
-            className='card-bank-detail'
-            title='Pilih Bank Transfer'
-            info='Kamu bisa membayar dengan transfer melalui ATM, Internet Banking, atau Mobile Banking'
-            titleClass='fw-bold mb-4'
+        <Row className='p-4 mx-5 shadow rounded bg-white d-flex flex-column form-pesan'>
+          <Col>
+            <h1 className='fw-bold fs-6 mb-3'>Detail Pesananmu</h1>
+          </Col>
+          <Col>
+            <div className='d-flex flex-column flex-md-row justify-content-between'>
+              <FormGroup
+                controlId='namaMobil'
+                className='d-flex flex-row flex-md-column justify-content-between gap-3 pt-1'
+                label='Nama Mobil'
+              >
+                <p className='text-capitalize text-black-50'>{data.car.name}</p>
+              </FormGroup>
+              <FormGroup
+                controlId='kategoriMobil'
+                className='d-flex flex-row flex-md-column justify-content-between gap-3 pt-1'
+                label='Kategori'
+              >
+                <p className='text-capitalize text-black-50'>
+                  {data.car.category}
+                </p>
+              </FormGroup>
+              <FormGroup
+                controlId='mulaiSewa'
+                className='d-flex flex-row flex-md-column justify-content-between gap-3 pt-1'
+                label='Tanggal Mulai Sewa'
+              >
+                <p className='text-capitalize text-black-50'>
+                  {data.tanggalAwal}
+                </p>
+              </FormGroup>
+              <FormGroup
+                controlId='akhirSewa'
+                className='d-flex flex-row flex-md-column justify-content-between gap-3 pt-1'
+                label='Tanggal Akhir Sewa'
+              >
+                <p className='text-capitalize text-black-50'>
+                  {data.tanggalAkhir}
+                </p>
+              </FormGroup>
+            </div>
+          </Col>
+        </Row>
+        <Row className='d-flex flex-column flex-md-row align-items-stretch justify-content-between px-5  gap-3 gap-lg-0'>
+          <Col
+            sm='12'
+            lg='6'
           >
-            {renderBankButton('BCA', isBankCheck.BCA)}
-            {renderBankButton('BNI', isBankCheck.BNI)}
-            {renderBankButton('Mandiri', isBankCheck.Mandiri)}
-          </Card>
-          <Card
-            info={data.car.category}
-            className='card-total-pay'
-            title={data.car.name}
-            infoClass='date-picker'
+            <Card
+              className='w-100 h-100 d-flex gap-3'
+              title='Pilih Bank Transfer'
+              info='Kamu bisa membayar dengan transfer melalui ATM, Internet Banking, atau Mobile Banking'
+              titleClass='fw-bold mb-4'
+            >
+              {renderBankButton('BCA')}
+              {renderBankButton('BNI')}
+              {renderBankButton('Mandiri')}
+            </Card>
+          </Col>
+          <Col
+            sm='12'
+            lg='6'
           >
-            <div className='py-1'>
-              <strong>Harga</strong>
-              <ul className='total-pay'>
-                <li>
-                  Sewa Mobil {renderCost(false)} x {data.lamaHari} hari
-                </li>
-                {renderCost(true)}
-              </ul>
-            </div>
-            <div className='py-1'>
-              <strong>Biaya Lainnya</strong>
-              <ul className='total-pay'>
-                <div>
-                  <li>Pajak</li>
-                  <li>Biaya makan sopir</li>
-                </div>
-                <div>
-                  <p style={{ margin: 0, color: '#5CB85F' }}>Termasuk</p>
-                  <p style={{ margin: 0, color: '#5CB85F' }}>Termasuk</p>
-                </div>
-              </ul>
-            </div>
-            <div className='py-1'>
-              <strong>Belum Termasuk</strong>
-              <ul style={{ fontSize: '12px', paddingTop: '0.5rem' }}>
-                <li>Bensin</li>
-                <li>Tol dan parkir</li>
-              </ul>
-            </div>
-            <hr />
-            <div className='all-total'>
-              <strong>Total</strong>
-              <strong>{renderCost(true)}</strong>
-            </div>
-            <div className='d-grid mt-auto'>
-              <Button
-                variant='success'
-                disabled={!bankName}
-                onClick={() => setShowModal(true)}
-                text='Bayar'
-              />
-            </div>
-          </Card>
-        </div>
+            <Card
+              info={data.car.category}
+              className='w-100 h-100'
+              title={data.car.name}
+              infoClass='date-picker'
+            >
+              <div className='py-1'>
+                <strong>Harga</strong>
+                <ul className='total-pay'>
+                  <li>
+                    Sewa Mobil {renderCost(false)} x {data.lamaHari} hari
+                  </li>
+                  {renderCost(true)}
+                </ul>
+              </div>
+              <div className='py-1'>
+                <strong>Biaya Lainnya</strong>
+                <ul className='total-pay'>
+                  <div>
+                    <li>Pajak</li>
+                    <li>Biaya makan sopir</li>
+                  </div>
+                  <div>
+                    <p style={{ margin: 0, color: '#5CB85F' }}>Termasuk</p>
+                    <p style={{ margin: 0, color: '#5CB85F' }}>Termasuk</p>
+                  </div>
+                </ul>
+              </div>
+              <div className='py-1'>
+                <strong>Belum Termasuk</strong>
+                <ul style={{ fontSize: '12px', paddingTop: '0.5rem' }}>
+                  <li>Bensin</li>
+                  <li>Tol dan parkir</li>
+                </ul>
+              </div>
+              <hr />
+              <div className='d-flex justify-content-between mb-4'>
+                <strong>Total</strong>
+                <strong>{renderCost(true)}</strong>
+              </div>
+              <div className='d-grid mt-auto'>
+                <Button
+                  variant='success'
+                  disabled={!bankName}
+                  onClick={() => setShowModal(true)}
+                  text='Bayar'
+                />
+              </div>
+            </Card>
+          </Col>
+        </Row>
       </div>
     </div>
   )
