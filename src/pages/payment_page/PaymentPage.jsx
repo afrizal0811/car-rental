@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { useOutletContext, useParams } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 import Status from '../../components/Status'
 import {
   Button,
@@ -17,8 +17,8 @@ import './Styled.css'
 import { cookiesData } from './help'
 
 const PaymentPage = () => {
-  const { isLoggin, navigate } = useOutletContext()
-  const { id } = useParams()
+  const { isLoggin, navigate, params } = useOutletContext()
+  const { id } = params
   const [isBankCheck, setIsBankCheck] = useState({
     BCA: false,
     BNI: false,

@@ -10,10 +10,12 @@ import './Styled.css'
 
 const NavigationBar = (props) => {
   const { context } = props
-  const { navigate, pathname, isLoggin } = context
-  const showPathname = ['/login', '/register']
+  const { navigate, pathname, params, isLoggin } = context
+  const {id} = params
+  const showPathname = ['/login', '/register', `/ticket/${id}`]
   const isShowElement = includes(showPathname, pathname)
   const navbarClass = isShowElement ? 'navi-white' : 'navigator'
+
 
   const handleLogin = () => {
     navigate('/login')
@@ -49,7 +51,7 @@ const NavigationBar = (props) => {
       <Navbar
         key='md'
         expand='md'
-        className={navbarClass}
+        className={`py-3 ${navbarClass}`}
       >
         <Container fluid>
           {logo}

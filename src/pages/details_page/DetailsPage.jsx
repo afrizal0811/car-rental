@@ -4,7 +4,7 @@ import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import { find, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { useOutletContext, useParams } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 import { Accordion, Button, Card } from '../../components/bootstrapComponent'
 import carList from '../../constants/carList'
 import { setCookies } from '../../utilities/handleCookies'
@@ -16,9 +16,9 @@ import './Styled.css'
 import { dataList, dateNow, endDate } from './help'
 
 const DetailsPage = () => {
-  const { isLoggin, navigate } = useOutletContext()
+  const { isLoggin, navigate, params } = useOutletContext()
+  const { id } = params
   const [tanggal, setTanggal] = useState('')
-  const { id } = useParams()
   const selectedCar = find(carList, { id: parseInt(id) })
 
   useEffect(() => {

@@ -30,38 +30,25 @@ const TicketPage = () => {
     navigate('/')
   }
 
-  const pdfDocument = <PdfComp data={data} />
   const renderDownload = (
     <PDFDownloadLink
-      document={pdfDocument}
+      document={<PdfComp data={data} />}
       fileName={`Invoice-${data.orderId}.pdf`}
     >
       <Button
         text='Unduh'
-        id='ticketBtn'
+        className='ticket-btn'
       />
     </PDFDownloadLink>
   )
 
   return (
     <div>
-      <div className='hero-d'>
-        <div className='tf-back'>
-          <div>
-            <strong className='ps-4 fs-5'>Ticket</strong>
-            <p className='ps-4 fs-7'>Order ID: {data.orderId}</p>
-          </div>
-        </div>
-        <div className=' pb-4'>
-          <Status current={['current', 'current', 'current']} />
-        </div>
-      </div>
-
-      <div className='success'>
+      <div className='d-flex flex-column justify-content-center align-items-center m-4'>
         <FontAwesomeIcon
           icon={faCircleCheck}
           size='5x'
-          className='ceklis'
+          className='pb-3 text-success'
         />
         <div className='text-center'>
           <strong>Pembayaran Berhasil!</strong>
@@ -70,7 +57,7 @@ const TicketPage = () => {
           </p>
           <Button
             text='Kembali'
-            id='ticketBtn'
+            className='ticket-btn'
             onClick={() => navigate('/')}
           />
         </div>
@@ -80,7 +67,9 @@ const TicketPage = () => {
         className='ticket-card'
         titleClass='fw-bold fs-6'
       >
-        <PDFViewer style={{ height: '100%' }}>{pdfDocument}</PDFViewer>
+        <PDFViewer className='w-100 h-100'>
+          <PdfComp data={data} />
+        </PDFViewer>
       </Card>
     </div>
   )
