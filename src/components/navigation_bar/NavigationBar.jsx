@@ -12,7 +12,7 @@ const NavigationBar = (props) => {
   const { context } = props
   const { navigate, pathname, params, isLoggin } = context
   const {id} = params
-  const showPathname = ['/login', '/register', `/ticket/${id}`]
+  const showPathname = ['/login', '/register', '/404', `/ticket/${id}`]
   const isShowElement = includes(showPathname, pathname)
   const navbarClass = isShowElement ? 'navi-white' : 'navigator'
 

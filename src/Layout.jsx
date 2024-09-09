@@ -10,7 +10,6 @@ const Layout = () => {
   const { pathname } = useLocation()
   const isLoggin = !isNull(getLocalStorage('token'))
   const params = useParams()
-  console.log('params :', params);
   const context = {
     navigate,
     pathname,
