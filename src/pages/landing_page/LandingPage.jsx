@@ -4,7 +4,7 @@ import Hero from './hero/Hero'
 import Products from './products/Products'
 import Rent from './rent/Rent'
 import Services from './services/Services'
-import Testimonial from './testimonial'
+import Testimonial from './testimonial/Testimonial'
 
 const LandingPage = () => {
   return (

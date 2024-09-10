@@ -1,7 +1,7 @@
 import imagePath from '../../../constants/imagePath'
 
 export const sliderSetting = {
-  dots: false,
+  dots: true,
   infinite: true,
   speed: 1000,
   slidesToShow: 3,
