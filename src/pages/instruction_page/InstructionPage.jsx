@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useOutletContext } from 'react-router-dom'
-import Status from '../../components/Status'
 import {
   Button,
   Card,
@@ -11,6 +10,7 @@ import {
   Tooltip,
 } from '../../components/bootstrapComponent'
 import DropzoneComp from '../../components/dropzoneComp/DropzoneComp'
+import StatusBar from '../../components/status_bar/StatusBar'
 import {
   deleteAllCookies,
   getCookies,
@@ -110,7 +110,7 @@ const InstructionPage = () => {
         textRefuse='Tidak'
         textAccept='Ya'
       />
-      <div className='d-flex flex-column flex-md-row align items-start align-items-md-center justify-content-center justify-content-md-between px-3 px-md-5 gap-3 gap-md-0 w-100 hero-inst-div'>
+      <div className='d-flex flex-column flex-md-row align items-start align-items-md-center justify-content-center justify-content-md-between px-5 gap-4 gap-md-0 w-100 hero-inst-div'>
         <div>
           <Button
             icon={<FontAwesomeIcon icon={faArrowLeft} />}
@@ -119,18 +119,18 @@ const InstructionPage = () => {
             text='Kembali'
           />
         </div>
-        <div className='d-flex flex-column gap-1'>
-          <Status current={['current', 'current', 'num']} />
+        <div className='d-flex'>
+          <StatusBar location={['current', 'current', 'num']} />
         </div>
       </div>
-      <div className='d-flex flex-column flex-md-row gap-3 px-1 mx-1 px-md-4 mx-md-3'>
+      <div className='d-flex flex-column flex-md-row gap-3 px-0 mx-0 px-md-3 mx-md-3'>
         <Row className='d-flex flex-column flex-md-row justify-content-between align-items-center gap-3  w-100 inst-container'>
           <Col
             sm='12'
             md='12'
           >
             <Card
-              className='mx-2 shadow'
+              className='mx-5 mx-md-3 shadow'
               titleClass='fw-bold fs-5'
               title='Selesaikan Pembayaran Sebelum'
               info={tommorowDate()}
@@ -138,7 +138,7 @@ const InstructionPage = () => {
           </Col>
           <Col md='12'>
             <Card
-              className='mx-2 shadow'
+              className='mx-5 mx-md-3 shadow'
               titleClass='fw-bold fs-5'
               title='Lakukan Transfer Ke'
             >
@@ -162,7 +162,7 @@ const InstructionPage = () => {
           </Col>
           <Col md='12'>
             <Card
-              className='mx-2 shadow'
+              className='mx-5 mx-md-3  shadow'
               titleClass='fw-bold fs-5'
               title='Instruksi Pembayaran'
             >
@@ -179,7 +179,7 @@ const InstructionPage = () => {
                   : 'File berhasil di-upload !'
               }
               info={!isUploaded && uploadInfo}
-              className='mx-2 shadow'
+              className='mx-5 mx-md-3  shadow'
               titleClass='fw-bold fs-5'
             >
               {isLoading ? renderLoading : !isUploaded && renderDropzone}

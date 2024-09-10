@@ -23,7 +23,7 @@ const AuthPage = () => {
       <img
         src={imagePath.signIn}
         alt='sign-img'
-        className='d-none d-lg-block'
+        className='d-none d-lg-block w-50'
       />
     </section>
   )

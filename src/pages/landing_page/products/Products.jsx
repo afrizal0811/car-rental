@@ -15,7 +15,7 @@ const Products = () => {
         <p className='fw-bolder fs-6'>Mengapa harus pilih Binar Car Rental?</p>
       </div>
       <div className='h-auto'>
-        <Row>
+        <Row className='m-0 m-md-3 m-lg-0'>
           {map(dataProducts, (item, index) => (
             <CardComponent
               key={index}

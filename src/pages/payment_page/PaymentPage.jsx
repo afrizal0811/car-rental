@@ -4,13 +4,13 @@ import { isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useOutletContext } from 'react-router-dom'
-import Status from '../../components/Status'
 import {
   Button,
   Card,
   FormGroup,
   Modal,
 } from '../../components/bootstrapComponent'
+import StatusBar from '../../components/status_bar/StatusBar'
 import { setCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
 import './Styled.css'
@@ -103,7 +103,7 @@ const PaymentPage = () => {
           />
         </div>
         <div className='d-flex'>
-          <Status current={['current', 'num', 'num']} />
+          <StatusBar location={['current', 'num', 'num']} />
         </div>
       </div>
       <div>

@@ -1,0 +1,17 @@
+.circle {
+  border-radius: 50%;
+  border: 1px solid rgb(30, 0, 151);
+  font-size: 14px;
+  height: 20px;
+  text-align: center;
+  width: 20px;
+}
+.num {
+  background: #ffffff;
+  color: #000000;
+}
+
+.current {
+  background: rgb(30, 0, 151);
+  color: #FFFFFF;
+}

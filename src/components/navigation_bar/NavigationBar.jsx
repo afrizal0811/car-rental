@@ -45,41 +45,40 @@ const NavigationBar = (props) => {
   )
 
   return (
-    <div>
-      <Navbar
-        key='md'
-        expand='md'
-        style={{ backgroundColor: !isShowElement && color.aliceBlue }}
-        className={`py-3 ${isShowElement && 'bg-white shadow-sm'}`}
-      >
-        <Container fluid>
-          {logo}
-          <Navbar.Toggle aria-controls='offcanvasNavbar-expand-md' />
-          <Navbar.Offcanvas
-            id='offcanvasNavbar-expand-md'
-            aria-labelledby='offcanvasNavbar-expand-md'
-            placement='end'
-            style={{ width: '50%' }}
-          >
-            <Offcanvas.Header closeButton>{logo}</Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className='justify-content-end flex-grow-1 pe-5'>
-                {navLink('/#services', 'Our Services')}
-                {navLink('/#products', 'Why Us')}
-                {navLink('/#testi', 'Testimonial')}
-                {navLink('/#faq', 'FAQ')}
-                <Button
-                  variant={!isLoggin ? 'outline-success' : 'outline-danger'}
-                  onClick={!isLoggin ? handleLogin : handleLogout}
-                  hidden={isShowElement}
-                  text={!isLoggin ? 'Login' : 'Logout'}
-                />
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </Navbar>
-    </div>
+    <Navbar
+      key='md'
+      expand='md'
+      style={{ backgroundColor: !isShowElement && color.aliceBlue }}
+      className={`py-3 ${isShowElement && 'bg-white shadow-sm'}`}
+    >
+      <Container fluid>
+        {logo}
+        <Navbar.Toggle aria-controls='offcanvasNavbar-expand-md' />
+        <Navbar.Offcanvas
+          id='offcanvasNavbar-expand-md'
+          aria-labelledby='offcanvasNavbar-expand-md'
+          placement='end'
+          style={{ width: '50%' }}
+        >
+          <Offcanvas.Header closeButton>{logo}</Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className='justify-content-end flex-grow-1 pe-5'>
+              {navLink('/#services', 'Our Services')}
+              {navLink('/#products', 'Why Us')}
+              {navLink('/#testi', 'Testimonial')}
+              {navLink('/#faq', 'FAQ')}
+              <Button
+                variant={!isLoggin ? 'outline-success' : 'outline-danger'}
+                onClick={!isLoggin ? handleLogin : handleLogout}
+                hidden={isShowElement}
+                text={!isLoggin ? 'Login' : 'Logout'}
+                className='px-1'
+              />
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
   )
 }
 
