@@ -3,19 +3,18 @@ import React from 'react'
 import { Row } from 'react-bootstrap'
 import CardComponent from './CardComponent'
 import { dataProducts } from './help'
-import './Styled.css'
 
 const Products = () => {
   return (
     <section
       id='products'
-      className='product-section'
+      className='w-100 h-auto p-2 py-lg-3 px-lg-5 '
     >
-      <div className='product-title'>
-        <h1>Why Us?</h1>
-        <p>Mengapa harus pilih Binar Car Rental?</p>
+      <div className='w-auto text-center text-lg-start'>
+        <h1 className='fw-bolder lh-sm fs-2'>Why Us?</h1>
+        <p className='fw-bolder fs-6'>Mengapa harus pilih Binar Car Rental?</p>
       </div>
-      <div className='product-card-container'>
+      <div className='h-auto'>
         <Row>
           {map(dataProducts, (item, index) => (
             <CardComponent
