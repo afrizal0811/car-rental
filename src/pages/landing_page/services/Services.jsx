@@ -1,26 +1,35 @@
 import { map } from 'lodash'
 import React from 'react'
+import { Col, Row } from 'react-bootstrap'
 import imagePath from '../../../constants/imagePath'
 import './Styled.css'
 import { dataServices } from './help'
 
 const Services = () => {
   return (
-    <section
+    <Row
       id='services'
-      className='services-section'
+      className='m-3 p-3'
     >
-      <div className='services-image'>
+      <Col
+        sm='12'
+        lg='6'
+        className='d-flex justify-content-center align-items-center'
+      >
         <img
           src={imagePath.services}
           alt='img-services'
-          width='100%'
+          width='80%'
           height='auto'
         />
-      </div>
-      <div className='services-content'>
-        <h1>Best Car Rental for any kind of trip in East Java!</h1>
-        <p>
+      </Col>
+      <Col
+        sm='12'
+        lg='6'
+        className='p-2 mt-4 mt-lg-0'
+      >
+        <h1 className='fs-1 fw-bold'>Best Car Rental for any kind of trip in East Java!</h1>
+        <p className='fs-6 fw-bold'>
           Sewa mobil di Jawa Timur bersama Binar Car Rental jaminan harga lebih
           murah dibandingkan yang lain, kondisi mobil baru, serta kualitas
           pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting,
@@ -31,8 +40,8 @@ const Services = () => {
             <li key={index}>{data}</li>
           ))}
         </ul>
-      </div>
-    </section>
+      </Col>
+    </Row>
   )
 }
 
