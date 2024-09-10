@@ -1,1 +1,1 @@
-export const showPathname = (id) => ['/login', '/register', '/404', `/ticket/${id}`]
+export const showPathname = (id) => ['/auth/login', '/auth/register', '/404', `/ticket/${id}`]

@@ -35,12 +35,12 @@ const InstructionPage = () => {
 
   useEffect(() => {
     if (!isLoggin) {
-      navigate('/login', { replace: true })
+      navigate('/auth/login', { replace: true })
     }
   }, [])
 
   if (!isLoggin) {
-    navigate('/login', { replace: true })
+    navigate('/auth/login', { replace: true })
     return null
   }
 

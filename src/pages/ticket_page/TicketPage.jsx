@@ -17,14 +17,14 @@ const TicketPage = () => {
 
   useEffect(() => {
     if (!isLoggin) {
-      navigate('/login')
+      navigate('/auth/login')
     } else if (isDataEmpty) {
       navigate('/')
     }
   }, [])
 
   if (!isLoggin) {
-    navigate('/login')
+    navigate('/auth/login')
     return null
   } else if (isDataEmpty) {
     navigate('/')

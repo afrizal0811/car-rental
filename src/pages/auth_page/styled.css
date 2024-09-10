@@ -1,0 +1,10 @@
+.btn-submit,
+.btn-submit:active,
+.btn-submit:visited {
+  font-weight: 700 !important;
+  background-color: #0d28a6 !important;
+}
+
+.btn-submit:hover {
+  background-color: #091c74 !important;
+}

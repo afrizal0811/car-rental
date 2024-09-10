@@ -31,7 +31,7 @@ const PaymentPage = () => {
 
   useEffect(() => {
     if (!isLoggin || isDataEmpty) {
-      navigate('/login')
+      navigate('/auth/login')
     }
   }, [])
 

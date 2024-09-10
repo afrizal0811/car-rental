@@ -16,7 +16,7 @@ const NavigationBar = (props) => {
   const isShowElement = includes(showPathname(id), pathname)
 
   const handleLogin = () => {
-    navigate('/login')
+    navigate('/auth/login')
   }
 
   const handleLogout = () => {

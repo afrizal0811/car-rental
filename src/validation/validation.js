@@ -5,9 +5,7 @@ import { getApi, postApi } from '../utilities/handleApi'
 import { setLocalStorage } from '../utilities/handleStorage'
 import validateForm from '../utilities/validationForm'
 
-const validation = (navigate, pathname) => {
-  const isRegister = pathname === '/register'
-  const isLogin = pathname === '/login'
+const validation = (navigate, isLogin, isRegister) => {
   const [users, setUsers] = useState([])
   const [errors, setErrors] = useState({})
   const [validated, setValidated] = useState(false)
@@ -81,7 +79,7 @@ const validation = (navigate, pathname) => {
         }
         await postApi(url, params)
         setIsSubmitted(true)
-        navigate('/login')
+        navigate('/auth/login')
       }
     } else {
       if (isErrorEmpty) {
@@ -99,8 +97,8 @@ const validation = (navigate, pathname) => {
     e.preventDefault()
     e.stopPropagation()
     setValidated(true)
-    if (isRegister) createUser()
-    if (isLogin) getUser()
+    if (isRegister) createUser() 
+    else if (isLogin) getUser()
   }
 
   const handleChange = (e) => {

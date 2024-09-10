@@ -23,7 +23,7 @@ const DetailsPage = () => {
 
   useEffect(() => {
     if (!isLoggin) {
-      navigate('/login', { replace: true })
+      navigate('/auth/login', { replace: true })
     }
   }, [])
 
