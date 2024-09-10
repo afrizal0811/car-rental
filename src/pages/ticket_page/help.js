@@ -1,9 +1,10 @@
 import { StyleSheet } from '@react-pdf/renderer'
+import color from '../../constants/color'
 import { findCookiesItem, getCookies } from '../../utilities/handleCookies'
 import { localePriceFormat } from '../../utilities/handleLocale'
 
 export const styles = StyleSheet.create({
-  page: { backgroundColor: '#f1f3ff' },
+  page: { backgroundColor: color.aliceBlue },
   section: { textAlign: 'center', margin: 30 },
   judul: { textAlign: 'center', marginBottom: 30 },
   informasi: {

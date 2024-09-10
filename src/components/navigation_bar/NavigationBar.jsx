@@ -2,6 +2,7 @@ import { includes } from 'lodash'
 import React from 'react'
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import color from '../../constants/color'
 import imagePath from '../../constants/imagePath'
 import { deleteAllCookies } from '../../utilities/handleCookies'
 import { deleteLocalStorage } from '../../utilities/handleStorage'
@@ -48,7 +49,7 @@ const NavigationBar = (props) => {
       <Navbar
         key='md'
         expand='md'
-        style={{ backgroundColor: !isShowElement && '#f1f3ff' }}
+        style={{ backgroundColor: !isShowElement && color.aliceBlue }}
         className={`py-3 ${isShowElement && 'bg-white shadow-sm'}`}
       >
         <Container fluid>

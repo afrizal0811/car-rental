@@ -1,6 +1,7 @@
 import { includes, map } from 'lodash'
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import color from '../../constants/color'
 import imagePath from '../../constants/imagePath'
 import { list, showPathname } from './help'
 
@@ -21,7 +22,7 @@ const Footer = (props) => {
     <div hidden={!isShowElement}>
       <Row
         className='p-5 d-flex '
-        style={{ backgroundColor: '#f1f3ff' }}
+        style={{ backgroundColor: color.aliceBlue }}
       >
         <Col
           sm='12'
