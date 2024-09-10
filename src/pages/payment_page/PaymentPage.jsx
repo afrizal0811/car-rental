@@ -93,7 +93,7 @@ const PaymentPage = () => {
         textRefuse='Periksa Kembali'
         textAccept='Lanjutkan Pesanan'
       />
-      <div className='d-flex flex-column flex-md-row align items-start align-items-md-center justify-content-center justify-content-md-between px-3 px-md-5 gap-4 gap-md-0 w-100 hero-pay-div'>
+      <div className='d-flex flex-column flex-md-row align items-start align-items-md-center justify-content-center justify-content-md-between px-5 gap-4 gap-md-0 w-100 hero-pay-div'>
         <div>
           <Button
             icon={<FontAwesomeIcon icon={faArrowLeft} />}
@@ -107,7 +107,7 @@ const PaymentPage = () => {
         </div>
       </div>
       <div>
-        <Row className='p-4 mx-5 shadow rounded bg-white d-flex flex-column form-pesan'>
+        <Row className='mx-5 p-4 shadow rounded bg-white d-flex flex-column form-pesan'>
           <Col>
             <h1 className='fw-bold fs-6 mb-3'>Detail Pesananmu</h1>
           </Col>
@@ -150,13 +150,13 @@ const PaymentPage = () => {
             </div>
           </Col>
         </Row>
-        <Row className='d-flex flex-column flex-md-row align-items-stretch justify-content-between px-5  gap-3 gap-lg-0'>
+        <Row className='d-flex flex-column flex-md-row align-items-stretch justify-content-between mx-3 mx-md-3 p-3 gap-3 gap-lg-0'>
           <Col
             sm='12'
             lg='6'
           >
             <Card
-              className='w-100 h-100 d-flex gap-3'
+              className='w-100 h-100 d-flex gap-3 shadow'
               title='Pilih Bank Transfer'
               info='Kamu bisa membayar dengan transfer melalui ATM, Internet Banking, atau Mobile Banking'
               titleClass='fw-bold mb-4'
@@ -172,13 +172,13 @@ const PaymentPage = () => {
           >
             <Card
               info={data.car.category}
-              className='w-100 h-100'
+              className='w-100 h-100 shadow'
               title={data.car.name}
               infoClass='date-picker'
             >
               <div className='py-1'>
                 <strong>Harga</strong>
-                <ul className='total-pay'>
+                <ul className='d-flex justify-content-between gap-4'>
                   <li>
                     Sewa Mobil {renderCost(false)} x {data.lamaHari} hari
                   </li>
@@ -187,7 +187,7 @@ const PaymentPage = () => {
               </div>
               <div className='py-1'>
                 <strong>Biaya Lainnya</strong>
-                <ul className='total-pay'>
+                <ul className='d-flex justify-content-between gap-4'>
                   <div>
                     <li>Pajak</li>
                     <li>Biaya makan sopir</li>
@@ -200,7 +200,7 @@ const PaymentPage = () => {
               </div>
               <div className='py-1'>
                 <strong>Belum Termasuk</strong>
-                <ul style={{ fontSize: '12px', paddingTop: '0.5rem' }}>
+                <ul>
                   <li>Bensin</li>
                   <li>Tol dan parkir</li>
                 </ul>

@@ -130,16 +130,16 @@ const InstructionPage = () => {
             md='12'
           >
             <Card
-              className='mx-2'
-              titleClass='fw-bold fs-6'
+              className='mx-2 shadow'
+              titleClass='fw-bold fs-5'
               title='Selesaikan Pembayaran Sebelum'
               info={tommorowDate()}
             />
           </Col>
           <Col md='12'>
             <Card
-              className='mx-2'
-              titleClass='fw-bold fs-6'
+              className='mx-2 shadow'
+              titleClass='fw-bold fs-5'
               title='Lakukan Transfer Ke'
             >
               <div className='d-flex w-100 align-items-center text-decoration-none text-dark my-2 gap-3'>
@@ -162,8 +162,8 @@ const InstructionPage = () => {
           </Col>
           <Col md='12'>
             <Card
-              className='mx-2'
-              titleClass='fw-bold fs-6'
+              className='mx-2 shadow'
+              titleClass='fw-bold fs-5'
               title='Instruksi Pembayaran'
             >
               <InstructionItem />
@@ -179,7 +179,8 @@ const InstructionPage = () => {
                   : 'File berhasil di-upload !'
               }
               info={!isUploaded && uploadInfo}
-              className='mx-2'
+              className='mx-2 shadow'
+              titleClass='fw-bold fs-5'
             >
               {isLoading ? renderLoading : !isUploaded && renderDropzone}
               <div className='d-grid mt-auto'>

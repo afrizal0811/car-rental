@@ -60,7 +60,7 @@ const DetailsPage = () => {
           text='Kembali'
         />
       </div>
-      <Row className='flex-column-reverse flex-lg-row align-items-center align-items-md-stretch justify-content-center m-4 detail-section'>
+      <Row className='flex-column-reverse flex-lg-row align-items-center align-items-md-stretch justify-content-center mx-5 gap-3 gap-md-0 detail-section'>
         <Col
           sm='12'
           lg='6'
@@ -68,7 +68,7 @@ const DetailsPage = () => {
           <Card
             title='Tentang Paket'
             info='Include'
-            className='w-100 h-100 my-2 mx-2 '
+            className='w-100 h-100 shadow'
           >
             {renderDataList}
             <Accordion
@@ -87,7 +87,7 @@ const DetailsPage = () => {
             data={selectedCar}
             info='Tentukan lama sewa mobil (max. 7 hari)'
             infoClass='card-info'
-            className='w-100 h-100 my-2 mx-2'
+            className='w-100 h-100 shadow'
             isHaveImage='true'
             isHaveCategory='true'
           >

@@ -21,7 +21,7 @@ const Footer = (props) => {
   return (
     <div hidden={!isShowElement}>
       <Row
-        className='p-5 d-flex '
+        className='p-5 d-flex'
         style={{ backgroundColor: color.aliceBlue }}
       >
         <Col
@@ -38,7 +38,7 @@ const Footer = (props) => {
           md='3'
         >
           <ul
-            className='d-flex flex-column gap-1 p-0 w-75 m-auto'
+            className='d-flex flex-column gap-1 p-0 w-75 m-0 m-md-auto'
             style={{ listStyleType: 'none' }}
           >
             {map(list, (data, index) => (

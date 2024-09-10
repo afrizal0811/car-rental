@@ -56,7 +56,7 @@ const CarPage = (props) => {
     <div>
       <SectionHero {...props} />
       <Form>
-        <Row className='p-4 mx-5 shadow rounded bg-white cari-content '>
+        <Row className='p-2 mx-3 mx-md-5 shadow rounded bg-white cari-content '>
           <Col
             sm='12'
             md='6'
@@ -145,7 +145,7 @@ const CarPage = (props) => {
           </Col>
         </Row>
       </Form>
-      <Row className='d-flex align-items-stretch justify-content-evenly p-4 mx-5 mb-5 shadow rounded bg-white '>
+      <Row className='d-flex align-items-stretch justify-content-evenly p-2 p-md-4 mx-3 mx-md-5 mb-5 shadow rounded bg-white '>
         {map(sorting(newCarList), (result) => {
           const { id, price, isAvailable } = result
           return (
